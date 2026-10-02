@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import {
   AppText,
@@ -26,7 +26,9 @@ import {
   syllableTone,
   type Word,
 } from '../features/reading';
+import { recordReading } from '../features/progress';
 import { say, stopSpeaking } from '../features/speech';
+import { useProgress } from '../storage/progressStore';
 import { tabs, useNavigate } from '../navigation';
 
 type WordId = { paragraph: number; word: number };
@@ -147,11 +149,16 @@ export function ReadingScreen() {
   const go = useNavigate();
   const [active, setActive] = useState<WordId | null>(reading.highlighted);
   const [paused, setPaused] = useState(false);
+  const { update } = useProgress();
+  const startedAt = useRef(Date.now());
+  const tapped = useRef(new Set<string>()); // mots touchés = mots difficiles
+  const totalWords = reading.paragraphs.reduce((n, p) => n + p.length, 0);
 
   useEffect(() => stopSpeaking, []);
 
   const tap = (id: WordId, word: Word) => {
     setActive(id);
+    tapped.current.add(`${id.paragraph}:${id.word}`);
     if (!paused) say(spokenWord(word));
   };
 
@@ -302,6 +309,14 @@ export function ReadingScreen() {
           trailingIcon="arrow-right"
           onPress={() => {
             stopSpeaking();
+            update((s) =>
+              recordReading(s, {
+                lessonId: 'nino-foret-doree',
+                durationSec: Math.max(1, Math.round((Date.now() - startedAt.current) / 1000)),
+                wordsRead: totalWords,
+                correctWords: totalWords - tapped.current.size,
+              }),
+            );
             go('achievement');
           }}
           style={{ flex: 1.15 }}

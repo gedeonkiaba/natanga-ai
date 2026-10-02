@@ -1,25 +1,25 @@
-import { useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { computeTreeState, nodeOrder, LEVEL1_NODES, type SkillNode } from '@natanga/core';
+import {
+  computeTreeState,
+  nodeOrder,
+  LEVEL1_NODES,
+  type SkillNode,
+  type SkillProgress,
+} from '@natanga/core';
 import { Button, ProgressBar, Text } from '@natanga/ui';
 import { colors, spacing } from '@natanga/ui'; // racine : Metro ne résout pas les sous-chemins d'exports
 
 export interface SkillTreeScreenProps {
   onSelectNode: (node: SkillNode) => void;
+  /** Progression sauvegardée sur l'appareil. */
+  progress: SkillProgress[];
 }
 
 /**
  * Écran arbre de compétences (US-05) : liste des nœuds avec leur statut de déblocage.
  */
-export function SkillTreeScreen({ onSelectNode }: SkillTreeScreenProps) {
-  // Progression simulée (socle UI) — sera reliée au profil/Persistance.
-  const [mastered] = useState<string[]>(['n-letters-a']);
-  const progress = mastered.map((nodeId) => ({
-    childId: 'demo',
-    nodeId,
-    status: 'mastered' as const,
-    masteredScore: 1,
-  }));
+export function SkillTreeScreen({ onSelectNode, progress }: SkillTreeScreenProps) {
+  const mastered = progress.filter((p) => p.status === 'mastered');
   const tree = computeTreeState(LEVEL1_NODES, progress);
 
   const nodes = nodeOrder(LEVEL1_NODES);

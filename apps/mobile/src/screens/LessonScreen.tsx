@@ -12,7 +12,7 @@ const FEEDBACK_MS = 1200;
 
 export interface LessonScreenProps {
   lesson: Lesson;
-  onFinish: (score: number) => void;
+  onFinish: (result: { score: number; correct: number; total: number; gems: number }) => void;
   onQuit: () => void;
 }
 
@@ -53,7 +53,10 @@ export function LessonScreen({ lesson, onFinish, onQuit }: LessonScreenProps) {
           {correct} bonne{correct > 1 ? 's' : ''} réponse{correct > 1 ? 's' : ''} sur{' '}
           {exercises.length}.
         </Text>
-        <Button onPress={() => onFinish(score)} accessibilityLabel="Terminer la leçon">
+        <Button
+          onPress={() => onFinish({ score, correct, total: exercises.length, gems })}
+          accessibilityLabel="Terminer la leçon"
+        >
           Continuer
         </Button>
       </View>

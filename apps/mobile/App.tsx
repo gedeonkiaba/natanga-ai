@@ -13,7 +13,9 @@ import {
 import { LEVEL1_LESSONS, type Lesson, type SkillNode } from '@natanga/core';
 import { setSpeakFunction } from '@natanga/ui';
 import { BottomNav, colors } from './src/design';
+import { recordLesson, treeProgress } from './src/features/progress';
 import { say } from './src/features/speech';
+import { ProgressProvider, useProgress } from './src/storage/progressStore';
 import { NavigationContext, tabs, type Route } from './src/navigation';
 import { AchievementScreen } from './src/screens/AchievementScreen';
 import { HomeScreen } from './src/screens/HomeScreen';
@@ -55,6 +57,7 @@ function PathFrame({ children, nav }: { children: React.ReactNode; nav?: React.R
 function Router() {
   const [route, setRoute] = useState<Route>(initialRoute);
   const [lesson, setLesson] = useState<Lesson | null>(null);
+  const { progress, ready, update } = useProgress();
 
   // Retour Android : leçon → parcours → accueil, puis sortie de l'app.
   useEffect(() => {
@@ -75,13 +78,15 @@ function Router() {
     }
   };
 
+  if (!ready) return <View style={{ flex: 1, backgroundColor: colors.background }} />;
+
   let screen: React.ReactNode;
   if (route === 'tree') {
     screen = (
       <PathFrame
         nav={<BottomNav items={tabs(setRoute).home} active="bibliotheque" indicator="dot" />}
       >
-        <SkillTreeScreen onSelectNode={openLesson} />
+        <SkillTreeScreen onSelectNode={openLesson} progress={treeProgress(progress)} />
       </PathFrame>
     );
   } else if (route === 'lesson' && lesson) {
@@ -89,7 +94,18 @@ function Router() {
       <PathFrame>
         <LessonScreen
           lesson={lesson}
-          onFinish={() => setRoute('tree')}
+          onFinish={(result) => {
+            update((s) =>
+              recordLesson(s, {
+                nodeId: lesson.nodeId,
+                lessonId: lesson.id,
+                correct: result.correct,
+                total: result.total,
+                gems: result.gems,
+              }),
+            );
+            setRoute('tree');
+          }}
           onQuit={() => setRoute('tree')}
         />
       </PathFrame>
@@ -116,7 +132,9 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <StatusBar style="dark" />
-      <Router />
+      <ProgressProvider>
+        <Router />
+      </ProgressProvider>
     </SafeAreaProvider>
   );
 }

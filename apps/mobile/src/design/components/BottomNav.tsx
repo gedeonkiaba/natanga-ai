@@ -47,7 +47,8 @@ export function BottomNav({
             key={item.key}
             accessibilityRole="tab"
             accessibilityLabel={item.label}
-            accessibilityState={{ selected: isActive, disabled: !item.onPress && !isActive }}
+            aria-selected={isActive}
+            aria-disabled={!item.onPress && !isActive}
             accessibilityHint={!item.onPress && !isActive ? 'Bientôt disponible' : undefined}
             onPress={item.onPress}
             style={{ flex: 1, alignItems: 'center', minHeight: 48, gap: 3 }}

@@ -20,6 +20,8 @@ import {
 } from '../design';
 import { avatars, profileSetup, themes, type AvatarKey } from '../content/demo';
 import { canSubmitProfile, selectionLabel, toggleTheme, type ThemeKey } from '../features/profile';
+import { saveProfile } from '../features/progress';
+import { useProgress } from '../storage/progressStore';
 import { tabs, useNavigate } from '../navigation';
 
 function Header({ onBack }: { onBack: () => void }) {
@@ -91,8 +93,12 @@ function SectionHeader({
 
 export function ProfileSetupScreen() {
   const go = useNavigate();
-  const [avatar, setAvatar] = useState<AvatarKey | null>(profileSetup.initialAvatar);
-  const [selected, setSelected] = useState<ThemeKey[]>(profileSetup.initialThemes);
+  const { progress, update } = useProgress();
+  const saved = progress.profile;
+  const [avatar, setAvatar] = useState<AvatarKey | null>(
+    (saved?.avatar as AvatarKey | undefined) ?? profileSetup.initialAvatar,
+  );
+  const [selected, setSelected] = useState<ThemeKey[]>(saved?.themes ?? profileSetup.initialThemes);
 
   return (
     <Screen
@@ -102,7 +108,10 @@ export function ProfileSetupScreen() {
           label={profileSetup.cta}
           trailingIcon="arrow-right"
           disabled={!canSubmitProfile(avatar, selected)}
-          onPress={() => go('reading')}
+          onPress={() => {
+            if (avatar) update((s) => saveProfile(s, { avatar, themes: selected }));
+            go('reading');
+          }}
         />
       }
     >
@@ -134,7 +143,7 @@ export function ProfileSetupScreen() {
                 key={a.key}
                 accessibilityRole="radio"
                 accessibilityLabel={a.name}
-                accessibilityState={{ checked: isSelected }}
+                aria-checked={isSelected}
                 onPress={() => setAvatar(a.key)}
                 style={{ alignItems: 'center', gap: space.xxs, minWidth: touch }}
               >
@@ -166,7 +175,7 @@ export function ProfileSetupScreen() {
                 key={t.key}
                 accessibilityRole="checkbox"
                 accessibilityLabel={t.label}
-                accessibilityState={{ checked: isOn }}
+                aria-checked={isOn}
                 onPress={() => setSelected((s) => toggleTheme(s, t.key))}
                 style={({ pressed }) => [
                   {
