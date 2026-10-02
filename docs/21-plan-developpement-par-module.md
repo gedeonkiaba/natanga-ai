@@ -98,13 +98,13 @@ Progression / Fluide) en ≤ 5 minutes, sans surcharge cognitive.
 | Élément | Détail |
 |---|---|
 | **Rôle** | Arbre lettres → syllabes → mots → phrases → textes ; statuts `locked`/`available`/`mastered`. |
-| **État** | 🟡 PARTIEL — `packages/core/src/pedagogy/tree.ts` + `content.ts` (7 graphèmes, 5 mots, 3 nœuds, 2 leçons, 4 exercices) ; écrans `SkillTreeScreen` (RN **et** Flutter). Schéma `skill_nodes`/`progress` en Laravel. |
+| **État** | 🟡 PARTIEL — `packages/core/src/pedagogy/tree.ts` + `content.ts` (7 graphèmes, 5 mots, 3 nœuds, 2 leçons, 4 exercices) ; écran `SkillTreeScreen` (Flutter ; version RN retirée le 02/10/2026). Schéma `skill_nodes`/`progress` en Laravel. |
 | **Manque** | Contenu niveau 1 étendu (30 textes × 3 niveaux du cahier des charges = 90 textes) ; 5 niveaux réels (seulement 3 nœuds posés). |
 | **Acceptation** | 5 niveaux visibles ; déblocage séquentiel (`unlockedWhen`) ; progression persistée par enfant. |
 
 ### F3.2 — Moteur de leçon (session 5–10 min)
 - **Rôle :** séquence ordonnée d'exercices, soumission, score 0..1.
-- **État :** 🟢 FAIT — `lesson.ts` + tests ; `useLessonSession` (RN) + `LessonScreen` (RN/Flutter).
+- **État :** 🟢 FAIT — `lesson.ts` + tests ; `LessonScreen` (Flutter ; version RN retirée le 02/10/2026).
 - **Acceptation :** durée bornée ; sauvegarde d'état en sortie ; feedback bienveillant.
 
 ### F3.3 — 8 compétences C1→C8 (score 0–100)
@@ -140,7 +140,7 @@ Progression / Fluide) en ≤ 5 minutes, sans surcharge cognitive.
 | Élément | Détail |
 |---|---|
 | **Rôle** | Étoiles, badges, accessoires avatar débloqués à 3/5/10/20 lectures. |
-| **État** | 🟡 PARTIEL — `rewards.ts` (gemmes/effort + réussite) + table `rewards` (Laravel, `kind` gems/badge/effort) ; `useLessonSession` appelle `rewardForAnswer`. |
+| **État** | 🟡 PARTIEL — `rewards.ts` (gemmes/effort + réussite) + table `rewards` (Laravel, `kind` gems/badge/effort) . |
 | **Manque** | Étoiles & badges & accessoires avatar (seules les gemmes sont modélisées) ; seuils 3/5/10/20 non implémentés. |
 | **Acceptation** | Déblocage par seuils de lectures ; récompense **d'effort** même en cas d'erreur ; trace (`reward_unlocked`). |
 
