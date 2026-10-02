@@ -31,7 +31,11 @@ export default function SignupPage() {
     if (!sentTo) return;
     setInfo(null);
     try {
-      await api('/auth/resend-verification', { method: 'POST', body: { email: sentTo }, auth: false });
+      await api('/auth/resend-verification', {
+        method: 'POST',
+        body: { email: sentTo },
+        auth: false,
+      });
       setInfo('Un nouveau lien vient de vous être envoyé.');
     } catch (err) {
       setError(errorMessage(err));
@@ -45,8 +49,8 @@ export default function SignupPage() {
           <>
             <h1>Vérifiez votre boîte email</h1>
             <p>
-              Nous avons envoyé un lien de confirmation à <strong>{sentTo}</strong>. Cliquez dessus pour
-              activer votre compte (pensez à regarder dans les spams).
+              Nous avons envoyé un lien de confirmation à <strong>{sentTo}</strong>. Cliquez dessus
+              pour activer votre compte (pensez à regarder dans les spams).
             </p>
             {info && <Alert ok>{info}</Alert>}
             {error && <Alert>{error}</Alert>}
@@ -63,14 +67,30 @@ export default function SignupPage() {
             <form className="card stack" onSubmit={submit} noValidate={false}>
               <div className="field">
                 <label htmlFor="email">Votre email</label>
-                <input id="email" type="email" autoComplete="email" required value={email}
-                  onChange={(e) => setEmail(e.target.value)} />
+                <input
+                  id="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </div>
               <div className="field">
                 <label htmlFor="password">Mot de passe</label>
-                <input id="password" type="password" autoComplete="new-password" required minLength={8}
-                  aria-describedby="password-hint" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <p id="password-hint" className="hint">8 caractères minimum.</p>
+                <input
+                  id="password"
+                  type="password"
+                  autoComplete="new-password"
+                  required
+                  minLength={8}
+                  aria-describedby="password-hint"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <p id="password-hint" className="hint">
+                  8 caractères minimum.
+                </p>
               </div>
               {error && <Alert>{error}</Alert>}
               <button type="submit" className="btn btn-primary" disabled={busy}>

@@ -15,6 +15,13 @@ function backendUrl(): string {
 
 async function forward(req: NextRequest, ctx: { params: Promise<{ path: string[] }> }) {
   const { path } = await ctx.params;
+  // La documentation Swagger de l'API n'est pas publiée par le client web.
+  if (path[0] === 'documentation' || path[0] === 'docs') {
+    return Response.json(
+      { type: 'about:blank', title: 'ressource introuvable', status: 404, code: 'ERR_NOT_FOUND' },
+      { status: 404 },
+    );
+  }
   const target = `${backendUrl()}/api/${path.map(encodeURIComponent).join('/')}${req.nextUrl.search}`;
 
   const headers = new Headers();
@@ -23,7 +30,11 @@ async function forward(req: NextRequest, ctx: { params: Promise<{ path: string[]
     if (value) headers.set(name, value);
   }
   headers.set('accept', 'application/json');
-  const clientIp = req.headers.get('x-forwarded-for');
+  // IP du parent pour le throttle de l'API. Jamais l'X-Forwarded-For reçu (falsifiable
+  // par le navigateur) : uniquement l'en-tête posé — et écrasé — par NOTRE reverse proxy
+  // (Caddy : X-Real-IP, cf. deploy/Caddyfile), désigné par CLIENT_IP_HEADER.
+  const ipHeader = process.env.CLIENT_IP_HEADER?.toLowerCase();
+  const clientIp = ipHeader ? req.headers.get(ipHeader)?.split(',')[0]?.trim() : undefined;
   if (clientIp) headers.set('x-forwarded-for', clientIp);
 
   const hasBody = req.method !== 'GET' && req.method !== 'HEAD';

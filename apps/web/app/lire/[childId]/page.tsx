@@ -17,8 +17,12 @@ export default function LibraryPage() {
   const [error, setError] = useState<{ message: string; consent: boolean } | null>(null);
 
   useEffect(() => {
-    api<Record<string, unknown>>(`/children/${childId}`).then((raw) => setChild(toChild(raw))).catch(() => {});
-    api<{ settings: Settings }>(`/children/${childId}/settings`).then((r) => setSettings(r.settings)).catch(() => {});
+    api<Record<string, unknown>>(`/children/${childId}`)
+      .then((raw) => setChild(toChild(raw)))
+      .catch(() => {});
+    api<{ settings: Settings }>(`/children/${childId}/settings`)
+      .then((r) => setSettings(r.settings))
+      .catch(() => {});
   }, [childId]);
 
   useEffect(() => {
@@ -35,7 +39,7 @@ export default function LibraryPage() {
   }, [childId, interest]);
 
   return (
-    <Shell requireAuth>
+    <Shell requireAuth childMode>
       <h1>{child ? `Bonjour ${child.displayName} !` : 'Bonjour !'} Que veux-tu lire ?</h1>
       {error ? (
         <div className="stack">
@@ -49,19 +53,31 @@ export default function LibraryPage() {
       ) : (
         <div className="stack">
           <div className="row" role="group" aria-label="Choisir un thème">
-            <button type="button" className="chip" aria-pressed={interest === null} onClick={() => setInterest(null)}>
+            <button
+              type="button"
+              className="chip"
+              aria-pressed={interest === null}
+              onClick={() => setInterest(null)}
+            >
               Tout
             </button>
             {INTERESTS.map((i) => (
-              <button key={i.key} type="button" className="chip" aria-pressed={interest === i.key}
-                onClick={() => setInterest(i.key)}>
+              <button
+                key={i.key}
+                type="button"
+                className="chip"
+                aria-pressed={interest === i.key}
+                onClick={() => setInterest(i.key)}
+              >
                 <span aria-hidden="true">{i.emoji}</span> {i.label}
               </button>
             ))}
           </div>
 
           {texts === null && <p role="status">Chargement des histoires…</p>}
-          {texts && texts.length === 0 && <p>Pas encore d&apos;histoire ici. Choisis un autre thème !</p>}
+          {texts && texts.length === 0 && (
+            <p>Pas encore d&apos;histoire ici. Choisis un autre thème !</p>
+          )}
           {texts && texts.length > 0 && (
             <ul className="grid" style={{ listStyle: 'none', padding: 0 }} aria-label="Histoires">
               {texts.map((t) => {
@@ -69,7 +85,9 @@ export default function LibraryPage() {
                 return (
                   <li key={t.id}>
                     <Link href={`/lire/${childId}/${t.id}`} className="card text-card">
-                      <span aria-hidden="true" style={{ fontSize: 32 }}>{theme?.emoji ?? '📖'}</span>
+                      <span aria-hidden="true" style={{ fontSize: 32 }}>
+                        {theme?.emoji ?? '📖'}
+                      </span>
                       <h3>{t.title}</h3>
                       <span className="muted small">
                         {theme?.label ?? t.interest} · {t.durationMin} min

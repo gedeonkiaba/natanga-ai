@@ -18,8 +18,15 @@ export default defineConfig({
     locale: 'fr-FR',
   },
   projects: [
-    { name: 'desktop', use: { ...devices['Desktop Chrome'] } },
-    { name: 'mobile', use: { ...devices['Pixel 7'] } },
+    // Chaque projet = un client distinct ; X-Real-IP joue le rôle de Caddy (prod).
+    {
+      name: 'desktop',
+      use: { ...devices['Desktop Chrome'], extraHTTPHeaders: { 'x-real-ip': '203.0.113.10' } },
+    },
+    {
+      name: 'mobile',
+      use: { ...devices['Pixel 7'], extraHTTPHeaders: { 'x-real-ip': '203.0.113.20' } },
+    },
   ],
   webServer: [
     {
@@ -31,7 +38,7 @@ export default defineConfig({
     {
       command: 'pnpm start --port 3000',
       url: 'http://localhost:3000',
-      env: { API_URL: 'http://127.0.0.1:8000' },
+      env: { API_URL: 'http://127.0.0.1:8000', CLIENT_IP_HEADER: 'x-real-ip' },
       reuseExistingServer: false,
       timeout: 120_000,
     },

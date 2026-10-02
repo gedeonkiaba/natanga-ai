@@ -1,0 +1,12 @@
+# Reverse proxy public de Natanga (TLS automatique Let's Encrypt).
+{$PUBLIC_DOMAIN} {
+	encode zstd gzip
+
+	reverse_proxy web:3000 {
+		# IP réelle du client, ÉCRASÉE ici (jamais celle annoncée par le navigateur) :
+		# seule source d'IP lue par le web (CLIENT_IP_HEADER) pour le throttle de l'API.
+		header_up X-Real-IP {remote_host}
+	}
+
+	header Strict-Transport-Security "max-age=31536000; includeSubDomains"
+}

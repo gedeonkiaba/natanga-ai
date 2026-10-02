@@ -13,7 +13,11 @@ import type { Lesson, SessionResult, Settings } from '@/lib/types';
 
 function track(childId: string, name: string, lessonId: string) {
   // Événement produit sans donnée personnelle ; un échec ne gêne jamais la lecture.
-  api(`/children/${childId}/events`, { method: 'POST', body: { name, props: { lessonId } } }).catch(() => {});
+  api(`/children/${childId}/events`, {
+    method: 'POST',
+    body: { name, props: { lessonId } },
+    silent: true,
+  }).catch(() => {});
 }
 
 export default function ReaderPage() {
@@ -26,10 +30,15 @@ export default function ReaderPage() {
   const [saving, setSaving] = useState(false);
   const startedAt = useRef(Date.now());
   const opened = useRef(false);
+  const finishing = useRef(false); // une seule session par lecture, même sur double-clic
 
   useEffect(() => {
-    api<Lesson>(`/lessons/${textId}`).then(setLesson).catch((err) => setError(errorMessage(err)));
-    api<{ settings: Settings }>(`/children/${childId}/settings`).then((r) => setSettings(r.settings)).catch(() => {});
+    api<Lesson>(`/lessons/${textId}`)
+      .then(setLesson)
+      .catch((err) => setError(errorMessage(err)));
+    api<{ settings: Settings }>(`/children/${childId}/settings`)
+      .then((r) => setSettings(r.settings))
+      .catch(() => {});
     if (!opened.current) {
       opened.current = true;
       track(childId, 'text_opened', textId);
@@ -55,6 +64,8 @@ export default function ReaderPage() {
   }
 
   async function finish() {
+    if (finishing.current) return;
+    finishing.current = true;
     setSaving(true);
     setError(null);
     stopSpeaking();
@@ -66,9 +77,12 @@ export default function ReaderPage() {
         startedAt: startedAt.current,
         endedAt: Date.now(),
       });
-      setResult(await api<SessionResult>(`/children/${childId}/sessions`, { method: 'POST', body }));
+      setResult(
+        await api<SessionResult>(`/children/${childId}/sessions`, { method: 'POST', body }),
+      );
     } catch (err) {
       setError(errorMessage(err));
+      finishing.current = false; // l'enfant peut réessayer
     } finally {
       setSaving(false);
     }
@@ -77,14 +91,19 @@ export default function ReaderPage() {
   if (result) {
     const stars = result.session.stars;
     return (
-      <Shell requireAuth>
+      <Shell requireAuth childMode>
         <section className="celebrate stack" aria-live="polite">
           <h1>{cheer(stars)}</h1>
-          <p className="stars pop" aria-label={`${stars} étoile${stars > 1 ? 's' : ''} gagnée${stars > 1 ? 's' : ''}`}>
+          <p
+            className="stars pop"
+            aria-label={`${stars} étoile${stars > 1 ? 's' : ''} gagnée${stars > 1 ? 's' : ''}`}
+          >
             {'★'.repeat(stars)}
           </p>
           {result.unlocked.length > 0 && (
-            <Alert ok>Nouveau trésor débloqué ! Continue à lire pour en découvrir d&apos;autres.</Alert>
+            <Alert ok>
+              Nouveau trésor débloqué ! Continue à lire pour en découvrir d&apos;autres.
+            </Alert>
           )}
           <div className="row" style={{ justifyContent: 'center' }}>
             <Link href={`/lire/${childId}`} className="btn btn-primary btn-big">
@@ -99,7 +118,7 @@ export default function ReaderPage() {
   const fontClass = `font-${settings.fontFamily}`;
 
   return (
-    <Shell requireAuth>
+    <Shell requireAuth childMode>
       <p>
         <Link href={`/lire/${childId}`}>← Toutes les histoires</Link>
       </p>
@@ -146,7 +165,12 @@ export default function ReaderPage() {
             )}
           </article>
           <div className="row" style={{ justifyContent: 'center' }}>
-            <button type="button" className="btn btn-primary btn-big" onClick={finish} disabled={saving}>
+            <button
+              type="button"
+              className="btn btn-primary btn-big"
+              onClick={finish}
+              disabled={saving}
+            >
               {saving ? 'Un instant…' : "J'ai fini !"}
             </button>
           </div>

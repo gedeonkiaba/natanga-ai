@@ -61,7 +61,11 @@ export default function ChildDashboardPage() {
 
   async function erase() {
     const name = data?.child.displayName ?? 'cet enfant';
-    if (!window.confirm(`Supprimer définitivement toutes les données de ${name} ? Cette action est irréversible.`)) {
+    if (
+      !window.confirm(
+        `Supprimer définitivement toutes les données de ${name} ? Cette action est irréversible.`,
+      )
+    ) {
       return;
     }
     try {
@@ -73,7 +77,7 @@ export default function ChildDashboardPage() {
   }
 
   return (
-    <Shell requireAuth>
+    <Shell requireAuth parentOnly>
       <p>
         <Link href="/parent">← Espace parent</Link>
       </p>
@@ -85,16 +89,28 @@ export default function ChildDashboardPage() {
 
           <h2>Aujourd&apos;hui</h2>
           <div className="stats">
-            <div className="stat"><strong>{data.today.sessionsCount}</strong>lecture(s)</div>
-            <div className="stat"><strong>{minutes(data.today.durationSec)}</strong>de lecture</div>
-            <div className="stat"><strong>{data.today.starsEarnedToday} ★</strong>étoiles gagnées</div>
+            <div className="stat">
+              <strong>{data.today.sessionsCount}</strong>lecture(s)
+            </div>
+            <div className="stat">
+              <strong>{minutes(data.today.durationSec)}</strong>de lecture
+            </div>
+            <div className="stat">
+              <strong>{data.today.starsEarnedToday} ★</strong>étoiles gagnées
+            </div>
           </div>
 
           <h2>Depuis le début</h2>
           <div className="stats">
-            <div className="stat"><strong>{data.totals.sessions}</strong>lectures</div>
-            <div className="stat"><strong>{minutes(data.totals.durationSec)}</strong>au total</div>
-            <div className="stat"><strong>{data.totals.stars} ★</strong>étoiles</div>
+            <div className="stat">
+              <strong>{data.totals.sessions}</strong>lectures
+            </div>
+            <div className="stat">
+              <strong>{minutes(data.totals.durationSec)}</strong>au total
+            </div>
+            <div className="stat">
+              <strong>{data.totals.stars} ★</strong>étoiles
+            </div>
           </div>
 
           <h2>Nos conseils</h2>
@@ -112,10 +128,18 @@ export default function ChildDashboardPage() {
               <caption className="sr-only">Dernières lectures</caption>
               <thead>
                 <tr>
-                  <th scope="col" align="left">Date</th>
-                  <th scope="col" align="left">Durée</th>
-                  <th scope="col" align="left">Mots lus seul(e)</th>
-                  <th scope="col" align="left">Étoiles</th>
+                  <th scope="col" align="left">
+                    Date
+                  </th>
+                  <th scope="col" align="left">
+                    Durée
+                  </th>
+                  <th scope="col" align="left">
+                    Mots lus seul(e)
+                  </th>
+                  <th scope="col" align="left">
+                    Étoiles
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -123,7 +147,9 @@ export default function ChildDashboardPage() {
                   <tr key={s.id}>
                     <td>{new Date(s.createdAt).toLocaleDateString('fr-FR')}</td>
                     <td>{minutes(s.durationSec)}</td>
-                    <td>{s.correctWords} / {s.wordsRead}</td>
+                    <td>
+                      {s.correctWords} / {s.wordsRead}
+                    </td>
                     <td>{'★'.repeat(s.stars) || '—'}</td>
                   </tr>
                 ))}
@@ -133,13 +159,18 @@ export default function ChildDashboardPage() {
 
           <h2>Niveau de lecture</h2>
           <p className="small muted">
-            Niveau actuel : {data.child.placementLevel ?? '1 (par défaut)'}. Ajustez-le si les textes semblent
-            trop faciles ou trop difficiles.
+            Niveau actuel : {data.child.placementLevel ?? '1 (par défaut)'}. Ajustez-le si les
+            textes semblent trop faciles ou trop difficiles.
           </p>
           <div className="row" role="group" aria-label="Niveau de lecture">
             {['1', '2', '3'].map((l) => (
-              <button key={l} type="button" className="chip" aria-pressed={(data.child.placementLevel ?? '1') === l}
-                onClick={() => setLevel(l)}>
+              <button
+                key={l}
+                type="button"
+                className="chip"
+                aria-pressed={(data.child.placementLevel ?? '1') === l}
+                onClick={() => setLevel(l)}
+              >
                 Niveau {l}
               </button>
             ))}

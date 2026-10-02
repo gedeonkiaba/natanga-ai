@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Mail\VerifyEmailMail;
 use App\Models\EmailToken;
+use App\Models\ReadingSession;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Middleware\TrustProxies;
@@ -197,4 +198,37 @@ it('authentifie avec le store de cache par défaut (database) sans erreur 500', 
 
     $this->postJson('/api/auth/login', ['email' => $user->email, 'password' => 'secret1234'])->assertOk();
     $this->postJson('/api/auth/login', ['email' => $user->email, 'password' => 'mauvais'])->assertStatus(401);
+});
+
+it('limite par email ciblé même si chaque requête annonce une IP différente', function () {
+    TrustProxies::at('*');
+    [$user] = makeParentWithToken('cible@example.com');
+
+    foreach (range(1, 10) as $i) {
+        $this->withHeader('X-Forwarded-For', "192.0.2.{$i}")
+            ->postJson('/api/auth/login', ['email' => 'Cible@Example.com', 'password' => 'devine'.$i])
+            ->assertStatus(401);
+    }
+
+    $this->withHeader('X-Forwarded-For', '192.0.2.99')
+        ->postJson('/api/auth/login', ['email' => $user->email, 'password' => 'secret1234'])
+        ->assertStatus(429);
+
+    TrustProxies::flushState();
+});
+
+it('refuse des mesures de session incohérentes (pas d\'étoiles gratuites)', function () {
+    $child = makeVerifiedChild();
+
+    foreach ([
+        ['wordsRead' => 1, 'correctWords' => 999999],
+        ['wordsRead' => 999999, 'correctWords' => 0],
+    ] as $metrics) {
+        $this->postJson("/api/children/{$child->id}/sessions", $metrics + ['durationSec' => 30, 'completed' => true])
+            ->assertStatus(422);
+    }
+    $this->postJson("/api/children/{$child->id}/sessions", ['durationSec' => 999999, 'wordsRead' => 10, 'correctWords' => 10, 'completed' => true])
+        ->assertStatus(422);
+
+    expect(ReadingSession::count())->toBe(0);
 });

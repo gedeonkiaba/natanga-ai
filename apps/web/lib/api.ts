@@ -16,9 +16,14 @@ interface Options {
   body?: unknown;
   /** false pour les routes publiques (inscription, connexion…). */
   auth?: boolean;
+  /** Appel d'arrière-plan (événements) : un 401 ne redirige pas l'enfant hors de sa lecture. */
+  silent?: boolean;
 }
 
-export async function api<T>(path: string, { method = 'GET', body, auth = true }: Options = {}): Promise<T> {
+export async function api<T>(
+  path: string,
+  { method = 'GET', body, auth = true, silent = false }: Options = {},
+): Promise<T> {
   const headers: Record<string, string> = { accept: 'application/json' };
   if (body !== undefined) headers['content-type'] = 'application/json';
   if (auth) {
@@ -47,8 +52,12 @@ export async function api<T>(path: string, { method = 'GET', body, auth = true }
 
   if (res.ok) return data as T;
 
-  const problem = (data ?? {}) as { code?: string; title?: string; errors?: Record<string, string[]> };
-  if (res.status === 401 && auth) {
+  const problem = (data ?? {}) as {
+    code?: string;
+    title?: string;
+    errors?: Record<string, string[]>;
+  };
+  if (res.status === 401 && auth && !silent) {
     clearToken();
     if (!window.location.pathname.startsWith('/connexion')) {
       window.location.assign('/connexion?expire=1');

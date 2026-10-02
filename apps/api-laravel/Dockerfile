@@ -17,7 +17,9 @@ COPY --from=vendor /app /app
 COPY apps/api-laravel/docker-entrypoint.sh /usr/local/bin/natanga-entrypoint
 RUN chmod +x /usr/local/bin/natanga-entrypoint \
  && mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
- && chown -R www-data:www-data storage bootstrap/cache
+ && chown -R www-data:www-data storage bootstrap/cache \
+ # FrankenPHP (Caddy) écrit dans /data/caddy et /config/caddy : requis en non-root.
+ && mkdir -p /data/caddy /config/caddy && chown -R www-data:www-data /data/caddy /config/caddy
 
 ENV APP_ENV=production \
     APP_DEBUG=false \

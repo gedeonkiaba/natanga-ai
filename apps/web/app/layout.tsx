@@ -9,7 +9,7 @@ import './globals.css';
 export const metadata: Metadata = {
   title: { default: 'Natanga — Apprendre à lire, à son rythme', template: '%s · Natanga' },
   description:
-    "Ateliers de lecture pour les enfants de 6 à 12 ans en difficulté (dyslexie, TDAH, retard de lecture) : police adaptée, lecture à voix haute, coloration syllabique.",
+    'Ateliers de lecture pour les enfants de 6 à 12 ans en difficulté (dyslexie, TDAH, retard de lecture) : police adaptée, lecture à voix haute, coloration syllabique.',
 };
 
 export const viewport: Viewport = {

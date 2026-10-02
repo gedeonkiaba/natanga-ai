@@ -4,7 +4,9 @@ import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense, useState, type FormEvent } from 'react';
 import { Alert, Shell } from '@/components/Shell';
-import { api, errorMessage } from '@/lib/api';
+import { ResendVerification } from '@/components/ResendVerification';
+import { ApiError, api, errorMessage } from '@/lib/api';
+import { unlockParent } from '@/lib/parentGate';
 import { setToken } from '@/lib/session';
 
 function LoginForm() {
@@ -13,6 +15,7 @@ function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [notVerified, setNotVerified] = useState(false);
   const [busy, setBusy] = useState(false);
 
   async function submit(e: FormEvent) {
@@ -26,31 +29,48 @@ function LoginForm() {
         auth: false,
       });
       setToken(res.token);
+      unlockParent(); // le parent vient de prouver son identité
       router.push('/parent');
     } catch (err) {
       setError(errorMessage(err));
+      setNotVerified(err instanceof ApiError && err.code === 'ERR_NOT_VERIFIED');
       setBusy(false);
     }
   }
 
   return (
-    <form className="card stack" onSubmit={submit}>
-      {expired && <Alert>Votre session a expiré. Merci de vous reconnecter.</Alert>}
-      <div className="field">
-        <label htmlFor="email">Email</label>
-        <input id="email" type="email" autoComplete="email" required value={email}
-          onChange={(e) => setEmail(e.target.value)} />
-      </div>
-      <div className="field">
-        <label htmlFor="password">Mot de passe</label>
-        <input id="password" type="password" autoComplete="current-password" required value={password}
-          onChange={(e) => setPassword(e.target.value)} />
-      </div>
-      {error && <Alert>{error}</Alert>}
-      <button type="submit" className="btn btn-primary" disabled={busy}>
-        {busy ? 'Connexion…' : 'Se connecter'}
-      </button>
-    </form>
+    <>
+      <form className="card stack" onSubmit={submit}>
+        {expired && <Alert>Votre session a expiré. Merci de vous reconnecter.</Alert>}
+        <div className="field">
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            autoComplete="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="field">
+          <label htmlFor="password">Mot de passe</label>
+          <input
+            id="password"
+            type="password"
+            autoComplete="current-password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        {error && <Alert>{error}</Alert>}
+        <button type="submit" className="btn btn-primary" disabled={busy}>
+          {busy ? 'Connexion…' : 'Se connecter'}
+        </button>
+      </form>
+      {notVerified && <ResendVerification initialEmail={email} />}
+    </>
   );
 }
 

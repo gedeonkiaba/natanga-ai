@@ -63,6 +63,25 @@ jobs:
           DB_USERNAME: natanga
           DB_PASSWORD: natanga
 
+  images:
+    name: Images Docker (build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -f apps/api-laravel/Dockerfile -t natanga-api:ci .
+      - run: docker build -f apps/web/Dockerfile -t natanga-web:ci .
+      # Démarrage réel de l'API (migrations + seed sur PostgreSQL, non-root) puis healthcheck.
+      - name: Smoke test API container
+        run: |
+          docker network create natanga
+          docker run -d --name db --network natanga -e POSTGRES_USER=natanga -e POSTGRES_PASSWORD=ci -e POSTGRES_DB=natanga postgres:16-alpine
+          for i in $(seq 1 30); do docker exec db pg_isready -U natanga && break; sleep 1; done
+          docker run -d --name api --network natanga -p 8000:8000 \
+            -e APP_KEY=base64:$(head -c 32 /dev/urandom | base64) -e DB_HOST=db -e DB_DATABASE=natanga \
+            -e DB_USERNAME=natanga -e DB_PASSWORD=ci -e MAIL_MAILER=log natanga-api:ci
+          for i in $(seq 1 60); do curl -fsS localhost:8000/api/health && exit 0; sleep 2; done
+          docker logs api; exit 1
+
   e2e:
     name: E2E navigateur (desktop + mobile, axe) sur PostgreSQL
     runs-on: ubuntu-latest

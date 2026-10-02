@@ -45,7 +45,13 @@ export interface Consent {
 }
 
 export interface SessionResult {
-  session: { id: string; stars: number; wordsRead: number; correctWords: number; durationSec: number };
+  session: {
+    id: string;
+    stars: number;
+    wordsRead: number;
+    correctWords: number;
+    durationSec: number;
+  };
   reward: { kind: string; amount: number } | null;
   unlocked: Array<{ kind: string; key: string }>;
 }
@@ -53,7 +59,13 @@ export interface SessionResult {
 export interface Dashboard {
   child: { id: string; displayName: string; placementLevel: string | null; avatar: string | null };
   today: { sessionsCount: number; durationSec: number; starsEarnedToday: number };
-  totals: { sessions: number; durationSec: number; stars: number; gems: number; masteredNodes: number };
+  totals: {
+    sessions: number;
+    durationSec: number;
+    stars: number;
+    gems: number;
+    masteredNodes: number;
+  };
   progression: { mastered: number; inProgress: number; total: number; percent: number };
   confusions: Array<{ errorKind: string; count: number; label?: string }>;
   recentSessions: Array<{

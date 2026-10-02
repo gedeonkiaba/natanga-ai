@@ -31,11 +31,16 @@ function ConsentBox({ child, onChange }: { child: Child; onChange: () => void })
     return (
       <div className="stack">
         <p className="small muted">
-          Accord parental donné. Vous pouvez le retirer à tout moment : la lecture sera suspendue, vos
-          données restent consultables, exportables et supprimables.
+          Accord parental donné. Vous pouvez le retirer à tout moment : la lecture sera suspendue,
+          vos données restent consultables, exportables et supprimables.
         </p>
         {error && <Alert>{error}</Alert>}
-        <button type="button" className="btn btn-danger" disabled={busy} onClick={() => apply('revoke')}>
+        <button
+          type="button"
+          className="btn btn-danger"
+          disabled={busy}
+          onClick={() => apply('revoke')}
+        >
           Retirer mon accord
         </button>
       </div>
@@ -45,12 +50,17 @@ function ConsentBox({ child, onChange }: { child: Child; onChange: () => void })
   return (
     <div className="stack">
       <p className="small">
-        Avant que {child.displayName} puisse lire, nous avons besoin de votre accord. Nous enregistrons
-        uniquement : son prénom, son année de naissance, ses lectures (durée, mots touchés, étoiles) et ses
-        réglages. Pas de voix, pas de photo, pas de publicité.
+        Avant que {child.displayName} puisse lire, nous avons besoin de votre accord. Nous
+        enregistrons uniquement : son prénom, son année de naissance, ses lectures (durée, mots
+        touchés, étoiles) et ses réglages. Pas de voix, pas de photo, pas de publicité.
       </p>
       {error && <Alert>{error}</Alert>}
-      <button type="button" className="btn btn-primary" disabled={busy} onClick={() => apply('grant')}>
+      <button
+        type="button"
+        className="btn btn-primary"
+        disabled={busy}
+        onClick={() => apply('grant')}
+      >
         Je donne mon accord parental
       </button>
     </div>
@@ -83,7 +93,10 @@ export default function ParentPage() {
     setFormError(null);
     setAdding(true);
     try {
-      await api('/children', { method: 'POST', body: { displayName: name.trim(), birthYear: Number(birthYear) } });
+      await api('/children', {
+        method: 'POST',
+        body: { displayName: name.trim(), birthYear: Number(birthYear) },
+      });
       setName('');
       await load();
     } catch (err) {
@@ -94,7 +107,7 @@ export default function ParentPage() {
   }
 
   return (
-    <Shell requireAuth>
+    <Shell requireAuth parentOnly>
       <h1>Espace parent</h1>
       {error && <Alert>{error}</Alert>}
 
@@ -118,19 +131,31 @@ export default function ParentPage() {
                 </Link>
               )}
               <ConsentBox child={child} onChange={load} />
-              <Link href={`/parent/enfant/${child.id}`}>Suivi et données de {child.displayName}</Link>
+              <Link href={`/parent/enfant/${child.id}`}>
+                Suivi et données de {child.displayName}
+              </Link>
             </li>
           ))}
         </ul>
       )}
 
-      <h2>{children && children.length > 0 ? 'Ajouter un autre enfant' : 'Ajouter votre enfant'}</h2>
+      <h2>
+        {children && children.length > 0 ? 'Ajouter un autre enfant' : 'Ajouter votre enfant'}
+      </h2>
       <form className="card stack narrow" style={{ marginLeft: 0 }} onSubmit={addChild}>
         <div className="field">
           <label htmlFor="child-name">Prénom (ou surnom)</label>
-          <input id="child-name" required maxLength={40} value={name} onChange={(e) => setName(e.target.value)}
-            aria-describedby="child-name-hint" />
-          <p id="child-name-hint" className="hint">Pas de nom de famille : un prénom ou un surnom suffit.</p>
+          <input
+            id="child-name"
+            required
+            maxLength={40}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            aria-describedby="child-name-hint"
+          />
+          <p id="child-name-hint" className="hint">
+            Pas de nom de famille : un prénom ou un surnom suffit.
+          </p>
         </div>
         <div className="field">
           <label htmlFor="child-year">Année de naissance</label>

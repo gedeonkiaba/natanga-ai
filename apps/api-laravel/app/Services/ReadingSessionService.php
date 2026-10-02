@@ -44,9 +44,11 @@ class ReadingSessionService
     public function store(Child $child, array $data): array
     {
         $validated = Validator::make($data, [
-            'duration_sec' => ['required', 'integer', 'min:0'],
-            'words_read' => ['required', 'integer', 'min:0'],
-            'correct_words' => ['required', 'integer', 'min:0'],
+            // Bornes réalistes : une session ≤ 4 h, un texte ≤ 5 000 mots, et jamais
+            // plus de mots corrects que de mots lus (sinon étoiles « gratuites »).
+            'duration_sec' => ['required', 'integer', 'min:0', 'max:14400'],
+            'words_read' => ['required', 'integer', 'min:0', 'max:5000'],
+            'correct_words' => ['required', 'integer', 'min:0', 'lte:words_read'],
             'completed' => ['required', 'boolean'],
             'lesson_id' => ['nullable', 'string'],
         ])->validate();

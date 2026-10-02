@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
+use function Illuminate\Support\defer;
+
 /**
  * Service d'authentification — transposition du `AuthService` NestJS.
  * Anti-énumération : messages neutres, jamais d'indice sur l'existence d'un compte.
@@ -57,7 +59,8 @@ class AuthService
 
     /**
      * Émet un token mono-usage (24 h) et envoie le lien de vérification.
-     * Un échec d'envoi est journalisé sans bloquer l'inscription : le parent
+     * Un échec d'envoi est journalisé sans bloquer l'inscription (MAIL_HOST est
+     * obligatoire en production, cf. docker-compose.prod.yml) : le parent
      * peut redemander un lien (`/auth/resend-verification`).
      */
     private function sendVerification(User $user): void
@@ -71,11 +74,16 @@ class AuthService
 
         $url = rtrim((string) config('app.frontend_url'), '/').'/verifier?token='.$token;
 
-        try {
-            Mail::to($user->email)->send(new VerifyEmailMail($url));
-        } catch (\Throwable $e) {
-            report($e);
-        }
+        // Envoi APRÈS la réponse HTTP : le temps de réponse ne révèle pas si un
+        // compte en attente existe (anti-énumération sur resend-verification).
+        $email = $user->email;
+        defer(function () use ($email, $url) {
+            try {
+                Mail::to($email)->send(new VerifyEmailMail($url));
+            } catch (\Throwable $e) {
+                report($e);
+            }
+        });
     }
 
     public function verifyEmail(string $token): array

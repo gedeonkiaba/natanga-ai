@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { Alert, Shell } from '@/components/Shell';
+import { ResendVerification } from '@/components/ResendVerification';
 import { api, errorMessage } from '@/lib/api';
 
 function Verify() {
@@ -33,9 +34,9 @@ function Verify() {
     return (
       <>
         <Alert>{error}</Alert>
+        <ResendVerification />
         <p>
-          <Link href="/inscription">Recommencer l&apos;inscription</Link> ou{' '}
-          <Link href="/connexion">se connecter</Link>.
+          Déjà confirmé ? <Link href="/connexion">Se connecter</Link>.
         </p>
       </>
     );

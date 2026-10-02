@@ -33,14 +33,35 @@ export function countWords(text: string): number {
 
 const VOWELS = new Set('aeiouyàâäéèêëîïôöùûüÿœæ');
 const INSEPARABLE = new Set([
-  'bl', 'br', 'ch', 'cl', 'cr', 'dr', 'fl', 'fr', 'gl', 'gr', 'gn', 'ph', 'pl', 'pr', 'th', 'tr', 'vr',
+  'bl',
+  'br',
+  'ch',
+  'cl',
+  'cr',
+  'dr',
+  'fl',
+  'fr',
+  'gl',
+  'gr',
+  'gn',
+  'ph',
+  'pl',
+  'pr',
+  'th',
+  'tr',
+  'vr',
 ]);
 
 function isVowelAt(lower: string, i: number): boolean {
   const c = lower[i] ?? '';
   if (!VOWELS.has(c)) return false;
   // « qu » et « gu » devant voyelle : le u ne se prononce pas, il fait partie de la consonne.
-  if (c === 'u' && i > 0 && (lower[i - 1] === 'q' || lower[i - 1] === 'g') && VOWELS.has(lower[i + 1] ?? '')) {
+  if (
+    c === 'u' &&
+    i > 0 &&
+    (lower[i - 1] === 'q' || lower[i - 1] === 'g') &&
+    VOWELS.has(lower[i + 1] ?? '')
+  ) {
     return false;
   }
   return true;
@@ -50,7 +71,7 @@ function splitSimple(word: string): string[] {
   const lower = word.toLowerCase();
   // Noyaux vocaliques : suites de voyelles consécutives [début, fin[.
   const nuclei: Array<[number, number]> = [];
-  for (let i = 0; i < lower.length; ) {
+  for (let i = 0; i < lower.length;) {
     if (isVowelAt(lower, i)) {
       const start = i;
       while (i < lower.length && isVowelAt(lower, i)) i++;

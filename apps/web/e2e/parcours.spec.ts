@@ -8,8 +8,13 @@ const SHOTS = path.resolve(__dirname, '../e2e-results/screens');
 
 /** Lit le lien de vérification dans l'email journalisé (MIME quoted-printable). */
 function verificationLinkFor(email: string): string {
-  const log = readFileSync(MAIL_LOG, 'utf8').replace(/=\r?\n/g, '').replace(/=3D/g, '=');
-  const block = log.split('To: ').filter((b) => b.startsWith(email)).pop();
+  const log = readFileSync(MAIL_LOG, 'utf8')
+    .replace(/=\r?\n/g, '')
+    .replace(/=3D/g, '=');
+  const block = log
+    .split('To: ')
+    .filter((b) => b.startsWith(email))
+    .pop();
   const match = block?.match(/https?:\/\/[^\s"<]+\/verifier\?token=[0-9a-f-]{36}/);
   if (!match) throw new Error(`aucun email de vérification pour ${email}`);
   return match[0];
@@ -17,13 +22,20 @@ function verificationLinkFor(email: string): string {
 
 /** Zéro violation a11y sérieuse/critique (WCAG 2.1 A/AA). */
 async function expectAccessible(page: Page, label: string) {
-  const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
-  const serious = results.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
+  const results = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+    .analyze();
+  const serious = results.violations.filter(
+    (v) => v.impact === 'serious' || v.impact === 'critical',
+  );
   expect(serious.map((v) => `${label}: ${v.id} — ${v.help} (${v.nodes.length})`)).toEqual([]);
 }
 
 async function shot(page: Page, name: string) {
-  await page.screenshot({ path: `${SHOTS}/${test.info().project.name}-${name}.png`, fullPage: true });
+  await page.screenshot({
+    path: `${SHOTS}/${test.info().project.name}-${name}.png`,
+    fullPage: true,
+  });
 }
 
 test('parcours complet : inscription → email → accord parental → lecture → étoiles → suivi → effacement', async ({
@@ -51,7 +63,9 @@ test('parcours complet : inscription → email → accord parental → lecture �
   await page.getByLabel('Email').fill(email);
   await page.getByLabel('Mot de passe').fill('secret1234');
   await page.getByRole('button', { name: 'Se connecter' }).click();
-  await expect(page.getByRole('main').getByRole('alert')).toContainText("n'est pas encore confirmée");
+  await expect(page.getByRole('main').getByRole('alert')).toContainText(
+    "n'est pas encore confirmée",
+  );
 
   // 3. Lien reçu par email
   const link = new URL(verificationLinkFor(email));
@@ -117,15 +131,29 @@ test('parcours complet : inscription → email → accord parental → lecture �
   await expectAccessible(page, 'bravo');
   await shot(page, '08-bravo');
 
-  // 10. Suivi parent
-  await page.goto('/parent');
+  // 10. Barrière parentale : après la lecture, l'espace parent est reverrouillé
+  await expect(page.getByRole('button', { name: 'Se déconnecter' })).toHaveCount(0);
+  await page.getByRole('link', { name: 'Espace parent' }).click();
+  await expect(page.getByRole('heading', { name: 'Espace réservé aux parents' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Je donne mon accord parental' })).toHaveCount(0);
+  await page.getByLabel(/Combien font/).fill('1');
+  await page.getByRole('button', { name: 'Entrer' }).click();
+  await expect(page.getByRole('main').getByRole('alert')).toContainText('pas la bonne réponse');
+  await expectAccessible(page, 'barriere-parentale');
+  await shot(page, '09-barriere-parentale');
+  const question = (await page.getByText(/Combien font/).textContent()) ?? '';
+  const [, a, b] = question.match(/(\d+) × (\d+)/) ?? [];
+  await page.getByLabel(/Combien font/).fill(String(Number(a) * Number(b)));
+  await page.getByRole('button', { name: 'Entrer' }).click();
+
+  // 11. Suivi parent
   await page.getByRole('link', { name: 'Suivi et données de Léa' }).click();
   await expect(page.getByRole('heading', { name: 'Suivi de Léa' })).toBeVisible();
   const row = page.getByRole('table').getByRole('row').nth(1);
   await expect(row).toContainText(`${total - 2} / ${total}`);
   await expect(row).toContainText('★★');
   await expectAccessible(page, 'suivi');
-  await shot(page, '09-suivi-parent');
+  await shot(page, '10-suivi-parent');
 
   // Le réglage de police a été persisté côté API
   const token = await page.evaluate(() => localStorage.getItem('natanga.token'));
@@ -135,20 +163,34 @@ test('parcours complet : inscription → email → accord parental → lecture �
   });
   expect((await settings.json()).settings.fontFamily).toBe('system');
 
-  // 11. Effacement RGPD
+  // 12. Effacement RGPD
   page.once('dialog', (d) => d.accept());
   await page.getByRole('button', { name: 'Supprimer son profil et ses données' }).click();
   await expect(page.getByRole('heading', { name: 'Espace parent' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Léa' })).toHaveCount(0);
 
-  // 12. Déconnexion : l'espace parent redevient inaccessible
+  // 13. Déconnexion : l'espace parent redevient inaccessible
   await page.getByRole('button', { name: 'Se déconnecter' }).click();
   await page.goto('/parent');
   await expect(page).toHaveURL(/\/connexion/);
 });
 
-test("l'API reste protégée derrière le proxy (pas de jeton → 401 RFC 7807)", async ({ request }) => {
+test("l'API reste protégée derrière le proxy (pas de jeton → 401 RFC 7807)", async ({
+  request,
+}) => {
   const res = await request.get('/api/children');
   expect(res.status()).toBe(401);
   expect((await res.json()).code).toBe('ERR_UNAUTHENTICATED');
+});
+
+test('un lien invalide ou expiré propose de recevoir un nouveau lien', async ({ page }) => {
+  await page.goto('/verifier?token=00000000-0000-0000-0000-000000000000');
+  await expect(page.getByRole('main').getByRole('alert')).toContainText('invalide ou a expiré');
+  await page.getByLabel('Recevoir un nouveau lien de confirmation').fill('inconnu@e2e.test');
+  await page.getByRole('button', { name: 'Renvoyer le lien' }).click();
+  await expect(page.getByRole('status')).toContainText('Si un compte en attente existe');
+});
+
+test("la documentation interne de l'API n'est pas publiée par le web", async ({ request }) => {
+  expect((await request.get('/api/documentation')).status()).toBe(404);
 });

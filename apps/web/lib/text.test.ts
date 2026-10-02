@@ -7,7 +7,14 @@ describe('tokenize', () => {
     const tokens = tokenize(text);
     expect(tokens.map((t) => t.text).join('')).toBe(text);
     expect(tokens.filter((t) => t.kind === 'word').map((t) => t.text)).toEqual([
-      'Le', 'chat', 'de', 'Léa', 'dort', 'Boum', "Jusqu'à", 'trois',
+      'Le',
+      'chat',
+      'de',
+      'Léa',
+      'dort',
+      'Boum',
+      "Jusqu'à",
+      'trois',
     ]);
   });
 
