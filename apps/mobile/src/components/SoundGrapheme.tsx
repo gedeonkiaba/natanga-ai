@@ -30,7 +30,11 @@ export function SoundGrapheme({ exercise, items, onAnswer }: SoundGraphemeProps)
     <View style={styles.container}>
       <Text variant="body">Écoute, puis touche le son entendu :</Text>
 
-      <TTSButton text={playSound} label={`le son ${playSound}`} accessibilityLabel={`Écouter le son ${playSound}`} />
+      <TTSButton
+        text={playSound}
+        label={`le son ${playSound}`}
+        accessibilityLabel={`Écouter le son ${playSound}`}
+      />
 
       <View style={styles.choices}>
         {items
@@ -38,7 +42,11 @@ export function SoundGrapheme({ exercise, items, onAnswer }: SoundGraphemeProps)
           .map((item) => (
             <Button
               key={item.id}
-              variant={feedback?.correct === false && feedback.correctId === item.id ? 'warning' : 'primary'}
+              variant={
+                feedback?.correct === false && feedback.correctId === item.id
+                  ? 'warning'
+                  : 'primary'
+              }
               onPress={() => choose(item)}
               accessibilityLabel={`Choisir la lettre ${item.label}`}
             >

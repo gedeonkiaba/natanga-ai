@@ -1,94 +1,67 @@
-import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import * as Speech from 'expo-speech';
-import { Badge, Button, ProgressBar, Text, setSpeakFunction } from '@natanga/ui';
-import { colors, spacing } from '@natanga/ui/tokens';
-import { LEVEL1_LESSONS, type SkillNode, type Lesson } from '@natanga/core';
-import { SkillTreeScreen } from './src/screens/SkillTreeScreen';
-import { LessonScreen } from './src/screens/LessonScreen';
+import { BackHandler, Platform, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {
+  Lexend_400Regular,
+  Lexend_500Medium,
+  Lexend_600SemiBold,
+  Lexend_700Bold,
+  Lexend_800ExtraBold,
+  useFonts,
+} from '@expo-google-fonts/lexend';
+import { colors } from './src/design';
+import { NavigationContext, type Route } from './src/navigation';
+import { AchievementScreen } from './src/screens/AchievementScreen';
+import { HomeScreen } from './src/screens/HomeScreen';
+import { ProfileSetupScreen } from './src/screens/ProfileSetupScreen';
+import { ReadingScreen } from './src/screens/ReadingScreen';
 
-type Screen = 'home' | 'tree' | 'lesson';
+const ROUTES: Route[] = ['home', 'profile', 'reading', 'achievement'];
 
-/**
- * Racine de l'application mobile (socle d'intégration UI).
- * Navigation simple sans dépendance : home → arbre de compétences → leçon.
- */
-export default function App() {
-  const [screen, setScreen] = useState<Screen>('home');
-  const [lesson, setLesson] = useState<Lesson | null>(null);
-
-  // Injection du TTS : expo-speech côté mobile.
-  useEffect(() => {
-    setSpeakFunction((text, options) => {
-      Speech.speak(text, { language: options?.lang ?? 'fr-FR' });
-    });
-  }, []);
-
-  const openLesson = (node: SkillNode) => {
-    const firstLesson = LEVEL1_LESSONS.find((l) => l.nodeId === node.id);
-    if (firstLesson) {
-      setLesson(firstLesson);
-      setScreen('lesson');
-    }
-  };
-
-  if (screen === 'tree') {
-    return <SkillTreeScreen onSelectNode={openLesson} />;
-  }
-
-  if (screen === 'lesson' && lesson) {
-    return (
-      <LessonScreen
-        lesson={lesson}
-        onFinish={() => setScreen('tree')}
-        onQuit={() => setScreen('tree')}
-      />
-    );
-  }
-
-  // Écran d'accueil
-  return (
-    <View style={styles.container}>
-      <Text variant="title" accessibilityRole="header">
-        Natanga
-      </Text>
-      <Text variant="body" muted>
-        Apprendre à lire et à écrire, à son rythme.
-      </Text>
-
-      <View style={styles.row}>
-        <Badge label="5 jours" kind="streak" />
-        <Badge label="120" kind="gems" />
-        <Badge label="8" kind="badge" />
-      </View>
-
-      <ProgressBar value={0.4} accessibilityLabel="Progression de la leçon" />
-
-      <Button onPress={() => setScreen('tree')} accessibilityLabel="Commencer le parcours">
-        C’est parti !
-      </Button>
-
-      <Text variant="caption" muted>
-        Cette application entraîne et soutient ; elle ne remplace pas un orthophoniste.
-      </Text>
-
-      <StatusBar style="auto" />
-    </View>
-  );
+/** Sur le web (aperçu), `#reading` ouvre directement un écran. */
+function initialRoute(): Route {
+  if (Platform.OS !== 'web') return 'home';
+  const hash = globalThis.location?.hash.replace('#', '') as Route | undefined;
+  return hash && ROUTES.includes(hash) ? hash : 'home';
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: spacing.lg,
-    gap: spacing.md,
-  },
-  row: {
-    flexDirection: 'row',
-    gap: spacing.sm,
-  },
-});
+const SCREENS: Record<Route, () => React.JSX.Element> = {
+  home: HomeScreen,
+  profile: ProfileSetupScreen,
+  reading: ReadingScreen,
+  achievement: AchievementScreen,
+};
+
+export default function App() {
+  const [route, setRoute] = useState<Route>(initialRoute);
+  const [fontsLoaded] = useFonts({
+    Lexend_400Regular,
+    Lexend_500Medium,
+    Lexend_600SemiBold,
+    Lexend_700Bold,
+    Lexend_800ExtraBold,
+  });
+
+  // Retour Android : revient à l'accueil plutôt que de quitter l'app.
+  useEffect(() => {
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (route === 'home') return false;
+      setRoute('home');
+      return true;
+    });
+    return () => sub.remove();
+  }, [route]);
+
+  if (!fontsLoaded) return <View style={{ flex: 1, backgroundColor: colors.background }} />;
+
+  const Current = SCREENS[route];
+  return (
+    <SafeAreaProvider>
+      <NavigationContext.Provider value={setRoute}>
+        <StatusBar style="dark" />
+        <Current key={route} />
+      </NavigationContext.Provider>
+    </SafeAreaProvider>
+  );
+}

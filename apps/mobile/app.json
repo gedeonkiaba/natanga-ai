@@ -6,12 +6,20 @@
     "orientation": "portrait",
     "scheme": "natanga",
     "userInterfaceStyle": "automatic",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "android": {
       "package": "com.natanga.app"
     },
     "ios": {
       "bundleIdentifier": "com.natanga.app"
+    },
+    "backgroundColor": "#F9F6EF",
+    "web": {
+      "bundler": "metro"
     }
   }
 }

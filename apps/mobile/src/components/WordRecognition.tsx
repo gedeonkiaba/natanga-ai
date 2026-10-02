@@ -38,9 +38,7 @@ export function WordRecognition({ exercise, items, onAnswer }: WordRecognitionPr
         {candidateItems.map((item) => (
           <Button
             key={item.id}
-            variant={
-              chosenId === item.id && feedback?.correct === false ? 'warning' : 'primary'
-            }
+            variant={chosenId === item.id && feedback?.correct === false ? 'warning' : 'primary'}
             onPress={() => choose(item)}
             accessibilityLabel={`Choisir le mot ${item.label}`}
           >

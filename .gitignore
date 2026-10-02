@@ -58,3 +58,5 @@ e2e-report/
 # Bases SQLite locales (jamais versionnées)
 apps/api-laravel/database/*.sqlite
 apps/api-laravel/.phpunit.result.cache
+apps/mobile/dist/
+apps/mobile/.expo/

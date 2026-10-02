@@ -25,9 +25,7 @@ export interface LessonUiState {
  * et branche la gamification (récompense d'effort, même en cas d'erreur).
  */
 export function useLessonSession(lesson: Lesson, exercises: Exercise[]) {
-  const [session, setSession] = useState<LessonSession>(() =>
-    startLesson(lesson.id, exercises),
-  );
+  const [session, setSession] = useState<LessonSession>(() => startLesson(lesson.id, exercises));
   const [gems, setGems] = useState(0);
   const [correct, setCorrect] = useState(0);
   const [finished, setFinished] = useState(false);

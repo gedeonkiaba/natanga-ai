@@ -1,10 +1,5 @@
 import { StyleSheet, View } from 'react-native';
-import {
-  LEVEL1_EXERCISES,
-  LEVEL1_ITEMS,
-  LEVEL1_LESSONS,
-  type Lesson,
-} from '@natanga/core';
+import { LEVEL1_EXERCISES, LEVEL1_ITEMS, LEVEL1_LESSONS, type Lesson } from '@natanga/core';
 import { Badge, Button, ProgressBar, Text } from '@natanga/ui';
 import { spacing } from '@natanga/ui/tokens';
 import { useLessonSession } from '../hooks/useLessonSession';
@@ -23,10 +18,7 @@ export interface LessonScreenProps {
  */
 export function LessonScreen({ lesson, onFinish, onQuit }: LessonScreenProps) {
   const exercises = LEVEL1_EXERCISES.filter((e) => e.lessonId === lesson.id);
-  const { exercise, gems, correct, finished, score, answer } = useLessonSession(
-    lesson,
-    exercises,
-  );
+  const { exercise, gems, correct, finished, score, answer } = useLessonSession(lesson, exercises);
 
   if (finished) {
     return (

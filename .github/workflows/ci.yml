@@ -28,6 +28,8 @@ jobs:
       - run: pnpm -r --filter '!@natanga/api' typecheck
       - run: pnpm -r --filter '!@natanga/api' test
       - run: pnpm --filter @natanga/web build
+      # L'app mobile doit réellement se bundler (Metro), pas seulement typer.
+      - run: pnpm --filter @natanga/mobile export:web
 
   api:
     name: API Laravel — Pest sur PostgreSQL
