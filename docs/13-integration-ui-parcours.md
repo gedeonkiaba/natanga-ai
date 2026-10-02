@@ -1,9 +1,5 @@
 # Intégration UI du parcours — écrans jouables (Sprint 1)
 
-> **Retiré le 02/10/2026** : ces écrans React Native (arbre, leçon, exercices) ont été supprimés de
-> `apps/mobile`, remplacés par la reproduction de la maquette approuvée (voir `apps/mobile/README.md`).
-> Ce document reste comme historique ; la logique pédagogique reste dans `packages/core`.
-
 > Suivi d'implémentation. Relie le moteur pédagogique (`@natanga/core`), le design
 > system accessible (`@natanga/ui`) et l'app mobile (Expo) en un parcours jouable.
 

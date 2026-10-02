@@ -2,7 +2,7 @@
   "name": "@natanga/mobile",
   "version": "0.1.0",
   "private": true,
-  "description": "Application mobile Natanga \u2014 React Native (Expo)",
+  "description": "Application mobile Natanga — React Native (Expo)",
   "main": "index.ts",
   "scripts": {
     "dev": "expo start",
@@ -21,6 +21,8 @@
     "@babel/runtime": "^7.29.7",
     "@expo-google-fonts/lexend": "^0.4.1",
     "@expo/metro-runtime": "~4.0.1",
+    "@natanga/core": "workspace:*",
+    "@natanga/ui": "workspace:*",
     "expo": "~52.0.0",
     "expo-font": "~13.0.4",
     "expo-linear-gradient": "~14.0.2",
