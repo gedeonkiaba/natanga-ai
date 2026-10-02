@@ -1,0 +1,52 @@
+name: natanga_mobile
+description: "Natanga — application mobile Flutter (apprentissage lecture/écriture 6-12 ans)."
+publish_to: 'none'
+
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # État & architecture
+  flutter_riverpod: ^2.6.1
+
+  # Client HTTP vers l'API Laravel (source de vérité métier — ADR docs/18).
+  dio: ^5.7.0
+
+  # Stockage chiffré du jeton d'accès API (Keychain iOS / Keystore Android).
+  flutter_secure_storage: ^9.2.4
+
+  # Synthèse vocale (TTS) des consignes — accessibilité.
+  flutter_tts: ^4.2.0
+
+  # Navigation déclarative.
+  go_router: ^14.6.2
+
+  # Polices adaptées dyslexie (chargées localement, fallback système).
+  # Les fichiers .ttf sont ajoutés dans assets/fonts (voir section fonts).
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  # Mock HTTP pour les tests des services.
+  mocktail: ^1.0.4
+
+flutter:
+  uses-material-design: true
+
+  # Polices adaptées dyslexie (OpenDyslexic / Lexend).
+  # À déposer dans assets/fonts puis décommenter :
+  # fonts:
+  #   - family: OpenDyslexic
+  #     fonts:
+  #       - asset: assets/fonts/OpenDyslexic-Regular.ttf
+  #   - family: Lexend
+  #     fonts:
+  #       - asset: assets/fonts/Lexend-Regular.ttf

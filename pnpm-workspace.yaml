@@ -1,0 +1,19 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# Dépendances autorisées à exécuter leurs scripts de build (postinstall).
+# Requis par @nestjs/core et esbuild ; politique de sécurité pnpm >= 10.
+allowBuilds:
+  '@nestjs/core': true
+  '@prisma/client': true
+  '@prisma/engines': true
+  esbuild: true
+  prisma: true
+  unrs-resolver: true
+
+# Aligne les types React sur 19 partout (évite le double @types/react 18/19
+# qui casse le typecheck de `children` dans les layouts Next.js).
+overrides:
+  '@types/react': ^19.0.0
+  '@types/react-dom': ^19.0.0

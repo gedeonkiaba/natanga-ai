@@ -1,0 +1,178 @@
+// Schéma de données Natanga — complet (auth + consentement RGPD + pédagogie).
+// Aligné sur le dictionnaire de données (docs/08 §8), le schéma prévisionnel
+// (docs/06 §5) et le modèle pédagogique (`packages/core/src/pedagogy`).
+// Minimisation : pas d'IP complète (prefixe tronqué), pas de date de naissance (année seule).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Auth & consentement (Lot C) ────────────────────────────────────────────────
+
+/// Compte adulte titulaire (parent).
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  role         String   @default("parent")
+  status       String   @default("PENDING_VERIFICATION") // PENDING_VERIFICATION | ACTIVE
+  createdAt    DateTime @default(now())
+
+  children Child[]
+}
+
+/// Profil enfant (lié à un titulaire).
+model Child {
+  id          String   @id @default(uuid())
+  userId      String
+  displayName String
+  birthYear   Int
+  avatar      String?
+  ageBand     String // "6-8" | "9-12"
+  status      String   @default("INACTIVE") // ACTIVE | INACTIVE
+  createdAt   DateTime @default(now())
+
+  parent   User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  consents Consent[]
+  progress Progress[]
+  attempts Attempt[]
+  rewards  Reward[]
+
+  @@index([userId])
+}
+
+/// Enregistrement de consentement append-only (immuable, versionné).
+model Consent {
+  id        String    @id @default(uuid())
+  childId   String
+  version   Int
+  status    String // PENDING | GRANTED | REVOKED | EXPIRED | DENIED
+  grantedAt DateTime?
+  revokedAt DateTime?
+  // Audit immuable (JSON) : source, userAgent, ipPrefix, timestamp.
+  audit     Json
+  createdAt DateTime  @default(now())
+
+  child Child @relation(fields: [childId], references: [id], onDelete: Cascade)
+
+  @@index([childId])
+  @@unique([childId, version])
+}
+
+/// Token de vérification d'email (mono-usage).
+model EmailToken {
+  token     String   @id
+  userId    String
+  expiresAt DateTime
+
+  @@index([userId])
+}
+
+// ─── Pédagogie (Lot E/F) ────────────────────────────────────────────────────────
+
+/// Nœud de l'arbre de compétences (lettres → syllabes → mots → phrases → textes).
+model SkillNode {
+  id           String   @id @default(uuid())
+  level        String // letters | syllables | words | sentences | texts
+  title        String
+  order        Int
+  unlockedWhen Int      @default(0)
+
+  lessons  Lesson[]
+  progress Progress[]
+
+  @@index([level])
+}
+
+/// Leçon (5–10 min).
+model Lesson {
+  id          String   @id @default(uuid())
+  nodeId      String
+  title       String
+  durationMin Int
+  order       Int
+
+  node      SkillNode  @relation(fields: [nodeId], references: [id], onDelete: Cascade)
+  exercises Exercise[]
+
+  @@index([nodeId])
+}
+
+/// Exercice (son ⇄ graphème, reconnaissance de mots…).
+model Exercise {
+  id       String @id @default(uuid())
+  lessonId String
+  type     String // sound-grapheme | word-recognition
+  params   Json // phoneme, correctItemId, itemIds...
+  order    Int
+
+  lesson   Lesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  attempts Attempt[]
+
+  @@index([lessonId])
+}
+
+/// Item pédagogique élémentaire (grapheme, phoneme, mot).
+model Item {
+  id        String  @id
+  type      String // grapheme | phoneme | word
+  label     String
+  phoneme   String?
+  audioUrl  String?
+  metadata  Json?
+
+  @@index([type])
+}
+
+/// Progression d'un enfant sur un nœud.
+model Progress {
+  id            String   @id @default(uuid())
+  childId       String
+  nodeId        String
+  status        String   @default("locked") // locked | available | in_progress | mastered
+  masteredScore Float    @default(0)
+  updatedAt     DateTime @updatedAt
+
+  child Child     @relation(fields: [childId], references: [id], onDelete: Cascade)
+  node  SkillNode @relation(fields: [nodeId], references: [id], onDelete: Cascade)
+
+  @@unique([childId, nodeId])
+  @@index([nodeId])
+}
+
+/// Tentative de réponse d'un enfant à un exercice.
+model Attempt {
+  id         String   @id @default(uuid())
+  childId    String
+  exerciseId String
+  itemId     String?
+  isCorrect  Boolean
+  // Type d'erreur (ex. confusion b/d) — métrique d'apprentissage, pas diagnostic.
+  errorKind  String?
+  createdAt  DateTime @default(now())
+
+  child    Child      @relation(fields: [childId], references: [id], onDelete: Cascade)
+  exercise Exercise   @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+
+  @@index([childId])
+  @@index([exerciseId])
+}
+
+/// Récompense (gemmes, badge, effort) — gamification bienveillante.
+model Reward {
+  id      String   @id @default(uuid())
+  childId String
+  kind    String // gems | badge | effort
+  amount  Int      @default(0)
+  reason  String?
+  createdAt DateTime @default(now())
+
+  child Child @relation(fields: [childId], references: [id], onDelete: Cascade)
+
+  @@index([childId])
+}

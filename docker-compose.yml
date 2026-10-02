@@ -1,0 +1,50 @@
+# Docker Compose — stack e2e de bout en bout (Postgres + API NestJS).
+#
+# Permet de lancer l'API avec PostgreSQL, puis de tester le contrat
+# depuis le client Flutter (ou tout autre consommateur HTTP).
+#
+# Usage :
+#   docker compose up -d            # démarre postgres + api
+#   docker compose run --rm api sh -c "pnpm --filter @natanga/api prisma:deploy && ..."
+#   docker compose down
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: natanga-postgres
+    environment:
+      POSTGRES_USER: natanga
+      POSTGRES_PASSWORD: natanga
+      POSTGRES_DB: natanga
+    ports:
+      - "5432:5432"
+    volumes:
+      - natanga_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U natanga -d natanga"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    container_name: natanga-api
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_PROVIDER: prisma
+      DATABASE_URL: postgresql://natanga:natanga@postgres:5432/natanga?schema=public
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  natanga_pgdata:

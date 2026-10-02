@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "Natanga",
+    "slug": "natanga",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "natanga",
+    "userInterfaceStyle": "automatic",
+    "platforms": ["ios", "android"],
+    "android": {
+      "package": "com.natanga.app"
+    },
+    "ios": {
+      "bundleIdentifier": "com.natanga.app"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Builds
+dist/
+build/
+.next/
+.expo/
+coverage/
+*.tsbuildinfo
+
+# Env (jamais versionné)
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Turbo
+.turbo/
+
+# Expo
+.expo-shared/
+web-build/
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+pubspec.lock
+build/
+# (le pubspec.lock est ignoré car c'est une app ; à réévaluer si on publie un package)
+
+# Laravel
+apps/api-laravel/vendor/
+apps/api-laravel/storage/api-docs/
+apps/api-laravel/storage/logs/
+apps/api-laravel/storage/framework/
+
+# Sauvegardes locales
+.backups/
