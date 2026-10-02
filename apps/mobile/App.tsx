@@ -58,6 +58,7 @@ function Router() {
 
   // Retour Android : leçon → parcours → accueil, puis sortie de l'app.
   useEffect(() => {
+    if (Platform.OS !== 'android') return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       if (route === 'home') return false;
       setRoute(route === 'lesson' ? 'tree' : 'home');
