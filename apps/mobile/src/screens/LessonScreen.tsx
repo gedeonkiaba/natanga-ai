@@ -1,10 +1,14 @@
+import { useEffect, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { LEVEL1_EXERCISES, LEVEL1_ITEMS, LEVEL1_LESSONS, type Lesson } from '@natanga/core';
 import { Badge, Button, ProgressBar, Text } from '@natanga/ui';
-import { spacing } from '@natanga/ui/tokens';
+import { spacing } from '@natanga/ui'; // racine : Metro ne résout pas les sous-chemins d'exports
 import { useLessonSession } from '../hooks/useLessonSession';
 import { SoundGrapheme } from '../components/SoundGrapheme';
 import { WordRecognition } from '../components/WordRecognition';
+
+/** Durée d'affichage du retour avant l'exercice suivant (ms). */
+const FEEDBACK_MS = 1200;
 
 export interface LessonScreenProps {
   lesson: Lesson;
@@ -20,6 +24,24 @@ export function LessonScreen({ lesson, onFinish, onQuit }: LessonScreenProps) {
   const exercises = LEVEL1_EXERCISES.filter((e) => e.lessonId === lesson.id);
   const { exercise, gems, correct, finished, score, answer } = useLessonSession(lesson, exercises);
 
+  // Le moteur passe à l'exercice suivant dès la réponse : on laisse d'abord l'enfant
+  // lire le retour (« Bravo ! », « Presque ! C'est « a » ») sur l'exercice en cours,
+  // et on ignore les autres touches pendant ce temps (une seule réponse comptée).
+  const pending = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(
+    () => () => {
+      if (pending.current) clearTimeout(pending.current);
+    },
+    [],
+  );
+  const onAnswer = (isCorrect: boolean) => {
+    if (pending.current) return;
+    pending.current = setTimeout(() => {
+      pending.current = null;
+      answer(isCorrect);
+    }, FEEDBACK_MS);
+  };
+
   if (finished) {
     return (
       <View style={styles.container}>
@@ -33,6 +55,22 @@ export function LessonScreen({ lesson, onFinish, onQuit }: LessonScreenProps) {
         </Text>
         <Button onPress={() => onFinish(score)} accessibilityLabel="Terminer la leçon">
           Continuer
+        </Button>
+      </View>
+    );
+  }
+
+  // Leçon sans exercice (contenu pas encore rédigé, ex. « b ou d ? ») : jamais
+  // d'écran vide sans issue pour l'enfant.
+  if (exercises.length === 0) {
+    return (
+      <View style={styles.container}>
+        <Text variant="title" accessibilityRole="header">
+          {lesson.title}
+        </Text>
+        <Text variant="body">Cette leçon arrive bientôt. Reviens vite !</Text>
+        <Button onPress={onQuit} accessibilityLabel="Retour au parcours">
+          Retour au parcours
         </Button>
       </View>
     );
@@ -59,9 +97,19 @@ export function LessonScreen({ lesson, onFinish, onQuit }: LessonScreenProps) {
       <Text variant="title">{lesson.title}</Text>
 
       {exercise.type === 'sound-grapheme' ? (
-        <SoundGrapheme exercise={exercise} items={LEVEL1_ITEMS} onAnswer={answer} />
+        <SoundGrapheme
+          key={exercise.id}
+          exercise={exercise}
+          items={LEVEL1_ITEMS}
+          onAnswer={onAnswer}
+        />
       ) : (
-        <WordRecognition exercise={exercise} items={LEVEL1_ITEMS} onAnswer={answer} />
+        <WordRecognition
+          key={exercise.id}
+          exercise={exercise}
+          items={LEVEL1_ITEMS}
+          onAnswer={onAnswer}
+        />
       )}
     </View>
   );

@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { checkSoundGrapheme, type Exercise, type PedagogyItem } from '@natanga/core';
 import { Button, Text, TTSButton } from '@natanga/ui';
 import type { AnswerFeedback } from './shared';
-import { spacing } from '@natanga/ui/tokens';
+import { spacing } from '@natanga/ui'; // racine : Metro ne résout pas les sous-chemins d'exports
 
 export interface SoundGraphemeProps {
   exercise: Exercise;

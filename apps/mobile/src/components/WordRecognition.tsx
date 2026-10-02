@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { checkWordRecognition, type Exercise, type PedagogyItem } from '@natanga/core';
 import { Button, Text } from '@natanga/ui';
-import { spacing } from '@natanga/ui/tokens';
+import { spacing } from '@natanga/ui'; // racine : Metro ne résout pas les sous-chemins d'exports
 
 export interface WordRecognitionProps {
   exercise: Exercise;

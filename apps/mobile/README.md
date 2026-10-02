@@ -1,14 +1,28 @@
 # Natanga — application mobile (Expo)
 
 React Native + Expo (SDK 52) + TypeScript. Reproduction des 4 écrans de la maquette
-approuvée (Sleek) : **Accueil**, **Profil enfant**, **Lecture**, **Succès**.
+approuvée (Sleek) : **Accueil**, **Profil enfant**, **Lecture**, **Succès** — et le cœur
+pédagogique : **Mon parcours** (arbre de compétences) et les **leçons d'exercices**
+(son ⇄ lettre, reconnaissance de mots), moteur `@natanga/core`.
 
 ```bash
 pnpm --filter @natanga/mobile start        # Expo Go / simulateurs
 pnpm --filter @natanga/mobile export:web   # vérifie que l'app se bundle (utilisé en CI)
 ```
 
-Aperçu web d'un écran précis : `#home`, `#profile`, `#reading`, `#achievement` dans l'URL.
+Aperçu web d'un écran précis : `#home`, `#profile`, `#reading`, `#achievement`, `#tree` dans l'URL.
+
+## Parcours pédagogique
+
+- **Mon parcours** s'ouvre depuis les onglets *Bibliothèque* (Accueil, Succès) et *Histoires* (Profil).
+- Nœud → leçon (`LEVEL1_LESSONS`) → exercices → « Leçon terminée » → retour au parcours ;
+  « Quitter » et le retour Android ramènent aussi au parcours.
+- Après chaque réponse, le retour (« Bravo ! », « Presque ! C'est « a » ») reste 1,2 s sur
+  l'exercice en cours ; les touches en trop sont ignorées (une réponse comptée).
+- ⚠️ **Contenu manquant** : la leçon « b ou d ? » (nœud *Les sons b / d*) n'a encore aucun
+  exercice dans `packages/core/src/pedagogy/content.ts`. L'app affiche « Cette leçon arrive
+  bientôt » avec un bouton de retour ; les exercices sont à rédiger et valider par l'équipe
+  pédagogique.
 
 ## Design system (`src/design`)
 
@@ -32,5 +46,7 @@ Les écrans (`src/screens`) n'utilisent que ces composants et les rôles de `col
 - La ligne « Léo (8 ans) » de l'accueil est affichée en entier (la maquette la coupe) ; sa
   pastille « 🔥 5 jours » reprend la série de l'écran Succès.
 - Les barres d'onglets diffèrent d'un écran à l'autre dans la maquette : reproduites telles
-  quelles ; les onglets sans écran (Bibliothèque, Réglages, Parents…) sont annoncés
+  quelles ; les onglets encore sans écran (Réglages, Parents…) sont annoncés
   « Bientôt disponible » aux lecteurs d'écran.
+- Les écrans du parcours et des leçons gardent leur style d'origine (`@natanga/ui`), pas
+  encore celui de la maquette.

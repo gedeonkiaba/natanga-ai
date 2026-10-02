@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { computeTreeState, nodeOrder, LEVEL1_NODES, type SkillNode } from '@natanga/core';
 import { Button, ProgressBar, Text } from '@natanga/ui';
-import { colors, spacing } from '@natanga/ui/tokens';
+import { colors, spacing } from '@natanga/ui'; // racine : Metro ne résout pas les sous-chemins d'exports
 
 export interface SkillTreeScreenProps {
   onSelectNode: (node: SkillNode) => void;
