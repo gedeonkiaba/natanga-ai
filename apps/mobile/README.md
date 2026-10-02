@@ -1,6 +1,6 @@
 # Natanga — application mobile (Expo)
 
-React Native + Expo (SDK 52) + TypeScript. Reproduction des 4 écrans de la maquette
+React Native + Expo (**SDK 57**) + TypeScript. Reproduction des 4 écrans de la maquette
 approuvée (Sleek) : **Accueil**, **Profil enfant**, **Lecture**, **Succès** — et le cœur
 pédagogique : **Mon parcours** (arbre de compétences) et les **leçons d'exercices**
 (son ⇄ lettre, reconnaissance de mots), moteur `@natanga/core`.
@@ -23,6 +23,53 @@ Aperçu web d'un écran précis : `#home`, `#profile`, `#reading`, `#achievement
   exercice dans `packages/core/src/pedagogy/content.ts`. L'app affiche « Cette leçon arrive
   bientôt » avec un bouton de retour ; les exercices sont à rédiger et valider par l'équipe
   pédagogique.
+
+## Tester sur un téléphone
+
+### Option 1 — Expo Go (le plus rapide, 5 minutes)
+
+Sur le téléphone : installer **Expo Go** (Play Store / App Store ; il exécute le SDK 57).
+Sur un ordinateur (Node ≥ 20, pnpm 12) :
+
+```bash
+git clone https://github.com/gedeonkiaba/natanga-ai.git && cd natanga-ai
+git checkout claude/optimistic-ride-tduuap
+pnpm install
+cd apps/mobile && npx expo start          # même Wi-Fi que le téléphone
+# réseaux séparés ou Wi-Fi d'entreprise : npx expo start --tunnel
+```
+
+Scanner le QR code : avec **Expo Go** sur Android, avec l'**appareil photo** sur iPhone.
+
+> En mode Expo Go, l'app est chargée depuis l'ordinateur au lancement : pour tester le
+> **hors connexion**, ouvrir l'app, puis passer en mode avion et l'utiliser (leçons,
+> profil, lecture) ; la progression reste après fermeture tant qu'Expo Go n'est pas vidé.
+> Pour une app réellement installée qui démarre sans réseau, utiliser l'option 2.
+
+### Option 2 — APK Android installable (démarre 100 % hors connexion)
+
+Build dans le cloud Expo (compte gratuit sur expo.dev, environ 15 minutes) :
+
+```bash
+npm install -g eas-cli
+cd apps/mobile
+eas login
+eas init                                   # relie le projet à votre compte (une fois)
+eas build -p android --profile preview     # produit un .apk
+```
+
+EAS affiche un lien et un QR code : ouvrir sur le téléphone Android, télécharger l'APK,
+autoriser « sources inconnues », installer. iPhone : `eas build -p ios --profile preview`
+(compte Apple Developer requis) ou rester sur Expo Go.
+
+### Hors connexion : ce qui marche
+
+| Élément | Hors connexion |
+|---|---|
+| Écrans, histoires, parcours, leçons, polices, icônes | ✅ embarqués dans l'app |
+| Progression (profil, nœuds maîtrisés, gemmes, étoiles) | ✅ sauvegardée sur l'appareil (`natanga.progress.v1`) |
+| Voix (lecture des mots et des sons) | ✅ iPhone ; Android : voix française de l'appareil à installer une fois (*Paramètres → Synthèse vocale*) |
+| Envoi des progrès au serveur | ⏳ file d'événements prête (`outbox`), synchronisation à brancher quand l'app sera reliée à l'API |
 
 ## Design system (`src/design`)
 
