@@ -67,6 +67,28 @@ class AuthController extends Controller
     }
 
     #[OA\Post(
+        path: '/api/auth/resend-verification',
+        summary: 'Renvoyer le lien de vérification (réponse neutre)',
+        tags: ['Auth'],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                required: ['email'],
+                properties: [new OA\Property(property: 'email', type: 'string', format: 'email')]
+            )
+        ),
+        responses: [new OA\Response(response: 202, description: 'Lien renvoyé si un compte en attente existe')]
+    )]
+    public function resendVerification(Request $request): JsonResponse
+    {
+        $data = $request->validate(['email' => ['required', 'email']]);
+
+        $this->auth->resendVerification($data['email']);
+
+        return response()->json(['status' => 'sent-if-pending'], 202);
+    }
+
+    #[OA\Post(
         path: '/api/auth/login',
         summary: 'Connexion parent (jeton Bearer)',
         tags: ['Auth'],

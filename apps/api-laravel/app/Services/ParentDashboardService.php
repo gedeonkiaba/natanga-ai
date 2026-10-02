@@ -140,7 +140,10 @@ class ParentDashboardService
             ->get()
             ->map(fn (ReadingSession $session) => [
                 'id' => $session->id,
+                'lessonId' => $session->lesson_id,
                 'durationSec' => (int) $session->duration_sec,
+                'wordsRead' => (int) $session->words_read,
+                'correctWords' => (int) $session->correct_words,
                 'completed' => (bool) $session->completed,
                 'stars' => (int) $session->stars,
                 'createdAt' => $session->created_at?->toIso8601String(),

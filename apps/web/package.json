@@ -2,17 +2,20 @@
   "name": "@natanga/web",
   "version": "0.1.0",
   "private": true,
-  "description": "Web Natanga — Next.js (App Router) : vitrine + espace parent",
+  "description": "Web Natanga \u2014 Next.js (App Router) : vitrine + espace parent",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "clean": "rimraf .next"
+    "test": "vitest run lib",
+    "clean": "rimraf .next",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@fontsource/lexend": "5.3.0",
+    "@fontsource/opendyslexic": "5.3.0",
     "@natanga/core": "workspace:*",
     "@natanga/ui": "workspace:*",
     "next": "^15.1.0",
@@ -20,6 +23,8 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.11.0",
+    "@playwright/test": "1.56.1",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",

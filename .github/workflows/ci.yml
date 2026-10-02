@@ -5,34 +5,111 @@ on:
     branches: [main, develop]
   pull_request:
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  lint-typecheck-test:
-    name: Lint, typecheck & tests
+  js:
+    name: Web & packages — lint (a11y), typecheck, unit tests, build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v4
         with:
           version: 12.4.1
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # apps/api (NestJS) est en cours de retrait (ADR 18) : exclu des contrôles.
+      - run: pnpm -r --filter '!@natanga/api' lint
+      - run: pnpm -r --filter '!@natanga/api' typecheck
+      - run: pnpm -r --filter '!@natanga/api' test
+      - run: pnpm --filter @natanga/web build
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+  api:
+    name: API Laravel — Pest sur PostgreSQL
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: natanga
+          POSTGRES_PASSWORD: natanga
+          POSTGRES_DB: natanga_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U natanga" --health-interval 5s --health-timeout 5s --health-retries 10
+    defaults:
+      run:
+        working-directory: apps/api-laravel
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_pgsql, pdo_sqlite
+          coverage: none
+      - run: composer install --no-interaction --prefer-dist
+      # PostgreSQL = moteur de production (SQLite ne type pas les colonnes).
+      - run: vendor/bin/pest
+        env:
+          DB_CONNECTION: pgsql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 5432
+          DB_DATABASE: natanga_test
+          DB_USERNAME: natanga
+          DB_PASSWORD: natanga
 
-      - name: Lint
-        run: pnpm lint
-
-      - name: Typecheck
-        run: pnpm typecheck
-
-      - name: Test
-        run: pnpm test
-
-  # Note : le lint a11y bloquant (US-32) sera ajouté au Lot B (jsx-a11y + axe-core).
+  e2e:
+    name: E2E navigateur (desktop + mobile, axe) sur PostgreSQL
+    runs-on: ubuntu-latest
+    needs: [js, api]
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: natanga
+          POSTGRES_PASSWORD: natanga
+          POSTGRES_DB: natanga
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U natanga" --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.4.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_pgsql
+          coverage: none
+      - run: pnpm install --frozen-lockfile
+      - run: composer install --no-interaction --prefer-dist
+        working-directory: apps/api-laravel
+      - run: pnpm --filter @natanga/web build
+      - run: pnpm --filter @natanga/web exec playwright install --with-deps chromium
+      - run: pnpm --filter @natanga/web test:e2e
+        env:
+          DB_CONNECTION: pgsql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 5432
+          DB_DATABASE: natanga
+          DB_USERNAME: natanga
+          DB_PASSWORD: natanga
+          CACHE_STORE: database
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-evidence
+          path: |
+            apps/web/e2e-report
+            apps/web/e2e-results
+          retention-days: 14

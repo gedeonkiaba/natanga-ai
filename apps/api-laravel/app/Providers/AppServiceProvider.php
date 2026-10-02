@@ -11,6 +11,7 @@ use App\Policies\ChildPolicy;
 use App\Services\AuthService;
 use App\Services\ChildrenService;
 use App\Services\ConsentService;
+use Illuminate\Http\Middleware\TrustProxies;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
@@ -40,5 +41,14 @@ class AppServiceProvider extends ServiceProvider
 
         // Autorisation parent → enfant.
         Gate::policy(Child::class, ChildPolicy::class);
+
+        // Derrière le proxy web (apps/web → /api), l'IP du client vient de
+        // X-Forwarded-For : sans cela, le throttle (10/min) serait partagé par
+        // TOUS les parents. Ne jamais faire confiance à « * » si l'API est
+        // exposée directement sur Internet (en-tête falsifiable).
+        $proxies = config('app.trusted_proxies');
+        if (is_string($proxies) && $proxies !== '') {
+            TrustProxies::at($proxies === '*' ? '*' : array_map('trim', explode(',', $proxies)));
+        }
     }
 }

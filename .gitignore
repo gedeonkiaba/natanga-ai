@@ -14,6 +14,7 @@ coverage/
 .env
 .env.local
 .env.*.local
+.env.prod
 
 # Logs
 *.log
@@ -51,3 +52,9 @@ apps/api-laravel/storage/framework/
 
 # Sauvegardes locales
 .backups/
+e2e-results/
+e2e-report/
+
+# Bases SQLite locales (jamais versionnées)
+apps/api-laravel/database/*.sqlite
+apps/api-laravel/.phpunit.result.cache

@@ -1,29 +1,30 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
-import { fontFamilies } from '@natanga/ui/tokens';
+import '@fontsource/lexend/400.css';
+import '@fontsource/lexend/700.css';
+import '@fontsource/opendyslexic/400.css';
+import '@fontsource/opendyslexic/700.css';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Natanga — Apprendre à lire et écrire',
+  title: { default: 'Natanga — Apprendre à lire, à son rythme', template: '%s · Natanga' },
   description:
-    "Application d'apprentissage de la lecture et de l'écriture pour les enfants de 6 à 12 ans présentant des difficultés (dyslexie, dysorthographie, TDAH).",
+    "Ateliers de lecture pour les enfants de 6 à 12 ans en difficulté (dyslexie, TDAH, retard de lecture) : police adaptée, lecture à voix haute, coloration syllabique.",
 };
 
-// Vue mobile & accessibilité : les préférences de taille/contraste sont respectées via tokens.
 export const viewport: Viewport = {
   themeColor: '#FAF6EF',
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fr">
-      <body
-        style={{
-          margin: 0,
-          fontFamily: fontFamilies.body,
-          backgroundColor: '#FAF6EF',
-          color: '#1F1A10',
-        }}
-      >
+      <body>
+        <a className="skip" href="#contenu">
+          Aller au contenu
+        </a>
         {children}
       </body>
     </html>

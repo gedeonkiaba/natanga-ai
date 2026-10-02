@@ -6,9 +6,11 @@ namespace App\Services;
 
 use App\Auth\TokenGuard;
 use App\Domain\DomainException;
+use App\Mail\VerifyEmailMail;
 use App\Models\EmailToken;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 /**
@@ -32,14 +34,48 @@ class AuthService
             'status' => 'PENDING_VERIFICATION',
         ]);
 
-        $token = Str::uuid();
+        $this->sendVerification($user);
+
+        return ['userId' => $user->id, 'email' => $user->email];
+    }
+
+    /**
+     * Renvoie le lien de vérification. Réponse identique que le compte existe ou
+     * non (anti-énumération) ; seul un compte en attente reçoit un email.
+     */
+    public function resendVerification(string $email): void
+    {
+        $user = User::where('email', strtolower($email))->first();
+
+        if ($user === null || $user->status !== 'PENDING_VERIFICATION') {
+            return;
+        }
+
+        EmailToken::where('user_id', $user->id)->delete();
+        $this->sendVerification($user);
+    }
+
+    /**
+     * Émet un token mono-usage (24 h) et envoie le lien de vérification.
+     * Un échec d'envoi est journalisé sans bloquer l'inscription : le parent
+     * peut redemander un lien (`/auth/resend-verification`).
+     */
+    private function sendVerification(User $user): void
+    {
+        $token = (string) Str::uuid();
         EmailToken::create([
             'token' => $token,
             'user_id' => $user->id,
             'expires_at' => now()->addDay(),
         ]);
 
-        return ['userId' => $user->id, 'email' => $user->email];
+        $url = rtrim((string) config('app.frontend_url'), '/').'/verifier?token='.$token;
+
+        try {
+            Mail::to($user->email)->send(new VerifyEmailMail($url));
+        } catch (\Throwable $e) {
+            report($e);
+        }
     }
 
     public function verifyEmail(string $token): array

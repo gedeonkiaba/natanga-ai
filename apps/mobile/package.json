@@ -12,7 +12,7 @@
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "clean": "rimraf .expo dist"
   },
   "dependencies": {

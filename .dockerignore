@@ -1,0 +1,16 @@
+**/node_modules
+**/.next
+**/.turbo
+**/coverage
+**/e2e-results
+**/e2e-report
+.git
+.env
+**/.env
+apps/api-laravel/vendor
+apps/api-laravel/storage/logs/*
+apps/api-laravel/storage/framework/*
+apps/api-laravel/database/*.sqlite
+apps/mobile-flutter
+apps/mobile
+*.docx

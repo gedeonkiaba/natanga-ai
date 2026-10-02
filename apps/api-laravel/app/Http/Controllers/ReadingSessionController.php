@@ -28,7 +28,7 @@ class ReadingSessionController extends Controller
     public function store(Request $request, string $childId): JsonResponse
     {
         return response()->json(
-            $this->sessions->store($this->child($childId), $request->all()),
+            $this->sessions->store($this->child($childId), $this->normalize($request->all())),
             201,
         );
     }
@@ -43,6 +43,31 @@ class ReadingSessionController extends Controller
         return response()->json([
             'sessions' => $this->sessions->index($this->child($childId)),
         ]);
+    }
+
+    /**
+     * Accepte le corps en camelCase (contrat documenté, comme les autres routes)
+     * ou en snake_case (clients historiques) ; le snake_case l'emporte s'il est présent.
+     *
+     * @param  array<string, mixed>  $body
+     * @return array<string, mixed>
+     */
+    private function normalize(array $body): array
+    {
+        $aliases = [
+            'durationSec' => 'duration_sec',
+            'wordsRead' => 'words_read',
+            'correctWords' => 'correct_words',
+            'lessonId' => 'lesson_id',
+        ];
+
+        foreach ($aliases as $camel => $snake) {
+            if (array_key_exists($camel, $body) && ! array_key_exists($snake, $body)) {
+                $body[$snake] = $body[$camel];
+            }
+        }
+
+        return $body;
     }
 
     /** @throws DomainException CHILD_NOT_FOUND (404) si l'enfant est inconnu. */

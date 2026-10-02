@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
 
 /**
  * Seed pédagogique niveau 1 + compte parent démo.
@@ -87,15 +87,17 @@ class PedagogySeeder extends Seeder
             ],
         );
 
-        // 5. Compte parent démo.
-        DB::table('users')->updateOrInsert(
-            ['email' => 'demo@natanga.app'],
-            [
+        // 5. Compte parent démo — JAMAIS en production (mot de passe public).
+        // insertOrIgnore : l'id n'est pas régénéré à chaque seed (sinon ses enfants
+        // seraient orphelins au déploiement suivant).
+        if (app()->environment('local', 'testing')) {
+            DB::table('users')->insertOrIgnore([
                 'id' => Str::uuid()->toString(),
+                'email' => 'demo@natanga.app',
                 'password_hash' => Hash::make('demo1234'),
                 'role' => 'parent',
                 'status' => 'ACTIVE',
-            ],
-        );
+            ]);
+        }
     }
 }

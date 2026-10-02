@@ -35,6 +35,7 @@ use App\Http\Controllers\TextLibraryController;
 Route::middleware('throttle:10,1')->group(function () {
     Route::post('auth/register', [AuthController::class, 'register']);
     Route::post('auth/verify-email', [AuthController::class, 'verifyEmail']);
+    Route::post('auth/resend-verification', [AuthController::class, 'resendVerification']);
     Route::post('auth/login', [AuthController::class, 'login']);
 });
 

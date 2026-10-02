@@ -1,0 +1,68 @@
+# Natanga — stack de production (web + API Laravel + PostgreSQL).
+#
+#   cp .env.prod.example .env.prod   # puis remplir les secrets
+#   docker compose -f docker-compose.prod.yml --env-file .env.prod up -d --build
+#
+# Seul le web est exposé. L'API n'est joignable que par le web (réseau interne),
+# ce qui permet de faire confiance à son X-Forwarded-For (TRUSTED_PROXIES).
+# Mettre un reverse proxy TLS (Caddy, Traefik, load balancer cloud) devant le port 3000.
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: natanga
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD requis}
+      POSTGRES_DB: natanga
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U natanga -d natanga"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api-laravel/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      APP_KEY: ${APP_KEY:?APP_KEY requis}
+      APP_URL: ${PUBLIC_URL:?PUBLIC_URL requis}
+      FRONTEND_URL: ${PUBLIC_URL}
+      TRUSTED_PROXIES: "*" # API non exposée : seul le conteneur web l'atteint
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: natanga
+      DB_USERNAME: natanga
+      DB_PASSWORD: ${DB_PASSWORD}
+      MAIL_MAILER: ${MAIL_MAILER:-smtp}
+      MAIL_HOST: ${MAIL_HOST:-}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:-bonjour@natanga.app}
+      MAIL_FROM_NAME: Natanga
+    expose:
+      - "8000"
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      API_URL: http://api:8000
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+
+volumes:
+  pgdata:

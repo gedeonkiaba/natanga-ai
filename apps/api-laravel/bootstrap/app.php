@@ -10,6 +10,8 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
 use L5Swagger\L5SwaggerServiceProvider;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -50,6 +52,23 @@ return Application::configure(basePath: dirname(__DIR__))
                 'status' => 401,
                 'code' => 'ERR_UNAUTHENTICATED',
             ], 401);
+        });
+
+        // Route ou méthode inconnue sous /api → RFC 7807, jamais de stacktrace
+        // (même avec APP_DEBUG=true).
+        $exceptions->render(function (NotFoundHttpException|MethodNotAllowedHttpException $e, Request $request) {
+            if (! $request->is('api/*')) {
+                return null;
+            }
+
+            $status = $e->getStatusCode();
+
+            return response()->json([
+                'type' => 'about:blank',
+                'title' => $status === 404 ? 'ressource introuvable' : 'méthode non autorisée',
+                'status' => $status,
+                'code' => $status === 404 ? 'ERR_NOT_FOUND' : 'ERR_METHOD_NOT_ALLOWED',
+            ], $status, $e->getHeaders());
         });
 
         // Anti-fuite : jamais de stacktrace pour une erreur de domaine.
