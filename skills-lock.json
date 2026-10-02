@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "design-mobile-apps": {
+      "source": "designed-by-ai/skills",
+      "sourceType": "github",
+      "skillPath": "skills/design-mobile-apps/SKILL.md",
+      "computedHash": "9fa8d95f90c83a47cfee7201a00dc972e2e7ded5d04269194c58fd761d0e05c8"
+    }
+  }
+}
