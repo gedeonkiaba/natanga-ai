@@ -10,8 +10,8 @@ de **6–12 ans** en difficulté (dyslexie, dysorthographie, TDAH, retard de lec
 
 | Package | Rôle | Stack |
 |---|---|---|
-| `apps/mobile` | Application iOS/Android | React Native (Expo) |
-| `apps/mobile-flutter` | Second client mobile (cohabitation, client pur) | Flutter |
+| `apps/mobile` | App mobile Expo : maquette, parcours et leçons, hors connexion — voir son README | React Native (Expo SDK 57) |
+| `apps/mobile-flutter` | App mobile Flutter : maquette, parcours et leçons, hors connexion, espace parent (API) — voir son README | Flutter |
 | `apps/web` | **Client MVP** : vitrine, espace parent, atelier de lecture enfant | Next.js (App Router) |
 | `apps/api` | Backend (transition vers `api-laravel`) | NestJS + PostgreSQL + Redis |
 | `apps/api-laravel` | Backend cible (contrat API identique) | Laravel + PostgreSQL |

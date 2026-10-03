@@ -24,7 +24,9 @@ class NatangaColors {
 
 /// Pile de polices adaptées dyslexie (fallback système).
 class NatangaFonts {
-  static const String body = 'OpenDyslexic';
+  /// Lexend est embarquée dans l'app (pubspec, hors connexion) ; OpenDyslexic ne
+  /// l'est pas encore, elle ne doit donc pas être la police par défaut.
+  static const String body = 'Lexend';
   static const String display = 'Lexend';
 }
 
@@ -32,24 +34,12 @@ class NatangaFonts {
 ThemeData natangaLightTheme() {
   return ThemeData(
     useMaterial3: true,
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: NatangaColors.primary,
-      surface: NatangaColors.surface,
-    ),
+    colorScheme: ColorScheme.fromSeed(seedColor: NatangaColors.primary, surface: NatangaColors.surface),
+    fontFamily: NatangaFonts.body,
     scaffoldBackgroundColor: NatangaColors.background,
     textTheme: const TextTheme(
-      bodyMedium: TextStyle(
-        fontFamily: NatangaFonts.body,
-        color: NatangaColors.text,
-        fontSize: 16,
-        height: 1.5,
-      ),
-      titleLarge: TextStyle(
-        fontFamily: NatangaFonts.display,
-        color: NatangaColors.text,
-        fontSize: 24,
-        fontWeight: FontWeight.w700,
-      ),
+      bodyMedium: TextStyle(fontFamily: NatangaFonts.body, color: NatangaColors.text, fontSize: 16, height: 1.5),
+      titleLarge: TextStyle(fontFamily: NatangaFonts.display, color: NatangaColors.text, fontSize: 24, fontWeight: FontWeight.w700),
     ),
     // Cibles tactiles généreuses (≥ 44px) pour l'accessibilité.
     filledButtonTheme: FilledButtonThemeData(

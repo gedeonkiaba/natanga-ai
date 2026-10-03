@@ -2,11 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'api/models.dart';
+import 'screens/achievement_screen.dart';
 import 'screens/consent_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/lesson_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/parent_screen.dart';
+import 'screens/profile_setup_screen.dart';
+import 'screens/reading_screen.dart';
 import 'screens/skill_tree_screen.dart';
 import 'state/session_controller.dart';
 
@@ -15,6 +18,11 @@ abstract class Routes {
   static const home = '/';
   static const tree = '/tree';
   static const lesson = '/lesson';
+
+  /// Écrans de la maquette approuvée (profil enfant, lecture, succès).
+  static const profile = '/profile';
+  static const reading = '/reading';
+  static const achievement = '/achievement';
 
   /// Création du compte parent.
   static const register = '/register';
@@ -30,9 +38,9 @@ abstract class Routes {
 
 /// Routes nécessitant une session parent.
 ///
-/// NB : `/tree` et `/lesson` affichent encore des données statiques ; dès
-/// qu'ils consommeront l'API (skill-tree, textes, sessions), ils devront être
-/// ajoutés ici — l'API exige un jeton ET le consentement parental.
+/// L'activité de l'enfant (`/tree`, `/lesson`, `/reading`…) fonctionne hors connexion,
+/// sur l'appareil : elle n'exige pas de session. Quand elle sera synchronisée avec
+/// l'API (jeton ET consentement parental requis), la synchro passera par l'espace parent.
 const _protectedPrefixes = [Routes.parent];
 
 /// Règle de redirection (pure, testable) :
@@ -59,13 +67,13 @@ final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: Routes.home,
     refreshListenable: refresh,
-    redirect: (_, state) => authRedirect(
-      ref.read(sessionControllerProvider),
-      state.matchedLocation,
-    ),
+    redirect: (_, state) => authRedirect(ref.read(sessionControllerProvider), state.matchedLocation),
     routes: [
       GoRoute(path: Routes.home, builder: (_, __) => const HomeScreen()),
       GoRoute(path: Routes.tree, builder: (_, __) => const SkillTreeScreen()),
+      GoRoute(path: Routes.profile, builder: (_, __) => const ProfileSetupScreen()),
+      GoRoute(path: Routes.reading, builder: (_, __) => const ReadingScreen()),
+      GoRoute(path: Routes.achievement, builder: (_, __) => const AchievementScreen()),
       GoRoute(path: Routes.register, builder: (_, __) => const ConsentScreen()),
       GoRoute(path: Routes.login, builder: (_, __) => const LoginScreen()),
       GoRoute(path: Routes.parent, builder: (_, __) => const ParentScreen()),
