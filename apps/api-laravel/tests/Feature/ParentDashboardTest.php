@@ -106,8 +106,8 @@ it('résume la journée et la progression avec une recommandation sur les sons b
 
     expect($res->json('dashboard.progression.mastered'))->toBe(1);
     expect($res->json('dashboard.progression.inProgress'))->toBe(0);
-    expect($res->json('dashboard.progression.total'))->toBe(3);
-    expect($res->json('dashboard.progression.percent'))->toBe(33);
+    expect($res->json('dashboard.progression.total'))->toBe(4);
+    expect($res->json('dashboard.progression.percent'))->toBe(25);
 
     // Confusions : top 1 = b/d avec 2 occurrences.
     expect($res->json('dashboard.confusions'))->toHaveCount(1);
@@ -148,7 +148,7 @@ it('propose une recommandation douce à un parent sans aucune donnée', function
     expect($res->json('dashboard.totals.sessions'))->toBe(0);
     expect($res->json('dashboard.totals.gems'))->toBe(0);
     expect($res->json('dashboard.progression.mastered'))->toBe(0);
-    expect($res->json('dashboard.progression.total'))->toBe(3);
+    expect($res->json('dashboard.progression.total'))->toBe(4);
     expect($res->json('dashboard.progression.percent'))->toBe(0);
 });
 

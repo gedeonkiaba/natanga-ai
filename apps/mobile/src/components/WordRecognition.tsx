@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { checkWordRecognition, type Exercise, type PedagogyItem } from '@natanga/core';
-import { Button, Text } from '@natanga/ui';
+import {
+  checkWordRecognition,
+  choicesOf,
+  spokenPrompt,
+  type Exercise,
+  type PedagogyItem,
+} from '@natanga/core';
+import { Button, Text, TTSButton } from '@natanga/ui';
 import { spacing } from '@natanga/ui'; // racine : Metro ne résout pas les sous-chemins d'exports
 
 export interface WordRecognitionProps {
@@ -18,10 +24,7 @@ export function WordRecognition({ exercise, items, onAnswer }: WordRecognitionPr
   const [feedback, setFeedback] = useState<{ correct: boolean; message: string } | null>(null);
   const [chosenId, setChosenId] = useState<string | null>(null);
 
-  const candidateIds = exercise.params.itemIds ?? [];
-  const candidateItems = candidateIds
-    .map((id) => items.find((i) => i.id === id))
-    .filter((i): i is PedagogyItem => Boolean(i));
+  const candidateItems = choicesOf(exercise, items);
 
   const choose = (item: PedagogyItem) => {
     const result = checkWordRecognition(exercise, item.id);
@@ -32,7 +35,13 @@ export function WordRecognition({ exercise, items, onAnswer }: WordRecognitionPr
 
   return (
     <View style={styles.container}>
-      <Text variant="body">Touche le bon mot :</Text>
+      <Text variant="body">Écoute, puis touche le mot entendu :</Text>
+
+      <TTSButton
+        text={spokenPrompt(exercise, items)}
+        label="le mot"
+        accessibilityLabel="Réécouter le mot"
+      />
 
       <View style={styles.choices}>
         {candidateItems.map((item) => (

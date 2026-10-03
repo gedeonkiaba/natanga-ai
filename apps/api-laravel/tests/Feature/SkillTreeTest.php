@@ -24,9 +24,9 @@ it("retourne l'arbre avec les statuts de déblocage séquentiel", function () {
     $res = $this->getJson("/api/children/{$child->id}/skill-tree");
     $res->assertOk();
 
-    expect($res->json('nodes'))->toHaveCount(3);
+    expect($res->json('nodes'))->toHaveCount(4);
     expect(array_column($res->json('nodes'), 'status'))
-        ->toBe(['available', 'locked', 'locked']);
+        ->toBe(['available', 'locked', 'locked', 'locked']);
     expect($res->json('nodes.0.id'))->toBe('n-letters-a');
     expect($res->json('nodes.0.lessons.0.id'))->toBe('l-vowels-1');
     expect((float) $res->json('nodes.0.masteredScore'))->toBe(0.0);
@@ -47,7 +47,7 @@ it('débloque le nœud suivant quand le premier est maîtrisé', function () {
     $res->assertOk();
 
     expect(array_column($res->json('nodes'), 'status'))
-        ->toBe(['mastered', 'available', 'locked']);
+        ->toBe(['mastered', 'available', 'locked', 'locked']);
 });
 
 it('affiche un nœud « en cours » dès la première tentative', function () {
@@ -102,4 +102,22 @@ it('404 sur un enfant inconnu pour le skill-tree (RFC 7807)', function () {
 
     $res->assertStatus(404);
     expect($res->json('code'))->toBe('CHILD_NOT_FOUND');
+});
+
+it('chaque nœud du niveau 1 a une leçon jouable (b/d, p/q, mots simples)', function () {
+    $child = makeVerifiedChild();
+
+    $nodes = $this->getJson("/api/children/{$child->id}/skill-tree")->json('nodes');
+    expect(array_column($nodes, 'id'))->toBe(['n-letters-a', 'n-letters-bd', 'n-letters-pq', 'n-mots-simples']);
+
+    $bd = $this->getJson('/api/lessons/l-bd-1');
+    $bd->assertOk();
+    expect($bd->json())->toHaveKey('exercises');
+    expect($bd->json('exercises'))->toHaveCount(5);
+    expect($bd->json('exercises.0.params'))
+        ->toBe(['phoneme' => 'b', 'cue' => 'b, comme ballon', 'itemIds' => ['g-b', 'g-d']]);
+
+    foreach (['l-pq-1', 'l-mots-1'] as $lessonId) {
+        expect($this->getJson("/api/lessons/{$lessonId}")->json('exercises'))->toHaveCount(5);
+    }
 });

@@ -44,10 +44,7 @@ export function checkSoundGrapheme(
  * Reconnaissance de mots (QCM) : l'enfant choisit le bon mot parmi des distracteurs.
  * `correctItemId` est défini dans `params` ; les distracteurs sont issus de `params.itemIds`.
  */
-export function checkWordRecognition(
-  exercise: Exercise,
-  chosenId: string,
-): AnswerCheck {
+export function checkWordRecognition(exercise: Exercise, chosenId: string): AnswerCheck {
   const params: ExerciseParams = exercise.params;
   const correct = chosenId === params.correctItemId;
 
@@ -59,4 +56,23 @@ export function checkWordRecognition(
     feedback: 'Pas tout à fait. Regarde bien les lettres, on réessaie.',
     correctId: params.correctItemId,
   };
+}
+
+/** Choix affichés : ceux de l'exercice, sinon toutes les lettres (son ⇄ graphème). */
+export function choicesOf(exercise: Exercise, items: PedagogyItem[]): PedagogyItem[] {
+  const ids = exercise.params.itemIds;
+  if (!ids?.length && exercise.type === 'sound-grapheme') {
+    return items.filter((i) => i.type === 'grapheme');
+  }
+  return (ids ?? [])
+    .map((id) => items.find((i) => i.id === id))
+    .filter((i): i is PedagogyItem => Boolean(i));
+}
+
+/** Ce que la voix dit : le son (ou son mot-repère), ou le mot à trouver. */
+export function spokenPrompt(exercise: Exercise, items: PedagogyItem[]): string {
+  if (exercise.type === 'sound-grapheme') {
+    return exercise.params.cue ?? exercise.params.phoneme ?? '';
+  }
+  return items.find((i) => i.id === exercise.params.correctItemId)?.phoneme ?? '';
 }

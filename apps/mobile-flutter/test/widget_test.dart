@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:natanga_mobile/auth/token_storage.dart';
+import 'package:natanga_mobile/domain/pedagogy.dart';
 import 'package:natanga_mobile/features/progress.dart';
 import 'package:natanga_mobile/main.dart';
 import 'package:natanga_mobile/services/tts_service.dart';
@@ -55,7 +56,7 @@ Future<void> tapSem(WidgetTester tester, String label) async {
 }
 
 List<String> nodeLabels(WidgetTester tester) => [
-  for (final n in ['Les voyelles', 'Les sons b / d', 'Les sons p / q']) tester.getSemantics(find.bySemanticsLabel(RegExp('^$n — '))).label,
+  for (final n in level1Nodes.map((n) => n.title)) tester.getSemantics(find.bySemanticsLabel(RegExp('^$n — '))).label,
 ];
 
 void main() {
@@ -71,7 +72,7 @@ void main() {
 
     await tapSem(tester, 'Bibliothèque');
     expect(find.text('Mon parcours'), findsOneWidget);
-    expect(nodeLabels(tester), ['Les voyelles — Disponible', 'Les sons b / d — Verrouillé', 'Les sons p / q — Verrouillé']);
+    expect(nodeLabels(tester), ['Les voyelles — Disponible', 'Les sons b / d — Verrouillé', 'Les sons p / q — Verrouillé', 'Mots simples — Verrouillé']);
   });
 
   testWidgets('l’espace parent sans session redirige vers la connexion', (tester) async {
@@ -95,8 +96,9 @@ void main() {
     await tapSem(tester, 'Commencer');
 
     expect(find.text('Écouter les voyelles'), findsOneWidget);
-    await tapSem(tester, 'Écouter le son a');
-    expect(tts.spoken, ['a']);
+    expect(tts.spoken, ['a']); // la consigne est dite à l'arrivée de l'exercice
+    await tapSem(tester, 'Réécouter le son');
+    expect(tts.spoken, ['a', 'a']);
 
     // Mauvaise réponse : le retour s'affiche sur l'exercice en cours ; une 2ᵉ touche est ignorée.
     await tester.tap(sem('Choisir la lettre o'));
@@ -113,7 +115,8 @@ void main() {
       await tester.pump(feedbackDurationForTests);
       await tester.pumpAndSettle();
     }
-    expect(find.text('Touche le bon mot :'), findsOneWidget);
+    expect(find.text('Écoute, puis touche le mot entendu :'), findsOneWidget);
+    expect(tts.spoken.last, 'papa');
     await tester.tap(sem('Choisir le mot papa'));
     await tester.pump(feedbackDurationForTests);
     await tester.pumpAndSettle();
@@ -121,7 +124,7 @@ void main() {
     expect(find.text('Leçon terminée !'), findsOneWidget);
     expect(find.text('3 bonnes réponses sur 4.'), findsOneWidget);
     await tapSem(tester, 'Continuer');
-    expect(nodeLabels(tester), ['Les voyelles — Terminé', 'Les sons b / d — Disponible', 'Les sons p / q — Verrouillé']);
+    expect(nodeLabels(tester), ['Les voyelles — Terminé', 'Les sons b / d — Disponible', 'Les sons p / q — Verrouillé', 'Mots simples — Verrouillé']);
 
     final saved = ProgressState.parse(prefs.getString(progressStorageKey));
     expect(saved.gems, 35);
@@ -136,22 +139,54 @@ void main() {
     expect(nodeLabels(tester).first, 'Les voyelles — Terminé');
   });
 
-  testWidgets('la leçon « b ou d ? » sans exercice n’est jamais une impasse', (tester) async {
+  testWidgets('leçon « b ou d ? » : 2 lettres en miroir, mot-repère dit, nœud suivant débloqué', (tester) async {
     await phone(tester);
     SharedPreferences.setMockInitialValues({
       progressStorageKey:
           recordLesson(ProgressState.initial, nodeId: 'n-letters-a', lessonId: 'l-vowels-1', correct: 4, total: 4, gems: 40).toJsonString(),
     });
     final prefs = await SharedPreferences.getInstance();
-    final (app, _, _) = await testApp(prefs: prefs);
+    final (app, tts, _) = await testApp(prefs: prefs);
     await tester.pumpWidget(app);
     await tester.pumpAndSettle();
     await tapSem(tester, 'Bibliothèque');
     await tapSem(tester, 'Commencer'); // seul nœud « Disponible » : b / d
 
-    expect(find.text('Cette leçon arrive bientôt. Reviens vite !'), findsOneWidget);
-    await tapSem(tester, 'Retour au parcours');
-    expect(find.text('Mon parcours'), findsOneWidget);
+    expect(find.text('b ou d ?'), findsOneWidget);
+    expect(tts.spoken.last, 'b, comme ballon');
+    expect(sem('Choisir la lettre b'), findsOneWidget);
+    expect(sem('Choisir la lettre d'), findsOneWidget);
+    expect(sem('Choisir la lettre a'), findsNothing); // seulement les lettres travaillées
+
+    Future<void> answer(String label) async {
+      await tapSem(tester, label);
+      await tester.pump(feedbackDurationForTests);
+      await tester.pumpAndSettle();
+    }
+
+    // Confusion b/d : retour bienveillant qui montre la bonne lettre.
+    await tapSem(tester, 'Choisir la lettre d');
+    expect(find.text('Presque ! C’est « b ». On réessaie.'), findsOneWidget);
+    await tester.pump(feedbackDurationForTests);
+    await tester.pumpAndSettle();
+
+    expect(tts.spoken.last, 'd, comme doigt');
+    await answer('Choisir la lettre d');
+    expect(tts.spoken.last, 'b, comme bébé');
+    await answer('Choisir la lettre b');
+    expect(tts.spoken.last, 'bon');
+    await answer('Choisir le mot bon');
+    expect(tts.spoken.last, 'dodo');
+    await answer('Choisir le mot dodo');
+
+    expect(find.text('4 bonnes réponses sur 5.'), findsOneWidget);
+    await tapSem(tester, 'Continuer');
+    expect(nodeLabels(tester), [
+      'Les voyelles — Terminé',
+      'Les sons b / d — Terminé',
+      'Les sons p / q — Disponible',
+      'Mots simples — Verrouillé',
+    ]);
   });
 
   testWidgets('profil puis lecture : choix enregistrés, mot touché lu à voix haute, succès', (tester) async {

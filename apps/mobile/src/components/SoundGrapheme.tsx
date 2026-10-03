@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { checkSoundGrapheme, type Exercise, type PedagogyItem } from '@natanga/core';
+import {
+  checkSoundGrapheme,
+  choicesOf,
+  spokenPrompt,
+  type Exercise,
+  type PedagogyItem,
+} from '@natanga/core';
 import { Button, Text, TTSButton } from '@natanga/ui';
 import type { AnswerFeedback } from './shared';
 import { spacing } from '@natanga/ui'; // racine : Metro ne résout pas les sous-chemins d'exports
@@ -18,7 +24,7 @@ export interface SoundGraphemeProps {
 export function SoundGrapheme({ exercise, items, onAnswer }: SoundGraphemeProps) {
   const [feedback, setFeedback] = useState<AnswerFeedback | null>(null);
 
-  const playSound = exercise.params.phoneme ?? '';
+  const playSound = spokenPrompt(exercise, items);
 
   const choose = (item: PedagogyItem) => {
     const result = checkSoundGrapheme(exercise, items, item.id);
@@ -28,31 +34,23 @@ export function SoundGrapheme({ exercise, items, onAnswer }: SoundGraphemeProps)
 
   return (
     <View style={styles.container}>
-      <Text variant="body">Écoute, puis touche le son entendu :</Text>
+      <Text variant="body">Écoute, puis touche la lettre entendue :</Text>
 
-      <TTSButton
-        text={playSound}
-        label={`le son ${playSound}`}
-        accessibilityLabel={`Écouter le son ${playSound}`}
-      />
+      <TTSButton text={playSound} label="le son" accessibilityLabel="Réécouter le son" />
 
       <View style={styles.choices}>
-        {items
-          .filter((i) => i.type === 'grapheme')
-          .map((item) => (
-            <Button
-              key={item.id}
-              variant={
-                feedback?.correct === false && feedback.correctId === item.id
-                  ? 'warning'
-                  : 'primary'
-              }
-              onPress={() => choose(item)}
-              accessibilityLabel={`Choisir la lettre ${item.label}`}
-            >
-              {item.label}
-            </Button>
-          ))}
+        {choicesOf(exercise, items).map((item) => (
+          <Button
+            key={item.id}
+            variant={
+              feedback?.correct === false && feedback.correctId === item.id ? 'warning' : 'primary'
+            }
+            onPress={() => choose(item)}
+            accessibilityLabel={`Choisir la lettre ${item.label}`}
+          >
+            {item.label}
+          </Button>
+        ))}
       </View>
 
       {feedback && (

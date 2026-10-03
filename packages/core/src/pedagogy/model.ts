@@ -44,10 +44,13 @@ export interface Exercise {
 }
 
 export interface ExerciseParams {
-  /** Pour son⇄graphème : le phonème à jouer en audio. */
+  /** Pour son⇄graphème : le phonème attendu. */
   phoneme?: string;
-  /** Pour word-recognition : la bonne réponse + distracteurs. */
+  /** Pour son⇄graphème : ce que dit la voix (« b, comme ballon ») ; à défaut, le phonème. */
+  cue?: string;
+  /** Pour word-recognition : la bonne réponse. */
   correctItemId?: string;
+  /** Choix proposés. Absent pour son⇄graphème = toutes les lettres. */
   itemIds?: string[];
 }
 

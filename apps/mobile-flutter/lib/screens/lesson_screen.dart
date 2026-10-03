@@ -37,7 +37,19 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
     super.dispose();
   }
 
+  /// Dernier exercice dont la consigne a été dite (une seule fois par exercice).
+  String? _spokenFor;
+
   void _backToTree() => context.go(Routes.tree);
+
+  /// Pose la question à voix haute à l'arrivée de chaque exercice.
+  void _speakOnce(Exercise ex) {
+    if (_spokenFor == ex.id) return;
+    _spokenFor = ex.id;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) ref.read(ttsServiceProvider).speak(spokenPrompt(ex));
+    });
+  }
 
   /// Le retour reste affiché sur l'exercice en cours ; les touches en trop sont ignorées.
   void _choose(String itemId) {
@@ -71,7 +83,7 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
   Widget build(BuildContext context) {
     final lesson = _lesson;
     if (lesson == null || _run.exercises.isEmpty) {
-      // Leçon sans exercice (contenu pas encore rédigé, ex. « b ou d ? ») : jamais d'impasse.
+      // Leçon sans exercice (contenu pas encore rédigé) : jamais d'impasse.
       return AppScreen(
         children: [
           Semantics(header: true, child: Text(lesson?.title ?? 'Leçon', style: TypeScale.title)),
@@ -93,11 +105,10 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
     }
 
     final ex = _run.current!;
-    final choices =
-        ex.type == ExerciseType.soundGrapheme
-            ? level1Items.where((i) => i.type == ItemType.grapheme).toList()
-            : [for (final id in ex.itemIds) level1Items.firstWhere((i) => i.id == id)];
+    final choices = choicesOf(ex);
+    final isSound = ex.type == ExerciseType.soundGrapheme;
     final tts = ref.read(ttsServiceProvider);
+    _speakOnce(ex);
     return AppScreen(
       children: [
         Row(
@@ -114,22 +125,20 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
           child: Column(
             children: [
               Text(
-                ex.type == ExerciseType.soundGrapheme ? 'Écoute, puis touche le son entendu :' : 'Touche le bon mot :',
+                isSound ? 'Écoute, puis touche la lettre entendue :' : 'Écoute, puis touche le mot entendu :',
                 style: TypeScale.body,
                 textAlign: TextAlign.center,
               ),
-              if (ex.type == ExerciseType.soundGrapheme) ...[
-                const SizedBox(height: Space.md),
-                Semantics(
-                  button: true,
-                  label: 'Écouter le son ${ex.phoneme}',
-                  excludeSemantics: true,
-                  child: InkResponse(
-                    onTap: () => tts.speak(ex.phoneme ?? ''),
-                    child: const IconTile('volume-2', tone: Tone.violet, size: 56, iconSize: 28, radius: 28),
-                  ),
+              const SizedBox(height: Space.md),
+              Semantics(
+                button: true,
+                label: isSound ? 'Réécouter le son' : 'Réécouter le mot',
+                excludeSemantics: true,
+                child: InkResponse(
+                  onTap: () => tts.speak(spokenPrompt(ex)),
+                  child: const IconTile('volume-2', tone: Tone.violet, size: 56, iconSize: 28, radius: 28),
                 ),
-              ],
+              ),
               const SizedBox(height: Space.lg),
               Wrap(
                 spacing: Space.sm,
@@ -139,7 +148,7 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
                   for (final item in choices)
                     _Choice(
                       label: item.label,
-                      semantic: ex.type == ExerciseType.soundGrapheme ? 'Choisir la lettre ${item.label}' : 'Choisir le mot ${item.label}',
+                      semantic: isSound ? 'Choisir la lettre ${item.label}' : 'Choisir le mot ${item.label}',
                       state:
                           _feedback == null
                               ? _ChoiceState.idle

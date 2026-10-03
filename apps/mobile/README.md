@@ -19,10 +19,10 @@ Aperçu web d'un écran précis : `#home`, `#profile`, `#reading`, `#achievement
   « Quitter » et le retour Android ramènent aussi au parcours.
 - Après chaque réponse, le retour (« Bravo ! », « Presque ! C'est « a » ») reste 1,2 s sur
   l'exercice en cours ; les touches en trop sont ignorées (une réponse comptée).
-- ⚠️ **Contenu manquant** : la leçon « b ou d ? » (nœud *Les sons b / d*) n'a encore aucun
-  exercice dans `packages/core/src/pedagogy/content.ts`. L'app affiche « Cette leçon arrive
-  bientôt » avec un bouton de retour ; les exercices sont à rédiger et valider par l'équipe
-  pédagogique.
+- 4 nœuds jouables (`packages/core/src/pedagogy/content.ts`) : voyelles, b ou d ?, p ou q ?,
+  mots simples. b/d et p/q ne proposent que les lettres en miroir, avec un mot-repère dit par
+  la voix (« b, comme ballon ») ; en reconnaissance de mots, la voix dit le mot à trouver.
+  ⚠️ Contenu à faire valider par l'orthophoniste avant la bêta.
 
 ## Tester sur un téléphone
 

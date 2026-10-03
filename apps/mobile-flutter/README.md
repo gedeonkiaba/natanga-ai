@@ -57,9 +57,20 @@ L'espace parent appelle l'API (`http://localhost:8000` par défaut). Sur télép
 
 ```bash
 flutter analyze
-flutter test        # 54 tests : API, session, logique, parcours complet (leçon, hors connexion, redémarrage)
+flutter test        # 57 tests : API, session, logique, parcours complet (leçon, hors connexion, redémarrage)
 flutter build web --release --no-web-resources-cdn   # aperçu navigateur, sans CDN
 ```
 
-⚠️ La leçon « b ou d ? » n'a pas encore d'exercices (contenu à rédiger et valider par
-l'équipe pédagogique) : l'app affiche « Cette leçon arrive bientôt » avec un retour.
+Parcours niveau 1 : 4 nœuds, chacun avec une leçon jouable (contenu dans
+`lib/domain/pedagogy.dart`, identique à `packages/core/src/pedagogy/content.ts` et au
+`PedagogySeeder` Laravel) :
+
+| Nœud | Leçon | Exercices |
+|---|---|---|
+| Les voyelles | Écouter les voyelles | a, i, o + mot « papa » |
+| Les sons b / d | b ou d ? | b/d seules, puis b/d/p ; paires bon/don, dodo/bébé |
+| Les sons p / q | p ou q ? | p/q seules, puis p/q/b ; quatre, coq |
+| Mots simples | Lire des mots | lapin, maman, ballon, poule, bébé |
+
+La voix pose chaque question à l'arrivée de l'exercice (« b, comme ballon », ou le mot à
+trouver) ; le bouton 🔊 la répète. ⚠️ Contenu à faire valider par l'orthophoniste avant la bêta.

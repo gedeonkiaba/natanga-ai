@@ -81,7 +81,7 @@ it('maîtrise le nœud après 3 tentatives solides et débloque le suivant', fun
     $tree = $this->getJson("/api/children/{$child->id}/skill-tree");
     $tree->assertOk();
     expect(array_column($tree->json('nodes'), 'status'))
-        ->toBe(['mastered', 'available', 'locked']);
+        ->toBe(['mastered', 'available', 'locked', 'locked']);
 });
 
 it('ne maîtrise pas un nœud avec un score insuffisant', function () {
@@ -105,7 +105,7 @@ it('ne maîtrise pas un nœud avec un score insuffisant', function () {
     // L'arbre reflète un nœud verrouillé tant que non maîtrisé.
     $tree = $this->getJson("/api/children/{$child->id}/skill-tree");
     expect(array_column($tree->json('nodes'), 'status'))
-        ->toBe(['in_progress', 'locked', 'locked']);
+        ->toBe(['in_progress', 'locked', 'locked', 'locked']);
 });
 
 it('expose les récompenses de l’enfant', function () {
