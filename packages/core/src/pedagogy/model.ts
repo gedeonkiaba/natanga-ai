@@ -6,7 +6,16 @@
  */
 
 /** Niveau dans l'arbre de compétences (du plus simple au plus complexe). */
-export type SkillLevel = 'letters' | 'syllables' | 'words' | 'sentences' | 'texts';
+export type SkillLevel =
+  'sounds' | 'letters' | 'syllables' | 'words' | 'complex-sounds' | 'sentences' | 'texts';
+
+/** Niveau du parcours (base de connaissances `content/curriculum/niveaux.csv`). */
+export interface CurriculumLevel {
+  rank: number;
+  key: SkillLevel;
+  name: string;
+  objective: string;
+}
 
 /** Type d'exercice (spec §2). */
 export type ExerciseType =
@@ -14,7 +23,7 @@ export type ExerciseType =
   | 'word-recognition'; // reconnaissance de mots (QCM)
 
 /** Type d'item pédagogique. */
-export type ItemType = 'grapheme' | 'phoneme' | 'word';
+export type ItemType = 'grapheme' | 'phoneme' | 'syllable' | 'word' | 'sentence';
 
 export interface SkillNode {
   id: string;
@@ -29,6 +38,8 @@ export interface Lesson {
   id: string;
   nodeId: string;
   title: string;
+  /** Objectif de la leçon (base de connaissances). */
+  objective?: string;
   /** Durée cible en minutes (5–10). */
   durationMin: number;
   order: number;
@@ -62,6 +73,8 @@ export interface PedagogyItem {
   label: string;
   /** Phonème associé (pour la synthèse vocale). */
   phoneme?: string;
+  /** Découpage syllabique (mots : « ma », « man ») pour l'affichage bicolore. */
+  syllables?: string[];
   /** URL audio (optionnel — le TTS sert de fallback). */
   audioUrl?: string;
   metadata?: Record<string, unknown>;

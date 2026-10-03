@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import {
   computeTreeState,
   nodeOrder,
-  LEVEL1_NODES,
+  CURRICULUM_NODES,
   type SkillNode,
   type SkillProgress,
 } from '@natanga/core';
@@ -20,9 +20,9 @@ export interface SkillTreeScreenProps {
  */
 export function SkillTreeScreen({ onSelectNode, progress }: SkillTreeScreenProps) {
   const mastered = progress.filter((p) => p.status === 'mastered');
-  const tree = computeTreeState(LEVEL1_NODES, progress);
+  const tree = computeTreeState(CURRICULUM_NODES, progress);
 
-  const nodes = nodeOrder(LEVEL1_NODES);
+  const nodes = nodeOrder(CURRICULUM_NODES);
   const statusOf = (nodeId: string) => tree.find((t) => t.nodeId === nodeId)?.status ?? 'locked';
 
   return (
@@ -68,7 +68,7 @@ export function SkillTreeScreen({ onSelectNode, progress }: SkillTreeScreenProps
         <Text variant="caption" muted>
           Progression globale
         </Text>
-        <ProgressBar value={mastered.length / LEVEL1_NODES.length} />
+        <ProgressBar value={mastered.length / CURRICULUM_NODES.length} />
       </View>
     </ScrollView>
   );

@@ -23,7 +23,8 @@ class SkillTreeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final progress = ref.watch(progressProvider);
-    final states = computeTreeState(level1Nodes, progress.treeProgress);
+    final states = computeTreeState(curriculumNodes, progress.treeProgress);
+    final byId = {for (final s in states) s.node.id: s};
     final mastered = states.where((s) => s.status == NodeStatus.mastered).length;
     return AppScreen(
       nav: BottomNav(items: Tabs.home(context), active: 'bibliotheque', indicator: NavIndicator.dot),
@@ -35,17 +36,59 @@ class SkillTreeScreen extends ConsumerWidget {
             Pill('${progress.gems}', tone: Tone.sky, icon: 'emoji:gem-stone'),
           ],
         ),
-        for (final s in states)
-          _NodeCard(state: s, label: _labels[s.status]!, onOpen: () => context.go('${Routes.lesson}?node=${s.node.id}')),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Progression globale', style: TypeScale.caption.copyWith(color: Palette.inkBody)),
+            Text('Progression globale · $mastered / ${curriculumNodes.length} leçons', style: TypeScale.caption.copyWith(color: Palette.inkBody)),
             const SizedBox(height: Space.sm),
-            AppProgressBar(value: mastered / level1Nodes.length, label: 'Progression globale'),
+            AppProgressBar(value: mastered / curriculumNodes.length, label: 'Progression globale'),
           ],
         ),
+        for (final level in curriculumLevels) ...[
+          _LevelHeader(level: level, states: [for (final n in nodesOfLevel(level.key)) byId[n.id]!]),
+          // Un niveau pas encore atteint reste replié : l'enfant voit où il va, sans liste écrasante.
+          if (nodesOfLevel(level.key).any((n) => byId[n.id]!.status != NodeStatus.locked))
+            for (final n in nodesOfLevel(level.key))
+              _NodeCard(state: byId[n.id]!, label: _labels[byId[n.id]!.status]!, onOpen: () => context.go('${Routes.lesson}?node=${n.id}')),
+        ],
       ],
+    );
+  }
+}
+
+class _LevelHeader extends StatelessWidget {
+  const _LevelHeader({required this.level, required this.states});
+  final CurriculumLevel level;
+  final List<NodeState> states;
+
+  @override
+  Widget build(BuildContext context) {
+    final done = states.where((s) => s.status == NodeStatus.mastered).length;
+    final reached = states.any((s) => s.status != NodeStatus.locked);
+    return Padding(
+      padding: const EdgeInsets.only(top: Space.md),
+      child: Semantics(
+        header: true,
+        label: 'Niveau ${level.rank} : ${level.name}. ${level.objective}. $done leçons terminées sur ${states.length}${reached ? '' : ', verrouillé'}',
+        excludeSemantics: true,
+        child: Row(
+          children: [
+            IconTile(reached ? (done == states.length ? 'circle-check' : 'sparkles') : 'lock', tone: reached ? Tone.violet : Tone.slate, size: 36, iconSize: 18),
+            const SizedBox(width: Space.md),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Niveau ${level.rank} · ${level.name}', style: TypeScale.cardTitle),
+                  Text(level.objective, style: TypeScale.caption.copyWith(color: Palette.inkSoft)),
+                ],
+              ),
+            ),
+            const SizedBox(width: Space.sm),
+            Pill('$done/${states.length}', tone: done == states.length ? Tone.teal : Tone.indigo),
+          ],
+        ),
+      ),
     );
   }
 }

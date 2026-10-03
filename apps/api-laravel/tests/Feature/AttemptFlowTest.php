@@ -25,7 +25,7 @@ it('enregistre une tentative correcte et récompense la réussite', function () 
 
     $res = $this->postJson('/api/attempts', [
         'childId' => $child->id,
-        'exerciseId' => 'e-vowel-a',
+        'exerciseId' => 'e-son-a-1',
         'itemId' => 'g-a',
         'isCorrect' => true,
     ]);
@@ -47,7 +47,7 @@ it("récompense l'effort même en cas d'erreur (gamification bienveillante)", fu
 
     $res = $this->postJson('/api/attempts', [
         'childId' => $child->id,
-        'exerciseId' => 'e-vowel-a',
+        'exerciseId' => 'e-son-a-1',
         'itemId' => 'g-b',
         'isCorrect' => false,
         'errorKind' => 'confusion-b-d',
@@ -65,7 +65,7 @@ it("récompense l'effort même en cas d'erreur (gamification bienveillante)", fu
 it('maîtrise le nœud après 3 tentatives solides et débloque le suivant', function () {
     $child = makeVerifiedChild();
 
-    foreach (['e-vowel-a', 'e-vowel-i', 'e-vowel-o'] as $exerciseId) {
+    foreach (['e-son-a-1', 'e-son-a-2', 'e-son-a-3'] as $exerciseId) {
         $this->postJson('/api/attempts', [
             'childId' => $child->id,
             'exerciseId' => $exerciseId,
@@ -80,7 +80,7 @@ it('maîtrise le nœud après 3 tentatives solides et débloque le suivant', fun
 
     $tree = $this->getJson("/api/children/{$child->id}/skill-tree");
     $tree->assertOk();
-    expect(array_column($tree->json('nodes'), 'status'))
+    expect(array_slice(array_column($tree->json('nodes'), 'status'), 0, 4))
         ->toBe(['mastered', 'available', 'locked', 'locked']);
 });
 
@@ -89,13 +89,13 @@ it('ne maîtrise pas un nœud avec un score insuffisant', function () {
 
     // 3 tentatives : 1 réussite, 2 erreurs → ratio 0.33 < 0.7.
     $this->postJson('/api/attempts', [
-        'childId' => $child->id, 'exerciseId' => 'e-vowel-a', 'isCorrect' => true,
+        'childId' => $child->id, 'exerciseId' => 'e-son-a-1', 'isCorrect' => true,
     ])->assertStatus(201);
     $this->postJson('/api/attempts', [
-        'childId' => $child->id, 'exerciseId' => 'e-vowel-i', 'isCorrect' => false,
+        'childId' => $child->id, 'exerciseId' => 'e-son-a-2', 'isCorrect' => false,
     ])->assertStatus(201);
     $this->postJson('/api/attempts', [
-        'childId' => $child->id, 'exerciseId' => 'e-vowel-o', 'isCorrect' => false,
+        'childId' => $child->id, 'exerciseId' => 'e-son-a-3', 'isCorrect' => false,
     ])->assertStatus(201);
 
     $progress = Progress::where('child_id', $child->id)->first();
@@ -104,7 +104,7 @@ it('ne maîtrise pas un nœud avec un score insuffisant', function () {
 
     // L'arbre reflète un nœud verrouillé tant que non maîtrisé.
     $tree = $this->getJson("/api/children/{$child->id}/skill-tree");
-    expect(array_column($tree->json('nodes'), 'status'))
+    expect(array_slice(array_column($tree->json('nodes'), 'status'), 0, 4))
         ->toBe(['in_progress', 'locked', 'locked', 'locked']);
 });
 
@@ -113,7 +113,7 @@ it('expose les récompenses de l’enfant', function () {
 
     $this->postJson('/api/attempts', [
         'childId' => $child->id,
-        'exerciseId' => 'e-vowel-a',
+        'exerciseId' => 'e-son-a-1',
         'isCorrect' => true,
     ])->assertStatus(201);
 
@@ -128,7 +128,7 @@ it('404 sur un enfant ou un exercice inconnu (RFC 7807)', function () {
     actingAsParent();
     $this->postJson('/api/attempts', [
         'childId' => '00000000-0000-0000-0000-000000000000',
-        'exerciseId' => 'e-vowel-a',
+        'exerciseId' => 'e-son-a-1',
         'isCorrect' => true,
     ])->assertStatus(404)->assertJson(['code' => 'CHILD_NOT_FOUND']);
 

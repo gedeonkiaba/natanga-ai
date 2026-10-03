@@ -25,6 +25,7 @@ export function WordRecognition({ exercise, items, onAnswer }: WordRecognitionPr
   const [chosenId, setChosenId] = useState<string | null>(null);
 
   const candidateItems = choicesOf(exercise, items);
+  const unit = candidateItems[0]?.type === 'sentence' ? 'la phrase' : 'le mot';
 
   const choose = (item: PedagogyItem) => {
     const result = checkWordRecognition(exercise, item.id);
@@ -35,12 +36,14 @@ export function WordRecognition({ exercise, items, onAnswer }: WordRecognitionPr
 
   return (
     <View style={styles.container}>
-      <Text variant="body">Écoute, puis touche le mot entendu :</Text>
+      <Text variant="body">
+        Écoute, puis touche {unit} entendu{unit === 'la phrase' ? 'e' : ''} :
+      </Text>
 
       <TTSButton
         text={spokenPrompt(exercise, items)}
-        label="le mot"
-        accessibilityLabel="Réécouter le mot"
+        label={unit}
+        accessibilityLabel={`Réécouter ${unit}`}
       />
 
       <View style={styles.choices}>
@@ -49,7 +52,7 @@ export function WordRecognition({ exercise, items, onAnswer }: WordRecognitionPr
             key={item.id}
             variant={chosenId === item.id && feedback?.correct === false ? 'warning' : 'primary'}
             onPress={() => choose(item)}
-            accessibilityLabel={`Choisir le mot ${item.label}`}
+            accessibilityLabel={`Choisir ${unit} ${item.label}`}
           >
             {item.label}
           </Button>

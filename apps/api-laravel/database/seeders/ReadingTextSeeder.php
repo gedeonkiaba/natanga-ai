@@ -13,9 +13,9 @@ class ReadingTextSeeder extends Seeder
     public const INTERESTS = ['animaux', 'espace', 'contes', 'dinosaures', 'nature', 'musique'];
 
     /**
-     * Nœud pédagogique rattaché à chaque niveau de lecture.
+     * Nœud pédagogique rattaché à chaque niveau de lecture : mots simples, phrases, textes.
      */
-    public const NODE_BY_LEVEL = ['1' => 'n-letters-a', '2' => 'n-mots-simples', '3' => 'n-phrases'];
+    public const NODE_BY_LEVEL = ['1' => 'n-mot-maman', '2' => 'n-phrase-1', '3' => 'n-textes-courts'];
 
     /**
      * Âge minimum par niveau de lecture.

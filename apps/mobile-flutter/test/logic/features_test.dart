@@ -45,15 +45,15 @@ void main() {
     });
 
     test('leçon : gemmes, nœud maîtrisé, événement en file, jamais rétrogradé', () {
-      var s = recordLesson(ProgressState.initial, nodeId: 'n-letters-a', lessonId: 'l-vowels-1', correct: 3, total: 4, gems: 35, now: now);
+      var s = recordLesson(ProgressState.initial, nodeId: 'n-son-a', lessonId: 'l-son-a', correct: 3, total: 4, gems: 35, now: now);
       expect(s.gems, 35);
-      expect(s.nodes['n-letters-a']!.mastered, isTrue);
+      expect(s.nodes['n-son-a']!.mastered, isTrue);
       expect(s.outbox.single.type, 'lesson_completed');
       expect(s.outbox.single.payload['score'], 0.75);
-      s = recordLesson(s, nodeId: 'n-letters-a', lessonId: 'l-vowels-1', correct: 0, total: 4, gems: 20, now: now);
-      expect(s.nodes['n-letters-a']!.mastered, isTrue);
-      expect(s.nodes['n-letters-a']!.bestScore, 0.75);
-      expect(computeTreeState(level1Nodes, s.treeProgress)[1].status, NodeStatus.available);
+      s = recordLesson(s, nodeId: 'n-son-a', lessonId: 'l-son-a', correct: 0, total: 4, gems: 20, now: now);
+      expect(s.nodes['n-son-a']!.mastered, isTrue);
+      expect(s.nodes['n-son-a']!.bestScore, 0.75);
+      expect(computeTreeState(curriculumNodes, s.treeProgress)[1].status, NodeStatus.available);
     });
 
     test('lecture et profil', () {
@@ -84,7 +84,7 @@ void main() {
     });
 
     test('sauvegarde relue à l’identique ; corrompue ou autre schéma → état neuf', () {
-      var s = recordLesson(ProgressState.initial, nodeId: 'n-letters-a', lessonId: 'l', correct: 4, total: 4, gems: 40, now: now);
+      var s = recordLesson(ProgressState.initial, nodeId: 'n-son-a', lessonId: 'l', correct: 4, total: 4, gems: 40, now: now);
       s = saveProfile(s, 'lumi', [ThemeKey.animaux, ThemeKey.sports], now: now);
       final back = ProgressState.parse(s.toJsonString());
       expect(back.toJsonString(), s.toJsonString());

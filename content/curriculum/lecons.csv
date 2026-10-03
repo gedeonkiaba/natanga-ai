@@ -1,0 +1,51 @@
+﻿id,niveau_id,titre,son_cible,objectif,duree_minutes,ordre
+1,1,Le son /a/,a,"Reconnaître, entendre, associer et tracer le son /a/.",7,1
+2,1,Le son /e/,e,"Reconnaître, entendre, associer et tracer le son /e/.",7,2
+3,1,Le son /i/,i,"Reconnaître, entendre, associer et tracer le son /i/.",7,3
+4,1,Le son /o/,o,"Reconnaître, entendre, associer et tracer le son /o/.",7,4
+5,1,Le son /u/,u,"Reconnaître, entendre, associer et tracer le son /u/.",7,5
+6,1,Le son /é/,é,"Reconnaître, entendre, associer et tracer le son /é/.",7,6
+7,2,Le son /m/,m,"Reconnaître, entendre, associer et tracer le son /m/.",7,7
+8,2,Le son /p/,p,"Reconnaître, entendre, associer et tracer le son /p/.",7,8
+9,2,Le son /t/,t,"Reconnaître, entendre, associer et tracer le son /t/.",7,9
+10,2,Le son /s/,s,"Reconnaître, entendre, associer et tracer le son /s/.",7,10
+11,2,Le son /l/,l,"Reconnaître, entendre, associer et tracer le son /l/.",7,11
+12,2,Le son /r/,r,"Reconnaître, entendre, associer et tracer le son /r/.",7,12
+13,2,Le son /n/,n,"Reconnaître, entendre, associer et tracer le son /n/.",7,13
+14,2,Le son /d/,d,"Reconnaître, entendre, associer et tracer le son /d/.",7,14
+15,2,Le son /f/,f,"Reconnaître, entendre, associer et tracer le son /f/.",7,15
+16,2,Le son /v/,v,"Reconnaître, entendre, associer et tracer le son /v/.",7,16
+17,2,Le son /b/,b,"Reconnaître, entendre, associer et tracer le son /b/.",7,17
+18,2,Le son /j/,j,"Reconnaître, entendre, associer et tracer le son /j/.",7,18
+19,3,Le son /ch/,ch,"Reconnaître, entendre, associer et tracer le son /ch/.",7,19
+20,3,Le son /ou/,ou,"Reconnaître, entendre, associer et tracer le son /ou/.",7,20
+21,5,Le son /oi/,oi,"Reconnaître, entendre, associer et tracer le son /oi/.",7,21
+22,5,Le son /an/,an,"Reconnaître, entendre, associer et tracer le son /an/.",7,22
+23,5,Le son /on/,on,"Reconnaître, entendre, associer et tracer le son /on/.",7,23
+24,5,Le son /in/,in,"Reconnaître, entendre, associer et tracer le son /in/.",7,24
+25,5,Le son /eau/,eau,"Reconnaître, entendre, associer et tracer le son /eau/.",7,25
+26,3,La syllabe « ma »,ma,"Découper, entendre et assembler la syllabe « ma ».",7,26
+27,3,La syllabe « pa »,pa,"Découper, entendre et assembler la syllabe « pa ».",7,27
+28,3,La syllabe « ta »,ta,"Découper, entendre et assembler la syllabe « ta ».",7,28
+29,3,La syllabe « la »,la,"Découper, entendre et assembler la syllabe « la ».",7,29
+30,3,La syllabe « mi »,mi,"Découper, entendre et assembler la syllabe « mi ».",7,30
+31,3,La syllabe « pi »,pi,"Découper, entendre et assembler la syllabe « pi ».",7,31
+32,3,La syllabe « ti »,ti,"Découper, entendre et assembler la syllabe « ti ».",7,32
+33,3,La syllabe « li »,li,"Découper, entendre et assembler la syllabe « li ».",7,33
+34,3,La syllabe « mo »,mo,"Découper, entendre et assembler la syllabe « mo ».",7,34
+35,3,La syllabe « to »,to,"Découper, entendre et assembler la syllabe « to ».",7,35
+36,4,Le mot « maman »,maman,"Lire, écouter, épeler et comprendre le mot « maman ».",8,36
+37,4,Le mot « papa »,papa,"Lire, écouter, épeler et comprendre le mot « papa ».",8,37
+38,4,Le mot « livre »,livre,"Lire, écouter, épeler et comprendre le mot « livre ».",8,38
+39,4,Le mot « école »,école,"Lire, écouter, épeler et comprendre le mot « école ».",8,39
+40,4,Le mot « maison »,maison,"Lire, écouter, épeler et comprendre le mot « maison ».",8,40
+41,4,Le mot « ami »,ami,"Lire, écouter, épeler et comprendre le mot « ami ».",8,41
+42,4,Le mot « chat »,chat,"Lire, écouter, épeler et comprendre le mot « chat ».",8,42
+43,4,Le mot « lune »,lune,"Lire, écouter, épeler et comprendre le mot « lune ».",8,43
+44,4,Le mot « fleur »,fleur,"Lire, écouter, épeler et comprendre le mot « fleur ».",8,44
+45,4,Le mot « vélo »,vélo,"Lire, écouter, épeler et comprendre le mot « vélo ».",8,45
+46,6,Phrase : « Le chat dort. »,Le chat dort.,"Écouter, lire et comprendre la phrase « Le chat dort. ».",8,46
+47,6,Phrase : « Papa lit un livre. »,Papa lit un livre.,"Écouter, lire et comprendre la phrase « Papa lit un livre. ».",8,47
+48,6,Phrase : « La lune est belle. »,La lune est belle.,"Écouter, lire et comprendre la phrase « La lune est belle. ».",8,48
+49,6,Phrase : « Maman aime les fleurs. »,Maman aime les fleurs.,"Écouter, lire et comprendre la phrase « Maman aime les fleurs. ».",8,49
+50,6,Phrase : « Je vais à l’école. »,Je vais à l’école.,"Écouter, lire et comprendre la phrase « Je vais à l’école. ».",8,50

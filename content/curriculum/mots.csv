@@ -1,0 +1,51 @@
+﻿id,lecon_id,mot,syllabes,audio_text,image_suggeree
+1,1,avion,a-vi-on,avion,Image de avion
+2,2,éléphant,é-lé-phant,éléphant,Image de éléphant
+3,3,iguane,i-gua-ne,iguane,Image de iguane
+4,4,orange,o-ran-ge,orange,Image de orange
+5,5,lune,lu-ne,lune,Image de lune
+6,6,école,é-co-le,école,Image de école
+7,7,maison,mai-son,maison,Image de maison
+8,8,papa,pa-pa,papa,Image de papa
+9,9,tortue,tor-tue,tortue,Image de tortue
+10,10,soleil,so-leil,soleil,Image de soleil
+11,11,lion,li-on,lion,Image de lion
+12,12,robot,ro-bot,robot,Image de robot
+13,13,nez,nez,nez,Image de nez
+14,14,domino,do-mi-no,domino,Image de domino
+15,15,fleur,fleur,fleur,Image de fleur
+16,16,vélo,vé-lo,vélo,Image de vélo
+17,17,ballon,bal-lon,ballon,Image de ballon
+18,18,jupe,ju-pe,jupe,Image de jupe
+19,19,chat,chat,chat,Image de chat
+20,20,loupe,lou-pe,loupe,Image de loupe
+21,21,poisson,pois-son,poisson,Image de poisson
+22,22,banane,ba-na-ne,banane,Image de banane
+23,23,bonbon,bon-bon,bonbon,Image de bonbon
+24,24,lapin,la-pin,lapin,Image de lapin
+25,25,bateau,ba-teau,bateau,Image de bateau
+26,26,ma,ma,ma,Carte syllabe ma
+27,27,pa,pa,pa,Carte syllabe pa
+28,28,ta,ta,ta,Carte syllabe ta
+29,29,la,la,la,Carte syllabe la
+30,30,mi,mi,mi,Carte syllabe mi
+31,31,pi,pi,pi,Carte syllabe pi
+32,32,ti,ti,ti,Carte syllabe ti
+33,33,li,li,li,Carte syllabe li
+34,34,mo,mo,mo,Carte syllabe mo
+35,35,to,to,to,Carte syllabe to
+36,36,maman,ma-man,maman,Image de maman
+37,37,papa,pa-pa,papa,Image de papa
+38,38,livre,li-vre,livre,Image de livre
+39,39,école,é-co-le,école,Image de école
+40,40,maison,mai-son,maison,Image de maison
+41,41,ami,a-mi,ami,Image de ami
+42,42,chat,chat,chat,Image de chat
+43,43,lune,lu-ne,lune,Image de lune
+44,44,fleur,fleur,fleur,Image de fleur
+45,45,vélo,vé-lo,vélo,Image de vélo
+46,46,Le chat dort.,Le chat dort.,Le chat dort.,Illustration : Le chat dort.
+47,47,Papa lit un livre.,Pa-pa lit un li-vre.,Papa lit un livre.,Illustration : Papa lit un livre.
+48,48,La lune est belle.,La lu-ne est bel-le.,La lune est belle.,Illustration : La lune est belle.
+49,49,Maman aime les fleurs.,Ma-man ai-me les fleurs.,Maman aime les fleurs.,Illustration : Maman aime les fleurs.
+50,50,Je vais à l’école.,Je vais à l’é-co-le.,Je vais à l’école.,Illustration : Je vais à l’école.

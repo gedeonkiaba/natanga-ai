@@ -19,9 +19,9 @@ Aperçu web d'un écran précis : `#home`, `#profile`, `#reading`, `#achievement
   « Quitter » et le retour Android ramènent aussi au parcours.
 - Après chaque réponse, le retour (« Bravo ! », « Presque ! C'est « a » ») reste 1,2 s sur
   l'exercice en cours ; les touches en trop sont ignorées (une réponse comptée).
-- 4 nœuds jouables (`packages/core/src/pedagogy/content.ts`) : voyelles, b ou d ?, p ou q ?,
-  mots simples. b/d et p/q ne proposent que les lettres en miroir, avec un mot-repère dit par
-  la voix (« b, comme ballon ») ; en reconnaissance de mots, la voix dit le mot à trouver.
+- Parcours de 6 niveaux et 52 leçons, généré depuis `content/curriculum/*.csv`
+  (`packages/core/src/pedagogy/curriculum.generated.ts`, voir `docs/28-parcours-pedagogique.md`).
+  La voix dit la consigne (« a, comme dans avion », ou le mot à trouver).
   ⚠️ Contenu à faire valider par l'orthophoniste avant la bêta.
 
 ## Tester sur un téléphone

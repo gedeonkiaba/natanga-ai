@@ -55,9 +55,27 @@ Future<void> tapSem(WidgetTester tester, String label) async {
   await tester.pumpAndSettle();
 }
 
-List<String> nodeLabels(WidgetTester tester) => [
-  for (final n in level1Nodes.map((n) => n.title)) tester.getSemantics(find.bySemanticsLabel(RegExp('^$n — '))).label,
-];
+/// Libellé accessible d'une carte de leçon de « Mon parcours » (« Le son /a/ — Disponible »).
+Future<String> nodeLabel(WidgetTester tester, String title) async {
+  final finder = find.bySemanticsLabel(RegExp('^${RegExp.escape(title)} — '));
+  await tester.ensureVisible(finder);
+  return tester.getSemantics(finder).label;
+}
+
+/// Progression où les [count] premières leçons du parcours sont maîtrisées.
+String masteredFirst(int count) {
+  var s = ProgressState.initial;
+  for (final n in curriculumNodes.take(count)) {
+    s = recordLesson(s, nodeId: n.id, lessonId: firstLessonOf(n.id)!.id, correct: 4, total: 4, gems: 40);
+  }
+  return s.toJsonString();
+}
+
+Future<void> answer(WidgetTester tester, String label) async {
+  await tapSem(tester, label);
+  await tester.pump(feedbackDurationForTests);
+  await tester.pumpAndSettle();
+}
 
 void main() {
   testWidgets('accueil de la maquette et navigation vers « Mon parcours »', (tester) async {
@@ -72,7 +90,12 @@ void main() {
 
     await tapSem(tester, 'Bibliothèque');
     expect(find.text('Mon parcours'), findsOneWidget);
-    expect(nodeLabels(tester), ['Les voyelles — Disponible', 'Les sons b / d — Verrouillé', 'Les sons p / q — Verrouillé', 'Mots simples — Verrouillé']);
+    expect(find.text('Niveau 1 · Sons et écoute'), findsOneWidget);
+    expect(await nodeLabel(tester, 'Le son /a/'), 'Le son /a/ — Disponible');
+    expect(await nodeLabel(tester, 'Le son /e/'), 'Le son /e/ — Verrouillé');
+    // Niveaux pas encore atteints : repliés (en-tête seulement).
+    expect(find.text('Niveau 6 · Phrases et compréhension'), findsOneWidget);
+    expect(find.text('Le son /m/'), findsNothing);
   });
 
   testWidgets('l’espace parent sans session redirige vers la connexion', (tester) async {
@@ -95,36 +118,36 @@ void main() {
     await tapSem(tester, 'Bibliothèque');
     await tapSem(tester, 'Commencer');
 
-    expect(find.text('Écouter les voyelles'), findsOneWidget);
-    expect(tts.spoken, ['a']); // la consigne est dite à l'arrivée de l'exercice
+    expect(find.text('Le son /a/'), findsOneWidget);
+    expect(find.text('Reconnaître, entendre, associer et tracer le son /a/.'), findsOneWidget);
+    expect(tts.spoken, ['a, comme dans avion']); // la consigne est dite à l'arrivée de l'exercice
     await tapSem(tester, 'Réécouter le son');
-    expect(tts.spoken, ['a', 'a']);
+    expect(tts.spoken, ['a, comme dans avion', 'a, comme dans avion']);
+    expect(sem('Choisir la lettre i'), findsNothing); // seulement a et la lettre voisine o
 
     // Mauvaise réponse : le retour s'affiche sur l'exercice en cours ; une 2ᵉ touche est ignorée.
     await tester.tap(sem('Choisir la lettre o'));
     await tester.pump();
-    await tester.tap(sem('Choisir la lettre i'));
+    await tester.tap(sem('Choisir la lettre a'));
     await tester.pump();
     expect(find.text('Presque ! C’est « a ». On réessaie.'), findsOneWidget);
     await tester.pump(feedbackDurationForTests);
     await tester.pumpAndSettle();
     expect(find.text('Presque ! C’est « a ». On réessaie.'), findsNothing);
 
-    for (final l in ['i', 'o']) {
-      await tester.tap(sem('Choisir la lettre $l'));
-      await tester.pump(feedbackDurationForTests);
-      await tester.pumpAndSettle();
-    }
     expect(find.text('Écoute, puis touche le mot entendu :'), findsOneWidget);
+    expect(tts.spoken.last, 'avion');
+    await answer(tester, 'Choisir le mot avion');
+    expect(tts.spoken.last, 'a');
+    await answer(tester, 'Choisir la lettre a');
     expect(tts.spoken.last, 'papa');
-    await tester.tap(sem('Choisir le mot papa'));
-    await tester.pump(feedbackDurationForTests);
-    await tester.pumpAndSettle();
+    await answer(tester, 'Choisir le mot papa');
 
     expect(find.text('Leçon terminée !'), findsOneWidget);
     expect(find.text('3 bonnes réponses sur 4.'), findsOneWidget);
     await tapSem(tester, 'Continuer');
-    expect(nodeLabels(tester), ['Les voyelles — Terminé', 'Les sons b / d — Disponible', 'Les sons p / q — Verrouillé', 'Mots simples — Verrouillé']);
+    expect(await nodeLabel(tester, 'Le son /a/'), 'Le son /a/ — Terminé');
+    expect(await nodeLabel(tester, 'Le son /e/'), 'Le son /e/ — Disponible');
 
     final saved = ProgressState.parse(prefs.getString(progressStorageKey));
     expect(saved.gems, 35);
@@ -136,33 +159,24 @@ void main() {
     await tester.pumpWidget(app2);
     await tester.pumpAndSettle();
     await tapSem(tester, 'Bibliothèque');
-    expect(nodeLabels(tester).first, 'Les voyelles — Terminé');
+    expect(await nodeLabel(tester, 'Le son /a/'), 'Le son /a/ — Terminé');
   });
 
-  testWidgets('leçon « b ou d ? » : 2 lettres en miroir, mot-repère dit, nœud suivant débloqué', (tester) async {
+  testWidgets('leçon miroir « b ou d ? » en fin de niveau 2 : 2 lettres, mot-repère dit, suite débloquée', (tester) async {
     await phone(tester);
-    SharedPreferences.setMockInitialValues({
-      progressStorageKey:
-          recordLesson(ProgressState.initial, nodeId: 'n-letters-a', lessonId: 'l-vowels-1', correct: 4, total: 4, gems: 40).toJsonString(),
-    });
+    final bd = curriculumNodes.indexWhere((n) => n.id == 'n-letters-bd');
+    SharedPreferences.setMockInitialValues({progressStorageKey: masteredFirst(bd)});
     final prefs = await SharedPreferences.getInstance();
     final (app, tts, _) = await testApp(prefs: prefs);
     await tester.pumpWidget(app);
     await tester.pumpAndSettle();
     await tapSem(tester, 'Bibliothèque');
-    await tapSem(tester, 'Commencer'); // seul nœud « Disponible » : b / d
+    expect(await nodeLabel(tester, 'b ou d ?'), 'b ou d ? — Disponible');
+    await tapSem(tester, 'Commencer'); // seule leçon « Disponible »
 
     expect(find.text('b ou d ?'), findsOneWidget);
     expect(tts.spoken.last, 'b, comme ballon');
-    expect(sem('Choisir la lettre b'), findsOneWidget);
-    expect(sem('Choisir la lettre d'), findsOneWidget);
-    expect(sem('Choisir la lettre a'), findsNothing); // seulement les lettres travaillées
-
-    Future<void> answer(String label) async {
-      await tapSem(tester, label);
-      await tester.pump(feedbackDurationForTests);
-      await tester.pumpAndSettle();
-    }
+    expect(sem('Choisir la lettre a'), findsNothing);
 
     // Confusion b/d : retour bienveillant qui montre la bonne lettre.
     await tapSem(tester, 'Choisir la lettre d');
@@ -171,22 +185,53 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(tts.spoken.last, 'd, comme doigt');
-    await answer('Choisir la lettre d');
-    expect(tts.spoken.last, 'b, comme bébé');
-    await answer('Choisir la lettre b');
+    await answer(tester, 'Choisir la lettre d');
+    await answer(tester, 'Choisir la lettre b');
     expect(tts.spoken.last, 'bon');
-    await answer('Choisir le mot bon');
-    expect(tts.spoken.last, 'dodo');
-    await answer('Choisir le mot dodo');
+    await answer(tester, 'Choisir le mot bon');
+    await answer(tester, 'Choisir le mot dodo');
 
     expect(find.text('4 bonnes réponses sur 5.'), findsOneWidget);
     await tapSem(tester, 'Continuer');
-    expect(nodeLabels(tester), [
-      'Les voyelles — Terminé',
-      'Les sons b / d — Terminé',
-      'Les sons p / q — Disponible',
-      'Mots simples — Verrouillé',
-    ]);
+    expect(await nodeLabel(tester, 'b ou d ?'), 'b ou d ? — Terminé');
+    expect(await nodeLabel(tester, 'p ou q ?'), 'p ou q ? — Disponible');
+  });
+
+  testWidgets('syllabes : inversion « ma / am » ; phrases : une par ligne', (tester) async {
+    await phone(tester);
+    final ma = curriculumNodes.indexWhere((n) => n.id == 'n-syl-ma');
+    SharedPreferences.setMockInitialValues({progressStorageKey: masteredFirst(ma)});
+    var prefs = await SharedPreferences.getInstance();
+    var (app, tts, _) = await testApp(prefs: prefs);
+    await tester.pumpWidget(app);
+    await tester.pumpAndSettle();
+    await tapSem(tester, 'Bibliothèque');
+    await tapSem(tester, 'Commencer');
+
+    expect(find.text('Écoute, puis touche la syllabe entendue :'), findsOneWidget);
+    expect(tts.spoken.last, 'ma, comme dans maman');
+    await answer(tester, 'Choisir la syllabe ma');
+    expect(sem('Choisir la syllabe am'), findsOneWidget); // inversion, confusion fréquente
+    await answer(tester, 'Choisir la syllabe ma');
+
+    final phrase = curriculumNodes.indexWhere((n) => n.id == 'n-phrase-1');
+    SharedPreferences.setMockInitialValues({progressStorageKey: masteredFirst(phrase)});
+    prefs = await SharedPreferences.getInstance();
+    (app, tts, _) = await testApp(prefs: prefs);
+    await tester.pumpWidget(const SizedBox());
+    await tester.pumpWidget(app);
+    await tester.pumpAndSettle();
+    await tapSem(tester, 'Bibliothèque');
+    await tapSem(tester, 'Commencer');
+
+    expect(find.text('Écoute, puis touche la phrase entendue :'), findsOneWidget);
+    expect(tts.spoken.last, 'Le chat dort.');
+    final first = tester.getTopLeft(find.text('Le chat dort.'));
+    final second = tester.getTopLeft(find.text('Papa lit un livre.'));
+    expect(second.dy, greaterThan(first.dy)); // empilées, pas côte à côte
+    await answer(tester, 'Choisir la phrase Le chat dort.');
+    expect(tts.spoken.last, 'chat');
+    expect(sem('Choisir le mot dort'), findsOneWidget);
   });
 
   testWidgets('profil puis lecture : choix enregistrés, mot touché lu à voix haute, succès', (tester) async {

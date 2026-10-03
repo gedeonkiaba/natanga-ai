@@ -57,20 +57,13 @@ L'espace parent appelle l'API (`http://localhost:8000` par défaut). Sur télép
 
 ```bash
 flutter analyze
-flutter test        # 57 tests : API, session, logique, parcours complet (leçon, hors connexion, redémarrage)
+flutter test        # 60 tests : API, session, logique, parcours complet (leçon, hors connexion, redémarrage)
 flutter build web --release --no-web-resources-cdn   # aperçu navigateur, sans CDN
 ```
 
-Parcours niveau 1 : 4 nœuds, chacun avec une leçon jouable (contenu dans
-`lib/domain/pedagogy.dart`, identique à `packages/core/src/pedagogy/content.ts` et au
-`PedagogySeeder` Laravel) :
-
-| Nœud | Leçon | Exercices |
-|---|---|---|
-| Les voyelles | Écouter les voyelles | a, i, o + mot « papa » |
-| Les sons b / d | b ou d ? | b/d seules, puis b/d/p ; paires bon/don, dodo/bébé |
-| Les sons p / q | p ou q ? | p/q seules, puis p/q/b ; quatre, coq |
-| Mots simples | Lire des mots | lapin, maman, ballon, poule, bébé |
-
-La voix pose chaque question à l'arrivée de l'exercice (« b, comme ballon », ou le mot à
-trouver) ; le bouton 🔊 la répète. ⚠️ Contenu à faire valider par l'orthophoniste avant la bêta.
+Parcours : **6 niveaux, 52 leçons** générés depuis la base de connaissances
+`content/curriculum/*.csv` (`lib/domain/curriculum.g.dart`, identique à l'app Expo et à
+l'API — voir [docs/28](../../docs/28-parcours-pedagogique.md)). « Mon parcours » regroupe les
+leçons par niveau ; la voix pose chaque question (« a, comme dans avion », le mot ou la
+phrase à trouver) ; les mots s'affichent en syllabes bicolores.
+⚠️ Contenu à faire valider par l'orthophoniste avant la bêta.

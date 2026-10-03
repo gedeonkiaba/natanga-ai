@@ -101,6 +101,7 @@ class PedagogyService
             'id' => $lesson->id,
             'nodeId' => $lesson->node_id,
             'title' => $lesson->title,
+            'objective' => $lesson->objective,
             'kind' => $lesson->kind,
             'durationMin' => (int) $lesson->duration_min,
             'ageMin' => $lesson->age_min,

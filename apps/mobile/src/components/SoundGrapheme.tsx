@@ -25,6 +25,8 @@ export function SoundGrapheme({ exercise, items, onAnswer }: SoundGraphemeProps)
   const [feedback, setFeedback] = useState<AnswerFeedback | null>(null);
 
   const playSound = spokenPrompt(exercise, items);
+  const choices = choicesOf(exercise, items);
+  const unit = choices[0]?.type === 'syllable' ? 'la syllabe' : 'la lettre';
 
   const choose = (item: PedagogyItem) => {
     const result = checkSoundGrapheme(exercise, items, item.id);
@@ -34,19 +36,19 @@ export function SoundGrapheme({ exercise, items, onAnswer }: SoundGraphemeProps)
 
   return (
     <View style={styles.container}>
-      <Text variant="body">Écoute, puis touche la lettre entendue :</Text>
+      <Text variant="body">Écoute, puis touche {unit} entendue :</Text>
 
       <TTSButton text={playSound} label="le son" accessibilityLabel="Réécouter le son" />
 
       <View style={styles.choices}>
-        {choicesOf(exercise, items).map((item) => (
+        {choices.map((item) => (
           <Button
             key={item.id}
             variant={
               feedback?.correct === false && feedback.correctId === item.id ? 'warning' : 'primary'
             }
             onPress={() => choose(item)}
-            accessibilityLabel={`Choisir la lettre ${item.label}`}
+            accessibilityLabel={`Choisir ${unit} ${item.label}`}
           >
             {item.label}
           </Button>

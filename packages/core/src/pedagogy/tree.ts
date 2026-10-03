@@ -17,7 +17,9 @@ export function computeTreeState(
   masteryThreshold = 0.8,
 ): SkillProgress[] {
   const ordered = [...nodes].sort((a, b) => a.order - b.order);
-  const masteredCount = progress.filter((p) => p.status === 'mastered').length;
+  // Les nœuds retirés du parcours (progression d'une ancienne version) ne comptent pas.
+  const ids = new Set(nodes.map((n) => n.id));
+  const masteredCount = progress.filter((p) => ids.has(p.nodeId) && p.status === 'mastered').length;
 
   return ordered.map((node) => {
     const existing = progress.find((p) => p.nodeId === node.id);
@@ -25,9 +27,7 @@ export function computeTreeState(
       return existing;
     }
     const status: SkillProgress['status'] =
-      masteredCount >= node.unlockedWhen
-        ? 'available'
-        : 'locked';
+      masteredCount >= node.unlockedWhen ? 'available' : 'locked';
     const childId = progress[0]?.childId ?? '';
     return {
       childId,

@@ -4,13 +4,27 @@
 /// et reconnaissance de mots (US-08), récompenses d'effort. Logique pure, sans I/O.
 library;
 
+part 'curriculum.g.dart';
+
 enum ExerciseType { soundGrapheme, wordRecognition }
 
 enum NodeStatus { locked, available, inProgress, mastered }
 
+/// Niveau du parcours (base de connaissances `content/curriculum/niveaux.csv`).
+class CurriculumLevel {
+  const CurriculumLevel({required this.rank, required this.key, required this.name, required this.objective});
+  final int rank;
+  final String key;
+  final String name;
+  final String objective;
+}
+
 class SkillNode {
-  const SkillNode({required this.id, required this.title, required this.order, required this.unlockedWhen});
+  const SkillNode({required this.id, required this.level, required this.title, required this.order, required this.unlockedWhen});
   final String id;
+
+  /// Clé du niveau (`CurriculumLevel.key`).
+  final String level;
   final String title;
   final int order;
 
@@ -19,10 +33,11 @@ class SkillNode {
 }
 
 class Lesson {
-  const Lesson({required this.id, required this.nodeId, required this.title, required this.durationMin});
+  const Lesson({required this.id, required this.nodeId, required this.title, this.objective = '', required this.durationMin});
   final String id;
   final String nodeId;
   final String title;
+  final String objective;
   final int durationMin;
 }
 
@@ -55,109 +70,42 @@ class Exercise {
   final List<String> itemIds;
 }
 
-enum ItemType { grapheme, word }
+enum ItemType { grapheme, syllable, word, sentence }
 
 class PedagogyItem {
-  const PedagogyItem({required this.id, required this.type, required this.label, required this.phoneme});
+  const PedagogyItem({required this.id, required this.type, required this.label, required this.phoneme, this.syllables = const []});
   final String id;
   final ItemType type;
   final String label;
   final String phoneme;
+
+  /// Découpage syllabique (mots : « ma », « man ») pour l'affichage bicolore.
+  final List<String> syllables;
 }
 
-// --- Contenu (identique à packages/core/src/pedagogy/content.ts) ---
-//
-// Les leçons b/d et p/q travaillent les confusions en miroir typiques de la
-// dyslexie : peu de choix (2 puis 3 lettres), un mot-repère dit par la voix,
-// puis des paires de mots qui ne diffèrent que par la lettre travaillée.
+// --- Contenu : généré depuis content/curriculum/*.csv (voir curriculum.g.dart) ---
 
-const level1Graphemes = [
-  PedagogyItem(id: 'g-a', type: ItemType.grapheme, label: 'a', phoneme: 'a'),
-  PedagogyItem(id: 'g-i', type: ItemType.grapheme, label: 'i', phoneme: 'i'),
-  PedagogyItem(id: 'g-o', type: ItemType.grapheme, label: 'o', phoneme: 'o'),
-  PedagogyItem(id: 'g-b', type: ItemType.grapheme, label: 'b', phoneme: 'b'),
-  PedagogyItem(id: 'g-d', type: ItemType.grapheme, label: 'd', phoneme: 'd'),
-  PedagogyItem(id: 'g-p', type: ItemType.grapheme, label: 'p', phoneme: 'p'),
-  PedagogyItem(id: 'g-q', type: ItemType.grapheme, label: 'q', phoneme: 'k'),
-];
+List<PedagogyItem> get curriculumGraphemes => curriculumItems.where((i) => i.type == ItemType.grapheme).toList();
 
-const level1Words = [
-  PedagogyItem(id: 'w-papa', type: ItemType.word, label: 'papa', phoneme: 'papa'),
-  PedagogyItem(id: 'w-maman', type: ItemType.word, label: 'maman', phoneme: 'maman'),
-  PedagogyItem(id: 'w-lapin', type: ItemType.word, label: 'lapin', phoneme: 'lapin'),
-  PedagogyItem(id: 'w-ballon', type: ItemType.word, label: 'ballon', phoneme: 'ballon'),
-  PedagogyItem(id: 'w-doigt', type: ItemType.word, label: 'doigt', phoneme: 'doigt'),
-  PedagogyItem(id: 'w-bon', type: ItemType.word, label: 'bon', phoneme: 'bon'),
-  PedagogyItem(id: 'w-don', type: ItemType.word, label: 'don', phoneme: 'don'),
-  PedagogyItem(id: 'w-bebe', type: ItemType.word, label: 'bébé', phoneme: 'bébé'),
-  PedagogyItem(id: 'w-dodo', type: ItemType.word, label: 'dodo', phoneme: 'dodo'),
-  PedagogyItem(id: 'w-pomme', type: ItemType.word, label: 'pomme', phoneme: 'pomme'),
-  PedagogyItem(id: 'w-poule', type: ItemType.word, label: 'poule', phoneme: 'poule'),
-  PedagogyItem(id: 'w-quatre', type: ItemType.word, label: 'quatre', phoneme: 'quatre'),
-  PedagogyItem(id: 'w-coq', type: ItemType.word, label: 'coq', phoneme: 'coq'),
-];
-
-const level1Items = [...level1Graphemes, ...level1Words];
-
-const level1Nodes = [
-  SkillNode(id: 'n-letters-a', title: 'Les voyelles', order: 1, unlockedWhen: 0),
-  SkillNode(id: 'n-letters-bd', title: 'Les sons b / d', order: 2, unlockedWhen: 1),
-  SkillNode(id: 'n-letters-pq', title: 'Les sons p / q', order: 3, unlockedWhen: 2),
-  SkillNode(id: 'n-mots-simples', title: 'Mots simples', order: 4, unlockedWhen: 3),
-];
-
-const level1Lessons = [
-  Lesson(id: 'l-vowels-1', nodeId: 'n-letters-a', title: 'Écouter les voyelles', durationMin: 6),
-  Lesson(id: 'l-bd-1', nodeId: 'n-letters-bd', title: 'b ou d ?', durationMin: 6),
-  Lesson(id: 'l-pq-1', nodeId: 'n-letters-pq', title: 'p ou q ?', durationMin: 6),
-  Lesson(id: 'l-mots-1', nodeId: 'n-mots-simples', title: 'Lire des mots', durationMin: 6),
-];
-
-const _sg = ExerciseType.soundGrapheme;
-const _wr = ExerciseType.wordRecognition;
-
-const level1Exercises = [
-  // Les voyelles
-  Exercise(id: 'e-vowel-a', lessonId: 'l-vowels-1', type: _sg, phoneme: 'a', order: 1),
-  Exercise(id: 'e-vowel-i', lessonId: 'l-vowels-1', type: _sg, phoneme: 'i', order: 2),
-  Exercise(id: 'e-vowel-o', lessonId: 'l-vowels-1', type: _sg, phoneme: 'o', order: 3),
-  Exercise(id: 'e-word-papa', lessonId: 'l-vowels-1', type: _wr, correctItemId: 'w-papa', itemIds: ['w-papa', 'w-maman', 'w-lapin'], order: 4),
-  // b ou d ?
-  Exercise(id: 'e-bd-b1', lessonId: 'l-bd-1', type: _sg, phoneme: 'b', cue: 'b, comme ballon', itemIds: ['g-b', 'g-d'], order: 1),
-  Exercise(id: 'e-bd-d1', lessonId: 'l-bd-1', type: _sg, phoneme: 'd', cue: 'd, comme doigt', itemIds: ['g-b', 'g-d'], order: 2),
-  Exercise(id: 'e-bd-b2', lessonId: 'l-bd-1', type: _sg, phoneme: 'b', cue: 'b, comme bébé', itemIds: ['g-d', 'g-p', 'g-b'], order: 3),
-  Exercise(id: 'e-bd-bon', lessonId: 'l-bd-1', type: _wr, correctItemId: 'w-bon', itemIds: ['w-don', 'w-bon'], order: 4),
-  Exercise(id: 'e-bd-dodo', lessonId: 'l-bd-1', type: _wr, correctItemId: 'w-dodo', itemIds: ['w-bebe', 'w-dodo', 'w-ballon'], order: 5),
-  // p ou q ?
-  Exercise(id: 'e-pq-p1', lessonId: 'l-pq-1', type: _sg, phoneme: 'p', cue: 'p, comme papa', itemIds: ['g-p', 'g-q'], order: 1),
-  Exercise(id: 'e-pq-q1', lessonId: 'l-pq-1', type: _sg, phoneme: 'k', cue: 'q, comme quatre', itemIds: ['g-p', 'g-q'], order: 2),
-  Exercise(id: 'e-pq-p2', lessonId: 'l-pq-1', type: _sg, phoneme: 'p', cue: 'p, comme pomme', itemIds: ['g-q', 'g-b', 'g-p'], order: 3),
-  Exercise(id: 'e-pq-quatre', lessonId: 'l-pq-1', type: _wr, correctItemId: 'w-quatre', itemIds: ['w-pomme', 'w-quatre', 'w-poule'], order: 4),
-  Exercise(id: 'e-pq-coq', lessonId: 'l-pq-1', type: _wr, correctItemId: 'w-coq', itemIds: ['w-coq', 'w-poule', 'w-papa'], order: 5),
-  // Mots simples
-  Exercise(id: 'e-mots-lapin', lessonId: 'l-mots-1', type: _wr, correctItemId: 'w-lapin', itemIds: ['w-papa', 'w-lapin', 'w-ballon'], order: 1),
-  Exercise(id: 'e-mots-maman', lessonId: 'l-mots-1', type: _wr, correctItemId: 'w-maman', itemIds: ['w-maman', 'w-pomme', 'w-papa'], order: 2),
-  Exercise(id: 'e-mots-ballon', lessonId: 'l-mots-1', type: _wr, correctItemId: 'w-ballon', itemIds: ['w-bon', 'w-dodo', 'w-ballon'], order: 3),
-  Exercise(id: 'e-mots-poule', lessonId: 'l-mots-1', type: _wr, correctItemId: 'w-poule', itemIds: ['w-poule', 'w-coq', 'w-pomme'], order: 4),
-  Exercise(id: 'e-mots-bebe', lessonId: 'l-mots-1', type: _wr, correctItemId: 'w-bebe', itemIds: ['w-dodo', 'w-papa', 'w-bebe'], order: 5),
-];
+/// Nœuds d'un niveau, dans l'ordre du parcours.
+List<SkillNode> nodesOfLevel(String levelKey) => curriculumNodes.where((n) => n.level == levelKey).toList();
 
 Lesson? firstLessonOf(String nodeId) {
-  for (final l in level1Lessons) {
+  for (final l in curriculumLessons) {
     if (l.nodeId == nodeId) return l;
   }
   return null;
 }
 
 List<Exercise> exercisesOf(String lessonId) =>
-    level1Exercises.where((e) => e.lessonId == lessonId).toList()..sort((a, b) => a.order.compareTo(b.order));
+    curriculumExercises.where((e) => e.lessonId == lessonId).toList()..sort((a, b) => a.order.compareTo(b.order));
 
-PedagogyItem? itemById(String id) => level1Items.where((i) => i.id == id).firstOrNull;
+PedagogyItem? itemById(String id) => curriculumItems.where((i) => i.id == id).firstOrNull;
 
 /// Choix affichés : ceux de l'exercice, sinon toutes les lettres (son ⇄ graphème).
 List<PedagogyItem> choicesOf(Exercise exercise) {
   if (exercise.itemIds.isEmpty && exercise.type == ExerciseType.soundGrapheme) {
-    return level1Items.where((i) => i.type == ItemType.grapheme).toList();
+    return curriculumGraphemes;
   }
   return exercise.itemIds.map(itemById).whereType<PedagogyItem>().toList();
 }
@@ -257,7 +205,9 @@ class NodeState {
 /// Statut de chaque nœud : progression connue, sinon déblocage séquentiel.
 List<NodeState> computeTreeState(List<SkillNode> nodes, Map<String, (NodeStatus, double)> progress) {
   final ordered = [...nodes]..sort((a, b) => a.order.compareTo(b.order));
-  final mastered = progress.values.where((p) => p.$1 == NodeStatus.mastered).length;
+  // Les nœuds retirés du parcours (progression d'une ancienne version) ne comptent pas.
+  final ids = {for (final n in nodes) n.id};
+  final mastered = progress.entries.where((e) => ids.contains(e.key) && e.value.$1 == NodeStatus.mastered).length;
   return [
     for (final n in ordered)
       if (progress[n.id] case final p?)

@@ -15,9 +15,9 @@ beforeEach(function () {
     $this->seed(ReadingTextSeeder::class);
 });
 
-it('seeds the pedagogical tree with five distinct levels', function () {
+it('seeds the pedagogical tree with eight distinct levels', function () {
     expect(SkillNode::count())->toBeGreaterThanOrEqual(5)
-        ->and(SkillNode::pluck('level')->unique()->count())->toBe(5);
+        ->and(SkillNode::pluck('level')->unique()->count())->toBe(8); // 6 niveaux du parcours + 2 de textes
 });
 
 it('seeds ninety reading lessons, thirty per reading level', function () {

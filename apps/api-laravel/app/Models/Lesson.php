@@ -20,7 +20,7 @@ class Lesson extends Model
 
     protected $fillable = [
         'id', 'node_id', 'title', 'kind', 'phonemes', 'age_min',
-        'duration_min', 'text', 'order',
+        'duration_min', 'text', 'order', 'objective',
     ];
 
     protected $casts = [

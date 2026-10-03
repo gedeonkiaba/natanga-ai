@@ -1,0 +1,4462 @@
+{
+  "levels": [
+    {
+      "rank": 1,
+      "key": "sounds",
+      "name": "Sons et écoute",
+      "objective": "Reconnaître les sons de la langue"
+    },
+    {
+      "rank": 2,
+      "key": "letters",
+      "name": "Lettres et sons",
+      "objective": "Associer chaque lettre à son son"
+    },
+    {
+      "rank": 3,
+      "key": "syllables",
+      "name": "Syllabes",
+      "objective": "Découper et assembler des syllabes"
+    },
+    {
+      "rank": 4,
+      "key": "words",
+      "name": "Mots simples",
+      "objective": "Lire des mots courts et fréquents"
+    },
+    {
+      "rank": 5,
+      "key": "complex-sounds",
+      "name": "Sons complexes",
+      "objective": "Reconnaître les sons composés"
+    },
+    {
+      "rank": 6,
+      "key": "sentences",
+      "name": "Phrases et compréhension",
+      "objective": "Lire et comprendre de courtes phrases"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "n-son-a",
+      "level": "sounds",
+      "title": "Le son /a/",
+      "order": 1,
+      "unlockedWhen": 0
+    },
+    {
+      "id": "n-son-e",
+      "level": "sounds",
+      "title": "Le son /e/",
+      "order": 2,
+      "unlockedWhen": 1
+    },
+    {
+      "id": "n-son-i",
+      "level": "sounds",
+      "title": "Le son /i/",
+      "order": 3,
+      "unlockedWhen": 2
+    },
+    {
+      "id": "n-son-o",
+      "level": "sounds",
+      "title": "Le son /o/",
+      "order": 4,
+      "unlockedWhen": 3
+    },
+    {
+      "id": "n-son-u",
+      "level": "sounds",
+      "title": "Le son /u/",
+      "order": 5,
+      "unlockedWhen": 4
+    },
+    {
+      "id": "n-son-e-aigu",
+      "level": "sounds",
+      "title": "Le son /é/",
+      "order": 6,
+      "unlockedWhen": 5
+    },
+    {
+      "id": "n-son-m",
+      "level": "letters",
+      "title": "Le son /m/",
+      "order": 7,
+      "unlockedWhen": 6
+    },
+    {
+      "id": "n-son-p",
+      "level": "letters",
+      "title": "Le son /p/",
+      "order": 8,
+      "unlockedWhen": 7
+    },
+    {
+      "id": "n-son-t",
+      "level": "letters",
+      "title": "Le son /t/",
+      "order": 9,
+      "unlockedWhen": 8
+    },
+    {
+      "id": "n-son-s",
+      "level": "letters",
+      "title": "Le son /s/",
+      "order": 10,
+      "unlockedWhen": 9
+    },
+    {
+      "id": "n-son-l",
+      "level": "letters",
+      "title": "Le son /l/",
+      "order": 11,
+      "unlockedWhen": 10
+    },
+    {
+      "id": "n-son-r",
+      "level": "letters",
+      "title": "Le son /r/",
+      "order": 12,
+      "unlockedWhen": 11
+    },
+    {
+      "id": "n-son-n",
+      "level": "letters",
+      "title": "Le son /n/",
+      "order": 13,
+      "unlockedWhen": 12
+    },
+    {
+      "id": "n-son-d",
+      "level": "letters",
+      "title": "Le son /d/",
+      "order": 14,
+      "unlockedWhen": 13
+    },
+    {
+      "id": "n-son-f",
+      "level": "letters",
+      "title": "Le son /f/",
+      "order": 15,
+      "unlockedWhen": 14
+    },
+    {
+      "id": "n-son-v",
+      "level": "letters",
+      "title": "Le son /v/",
+      "order": 16,
+      "unlockedWhen": 15
+    },
+    {
+      "id": "n-son-b",
+      "level": "letters",
+      "title": "Le son /b/",
+      "order": 17,
+      "unlockedWhen": 16
+    },
+    {
+      "id": "n-son-j",
+      "level": "letters",
+      "title": "Le son /j/",
+      "order": 18,
+      "unlockedWhen": 17
+    },
+    {
+      "id": "n-letters-bd",
+      "level": "letters",
+      "title": "b ou d ?",
+      "order": 19,
+      "unlockedWhen": 18
+    },
+    {
+      "id": "n-letters-pq",
+      "level": "letters",
+      "title": "p ou q ?",
+      "order": 20,
+      "unlockedWhen": 19
+    },
+    {
+      "id": "n-son-ch",
+      "level": "syllables",
+      "title": "Le son /ch/",
+      "order": 21,
+      "unlockedWhen": 20
+    },
+    {
+      "id": "n-son-ou",
+      "level": "syllables",
+      "title": "Le son /ou/",
+      "order": 22,
+      "unlockedWhen": 21
+    },
+    {
+      "id": "n-syl-ma",
+      "level": "syllables",
+      "title": "La syllabe « ma »",
+      "order": 23,
+      "unlockedWhen": 22
+    },
+    {
+      "id": "n-syl-pa",
+      "level": "syllables",
+      "title": "La syllabe « pa »",
+      "order": 24,
+      "unlockedWhen": 23
+    },
+    {
+      "id": "n-syl-ta",
+      "level": "syllables",
+      "title": "La syllabe « ta »",
+      "order": 25,
+      "unlockedWhen": 24
+    },
+    {
+      "id": "n-syl-la",
+      "level": "syllables",
+      "title": "La syllabe « la »",
+      "order": 26,
+      "unlockedWhen": 25
+    },
+    {
+      "id": "n-syl-mi",
+      "level": "syllables",
+      "title": "La syllabe « mi »",
+      "order": 27,
+      "unlockedWhen": 26
+    },
+    {
+      "id": "n-syl-pi",
+      "level": "syllables",
+      "title": "La syllabe « pi »",
+      "order": 28,
+      "unlockedWhen": 27
+    },
+    {
+      "id": "n-syl-ti",
+      "level": "syllables",
+      "title": "La syllabe « ti »",
+      "order": 29,
+      "unlockedWhen": 28
+    },
+    {
+      "id": "n-syl-li",
+      "level": "syllables",
+      "title": "La syllabe « li »",
+      "order": 30,
+      "unlockedWhen": 29
+    },
+    {
+      "id": "n-syl-mo",
+      "level": "syllables",
+      "title": "La syllabe « mo »",
+      "order": 31,
+      "unlockedWhen": 30
+    },
+    {
+      "id": "n-syl-to",
+      "level": "syllables",
+      "title": "La syllabe « to »",
+      "order": 32,
+      "unlockedWhen": 31
+    },
+    {
+      "id": "n-mot-maman",
+      "level": "words",
+      "title": "Le mot « maman »",
+      "order": 33,
+      "unlockedWhen": 32
+    },
+    {
+      "id": "n-mot-papa",
+      "level": "words",
+      "title": "Le mot « papa »",
+      "order": 34,
+      "unlockedWhen": 33
+    },
+    {
+      "id": "n-mot-livre",
+      "level": "words",
+      "title": "Le mot « livre »",
+      "order": 35,
+      "unlockedWhen": 34
+    },
+    {
+      "id": "n-mot-ecole",
+      "level": "words",
+      "title": "Le mot « école »",
+      "order": 36,
+      "unlockedWhen": 35
+    },
+    {
+      "id": "n-mot-maison",
+      "level": "words",
+      "title": "Le mot « maison »",
+      "order": 37,
+      "unlockedWhen": 36
+    },
+    {
+      "id": "n-mot-ami",
+      "level": "words",
+      "title": "Le mot « ami »",
+      "order": 38,
+      "unlockedWhen": 37
+    },
+    {
+      "id": "n-mot-chat",
+      "level": "words",
+      "title": "Le mot « chat »",
+      "order": 39,
+      "unlockedWhen": 38
+    },
+    {
+      "id": "n-mot-lune",
+      "level": "words",
+      "title": "Le mot « lune »",
+      "order": 40,
+      "unlockedWhen": 39
+    },
+    {
+      "id": "n-mot-fleur",
+      "level": "words",
+      "title": "Le mot « fleur »",
+      "order": 41,
+      "unlockedWhen": 40
+    },
+    {
+      "id": "n-mot-velo",
+      "level": "words",
+      "title": "Le mot « vélo »",
+      "order": 42,
+      "unlockedWhen": 41
+    },
+    {
+      "id": "n-son-oi",
+      "level": "complex-sounds",
+      "title": "Le son /oi/",
+      "order": 43,
+      "unlockedWhen": 42
+    },
+    {
+      "id": "n-son-an",
+      "level": "complex-sounds",
+      "title": "Le son /an/",
+      "order": 44,
+      "unlockedWhen": 43
+    },
+    {
+      "id": "n-son-on",
+      "level": "complex-sounds",
+      "title": "Le son /on/",
+      "order": 45,
+      "unlockedWhen": 44
+    },
+    {
+      "id": "n-son-in",
+      "level": "complex-sounds",
+      "title": "Le son /in/",
+      "order": 46,
+      "unlockedWhen": 45
+    },
+    {
+      "id": "n-son-eau",
+      "level": "complex-sounds",
+      "title": "Le son /eau/",
+      "order": 47,
+      "unlockedWhen": 46
+    },
+    {
+      "id": "n-phrase-1",
+      "level": "sentences",
+      "title": "Phrase : « Le chat dort. »",
+      "order": 48,
+      "unlockedWhen": 47
+    },
+    {
+      "id": "n-phrase-2",
+      "level": "sentences",
+      "title": "Phrase : « Papa lit un livre. »",
+      "order": 49,
+      "unlockedWhen": 48
+    },
+    {
+      "id": "n-phrase-3",
+      "level": "sentences",
+      "title": "Phrase : « La lune est belle. »",
+      "order": 50,
+      "unlockedWhen": 49
+    },
+    {
+      "id": "n-phrase-4",
+      "level": "sentences",
+      "title": "Phrase : « Maman aime les fleurs. »",
+      "order": 51,
+      "unlockedWhen": 50
+    },
+    {
+      "id": "n-phrase-5",
+      "level": "sentences",
+      "title": "Phrase : « Je vais à l’école. »",
+      "order": 52,
+      "unlockedWhen": 51
+    }
+  ],
+  "lessons": [
+    {
+      "id": "l-son-a",
+      "nodeId": "n-son-a",
+      "title": "Le son /a/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /a/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-e",
+      "nodeId": "n-son-e",
+      "title": "Le son /e/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /e/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-i",
+      "nodeId": "n-son-i",
+      "title": "Le son /i/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /i/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-o",
+      "nodeId": "n-son-o",
+      "title": "Le son /o/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /o/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-u",
+      "nodeId": "n-son-u",
+      "title": "Le son /u/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /u/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-e-aigu",
+      "nodeId": "n-son-e-aigu",
+      "title": "Le son /é/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /é/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-m",
+      "nodeId": "n-son-m",
+      "title": "Le son /m/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /m/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-p",
+      "nodeId": "n-son-p",
+      "title": "Le son /p/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /p/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-t",
+      "nodeId": "n-son-t",
+      "title": "Le son /t/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /t/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-s",
+      "nodeId": "n-son-s",
+      "title": "Le son /s/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /s/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-l",
+      "nodeId": "n-son-l",
+      "title": "Le son /l/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /l/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-r",
+      "nodeId": "n-son-r",
+      "title": "Le son /r/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /r/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-n",
+      "nodeId": "n-son-n",
+      "title": "Le son /n/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /n/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-d",
+      "nodeId": "n-son-d",
+      "title": "Le son /d/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /d/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-f",
+      "nodeId": "n-son-f",
+      "title": "Le son /f/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /f/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-v",
+      "nodeId": "n-son-v",
+      "title": "Le son /v/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /v/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-b",
+      "nodeId": "n-son-b",
+      "title": "Le son /b/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /b/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-j",
+      "nodeId": "n-son-j",
+      "title": "Le son /j/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /j/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-bd-1",
+      "nodeId": "n-letters-bd",
+      "title": "b ou d ?",
+      "objective": "Ne plus confondre b et d, les lettres en miroir.",
+      "durationMin": 6,
+      "order": 1
+    },
+    {
+      "id": "l-pq-1",
+      "nodeId": "n-letters-pq",
+      "title": "p ou q ?",
+      "objective": "Ne plus confondre p et q, les lettres en miroir.",
+      "durationMin": 6,
+      "order": 1
+    },
+    {
+      "id": "l-son-ch",
+      "nodeId": "n-son-ch",
+      "title": "Le son /ch/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /ch/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-ou",
+      "nodeId": "n-son-ou",
+      "title": "Le son /ou/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /ou/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-syl-ma",
+      "nodeId": "n-syl-ma",
+      "title": "La syllabe « ma »",
+      "objective": "Découper, entendre et assembler la syllabe « ma ».",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-syl-pa",
+      "nodeId": "n-syl-pa",
+      "title": "La syllabe « pa »",
+      "objective": "Découper, entendre et assembler la syllabe « pa ».",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-syl-ta",
+      "nodeId": "n-syl-ta",
+      "title": "La syllabe « ta »",
+      "objective": "Découper, entendre et assembler la syllabe « ta ».",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-syl-la",
+      "nodeId": "n-syl-la",
+      "title": "La syllabe « la »",
+      "objective": "Découper, entendre et assembler la syllabe « la ».",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-syl-mi",
+      "nodeId": "n-syl-mi",
+      "title": "La syllabe « mi »",
+      "objective": "Découper, entendre et assembler la syllabe « mi ».",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-syl-pi",
+      "nodeId": "n-syl-pi",
+      "title": "La syllabe « pi »",
+      "objective": "Découper, entendre et assembler la syllabe « pi ».",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-syl-ti",
+      "nodeId": "n-syl-ti",
+      "title": "La syllabe « ti »",
+      "objective": "Découper, entendre et assembler la syllabe « ti ».",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-syl-li",
+      "nodeId": "n-syl-li",
+      "title": "La syllabe « li »",
+      "objective": "Découper, entendre et assembler la syllabe « li ».",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-syl-mo",
+      "nodeId": "n-syl-mo",
+      "title": "La syllabe « mo »",
+      "objective": "Découper, entendre et assembler la syllabe « mo ».",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-syl-to",
+      "nodeId": "n-syl-to",
+      "title": "La syllabe « to »",
+      "objective": "Découper, entendre et assembler la syllabe « to ».",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-mot-maman",
+      "nodeId": "n-mot-maman",
+      "title": "Le mot « maman »",
+      "objective": "Lire, écouter, épeler et comprendre le mot « maman ».",
+      "durationMin": 8,
+      "order": 1
+    },
+    {
+      "id": "l-mot-papa",
+      "nodeId": "n-mot-papa",
+      "title": "Le mot « papa »",
+      "objective": "Lire, écouter, épeler et comprendre le mot « papa ».",
+      "durationMin": 8,
+      "order": 1
+    },
+    {
+      "id": "l-mot-livre",
+      "nodeId": "n-mot-livre",
+      "title": "Le mot « livre »",
+      "objective": "Lire, écouter, épeler et comprendre le mot « livre ».",
+      "durationMin": 8,
+      "order": 1
+    },
+    {
+      "id": "l-mot-ecole",
+      "nodeId": "n-mot-ecole",
+      "title": "Le mot « école »",
+      "objective": "Lire, écouter, épeler et comprendre le mot « école ».",
+      "durationMin": 8,
+      "order": 1
+    },
+    {
+      "id": "l-mot-maison",
+      "nodeId": "n-mot-maison",
+      "title": "Le mot « maison »",
+      "objective": "Lire, écouter, épeler et comprendre le mot « maison ».",
+      "durationMin": 8,
+      "order": 1
+    },
+    {
+      "id": "l-mot-ami",
+      "nodeId": "n-mot-ami",
+      "title": "Le mot « ami »",
+      "objective": "Lire, écouter, épeler et comprendre le mot « ami ».",
+      "durationMin": 8,
+      "order": 1
+    },
+    {
+      "id": "l-mot-chat",
+      "nodeId": "n-mot-chat",
+      "title": "Le mot « chat »",
+      "objective": "Lire, écouter, épeler et comprendre le mot « chat ».",
+      "durationMin": 8,
+      "order": 1
+    },
+    {
+      "id": "l-mot-lune",
+      "nodeId": "n-mot-lune",
+      "title": "Le mot « lune »",
+      "objective": "Lire, écouter, épeler et comprendre le mot « lune ».",
+      "durationMin": 8,
+      "order": 1
+    },
+    {
+      "id": "l-mot-fleur",
+      "nodeId": "n-mot-fleur",
+      "title": "Le mot « fleur »",
+      "objective": "Lire, écouter, épeler et comprendre le mot « fleur ».",
+      "durationMin": 8,
+      "order": 1
+    },
+    {
+      "id": "l-mot-velo",
+      "nodeId": "n-mot-velo",
+      "title": "Le mot « vélo »",
+      "objective": "Lire, écouter, épeler et comprendre le mot « vélo ».",
+      "durationMin": 8,
+      "order": 1
+    },
+    {
+      "id": "l-son-oi",
+      "nodeId": "n-son-oi",
+      "title": "Le son /oi/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /oi/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-an",
+      "nodeId": "n-son-an",
+      "title": "Le son /an/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /an/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-on",
+      "nodeId": "n-son-on",
+      "title": "Le son /on/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /on/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-in",
+      "nodeId": "n-son-in",
+      "title": "Le son /in/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /in/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-son-eau",
+      "nodeId": "n-son-eau",
+      "title": "Le son /eau/",
+      "objective": "Reconnaître, entendre, associer et tracer le son /eau/.",
+      "durationMin": 7,
+      "order": 1
+    },
+    {
+      "id": "l-phrase-1",
+      "nodeId": "n-phrase-1",
+      "title": "Phrase : « Le chat dort. »",
+      "objective": "Écouter, lire et comprendre la phrase « Le chat dort. ».",
+      "durationMin": 8,
+      "order": 1
+    },
+    {
+      "id": "l-phrase-2",
+      "nodeId": "n-phrase-2",
+      "title": "Phrase : « Papa lit un livre. »",
+      "objective": "Écouter, lire et comprendre la phrase « Papa lit un livre. ».",
+      "durationMin": 8,
+      "order": 1
+    },
+    {
+      "id": "l-phrase-3",
+      "nodeId": "n-phrase-3",
+      "title": "Phrase : « La lune est belle. »",
+      "objective": "Écouter, lire et comprendre la phrase « La lune est belle. ».",
+      "durationMin": 8,
+      "order": 1
+    },
+    {
+      "id": "l-phrase-4",
+      "nodeId": "n-phrase-4",
+      "title": "Phrase : « Maman aime les fleurs. »",
+      "objective": "Écouter, lire et comprendre la phrase « Maman aime les fleurs. ».",
+      "durationMin": 8,
+      "order": 1
+    },
+    {
+      "id": "l-phrase-5",
+      "nodeId": "n-phrase-5",
+      "title": "Phrase : « Je vais à l’école. »",
+      "objective": "Écouter, lire et comprendre la phrase « Je vais à l’école. ».",
+      "durationMin": 8,
+      "order": 1
+    }
+  ],
+  "items": [
+    {
+      "id": "g-a",
+      "type": "grapheme",
+      "label": "a",
+      "phoneme": "a",
+      "syllables": []
+    },
+    {
+      "id": "g-e",
+      "type": "grapheme",
+      "label": "e",
+      "phoneme": "e",
+      "syllables": []
+    },
+    {
+      "id": "g-i",
+      "type": "grapheme",
+      "label": "i",
+      "phoneme": "i",
+      "syllables": []
+    },
+    {
+      "id": "g-o",
+      "type": "grapheme",
+      "label": "o",
+      "phoneme": "o",
+      "syllables": []
+    },
+    {
+      "id": "g-u",
+      "type": "grapheme",
+      "label": "u",
+      "phoneme": "u",
+      "syllables": []
+    },
+    {
+      "id": "g-e-aigu",
+      "type": "grapheme",
+      "label": "é",
+      "phoneme": "é",
+      "syllables": []
+    },
+    {
+      "id": "g-m",
+      "type": "grapheme",
+      "label": "m",
+      "phoneme": "m",
+      "syllables": []
+    },
+    {
+      "id": "g-p",
+      "type": "grapheme",
+      "label": "p",
+      "phoneme": "p",
+      "syllables": []
+    },
+    {
+      "id": "g-t",
+      "type": "grapheme",
+      "label": "t",
+      "phoneme": "t",
+      "syllables": []
+    },
+    {
+      "id": "g-s",
+      "type": "grapheme",
+      "label": "s",
+      "phoneme": "s",
+      "syllables": []
+    },
+    {
+      "id": "g-l",
+      "type": "grapheme",
+      "label": "l",
+      "phoneme": "l",
+      "syllables": []
+    },
+    {
+      "id": "g-r",
+      "type": "grapheme",
+      "label": "r",
+      "phoneme": "r",
+      "syllables": []
+    },
+    {
+      "id": "g-n",
+      "type": "grapheme",
+      "label": "n",
+      "phoneme": "n",
+      "syllables": []
+    },
+    {
+      "id": "g-d",
+      "type": "grapheme",
+      "label": "d",
+      "phoneme": "d",
+      "syllables": []
+    },
+    {
+      "id": "g-f",
+      "type": "grapheme",
+      "label": "f",
+      "phoneme": "f",
+      "syllables": []
+    },
+    {
+      "id": "g-v",
+      "type": "grapheme",
+      "label": "v",
+      "phoneme": "v",
+      "syllables": []
+    },
+    {
+      "id": "g-b",
+      "type": "grapheme",
+      "label": "b",
+      "phoneme": "b",
+      "syllables": []
+    },
+    {
+      "id": "g-j",
+      "type": "grapheme",
+      "label": "j",
+      "phoneme": "j",
+      "syllables": []
+    },
+    {
+      "id": "g-ch",
+      "type": "grapheme",
+      "label": "ch",
+      "phoneme": "ch",
+      "syllables": []
+    },
+    {
+      "id": "g-ou",
+      "type": "grapheme",
+      "label": "ou",
+      "phoneme": "ou",
+      "syllables": []
+    },
+    {
+      "id": "g-oi",
+      "type": "grapheme",
+      "label": "oi",
+      "phoneme": "oi",
+      "syllables": []
+    },
+    {
+      "id": "g-an",
+      "type": "grapheme",
+      "label": "an",
+      "phoneme": "an",
+      "syllables": []
+    },
+    {
+      "id": "g-on",
+      "type": "grapheme",
+      "label": "on",
+      "phoneme": "on",
+      "syllables": []
+    },
+    {
+      "id": "g-in",
+      "type": "grapheme",
+      "label": "in",
+      "phoneme": "in",
+      "syllables": []
+    },
+    {
+      "id": "g-eau",
+      "type": "grapheme",
+      "label": "eau",
+      "phoneme": "eau",
+      "syllables": []
+    },
+    {
+      "id": "g-q",
+      "type": "grapheme",
+      "label": "q",
+      "phoneme": "k",
+      "syllables": []
+    },
+    {
+      "id": "w-avion",
+      "type": "word",
+      "label": "avion",
+      "phoneme": "avion",
+      "syllables": [
+        "a",
+        "vi",
+        "on"
+      ]
+    },
+    {
+      "id": "w-doigt",
+      "type": "word",
+      "label": "doigt",
+      "phoneme": "doigt",
+      "syllables": [
+        "doigt"
+      ]
+    },
+    {
+      "id": "w-ecole",
+      "type": "word",
+      "label": "école",
+      "phoneme": "école",
+      "syllables": [
+        "é",
+        "co",
+        "le"
+      ]
+    },
+    {
+      "id": "w-papa",
+      "type": "word",
+      "label": "papa",
+      "phoneme": "papa",
+      "syllables": [
+        "pa",
+        "pa"
+      ]
+    },
+    {
+      "id": "w-pomme",
+      "type": "word",
+      "label": "pomme",
+      "phoneme": "pomme",
+      "syllables": [
+        "pom",
+        "me"
+      ]
+    },
+    {
+      "id": "w-poule",
+      "type": "word",
+      "label": "poule",
+      "phoneme": "poule",
+      "syllables": [
+        "pou",
+        "le"
+      ]
+    },
+    {
+      "id": "w-cheval",
+      "type": "word",
+      "label": "cheval",
+      "phoneme": "cheval",
+      "syllables": [
+        "che",
+        "val"
+      ]
+    },
+    {
+      "id": "w-chat",
+      "type": "word",
+      "label": "chat",
+      "phoneme": "chat",
+      "syllables": [
+        "chat"
+      ]
+    },
+    {
+      "id": "w-ballon",
+      "type": "word",
+      "label": "ballon",
+      "phoneme": "ballon",
+      "syllables": [
+        "bal",
+        "lon"
+      ]
+    },
+    {
+      "id": "w-iguane",
+      "type": "word",
+      "label": "iguane",
+      "phoneme": "iguane",
+      "syllables": [
+        "i",
+        "gua",
+        "ne"
+      ]
+    },
+    {
+      "id": "w-banane",
+      "type": "word",
+      "label": "banane",
+      "phoneme": "banane",
+      "syllables": [
+        "ba",
+        "na",
+        "ne"
+      ]
+    },
+    {
+      "id": "w-ami",
+      "type": "word",
+      "label": "ami",
+      "phoneme": "ami",
+      "syllables": [
+        "a",
+        "mi"
+      ]
+    },
+    {
+      "id": "w-nez",
+      "type": "word",
+      "label": "nez",
+      "phoneme": "nez",
+      "syllables": [
+        "nez"
+      ]
+    },
+    {
+      "id": "w-bebe",
+      "type": "word",
+      "label": "bébé",
+      "phoneme": "bébé",
+      "syllables": [
+        "bé",
+        "bé"
+      ]
+    },
+    {
+      "id": "w-orange",
+      "type": "word",
+      "label": "orange",
+      "phoneme": "orange",
+      "syllables": [
+        "o",
+        "ran",
+        "ge"
+      ]
+    },
+    {
+      "id": "w-bateau",
+      "type": "word",
+      "label": "bateau",
+      "phoneme": "bateau",
+      "syllables": [
+        "ba",
+        "teau"
+      ]
+    },
+    {
+      "id": "w-robot",
+      "type": "word",
+      "label": "robot",
+      "phoneme": "robot",
+      "syllables": [
+        "ro",
+        "bot"
+      ]
+    },
+    {
+      "id": "w-fleur",
+      "type": "word",
+      "label": "fleur",
+      "phoneme": "fleur",
+      "syllables": [
+        "fleur"
+      ]
+    },
+    {
+      "id": "w-lapin",
+      "type": "word",
+      "label": "lapin",
+      "phoneme": "lapin",
+      "syllables": [
+        "la",
+        "pin"
+      ]
+    },
+    {
+      "id": "w-lune",
+      "type": "word",
+      "label": "lune",
+      "phoneme": "lune",
+      "syllables": [
+        "lu",
+        "ne"
+      ]
+    },
+    {
+      "id": "w-lion",
+      "type": "word",
+      "label": "lion",
+      "phoneme": "lion",
+      "syllables": [
+        "li",
+        "on"
+      ]
+    },
+    {
+      "id": "w-jupe",
+      "type": "word",
+      "label": "jupe",
+      "phoneme": "jupe",
+      "syllables": [
+        "ju",
+        "pe"
+      ]
+    },
+    {
+      "id": "w-velo",
+      "type": "word",
+      "label": "vélo",
+      "phoneme": "vélo",
+      "syllables": [
+        "vé",
+        "lo"
+      ]
+    },
+    {
+      "id": "w-dodo",
+      "type": "word",
+      "label": "dodo",
+      "phoneme": "dodo",
+      "syllables": [
+        "do",
+        "do"
+      ]
+    },
+    {
+      "id": "w-maison",
+      "type": "word",
+      "label": "maison",
+      "phoneme": "maison",
+      "syllables": [
+        "mai",
+        "son"
+      ]
+    },
+    {
+      "id": "w-maman",
+      "type": "word",
+      "label": "maman",
+      "phoneme": "maman",
+      "syllables": [
+        "ma",
+        "man"
+      ]
+    },
+    {
+      "id": "w-tortue",
+      "type": "word",
+      "label": "tortue",
+      "phoneme": "tortue",
+      "syllables": [
+        "tor",
+        "tue"
+      ]
+    },
+    {
+      "id": "w-soleil",
+      "type": "word",
+      "label": "soleil",
+      "phoneme": "soleil",
+      "syllables": [
+        "so",
+        "leil"
+      ]
+    },
+    {
+      "id": "w-poisson",
+      "type": "word",
+      "label": "poisson",
+      "phoneme": "poisson",
+      "syllables": [
+        "pois",
+        "son"
+      ]
+    },
+    {
+      "id": "w-domino",
+      "type": "word",
+      "label": "domino",
+      "phoneme": "domino",
+      "syllables": [
+        "do",
+        "mi",
+        "no"
+      ]
+    },
+    {
+      "id": "w-bonbon",
+      "type": "word",
+      "label": "bonbon",
+      "phoneme": "bonbon",
+      "syllables": [
+        "bon",
+        "bon"
+      ]
+    },
+    {
+      "id": "w-bon",
+      "type": "word",
+      "label": "bon",
+      "phoneme": "bon",
+      "syllables": [
+        "bon"
+      ]
+    },
+    {
+      "id": "w-don",
+      "type": "word",
+      "label": "don",
+      "phoneme": "don",
+      "syllables": [
+        "don"
+      ]
+    },
+    {
+      "id": "w-quatre",
+      "type": "word",
+      "label": "quatre",
+      "phoneme": "quatre",
+      "syllables": [
+        "qua",
+        "tre"
+      ]
+    },
+    {
+      "id": "w-coq",
+      "type": "word",
+      "label": "coq",
+      "phoneme": "coq",
+      "syllables": [
+        "coq"
+      ]
+    },
+    {
+      "id": "w-loupe",
+      "type": "word",
+      "label": "loupe",
+      "phoneme": "loupe",
+      "syllables": [
+        "lou",
+        "pe"
+      ]
+    },
+    {
+      "id": "w-livre",
+      "type": "word",
+      "label": "livre",
+      "phoneme": "livre",
+      "syllables": [
+        "li",
+        "vre"
+      ]
+    },
+    {
+      "id": "s-ma",
+      "type": "syllable",
+      "label": "ma",
+      "phoneme": "ma",
+      "syllables": [
+        "ma"
+      ]
+    },
+    {
+      "id": "s-pa",
+      "type": "syllable",
+      "label": "pa",
+      "phoneme": "pa",
+      "syllables": [
+        "pa"
+      ]
+    },
+    {
+      "id": "s-mi",
+      "type": "syllable",
+      "label": "mi",
+      "phoneme": "mi",
+      "syllables": [
+        "mi"
+      ]
+    },
+    {
+      "id": "s-am",
+      "type": "syllable",
+      "label": "am",
+      "phoneme": "am",
+      "syllables": [
+        "am"
+      ]
+    },
+    {
+      "id": "s-ta",
+      "type": "syllable",
+      "label": "ta",
+      "phoneme": "ta",
+      "syllables": [
+        "ta"
+      ]
+    },
+    {
+      "id": "s-pi",
+      "type": "syllable",
+      "label": "pi",
+      "phoneme": "pi",
+      "syllables": [
+        "pi"
+      ]
+    },
+    {
+      "id": "s-ap",
+      "type": "syllable",
+      "label": "ap",
+      "phoneme": "ap",
+      "syllables": [
+        "ap"
+      ]
+    },
+    {
+      "id": "s-la",
+      "type": "syllable",
+      "label": "la",
+      "phoneme": "la",
+      "syllables": [
+        "la"
+      ]
+    },
+    {
+      "id": "s-ti",
+      "type": "syllable",
+      "label": "ti",
+      "phoneme": "ti",
+      "syllables": [
+        "ti"
+      ]
+    },
+    {
+      "id": "s-at",
+      "type": "syllable",
+      "label": "at",
+      "phoneme": "at",
+      "syllables": [
+        "at"
+      ]
+    },
+    {
+      "id": "s-li",
+      "type": "syllable",
+      "label": "li",
+      "phoneme": "li",
+      "syllables": [
+        "li"
+      ]
+    },
+    {
+      "id": "s-al",
+      "type": "syllable",
+      "label": "al",
+      "phoneme": "al",
+      "syllables": [
+        "al"
+      ]
+    },
+    {
+      "id": "s-mo",
+      "type": "syllable",
+      "label": "mo",
+      "phoneme": "mo",
+      "syllables": [
+        "mo"
+      ]
+    },
+    {
+      "id": "s-im",
+      "type": "syllable",
+      "label": "im",
+      "phoneme": "im",
+      "syllables": [
+        "im"
+      ]
+    },
+    {
+      "id": "s-ip",
+      "type": "syllable",
+      "label": "ip",
+      "phoneme": "ip",
+      "syllables": [
+        "ip"
+      ]
+    },
+    {
+      "id": "s-to",
+      "type": "syllable",
+      "label": "to",
+      "phoneme": "to",
+      "syllables": [
+        "to"
+      ]
+    },
+    {
+      "id": "s-it",
+      "type": "syllable",
+      "label": "it",
+      "phoneme": "it",
+      "syllables": [
+        "it"
+      ]
+    },
+    {
+      "id": "s-il",
+      "type": "syllable",
+      "label": "il",
+      "phoneme": "il",
+      "syllables": [
+        "il"
+      ]
+    },
+    {
+      "id": "s-om",
+      "type": "syllable",
+      "label": "om",
+      "phoneme": "om",
+      "syllables": [
+        "om"
+      ]
+    },
+    {
+      "id": "s-ot",
+      "type": "syllable",
+      "label": "ot",
+      "phoneme": "ot",
+      "syllables": [
+        "ot"
+      ]
+    },
+    {
+      "id": "x-naman",
+      "type": "word",
+      "label": "naman",
+      "phoneme": "naman",
+      "syllables": [
+        "naman"
+      ]
+    },
+    {
+      "id": "x-qapa",
+      "type": "word",
+      "label": "qapa",
+      "phoneme": "qapa",
+      "syllables": [
+        "qapa"
+      ]
+    },
+    {
+      "id": "x-tivre",
+      "type": "word",
+      "label": "tivre",
+      "phoneme": "tivre",
+      "syllables": [
+        "tivre"
+      ]
+    },
+    {
+      "id": "w-elephant",
+      "type": "word",
+      "label": "éléphant",
+      "phoneme": "éléphant",
+      "syllables": [
+        "é",
+        "lé",
+        "phant"
+      ]
+    },
+    {
+      "id": "x-ecole",
+      "type": "word",
+      "label": "ècole",
+      "phoneme": "ècole",
+      "syllables": [
+        "ècole"
+      ]
+    },
+    {
+      "id": "x-naison",
+      "type": "word",
+      "label": "naison",
+      "phoneme": "naison",
+      "syllables": [
+        "naison"
+      ]
+    },
+    {
+      "id": "x-omi",
+      "type": "word",
+      "label": "omi",
+      "phoneme": "omi",
+      "syllables": [
+        "omi"
+      ]
+    },
+    {
+      "id": "x-chot",
+      "type": "word",
+      "label": "chot",
+      "phoneme": "chot",
+      "syllables": [
+        "chot"
+      ]
+    },
+    {
+      "id": "x-tune",
+      "type": "word",
+      "label": "tune",
+      "phoneme": "tune",
+      "syllables": [
+        "tune"
+      ]
+    },
+    {
+      "id": "x-tleur",
+      "type": "word",
+      "label": "tleur",
+      "phoneme": "tleur",
+      "syllables": [
+        "tleur"
+      ]
+    },
+    {
+      "id": "x-uelo",
+      "type": "word",
+      "label": "uélo",
+      "phoneme": "uélo",
+      "syllables": [
+        "uélo"
+      ]
+    },
+    {
+      "id": "p-1",
+      "type": "sentence",
+      "label": "Le chat dort.",
+      "phoneme": "Le chat dort.",
+      "syllables": [
+        "Le",
+        "chat",
+        "dort."
+      ]
+    },
+    {
+      "id": "p-2",
+      "type": "sentence",
+      "label": "Papa lit un livre.",
+      "phoneme": "Papa lit un livre.",
+      "syllables": [
+        "Pa-pa",
+        "lit",
+        "un",
+        "li-vre."
+      ]
+    },
+    {
+      "id": "p-3",
+      "type": "sentence",
+      "label": "La lune est belle.",
+      "phoneme": "La lune est belle.",
+      "syllables": [
+        "La",
+        "lu-ne",
+        "est",
+        "bel-le."
+      ]
+    },
+    {
+      "id": "p-4",
+      "type": "sentence",
+      "label": "Maman aime les fleurs.",
+      "phoneme": "Maman aime les fleurs.",
+      "syllables": [
+        "Ma-man",
+        "ai-me",
+        "les",
+        "fleurs."
+      ]
+    },
+    {
+      "id": "p-5",
+      "type": "sentence",
+      "label": "Je vais à l’école.",
+      "phoneme": "Je vais à l’école.",
+      "syllables": [
+        "Je",
+        "vais",
+        "à",
+        "l’é-co-le."
+      ]
+    },
+    {
+      "id": "w-le",
+      "type": "word",
+      "label": "le",
+      "phoneme": "le",
+      "syllables": [
+        "le"
+      ]
+    },
+    {
+      "id": "w-dort",
+      "type": "word",
+      "label": "dort",
+      "phoneme": "dort",
+      "syllables": [
+        "dort"
+      ]
+    },
+    {
+      "id": "w-lit",
+      "type": "word",
+      "label": "lit",
+      "phoneme": "lit",
+      "syllables": [
+        "lit"
+      ]
+    },
+    {
+      "id": "w-un",
+      "type": "word",
+      "label": "un",
+      "phoneme": "un",
+      "syllables": [
+        "un"
+      ]
+    },
+    {
+      "id": "w-la",
+      "type": "word",
+      "label": "la",
+      "phoneme": "la",
+      "syllables": [
+        "la"
+      ]
+    },
+    {
+      "id": "w-est",
+      "type": "word",
+      "label": "est",
+      "phoneme": "est",
+      "syllables": [
+        "est"
+      ]
+    },
+    {
+      "id": "w-belle",
+      "type": "word",
+      "label": "belle",
+      "phoneme": "belle",
+      "syllables": [
+        "bel",
+        "le"
+      ]
+    },
+    {
+      "id": "w-aime",
+      "type": "word",
+      "label": "aime",
+      "phoneme": "aime",
+      "syllables": [
+        "ai",
+        "me"
+      ]
+    },
+    {
+      "id": "w-les",
+      "type": "word",
+      "label": "les",
+      "phoneme": "les",
+      "syllables": [
+        "les"
+      ]
+    },
+    {
+      "id": "w-fleurs",
+      "type": "word",
+      "label": "fleurs",
+      "phoneme": "fleurs",
+      "syllables": [
+        "fleurs"
+      ]
+    },
+    {
+      "id": "w-je",
+      "type": "word",
+      "label": "je",
+      "phoneme": "je",
+      "syllables": [
+        "je"
+      ]
+    },
+    {
+      "id": "w-vais",
+      "type": "word",
+      "label": "vais",
+      "phoneme": "vais",
+      "syllables": [
+        "vais"
+      ]
+    },
+    {
+      "id": "w-a",
+      "type": "word",
+      "label": "à",
+      "phoneme": "à",
+      "syllables": [
+        "à"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "e-son-a-1",
+      "lessonId": "l-son-a",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "a",
+        "cue": "a, comme dans avion",
+        "itemIds": [
+          "g-a",
+          "g-o"
+        ]
+      }
+    },
+    {
+      "id": "e-son-a-2",
+      "lessonId": "l-son-a",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-avion",
+        "itemIds": [
+          "w-avion",
+          "w-doigt",
+          "w-ecole"
+        ]
+      }
+    },
+    {
+      "id": "e-son-a-3",
+      "lessonId": "l-son-a",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "a",
+        "cue": "a",
+        "itemIds": [
+          "g-o",
+          "g-a",
+          "g-e"
+        ]
+      }
+    },
+    {
+      "id": "e-son-a-4",
+      "lessonId": "l-son-a",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-papa",
+        "itemIds": [
+          "w-pomme",
+          "w-poule",
+          "w-papa"
+        ]
+      }
+    },
+    {
+      "id": "e-son-e-1",
+      "lessonId": "l-son-e",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "e",
+        "cue": "e, comme dans cheval",
+        "itemIds": [
+          "g-e-aigu",
+          "g-e"
+        ]
+      }
+    },
+    {
+      "id": "e-son-e-2",
+      "lessonId": "l-son-e",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-cheval",
+        "itemIds": [
+          "w-chat",
+          "w-ballon",
+          "w-cheval"
+        ]
+      }
+    },
+    {
+      "id": "e-son-e-3",
+      "lessonId": "l-son-e",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "e",
+        "cue": "e",
+        "itemIds": [
+          "g-e",
+          "g-u",
+          "g-e-aigu"
+        ]
+      }
+    },
+    {
+      "id": "e-son-i-1",
+      "lessonId": "l-son-i",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "i",
+        "cue": "i, comme dans iguane",
+        "itemIds": [
+          "g-i",
+          "g-e-aigu"
+        ]
+      }
+    },
+    {
+      "id": "e-son-i-2",
+      "lessonId": "l-son-i",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-iguane",
+        "itemIds": [
+          "w-banane",
+          "w-iguane",
+          "w-ballon"
+        ]
+      }
+    },
+    {
+      "id": "e-son-i-3",
+      "lessonId": "l-son-i",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "i",
+        "cue": "i",
+        "itemIds": [
+          "g-a",
+          "g-e-aigu",
+          "g-i"
+        ]
+      }
+    },
+    {
+      "id": "e-son-i-4",
+      "lessonId": "l-son-i",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-ami",
+        "itemIds": [
+          "w-ami",
+          "w-nez",
+          "w-bebe"
+        ]
+      }
+    },
+    {
+      "id": "e-son-o-1",
+      "lessonId": "l-son-o",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "o",
+        "cue": "o, comme dans orange",
+        "itemIds": [
+          "g-a",
+          "g-o"
+        ]
+      }
+    },
+    {
+      "id": "e-son-o-2",
+      "lessonId": "l-son-o",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-orange",
+        "itemIds": [
+          "w-orange",
+          "w-banane",
+          "w-bateau"
+        ]
+      }
+    },
+    {
+      "id": "e-son-o-3",
+      "lessonId": "l-son-o",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "o",
+        "cue": "o",
+        "itemIds": [
+          "g-a",
+          "g-o",
+          "g-u"
+        ]
+      }
+    },
+    {
+      "id": "e-son-o-4",
+      "lessonId": "l-son-o",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-robot",
+        "itemIds": [
+          "w-fleur",
+          "w-lapin",
+          "w-robot"
+        ]
+      }
+    },
+    {
+      "id": "e-son-u-1",
+      "lessonId": "l-son-u",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "u",
+        "cue": "u, comme dans lune",
+        "itemIds": [
+          "g-u",
+          "g-i"
+        ]
+      }
+    },
+    {
+      "id": "e-son-u-2",
+      "lessonId": "l-son-u",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-lune",
+        "itemIds": [
+          "w-lion",
+          "w-lapin",
+          "w-lune"
+        ]
+      }
+    },
+    {
+      "id": "e-son-u-3",
+      "lessonId": "l-son-u",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "u",
+        "cue": "u",
+        "itemIds": [
+          "g-u",
+          "g-o",
+          "g-i"
+        ]
+      }
+    },
+    {
+      "id": "e-son-u-4",
+      "lessonId": "l-son-u",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-jupe",
+        "itemIds": [
+          "w-chat",
+          "w-jupe",
+          "w-bebe"
+        ]
+      }
+    },
+    {
+      "id": "e-son-e-aigu-1",
+      "lessonId": "l-son-e-aigu",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "é",
+        "cue": "é, comme dans école",
+        "itemIds": [
+          "g-e",
+          "g-e-aigu"
+        ]
+      }
+    },
+    {
+      "id": "e-son-e-aigu-2",
+      "lessonId": "l-son-e-aigu",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-ecole",
+        "itemIds": [
+          "w-doigt",
+          "w-ecole",
+          "w-avion"
+        ]
+      }
+    },
+    {
+      "id": "e-son-e-aigu-3",
+      "lessonId": "l-son-e-aigu",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "é",
+        "cue": "é",
+        "itemIds": [
+          "g-i",
+          "g-e",
+          "g-e-aigu"
+        ]
+      }
+    },
+    {
+      "id": "e-son-e-aigu-4",
+      "lessonId": "l-son-e-aigu",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-velo",
+        "itemIds": [
+          "w-velo",
+          "w-chat",
+          "w-dodo"
+        ]
+      }
+    },
+    {
+      "id": "e-son-m-1",
+      "lessonId": "l-son-m",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "m",
+        "cue": "m, comme dans maison",
+        "itemIds": [
+          "g-m",
+          "g-n"
+        ]
+      }
+    },
+    {
+      "id": "e-son-m-2",
+      "lessonId": "l-son-m",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-maison",
+        "itemIds": [
+          "w-maison",
+          "w-ballon",
+          "w-banane"
+        ]
+      }
+    },
+    {
+      "id": "e-son-m-3",
+      "lessonId": "l-son-m",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "m",
+        "cue": "m",
+        "itemIds": [
+          "g-n",
+          "g-m",
+          "g-p"
+        ]
+      }
+    },
+    {
+      "id": "e-son-m-4",
+      "lessonId": "l-son-m",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-maman",
+        "itemIds": [
+          "w-avion",
+          "w-doigt",
+          "w-maman"
+        ]
+      }
+    },
+    {
+      "id": "e-son-p-1",
+      "lessonId": "l-son-p",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "p",
+        "cue": "p, comme dans papa",
+        "itemIds": [
+          "g-q",
+          "g-p"
+        ]
+      }
+    },
+    {
+      "id": "e-son-p-2",
+      "lessonId": "l-son-p",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-papa",
+        "itemIds": [
+          "w-bebe",
+          "w-chat",
+          "w-papa"
+        ]
+      }
+    },
+    {
+      "id": "e-son-p-3",
+      "lessonId": "l-son-p",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "p",
+        "cue": "p",
+        "itemIds": [
+          "g-p",
+          "g-b",
+          "g-q"
+        ]
+      }
+    },
+    {
+      "id": "e-son-p-4",
+      "lessonId": "l-son-p",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-pomme",
+        "itemIds": [
+          "w-doigt",
+          "w-pomme",
+          "w-avion"
+        ]
+      }
+    },
+    {
+      "id": "e-son-t-1",
+      "lessonId": "l-son-t",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "t",
+        "cue": "t, comme dans tortue",
+        "itemIds": [
+          "g-t",
+          "g-d"
+        ]
+      }
+    },
+    {
+      "id": "e-son-t-2",
+      "lessonId": "l-son-t",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-tortue",
+        "itemIds": [
+          "w-banane",
+          "w-tortue",
+          "w-ballon"
+        ]
+      }
+    },
+    {
+      "id": "e-son-t-3",
+      "lessonId": "l-son-t",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "t",
+        "cue": "t",
+        "itemIds": [
+          "g-l",
+          "g-d",
+          "g-t"
+        ]
+      }
+    },
+    {
+      "id": "e-son-t-4",
+      "lessonId": "l-son-t",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-bateau",
+        "itemIds": [
+          "w-bateau",
+          "w-ballon",
+          "w-banane"
+        ]
+      }
+    },
+    {
+      "id": "e-son-s-1",
+      "lessonId": "l-son-s",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "s",
+        "cue": "s, comme dans soleil",
+        "itemIds": [
+          "g-f",
+          "g-s"
+        ]
+      }
+    },
+    {
+      "id": "e-son-s-2",
+      "lessonId": "l-son-s",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-soleil",
+        "itemIds": [
+          "w-soleil",
+          "w-ballon",
+          "w-banane"
+        ]
+      }
+    },
+    {
+      "id": "e-son-s-3",
+      "lessonId": "l-son-s",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "s",
+        "cue": "s",
+        "itemIds": [
+          "g-f",
+          "g-s",
+          "g-r"
+        ]
+      }
+    },
+    {
+      "id": "e-son-s-4",
+      "lessonId": "l-son-s",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-poisson",
+        "itemIds": [
+          "w-pomme",
+          "w-poule",
+          "w-poisson"
+        ]
+      }
+    },
+    {
+      "id": "e-son-l-1",
+      "lessonId": "l-son-l",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "l",
+        "cue": "l, comme dans lion",
+        "itemIds": [
+          "g-l",
+          "g-t"
+        ]
+      }
+    },
+    {
+      "id": "e-son-l-2",
+      "lessonId": "l-son-l",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-lion",
+        "itemIds": [
+          "w-bebe",
+          "w-chat",
+          "w-lion"
+        ]
+      }
+    },
+    {
+      "id": "e-son-l-3",
+      "lessonId": "l-son-l",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "l",
+        "cue": "l",
+        "itemIds": [
+          "g-l",
+          "g-r",
+          "g-t"
+        ]
+      }
+    },
+    {
+      "id": "e-son-l-4",
+      "lessonId": "l-son-l",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-lune",
+        "itemIds": [
+          "w-chat",
+          "w-lune",
+          "w-bebe"
+        ]
+      }
+    },
+    {
+      "id": "e-son-r-1",
+      "lessonId": "l-son-r",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "r",
+        "cue": "r, comme dans robot",
+        "itemIds": [
+          "g-l",
+          "g-r"
+        ]
+      }
+    },
+    {
+      "id": "e-son-r-2",
+      "lessonId": "l-son-r",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-robot",
+        "itemIds": [
+          "w-doigt",
+          "w-robot",
+          "w-avion"
+        ]
+      }
+    },
+    {
+      "id": "e-son-r-3",
+      "lessonId": "l-son-r",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "r",
+        "cue": "r",
+        "itemIds": [
+          "g-n",
+          "g-l",
+          "g-r"
+        ]
+      }
+    },
+    {
+      "id": "e-son-r-4",
+      "lessonId": "l-son-r",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-fleur",
+        "itemIds": [
+          "w-fleur",
+          "w-avion",
+          "w-doigt"
+        ]
+      }
+    },
+    {
+      "id": "e-son-n-1",
+      "lessonId": "l-son-n",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "n",
+        "cue": "n, comme dans nez",
+        "itemIds": [
+          "g-n",
+          "g-m"
+        ]
+      }
+    },
+    {
+      "id": "e-son-n-2",
+      "lessonId": "l-son-n",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-nez",
+        "itemIds": [
+          "w-nez",
+          "w-ami",
+          "w-bebe"
+        ]
+      }
+    },
+    {
+      "id": "e-son-n-3",
+      "lessonId": "l-son-n",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "n",
+        "cue": "n",
+        "itemIds": [
+          "g-m",
+          "g-n",
+          "g-r"
+        ]
+      }
+    },
+    {
+      "id": "e-son-n-4",
+      "lessonId": "l-son-n",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-banane",
+        "itemIds": [
+          "w-bateau",
+          "w-bebe",
+          "w-banane"
+        ]
+      }
+    },
+    {
+      "id": "e-son-d-1",
+      "lessonId": "l-son-d",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "d",
+        "cue": "d, comme dans domino",
+        "itemIds": [
+          "g-b",
+          "g-d"
+        ]
+      }
+    },
+    {
+      "id": "e-son-d-2",
+      "lessonId": "l-son-d",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-domino",
+        "itemIds": [
+          "w-ballon",
+          "w-banane",
+          "w-domino"
+        ]
+      }
+    },
+    {
+      "id": "e-son-d-3",
+      "lessonId": "l-son-d",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "d",
+        "cue": "d",
+        "itemIds": [
+          "g-d",
+          "g-t",
+          "g-b"
+        ]
+      }
+    },
+    {
+      "id": "e-son-d-4",
+      "lessonId": "l-son-d",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-dodo",
+        "itemIds": [
+          "w-chat",
+          "w-dodo",
+          "w-bebe"
+        ]
+      }
+    },
+    {
+      "id": "e-son-f-1",
+      "lessonId": "l-son-f",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "f",
+        "cue": "f, comme dans fleur",
+        "itemIds": [
+          "g-f",
+          "g-v"
+        ]
+      }
+    },
+    {
+      "id": "e-son-f-2",
+      "lessonId": "l-son-f",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-fleur",
+        "itemIds": [
+          "w-doigt",
+          "w-fleur",
+          "w-avion"
+        ]
+      }
+    },
+    {
+      "id": "e-son-f-3",
+      "lessonId": "l-son-f",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "f",
+        "cue": "f",
+        "itemIds": [
+          "g-s",
+          "g-v",
+          "g-f"
+        ]
+      }
+    },
+    {
+      "id": "e-son-v-1",
+      "lessonId": "l-son-v",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "v",
+        "cue": "v, comme dans vélo",
+        "itemIds": [
+          "g-f",
+          "g-v"
+        ]
+      }
+    },
+    {
+      "id": "e-son-v-2",
+      "lessonId": "l-son-v",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-velo",
+        "itemIds": [
+          "w-velo",
+          "w-bebe",
+          "w-chat"
+        ]
+      }
+    },
+    {
+      "id": "e-son-v-3",
+      "lessonId": "l-son-v",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "v",
+        "cue": "v",
+        "itemIds": [
+          "g-f",
+          "g-v",
+          "g-b"
+        ]
+      }
+    },
+    {
+      "id": "e-son-v-4",
+      "lessonId": "l-son-v",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-cheval",
+        "itemIds": [
+          "w-chat",
+          "w-ballon",
+          "w-cheval"
+        ]
+      }
+    },
+    {
+      "id": "e-son-b-1",
+      "lessonId": "l-son-b",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "b",
+        "cue": "b, comme dans ballon",
+        "itemIds": [
+          "g-b",
+          "g-d"
+        ]
+      }
+    },
+    {
+      "id": "e-son-b-2",
+      "lessonId": "l-son-b",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-ballon",
+        "itemIds": [
+          "w-cheval",
+          "w-domino",
+          "w-ballon"
+        ]
+      }
+    },
+    {
+      "id": "e-son-b-3",
+      "lessonId": "l-son-b",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "b",
+        "cue": "b",
+        "itemIds": [
+          "g-b",
+          "g-p",
+          "g-d"
+        ]
+      }
+    },
+    {
+      "id": "e-son-b-4",
+      "lessonId": "l-son-b",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-bonbon",
+        "itemIds": [
+          "w-domino",
+          "w-bonbon",
+          "w-cheval"
+        ]
+      }
+    },
+    {
+      "id": "e-son-j-1",
+      "lessonId": "l-son-j",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "j",
+        "cue": "j, comme dans jupe",
+        "itemIds": [
+          "g-s",
+          "g-j"
+        ]
+      }
+    },
+    {
+      "id": "e-son-j-2",
+      "lessonId": "l-son-j",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-jupe",
+        "itemIds": [
+          "w-chat",
+          "w-jupe",
+          "w-bebe"
+        ]
+      }
+    },
+    {
+      "id": "e-son-j-3",
+      "lessonId": "l-son-j",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "j",
+        "cue": "j",
+        "itemIds": [
+          "g-v",
+          "g-s",
+          "g-j"
+        ]
+      }
+    },
+    {
+      "id": "e-bd-b1",
+      "lessonId": "l-bd-1",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "b",
+        "cue": "b, comme ballon",
+        "itemIds": [
+          "g-b",
+          "g-d"
+        ]
+      }
+    },
+    {
+      "id": "e-bd-d1",
+      "lessonId": "l-bd-1",
+      "type": "sound-grapheme",
+      "order": 2,
+      "params": {
+        "phoneme": "d",
+        "cue": "d, comme doigt",
+        "itemIds": [
+          "g-b",
+          "g-d"
+        ]
+      }
+    },
+    {
+      "id": "e-bd-b2",
+      "lessonId": "l-bd-1",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "b",
+        "cue": "b, comme bébé",
+        "itemIds": [
+          "g-d",
+          "g-p",
+          "g-b"
+        ]
+      }
+    },
+    {
+      "id": "e-bd-bon",
+      "lessonId": "l-bd-1",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-bon",
+        "itemIds": [
+          "w-don",
+          "w-bon"
+        ]
+      }
+    },
+    {
+      "id": "e-bd-dodo",
+      "lessonId": "l-bd-1",
+      "type": "word-recognition",
+      "order": 5,
+      "params": {
+        "correctItemId": "w-dodo",
+        "itemIds": [
+          "w-bebe",
+          "w-dodo",
+          "w-ballon"
+        ]
+      }
+    },
+    {
+      "id": "e-pq-p1",
+      "lessonId": "l-pq-1",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "p",
+        "cue": "p, comme papa",
+        "itemIds": [
+          "g-p",
+          "g-q"
+        ]
+      }
+    },
+    {
+      "id": "e-pq-q1",
+      "lessonId": "l-pq-1",
+      "type": "sound-grapheme",
+      "order": 2,
+      "params": {
+        "phoneme": "k",
+        "cue": "q, comme quatre",
+        "itemIds": [
+          "g-p",
+          "g-q"
+        ]
+      }
+    },
+    {
+      "id": "e-pq-p2",
+      "lessonId": "l-pq-1",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "p",
+        "cue": "p, comme pomme",
+        "itemIds": [
+          "g-q",
+          "g-b",
+          "g-p"
+        ]
+      }
+    },
+    {
+      "id": "e-pq-quatre",
+      "lessonId": "l-pq-1",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-quatre",
+        "itemIds": [
+          "w-pomme",
+          "w-quatre",
+          "w-poule"
+        ]
+      }
+    },
+    {
+      "id": "e-pq-coq",
+      "lessonId": "l-pq-1",
+      "type": "word-recognition",
+      "order": 5,
+      "params": {
+        "correctItemId": "w-coq",
+        "itemIds": [
+          "w-coq",
+          "w-poule",
+          "w-papa"
+        ]
+      }
+    },
+    {
+      "id": "e-son-ch-1",
+      "lessonId": "l-son-ch",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "ch",
+        "cue": "che, comme dans chat",
+        "itemIds": [
+          "g-ch",
+          "g-s"
+        ]
+      }
+    },
+    {
+      "id": "e-son-ch-2",
+      "lessonId": "l-son-ch",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-chat",
+        "itemIds": [
+          "w-chat",
+          "w-bebe",
+          "w-dodo"
+        ]
+      }
+    },
+    {
+      "id": "e-son-ch-3",
+      "lessonId": "l-son-ch",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "ch",
+        "cue": "che",
+        "itemIds": [
+          "g-s",
+          "g-ch",
+          "g-j"
+        ]
+      }
+    },
+    {
+      "id": "e-son-ch-4",
+      "lessonId": "l-son-ch",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-cheval",
+        "itemIds": [
+          "w-ballon",
+          "w-banane",
+          "w-cheval"
+        ]
+      }
+    },
+    {
+      "id": "e-son-ou-1",
+      "lessonId": "l-son-ou",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "ou",
+        "cue": "ou, comme dans loupe",
+        "itemIds": [
+          "g-u",
+          "g-ou"
+        ]
+      }
+    },
+    {
+      "id": "e-son-ou-2",
+      "lessonId": "l-son-ou",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-loupe",
+        "itemIds": [
+          "w-lapin",
+          "w-livre",
+          "w-loupe"
+        ]
+      }
+    },
+    {
+      "id": "e-son-ou-3",
+      "lessonId": "l-son-ou",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "ou",
+        "cue": "ou",
+        "itemIds": [
+          "g-ou",
+          "g-o",
+          "g-u"
+        ]
+      }
+    },
+    {
+      "id": "e-son-ou-4",
+      "lessonId": "l-son-ou",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-poule",
+        "itemIds": [
+          "w-poisson",
+          "w-poule",
+          "w-pomme"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-ma-1",
+      "lessonId": "l-syl-ma",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "ma",
+        "cue": "ma, comme dans maman",
+        "itemIds": [
+          "s-ma",
+          "s-pa"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-ma-2",
+      "lessonId": "l-syl-ma",
+      "type": "sound-grapheme",
+      "order": 2,
+      "params": {
+        "phoneme": "ma",
+        "cue": "ma",
+        "itemIds": [
+          "s-am",
+          "s-ma"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-ma-3",
+      "lessonId": "l-syl-ma",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "ma",
+        "cue": "ma",
+        "itemIds": [
+          "s-pa",
+          "s-mi",
+          "s-ma"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-ma-4",
+      "lessonId": "l-syl-ma",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-maman",
+        "itemIds": [
+          "w-avion",
+          "w-maman",
+          "w-maison"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-pa-1",
+      "lessonId": "l-syl-pa",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "pa",
+        "cue": "pa, comme dans papa",
+        "itemIds": [
+          "s-ta",
+          "s-pa"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-pa-2",
+      "lessonId": "l-syl-pa",
+      "type": "sound-grapheme",
+      "order": 2,
+      "params": {
+        "phoneme": "pa",
+        "cue": "pa",
+        "itemIds": [
+          "s-pa",
+          "s-ap"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-pa-3",
+      "lessonId": "l-syl-pa",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "pa",
+        "cue": "pa",
+        "itemIds": [
+          "s-pi",
+          "s-pa",
+          "s-ta"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-pa-4",
+      "lessonId": "l-syl-pa",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-papa",
+        "itemIds": [
+          "w-papa",
+          "w-pomme",
+          "w-poule"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-ta-1",
+      "lessonId": "l-syl-ta",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "ta",
+        "cue": "ta",
+        "itemIds": [
+          "s-ta",
+          "s-la"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-ta-2",
+      "lessonId": "l-syl-ta",
+      "type": "sound-grapheme",
+      "order": 2,
+      "params": {
+        "phoneme": "ta",
+        "cue": "ta",
+        "itemIds": [
+          "s-at",
+          "s-ta"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-ta-3",
+      "lessonId": "l-syl-ta",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "ta",
+        "cue": "ta",
+        "itemIds": [
+          "s-ta",
+          "s-la",
+          "s-ti"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-la-1",
+      "lessonId": "l-syl-la",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "la",
+        "cue": "la, comme dans lapin",
+        "itemIds": [
+          "s-ta",
+          "s-la"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-la-2",
+      "lessonId": "l-syl-la",
+      "type": "sound-grapheme",
+      "order": 2,
+      "params": {
+        "phoneme": "la",
+        "cue": "la",
+        "itemIds": [
+          "s-la",
+          "s-al"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-la-3",
+      "lessonId": "l-syl-la",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "la",
+        "cue": "la",
+        "itemIds": [
+          "s-ta",
+          "s-li",
+          "s-la"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-la-4",
+      "lessonId": "l-syl-la",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-lapin",
+        "itemIds": [
+          "w-loupe",
+          "w-lapin",
+          "w-livre"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-mi-1",
+      "lessonId": "l-syl-mi",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "mi",
+        "cue": "mi, comme dans ami",
+        "itemIds": [
+          "s-mi",
+          "s-pi"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-mi-2",
+      "lessonId": "l-syl-mi",
+      "type": "sound-grapheme",
+      "order": 2,
+      "params": {
+        "phoneme": "mi",
+        "cue": "mi",
+        "itemIds": [
+          "s-im",
+          "s-mi"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-mi-3",
+      "lessonId": "l-syl-mi",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "mi",
+        "cue": "mi",
+        "itemIds": [
+          "s-mo",
+          "s-mi",
+          "s-pi"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-mi-4",
+      "lessonId": "l-syl-mi",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-ami",
+        "itemIds": [
+          "w-ami",
+          "w-avion",
+          "w-nez"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-pi-1",
+      "lessonId": "l-syl-pi",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "pi",
+        "cue": "pi",
+        "itemIds": [
+          "s-ti",
+          "s-pi"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-pi-2",
+      "lessonId": "l-syl-pi",
+      "type": "sound-grapheme",
+      "order": 2,
+      "params": {
+        "phoneme": "pi",
+        "cue": "pi",
+        "itemIds": [
+          "s-pi",
+          "s-ip"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-pi-3",
+      "lessonId": "l-syl-pi",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "pi",
+        "cue": "pi",
+        "itemIds": [
+          "s-pi",
+          "s-ti",
+          "s-pa"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-ti-1",
+      "lessonId": "l-syl-ti",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "ti",
+        "cue": "ti",
+        "itemIds": [
+          "s-ti",
+          "s-li"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-ti-2",
+      "lessonId": "l-syl-ti",
+      "type": "sound-grapheme",
+      "order": 2,
+      "params": {
+        "phoneme": "ti",
+        "cue": "ti",
+        "itemIds": [
+          "s-it",
+          "s-ti"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-ti-3",
+      "lessonId": "l-syl-ti",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "ti",
+        "cue": "ti",
+        "itemIds": [
+          "s-li",
+          "s-to",
+          "s-ti"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-li-1",
+      "lessonId": "l-syl-li",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "li",
+        "cue": "li, comme dans livre",
+        "itemIds": [
+          "s-mi",
+          "s-li"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-li-2",
+      "lessonId": "l-syl-li",
+      "type": "sound-grapheme",
+      "order": 2,
+      "params": {
+        "phoneme": "li",
+        "cue": "li",
+        "itemIds": [
+          "s-li",
+          "s-il"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-li-3",
+      "lessonId": "l-syl-li",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "li",
+        "cue": "li",
+        "itemIds": [
+          "s-la",
+          "s-li",
+          "s-mi"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-li-4",
+      "lessonId": "l-syl-li",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-livre",
+        "itemIds": [
+          "w-livre",
+          "w-lion",
+          "w-lapin"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-mo-1",
+      "lessonId": "l-syl-mo",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "mo",
+        "cue": "mo",
+        "itemIds": [
+          "s-mo",
+          "s-to"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-mo-2",
+      "lessonId": "l-syl-mo",
+      "type": "sound-grapheme",
+      "order": 2,
+      "params": {
+        "phoneme": "mo",
+        "cue": "mo",
+        "itemIds": [
+          "s-om",
+          "s-mo"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-mo-3",
+      "lessonId": "l-syl-mo",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "mo",
+        "cue": "mo",
+        "itemIds": [
+          "s-mo",
+          "s-to",
+          "s-ma"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-to-1",
+      "lessonId": "l-syl-to",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "to",
+        "cue": "to",
+        "itemIds": [
+          "s-mo",
+          "s-to"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-to-2",
+      "lessonId": "l-syl-to",
+      "type": "sound-grapheme",
+      "order": 2,
+      "params": {
+        "phoneme": "to",
+        "cue": "to",
+        "itemIds": [
+          "s-to",
+          "s-ot"
+        ]
+      }
+    },
+    {
+      "id": "e-syl-to-3",
+      "lessonId": "l-syl-to",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "to",
+        "cue": "to",
+        "itemIds": [
+          "s-mo",
+          "s-ti",
+          "s-to"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-maman-1",
+      "lessonId": "l-mot-maman",
+      "type": "word-recognition",
+      "order": 1,
+      "params": {
+        "correctItemId": "w-maman",
+        "itemIds": [
+          "w-maman",
+          "w-maison",
+          "w-avion"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-maman-2",
+      "lessonId": "l-mot-maman",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-maman",
+        "itemIds": [
+          "w-doigt",
+          "w-maman",
+          "w-ecole"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-maman-3",
+      "lessonId": "l-mot-maman",
+      "type": "word-recognition",
+      "order": 3,
+      "params": {
+        "correctItemId": "w-maman",
+        "itemIds": [
+          "x-naman",
+          "w-maman"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-papa-1",
+      "lessonId": "l-mot-papa",
+      "type": "word-recognition",
+      "order": 1,
+      "params": {
+        "correctItemId": "w-papa",
+        "itemIds": [
+          "w-pomme",
+          "w-poule",
+          "w-papa"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-papa-2",
+      "lessonId": "l-mot-papa",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-papa",
+        "itemIds": [
+          "w-papa",
+          "w-chat",
+          "w-bebe"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-papa-3",
+      "lessonId": "l-mot-papa",
+      "type": "word-recognition",
+      "order": 3,
+      "params": {
+        "correctItemId": "w-papa",
+        "itemIds": [
+          "w-papa",
+          "x-qapa"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-livre-1",
+      "lessonId": "l-mot-livre",
+      "type": "word-recognition",
+      "order": 1,
+      "params": {
+        "correctItemId": "w-livre",
+        "itemIds": [
+          "w-lapin",
+          "w-livre",
+          "w-lion"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-livre-2",
+      "lessonId": "l-mot-livre",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-livre",
+        "itemIds": [
+          "w-lune",
+          "w-loupe",
+          "w-livre"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-livre-3",
+      "lessonId": "l-mot-livre",
+      "type": "word-recognition",
+      "order": 3,
+      "params": {
+        "correctItemId": "w-livre",
+        "itemIds": [
+          "x-tivre",
+          "w-livre"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-ecole-1",
+      "lessonId": "l-mot-ecole",
+      "type": "word-recognition",
+      "order": 1,
+      "params": {
+        "correctItemId": "w-ecole",
+        "itemIds": [
+          "w-ecole",
+          "w-avion",
+          "w-doigt"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-ecole-2",
+      "lessonId": "l-mot-ecole",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-ecole",
+        "itemIds": [
+          "w-elephant",
+          "w-ecole",
+          "w-fleur"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-ecole-3",
+      "lessonId": "l-mot-ecole",
+      "type": "word-recognition",
+      "order": 3,
+      "params": {
+        "correctItemId": "w-ecole",
+        "itemIds": [
+          "w-ecole",
+          "x-ecole"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-maison-1",
+      "lessonId": "l-mot-maison",
+      "type": "word-recognition",
+      "order": 1,
+      "params": {
+        "correctItemId": "w-maison",
+        "itemIds": [
+          "w-maman",
+          "w-ballon",
+          "w-maison"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-maison-2",
+      "lessonId": "l-mot-maison",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-maison",
+        "itemIds": [
+          "w-maison",
+          "w-bateau",
+          "w-banane"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-maison-3",
+      "lessonId": "l-mot-maison",
+      "type": "word-recognition",
+      "order": 3,
+      "params": {
+        "correctItemId": "w-maison",
+        "itemIds": [
+          "x-naison",
+          "w-maison"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-ami-1",
+      "lessonId": "l-mot-ami",
+      "type": "word-recognition",
+      "order": 1,
+      "params": {
+        "correctItemId": "w-ami",
+        "itemIds": [
+          "w-nez",
+          "w-ami",
+          "w-avion"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-ami-2",
+      "lessonId": "l-mot-ami",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-ami",
+        "itemIds": [
+          "w-chat",
+          "w-bebe",
+          "w-ami"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-ami-3",
+      "lessonId": "l-mot-ami",
+      "type": "word-recognition",
+      "order": 3,
+      "params": {
+        "correctItemId": "w-ami",
+        "itemIds": [
+          "w-ami",
+          "x-omi"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-chat-1",
+      "lessonId": "l-mot-chat",
+      "type": "word-recognition",
+      "order": 1,
+      "params": {
+        "correctItemId": "w-chat",
+        "itemIds": [
+          "w-chat",
+          "w-cheval",
+          "w-bebe"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-chat-2",
+      "lessonId": "l-mot-chat",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-chat",
+        "itemIds": [
+          "w-dodo",
+          "w-chat",
+          "w-jupe"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-chat-3",
+      "lessonId": "l-mot-chat",
+      "type": "word-recognition",
+      "order": 3,
+      "params": {
+        "correctItemId": "w-chat",
+        "itemIds": [
+          "x-chot",
+          "w-chat"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-lune-1",
+      "lessonId": "l-mot-lune",
+      "type": "word-recognition",
+      "order": 1,
+      "params": {
+        "correctItemId": "w-lune",
+        "itemIds": [
+          "w-lion",
+          "w-lapin",
+          "w-lune"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-lune-2",
+      "lessonId": "l-mot-lune",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-lune",
+        "itemIds": [
+          "w-lune",
+          "w-loupe",
+          "w-livre"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-lune-3",
+      "lessonId": "l-mot-lune",
+      "type": "word-recognition",
+      "order": 3,
+      "params": {
+        "correctItemId": "w-lune",
+        "itemIds": [
+          "w-lune",
+          "x-tune"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-fleur-1",
+      "lessonId": "l-mot-fleur",
+      "type": "word-recognition",
+      "order": 1,
+      "params": {
+        "correctItemId": "w-fleur",
+        "itemIds": [
+          "w-doigt",
+          "w-fleur",
+          "w-avion"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-fleur-2",
+      "lessonId": "l-mot-fleur",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-fleur",
+        "itemIds": [
+          "w-lapin",
+          "w-ecole",
+          "w-fleur"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-fleur-3",
+      "lessonId": "l-mot-fleur",
+      "type": "word-recognition",
+      "order": 3,
+      "params": {
+        "correctItemId": "w-fleur",
+        "itemIds": [
+          "x-tleur",
+          "w-fleur"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-velo-1",
+      "lessonId": "l-mot-velo",
+      "type": "word-recognition",
+      "order": 1,
+      "params": {
+        "correctItemId": "w-velo",
+        "itemIds": [
+          "w-velo",
+          "w-bebe",
+          "w-chat"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-velo-2",
+      "lessonId": "l-mot-velo",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-velo",
+        "itemIds": [
+          "w-dodo",
+          "w-velo",
+          "w-jupe"
+        ]
+      }
+    },
+    {
+      "id": "e-mot-velo-3",
+      "lessonId": "l-mot-velo",
+      "type": "word-recognition",
+      "order": 3,
+      "params": {
+        "correctItemId": "w-velo",
+        "itemIds": [
+          "w-velo",
+          "x-uelo"
+        ]
+      }
+    },
+    {
+      "id": "e-son-oi-1",
+      "lessonId": "l-son-oi",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "oi",
+        "cue": "oi, comme dans poisson",
+        "itemIds": [
+          "g-oi",
+          "g-ou"
+        ]
+      }
+    },
+    {
+      "id": "e-son-oi-2",
+      "lessonId": "l-son-oi",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-poisson",
+        "itemIds": [
+          "w-pomme",
+          "w-poule",
+          "w-poisson"
+        ]
+      }
+    },
+    {
+      "id": "e-son-oi-3",
+      "lessonId": "l-son-oi",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "oi",
+        "cue": "oi",
+        "itemIds": [
+          "g-oi",
+          "g-o",
+          "g-ou"
+        ]
+      }
+    },
+    {
+      "id": "e-son-oi-4",
+      "lessonId": "l-son-oi",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-doigt",
+        "itemIds": [
+          "w-domino",
+          "w-doigt",
+          "w-dodo"
+        ]
+      }
+    },
+    {
+      "id": "e-son-an-1",
+      "lessonId": "l-son-an",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "an",
+        "cue": "an, comme dans maman",
+        "itemIds": [
+          "g-on",
+          "g-an"
+        ]
+      }
+    },
+    {
+      "id": "e-son-an-2",
+      "lessonId": "l-son-an",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-maman",
+        "itemIds": [
+          "w-avion",
+          "w-maman",
+          "w-maison"
+        ]
+      }
+    },
+    {
+      "id": "e-son-an-3",
+      "lessonId": "l-son-an",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "an",
+        "cue": "an",
+        "itemIds": [
+          "g-in",
+          "g-on",
+          "g-an"
+        ]
+      }
+    },
+    {
+      "id": "e-son-an-4",
+      "lessonId": "l-son-an",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-elephant",
+        "itemIds": [
+          "w-elephant",
+          "w-ecole",
+          "w-poisson"
+        ]
+      }
+    },
+    {
+      "id": "e-son-on-1",
+      "lessonId": "l-son-on",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "on",
+        "cue": "on, comme dans bonbon",
+        "itemIds": [
+          "g-on",
+          "g-an"
+        ]
+      }
+    },
+    {
+      "id": "e-son-on-2",
+      "lessonId": "l-son-on",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-bonbon",
+        "itemIds": [
+          "w-bonbon",
+          "w-banane",
+          "w-bateau"
+        ]
+      }
+    },
+    {
+      "id": "e-son-on-3",
+      "lessonId": "l-son-on",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "on",
+        "cue": "on",
+        "itemIds": [
+          "g-an",
+          "g-on",
+          "g-ou"
+        ]
+      }
+    },
+    {
+      "id": "e-son-on-4",
+      "lessonId": "l-son-on",
+      "type": "word-recognition",
+      "order": 4,
+      "params": {
+        "correctItemId": "w-lion",
+        "itemIds": [
+          "w-livre",
+          "w-lune",
+          "w-lion"
+        ]
+      }
+    },
+    {
+      "id": "e-son-in-1",
+      "lessonId": "l-son-in",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "in",
+        "cue": "in, comme dans lapin",
+        "itemIds": [
+          "g-an",
+          "g-in"
+        ]
+      }
+    },
+    {
+      "id": "e-son-in-2",
+      "lessonId": "l-son-in",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-lapin",
+        "itemIds": [
+          "w-livre",
+          "w-loupe",
+          "w-lapin"
+        ]
+      }
+    },
+    {
+      "id": "e-son-in-3",
+      "lessonId": "l-son-in",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "in",
+        "cue": "in",
+        "itemIds": [
+          "g-in",
+          "g-on",
+          "g-an"
+        ]
+      }
+    },
+    {
+      "id": "e-son-eau-1",
+      "lessonId": "l-son-eau",
+      "type": "sound-grapheme",
+      "order": 1,
+      "params": {
+        "phoneme": "eau",
+        "cue": "eau, comme dans bateau",
+        "itemIds": [
+          "g-eau",
+          "g-o"
+        ]
+      }
+    },
+    {
+      "id": "e-son-eau-2",
+      "lessonId": "l-son-eau",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-bateau",
+        "itemIds": [
+          "w-banane",
+          "w-bateau",
+          "w-ballon"
+        ]
+      }
+    },
+    {
+      "id": "e-son-eau-3",
+      "lessonId": "l-son-eau",
+      "type": "sound-grapheme",
+      "order": 3,
+      "params": {
+        "phoneme": "eau",
+        "cue": "eau",
+        "itemIds": [
+          "g-ou",
+          "g-o",
+          "g-eau"
+        ]
+      }
+    },
+    {
+      "id": "e-phrase-1-1",
+      "lessonId": "l-phrase-1",
+      "type": "word-recognition",
+      "order": 1,
+      "params": {
+        "correctItemId": "p-1",
+        "itemIds": [
+          "p-1",
+          "p-2",
+          "p-3"
+        ]
+      }
+    },
+    {
+      "id": "e-phrase-1-2",
+      "lessonId": "l-phrase-1",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-chat",
+        "itemIds": [
+          "w-le",
+          "w-chat",
+          "w-dort"
+        ]
+      }
+    },
+    {
+      "id": "e-phrase-1-3",
+      "lessonId": "l-phrase-1",
+      "type": "word-recognition",
+      "order": 3,
+      "params": {
+        "correctItemId": "w-dort",
+        "itemIds": [
+          "w-le",
+          "w-chat",
+          "w-dort"
+        ]
+      }
+    },
+    {
+      "id": "e-phrase-2-1",
+      "lessonId": "l-phrase-2",
+      "type": "word-recognition",
+      "order": 1,
+      "params": {
+        "correctItemId": "p-2",
+        "itemIds": [
+          "p-3",
+          "p-4",
+          "p-2"
+        ]
+      }
+    },
+    {
+      "id": "e-phrase-2-2",
+      "lessonId": "l-phrase-2",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-livre",
+        "itemIds": [
+          "w-papa",
+          "w-lit",
+          "w-un",
+          "w-livre"
+        ]
+      }
+    },
+    {
+      "id": "e-phrase-2-3",
+      "lessonId": "l-phrase-2",
+      "type": "word-recognition",
+      "order": 3,
+      "params": {
+        "correctItemId": "w-lit",
+        "itemIds": [
+          "w-papa",
+          "w-lit",
+          "w-un",
+          "w-livre"
+        ]
+      }
+    },
+    {
+      "id": "e-phrase-3-1",
+      "lessonId": "l-phrase-3",
+      "type": "word-recognition",
+      "order": 1,
+      "params": {
+        "correctItemId": "p-3",
+        "itemIds": [
+          "p-5",
+          "p-3",
+          "p-4"
+        ]
+      }
+    },
+    {
+      "id": "e-phrase-3-2",
+      "lessonId": "l-phrase-3",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-lune",
+        "itemIds": [
+          "w-la",
+          "w-lune",
+          "w-est",
+          "w-belle"
+        ]
+      }
+    },
+    {
+      "id": "e-phrase-3-3",
+      "lessonId": "l-phrase-3",
+      "type": "word-recognition",
+      "order": 3,
+      "params": {
+        "correctItemId": "w-belle",
+        "itemIds": [
+          "w-la",
+          "w-lune",
+          "w-est",
+          "w-belle"
+        ]
+      }
+    },
+    {
+      "id": "e-phrase-4-1",
+      "lessonId": "l-phrase-4",
+      "type": "word-recognition",
+      "order": 1,
+      "params": {
+        "correctItemId": "p-4",
+        "itemIds": [
+          "p-4",
+          "p-5",
+          "p-1"
+        ]
+      }
+    },
+    {
+      "id": "e-phrase-4-2",
+      "lessonId": "l-phrase-4",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-fleurs",
+        "itemIds": [
+          "w-maman",
+          "w-aime",
+          "w-les",
+          "w-fleurs"
+        ]
+      }
+    },
+    {
+      "id": "e-phrase-4-3",
+      "lessonId": "l-phrase-4",
+      "type": "word-recognition",
+      "order": 3,
+      "params": {
+        "correctItemId": "w-aime",
+        "itemIds": [
+          "w-maman",
+          "w-aime",
+          "w-les",
+          "w-fleurs"
+        ]
+      }
+    },
+    {
+      "id": "e-phrase-5-1",
+      "lessonId": "l-phrase-5",
+      "type": "word-recognition",
+      "order": 1,
+      "params": {
+        "correctItemId": "p-5",
+        "itemIds": [
+          "p-1",
+          "p-2",
+          "p-5"
+        ]
+      }
+    },
+    {
+      "id": "e-phrase-5-2",
+      "lessonId": "l-phrase-5",
+      "type": "word-recognition",
+      "order": 2,
+      "params": {
+        "correctItemId": "w-ecole",
+        "itemIds": [
+          "w-je",
+          "w-vais",
+          "w-a",
+          "w-ecole"
+        ]
+      }
+    },
+    {
+      "id": "e-phrase-5-3",
+      "lessonId": "l-phrase-5",
+      "type": "word-recognition",
+      "order": 3,
+      "params": {
+        "correctItemId": "w-vais",
+        "itemIds": [
+          "w-je",
+          "w-vais",
+          "w-a",
+          "w-ecole"
+        ]
+      }
+    }
+  ]
+}

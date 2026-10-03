@@ -24,6 +24,8 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       # apps/api (NestJS) est en cours de retrait (ADR 18) : exclu des contrôles.
+      - name: Parcours pédagogique à jour (content/curriculum → Flutter, core, API)
+        run: node content/curriculum/generate.mjs --check
       - run: pnpm -r --filter '!@natanga/api' lint
       - run: pnpm -r --filter '!@natanga/api' typecheck
       - run: pnpm -r --filter '!@natanga/api' test

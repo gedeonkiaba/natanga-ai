@@ -10,7 +10,7 @@ import {
   Lexend_800ExtraBold,
   useFonts,
 } from '@expo-google-fonts/lexend';
-import { LEVEL1_LESSONS, type Lesson, type SkillNode } from '@natanga/core';
+import { CURRICULUM_LESSONS, type Lesson, type SkillNode } from '@natanga/core';
 import { setSpeakFunction } from '@natanga/ui';
 import { BottomNav, colors } from './src/design';
 import { recordLesson, treeProgress } from './src/features/progress';
@@ -71,7 +71,7 @@ function Router() {
   }, [route]);
 
   const openLesson = (node: SkillNode) => {
-    const first = LEVEL1_LESSONS.find((l) => l.nodeId === node.id);
+    const first = CURRICULUM_LESSONS.find((l) => l.nodeId === node.id);
     if (first) {
       setLesson(first);
       setRoute('lesson');

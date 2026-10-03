@@ -55,7 +55,7 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
   void _choose(String itemId) {
     final ex = _run.current;
     if (ex == null || _pending != null) return;
-    final check = ex.type == ExerciseType.soundGrapheme ? checkSoundGrapheme(ex, level1Items, itemId) : checkWordRecognition(ex, itemId);
+    final check = ex.type == ExerciseType.soundGrapheme ? checkSoundGrapheme(ex, curriculumItems, itemId) : checkWordRecognition(ex, itemId);
     setState(() {
       _feedback = check;
       _chosenId = itemId;
@@ -106,7 +106,13 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
 
     final ex = _run.current!;
     final choices = choicesOf(ex);
-    final isSound = ex.type == ExerciseType.soundGrapheme;
+    final kind = choices.first.type;
+    final (instruction, replay) = switch (kind) {
+      ItemType.grapheme => ('Écoute, puis touche la lettre entendue :', 'Réécouter le son'),
+      ItemType.syllable => ('Écoute, puis touche la syllabe entendue :', 'Réécouter la syllabe'),
+      ItemType.word => ('Écoute, puis touche le mot entendu :', 'Réécouter le mot'),
+      ItemType.sentence => ('Écoute, puis touche la phrase entendue :', 'Réécouter la phrase'),
+    };
     final tts = ref.read(ttsServiceProvider);
     _speakOnce(ex);
     return AppScreen(
@@ -120,19 +126,16 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
         ),
         AppProgressBar(value: _run.answered / _run.exercises.length, label: 'Progression de la leçon'),
         Semantics(header: true, child: Text(lesson.title, style: TypeScale.title)),
+        if (lesson.objective.isNotEmpty) Text(lesson.objective, style: TypeScale.bodySmall.copyWith(color: Palette.inkSoft)),
         AppCard(
           padding: const EdgeInsets.all(Space.xl),
           child: Column(
             children: [
-              Text(
-                isSound ? 'Écoute, puis touche la lettre entendue :' : 'Écoute, puis touche le mot entendu :',
-                style: TypeScale.body,
-                textAlign: TextAlign.center,
-              ),
+              Text(instruction, style: TypeScale.body, textAlign: TextAlign.center),
               const SizedBox(height: Space.md),
               Semantics(
                 button: true,
-                label: isSound ? 'Réécouter le son' : 'Réécouter le mot',
+                label: replay,
                 excludeSemantics: true,
                 child: InkResponse(
                   onTap: () => tts.speak(spokenPrompt(ex)),
@@ -140,15 +143,23 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
                 ),
               ),
               const SizedBox(height: Space.lg),
+              // Phrases : une par ligne, pleine largeur. Lettres, syllabes, mots : grille compacte.
               Wrap(
+                direction: kind == ItemType.sentence ? Axis.vertical : Axis.horizontal,
                 spacing: Space.sm,
                 runSpacing: Space.sm,
                 alignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
                   for (final item in choices)
                     _Choice(
-                      label: item.label,
-                      semantic: isSound ? 'Choisir la lettre ${item.label}' : 'Choisir le mot ${item.label}',
+                      item: item,
+                      semantic: switch (kind) {
+                        ItemType.grapheme => 'Choisir la lettre ${item.label}',
+                        ItemType.syllable => 'Choisir la syllabe ${item.label}',
+                        ItemType.word => 'Choisir le mot ${item.label}',
+                        ItemType.sentence => 'Choisir la phrase ${item.label}',
+                      },
                       state:
                           _feedback == null
                               ? _ChoiceState.idle
@@ -183,8 +194,8 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
 enum _ChoiceState { idle, right, wrong }
 
 class _Choice extends StatelessWidget {
-  const _Choice({required this.label, required this.semantic, required this.state, required this.onTap});
-  final String label;
+  const _Choice({required this.item, required this.semantic, required this.state, required this.onTap});
+  final PedagogyItem item;
   final String semantic;
   final _ChoiceState state;
   final VoidCallback onTap;
@@ -196,6 +207,21 @@ class _Choice extends StatelessWidget {
       _ChoiceState.wrong => (Palette.amber100, Palette.amber600, Palette.amber500),
       _ChoiceState.idle => (Palette.surface, Palette.indigo500, Palette.indigo300),
     };
+    final sentence = item.type == ItemType.sentence;
+    final style = (sentence ? TypeScale.cardTitle.copyWith(fontSize: 18, height: 1.4) : TypeScale.title).copyWith(color: fg);
+    // Mots : syllabes bicolores (comme l'écran de lecture) tant que l'enfant n'a pas répondu.
+    final bicolor = state == _ChoiceState.idle && item.type == ItemType.word && item.syllables.length > 1;
+    final text =
+        bicolor
+            ? Text.rich(
+              TextSpan(
+                children: [
+                  for (final (i, syl) in item.syllables.indexed)
+                    TextSpan(text: syl, style: style.copyWith(color: i.isEven ? Palette.syllableA : Palette.syllableB)),
+                ],
+              ),
+            )
+            : Text(item.label, style: style, textAlign: TextAlign.center);
     return Semantics(
       button: true,
       label: semantic,
@@ -205,11 +231,10 @@ class _Choice extends StatelessWidget {
         borderRadius: BorderRadius.circular(Radii.lg),
         child: Container(
           constraints: const BoxConstraints(minWidth: 72, minHeight: 56),
-          padding: const EdgeInsets.symmetric(horizontal: Space.lg),
-
+          padding: EdgeInsets.symmetric(horizontal: Space.lg, vertical: sentence ? Space.md : 0),
           decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(Radii.lg), border: Border.all(color: border, width: 2)),
-          // Center à facteurs 1 : le bouton garde la taille de la lettre (grille compacte).
-          child: Center(widthFactor: 1, heightFactor: 1, child: Text(label, style: TypeScale.title.copyWith(color: fg))),
+          // Center à facteurs 1 : le bouton garde la taille de son contenu (grille compacte).
+          child: Center(widthFactor: 1, heightFactor: 1, child: text),
         ),
       ),
     );

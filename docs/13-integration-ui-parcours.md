@@ -18,7 +18,7 @@
 ## Flux fonctionnel (bout en bout)
 
 1. **Accueil** → badges (streak/gemmes/badges) + CTA « C'est parti ! ».
-2. **Arbre** → liste des 4 nœuds (voyelles, b/d, p/q, mots simples) avec statuts locked/available/mastered.
+2. **Arbre** → liste des 52 leçons groupées en 6 niveaux (voir docs/28) avec statuts locked/available/mastered.
 3. **Leçon** → séquence d'exercices ordonnée, TTS de consigne, réponses → feedback bienveillant,
    gemmes accumulées (effort + réussite), barre de progression.
 4. **Fin** → récapitulatif + « Continuer » retour arbre.

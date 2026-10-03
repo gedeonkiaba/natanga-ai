@@ -52,7 +52,7 @@ it('résume la journée et la progression avec une recommandation sur les sons b
         Attempt::create([
             'id' => (string) Str::uuid(),
             'child_id' => $child->id,
-            'exercise_id' => 'e-vowel-a',
+            'exercise_id' => 'e-son-a-1',
             'is_correct' => false,
             'error_kind' => 'confusion-b-d',
         ]);
@@ -69,7 +69,7 @@ it('résume la journée et la progression avec une recommandation sur les sons b
     Progress::create([
         'id' => (string) Str::uuid(),
         'child_id' => $child->id,
-        'node_id' => 'n-letters-a',
+        'node_id' => 'n-son-a',
         'status' => 'mastered',
         'mastered_score' => 1,
     ]);
@@ -106,8 +106,8 @@ it('résume la journée et la progression avec une recommandation sur les sons b
 
     expect($res->json('dashboard.progression.mastered'))->toBe(1);
     expect($res->json('dashboard.progression.inProgress'))->toBe(0);
-    expect($res->json('dashboard.progression.total'))->toBe(4);
-    expect($res->json('dashboard.progression.percent'))->toBe(25);
+    expect($res->json('dashboard.progression.total'))->toBe(54);
+    expect($res->json('dashboard.progression.percent'))->toBe(2);
 
     // Confusions : top 1 = b/d avec 2 occurrences.
     expect($res->json('dashboard.confusions'))->toHaveCount(1);
@@ -148,7 +148,7 @@ it('propose une recommandation douce à un parent sans aucune donnée', function
     expect($res->json('dashboard.totals.sessions'))->toBe(0);
     expect($res->json('dashboard.totals.gems'))->toBe(0);
     expect($res->json('dashboard.progression.mastered'))->toBe(0);
-    expect($res->json('dashboard.progression.total'))->toBe(4);
+    expect($res->json('dashboard.progression.total'))->toBe(54);
     expect($res->json('dashboard.progression.percent'))->toBe(0);
 });
 

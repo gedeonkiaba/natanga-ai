@@ -1,6 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { LEVEL1_EXERCISES, LEVEL1_ITEMS, LEVEL1_LESSONS, type Lesson } from '@natanga/core';
+import {
+  CURRICULUM_EXERCISES,
+  CURRICULUM_ITEMS,
+  CURRICULUM_LESSONS,
+  type Lesson,
+} from '@natanga/core';
 import { Badge, Button, ProgressBar, Text } from '@natanga/ui';
 import { spacing } from '@natanga/ui'; // racine : Metro ne résout pas les sous-chemins d'exports
 import { useLessonSession } from '../hooks/useLessonSession';
@@ -21,7 +26,7 @@ export interface LessonScreenProps {
  * Consomme le moteur `@natanga/core` et les composants accessibles `@natanga/ui`.
  */
 export function LessonScreen({ lesson, onFinish, onQuit }: LessonScreenProps) {
-  const exercises = LEVEL1_EXERCISES.filter((e) => e.lessonId === lesson.id);
+  const exercises = CURRICULUM_EXERCISES.filter((e) => e.lessonId === lesson.id);
   const { exercise, gems, correct, finished, score, answer } = useLessonSession(lesson, exercises);
 
   // Le moteur passe à l'exercice suivant dès la réponse : on laisse d'abord l'enfant
@@ -103,14 +108,14 @@ export function LessonScreen({ lesson, onFinish, onQuit }: LessonScreenProps) {
         <SoundGrapheme
           key={exercise.id}
           exercise={exercise}
-          items={LEVEL1_ITEMS}
+          items={CURRICULUM_ITEMS}
           onAnswer={onAnswer}
         />
       ) : (
         <WordRecognition
           key={exercise.id}
           exercise={exercise}
-          items={LEVEL1_ITEMS}
+          items={CURRICULUM_ITEMS}
           onAnswer={onAnswer}
         />
       )}
