@@ -263,6 +263,10 @@ void main() {
     final second = tester.getTopLeft(find.text('Papa lit un livre.'));
     expect(second.dy, greaterThan(first.dy)); // empilées, pas côte à côte
     await answer(tester, 'Choisir la phrase Le chat dort.');
+    // Compréhension : lire la phrase, répondre en image (la voix ne lit pas la phrase).
+    expect(find.text('Qui dort ?'), findsOneWidget);
+    expect(tts.spoken.last, 'Lis la phrase. Qui dort ?');
+    await answer(tester, 'Image : chat');
     expect(tts.spoken.last, 'chat');
     expect(sem('Choisir le mot dort'), findsOneWidget);
   });
@@ -277,6 +281,14 @@ void main() {
     await tester.pumpAndSettle();
     await tapSem(tester, 'Bibliothèque');
     await tapSem(tester, 'Commencer');
+    // D'abord lire seul : la voix dit la consigne, pas le mot.
+    expect(find.text('Lis le mot, puis touche la bonne image :'), findsOneWidget);
+    expect(tts.spoken.last, 'Lis le mot, puis touche la bonne image.');
+    expect(sem('Mot à lire : maman'), findsOneWidget);
+    await tapSem(tester, 'Image : maison');
+    expect(find.text('Presque ! C’est « maman ». On réessaie.'), findsOneWidget);
+    await tester.pump(feedbackDurationForTests);
+    await tester.pumpAndSettle();
     for (var i = 0; i < 3; i++) {
       await answer(tester, 'Choisir le mot maman');
     }
@@ -293,7 +305,7 @@ void main() {
     expect(find.text('Bravo !'), findsOneWidget);
     await tester.pump(feedbackDurationForTests);
     await tester.pumpAndSettle();
-    expect(find.text('4 bonnes réponses sur 4.'), findsOneWidget);
+    expect(find.text('4 bonnes réponses sur 5.'), findsOneWidget);
   });
 
   testWidgets('assemblage dans le désordre : la bonne réponse est montrée ; tracé : « Passer » toujours possible', (tester) async {
@@ -310,13 +322,14 @@ void main() {
       await answer(tester, 'Choisir la syllabe $l');
     }
     await answer(tester, 'Choisir le mot maman');
+    await answer(tester, 'Image : maman');
     await tapSem(tester, 'Ajouter la syllabe man');
     await tapSem(tester, 'Ajouter la syllabe ma');
     expect(find.text('Presque ! C’est « ma · man ». On réessaie.'), findsOneWidget);
     expect(tester.getSemantics(sem('Case 1 : man')), isSemantics(label: 'Case 1 : man')); // figé pendant le retour
     await tester.pump(feedbackDurationForTests);
     await tester.pumpAndSettle();
-    expect(find.text('4 bonnes réponses sur 5.'), findsOneWidget);
+    expect(find.text('5 bonnes réponses sur 6.'), findsOneWidget);
 
     SharedPreferences.setMockInitialValues({progressStorageKey: masteredFirst(0)});
     prefs = await SharedPreferences.getInstance();

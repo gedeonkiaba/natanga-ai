@@ -64,6 +64,17 @@ const FLUENT = [
   'locked',
 ];
 
+// Images des mots du parcours (content/curriculum/images.csv : « mot,emoji »).
+const curriculumImages = readFileSync(
+  new URL('../../../content/curriculum/images.csv', import.meta.url),
+  'utf8',
+)
+  .trim()
+  .split('\n')
+  .slice(1)
+  .map((line) => line.split(',')[1].trim());
+for (const name of curriculumImages) if (!FLUENT.includes(name)) FLUENT.push(name);
+
 function extract(set, names, prefix) {
   const data = require(`@iconify-json/${set}/icons.json`);
   const out = {};

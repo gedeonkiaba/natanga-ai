@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  checkPictureMatch,
   checkSoundGrapheme,
   checkSyllableAssembly,
   checkWordRecognition,
@@ -72,7 +73,7 @@ describe('contenu : chaque leçon est jouable', () => {
     }
   });
 
-  it('6 niveaux, 52 leçons, déblocage séquentiel', () => {
+  it('6 niveaux, 58 leçons, déblocage séquentiel', () => {
     expect(CURRICULUM_LEVELS.map((l) => l.key)).toEqual([
       'sounds',
       'letters',
@@ -81,7 +82,7 @@ describe('contenu : chaque leçon est jouable', () => {
       'complex-sounds',
       'sentences',
     ]);
-    expect(CURRICULUM_NODES).toHaveLength(52);
+    expect(CURRICULUM_NODES).toHaveLength(58); // 52 leçons de la base + 6 bilans
     expect(CURRICULUM_NODES.map((n) => n.unlockedWhen)).toEqual(CURRICULUM_NODES.map((_, i) => i));
   });
 
@@ -121,5 +122,28 @@ describe('assemblage de syllabes et tracé', () => {
     const trace = CURRICULUM_EXERCISES.filter((e) => e.lessonId === 'l-son-a').at(-1)!;
     expect(trace.type).toBe('tracing');
     expect(spokenPrompt(trace, CURRICULUM_ITEMS)).toBe('Avec ton doigt, trace la lettre a');
+  });
+});
+
+describe('lis et trouve l’image', () => {
+  it('lit la phrase sans la dire, répond en image', () => {
+    const ex = CURRICULUM_EXERCISES.find((e) => e.id === 'e-phrase-1-sens')!;
+    expect(ex.params.question).toBe('Qui dort ?');
+    expect(spokenPrompt(ex, CURRICULUM_ITEMS)).toBe('Lis la phrase. Qui dort ?');
+    expect(choicesOf(ex, CURRICULUM_ITEMS).every((c) => c.image)).toBe(true);
+    expect(checkPictureMatch(ex, CURRICULUM_ITEMS, 'w-chat').correct).toBe(true);
+    expect(checkPictureMatch(ex, CURRICULUM_ITEMS, 'w-papa').feedback).toBe(
+      'Presque ! C’est « chat ». On réessaie.',
+    );
+  });
+
+  it('chaque niveau finit par un bilan de 6 exercices', () => {
+    for (const level of CURRICULUM_LEVELS) {
+      const last = CURRICULUM_NODES.filter((n) => n.level === level.key).at(-1)!;
+      expect(last.id).toBe(`n-bilan-${level.rank}`);
+      expect(
+        CURRICULUM_EXERCISES.filter((e) => e.lessonId === `l-bilan-${level.rank}`),
+      ).toHaveLength(6);
+    }
   });
 });

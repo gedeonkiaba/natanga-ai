@@ -8,6 +8,10 @@ par l'équipe pédagogique sans toucher au code :
 | `content/curriculum/niveaux.csv` | 6 niveaux : nom, objectif |
 | `content/curriculum/lecons.csv` | 50 leçons : niveau, titre, son ou syllabe ciblé, objectif, durée, ordre |
 | `content/curriculum/mots.csv` | le mot, la syllabe ou la phrase de chaque leçon, avec son **découpage syllabique** |
+| `content/curriculum/images.csv` | l'image de chaque mot illustrable (nom d'emoji Fluent, ex. `chat,cat-face`) |
+
+Après une modification de `images.csv`, relancer aussi `node apps/mobile/scripts/generate-icons.mjs`
+(les images sont embarquées dans les applis, aucune requête réseau).
 
 `node content/curriculum/generate.mjs` (ou `pnpm content:generate`) construit les exercices
 et écrit le **même** contenu pour les trois clients :
@@ -21,25 +25,35 @@ Après une modification des CSV : relancer le script, puis `php artisan db:seed`
 
 ## Organisation
 
-- **52 leçons** = les 50 de la base, plus 2 **leçons miroir** ajoutées par Natanga en fin
-  de niveau 2 : « b ou d ? » et « p ou q ? » (confusions typiques de la dyslexie).
+- **58 leçons** = les 50 de la base, plus 2 **leçons miroir** ajoutées par Natanga en fin
+  de niveau 2 (« b ou d ? » et « p ou q ? », confusions typiques de la dyslexie), plus un
+  **bilan à la fin de chaque niveau**.
 - Une leçon = un nœud de l'arbre. Déblocage strictement dans l'ordre : niveau, puis colonne
   `ordre`. Une leçon est **maîtrisée** à partir de 3 réponses et 70 % de réussite.
 - Dans l'app, « Mon parcours » regroupe les leçons par niveau. Les niveaux pas encore
   atteints restent repliés (en-tête seul).
 - Les mots sont affichés en **syllabes bicolores**, comme dans l'écran de lecture.
 
-## Exercices générés (3 à 6 par leçon, 225 au total)
+## Exercices générés (3 à 6 par leçon, 288 au total)
 
 La voix pose chaque question à l'arrivée de l'exercice ; le bouton 🔊 la répète. Une erreur
 n'est jamais punie : « Presque ! C'est « b ». On réessaie. »
 
 | Type de leçon | Exercices |
 |---|---|
-| **Son** (niveaux 1, 2, 5, et ch/ou) | 1. « a, comme dans avion » → choisir parmi 2 lettres proches · 2. écouter le mot-repère, le retrouver parmi 3 mots · 3. le son seul, parmi 3 lettres · 4. un 2ᵉ mot contenant le son, quand la banque en a un · 5. **tracer la lettre au doigt** |
-| **Syllabe** (niveau 3) | 1. syllabe voisine (ma / pa) · 2. **inversion** (ma / am) · 3. parmi 3 syllabes · 4. un mot qui la contient (ma → maman), quand il existe · 5. **assembler ce mot** à partir de ses syllabes |
-| **Mot** (niveau 4) | 1–2. retrouver le mot parmi des mots qui lui ressemblent (même début) · 3. le mot ou son **sosie à une lettre près** (maman / naman) · 4. **assembler le mot** (mots de 2 syllabes ou plus) |
-| **Phrase** (niveau 6) | 1. retrouver la phrase entendue parmi 3 · 2–3. retrouver 2 mots de la phrase (« chat », « dort ») |
+| **Son** (niveaux 1, 2, 5, et ch/ou) | 1. « a, comme dans avion » → choisir parmi 2 lettres proches · 2. écouter le mot-repère, le retrouver parmi 3 mots · 3. le son seul, parmi 3 lettres · 4. un 2ᵉ mot contenant le son, quand la banque en a un · 5. **tracer la lettre au doigt** · niveaux 3 et 5 : **lire le mot-repère** et trouver son image |
+| **Syllabe** (niveau 3) | 1. syllabe voisine (ma / pa) · 2. **inversion** (ma / am) · 3. parmi 3 syllabes · 4. un mot qui la contient (ma → maman), quand il existe · 5. **le lire** et trouver son image · 6. **assembler ce mot** à partir de ses syllabes |
+| **Mot** (niveau 4) | 0. **lire le mot seul** (avant de l'entendre) et toucher son image · 1–2. retrouver le mot parmi des mots qui lui ressemblent (même début) · 3. le mot ou son **sosie à une lettre près** (maman / naman) · 4. **assembler le mot** (mots de 2 syllabes ou plus) |
+| **Phrase** (niveau 6) | 1. retrouver la phrase entendue parmi 3 · 2. **compréhension** : lire la phrase, répondre à une question en touchant une image (« Le chat dort. » → *Qui dort ?*) · 3–4. retrouver 2 mots de la phrase (« chat », « dort ») |
+| **Bilan** (fin de chaque niveau) | 6 exercices repris de tout le niveau, du plus exigeant au plus simple : lire et trouver l'image, assembler, le son seul (sans mot-repère), reconnaître. Pas de tracé. |
+
+### Lis et trouve l'image
+
+C'est le seul exercice où **la voix ne dit pas le mot** : elle dit seulement la consigne.
+L'enfant doit décoder seul, de l'écrit vers le sens. Le mot (ou la phrase) s'affiche en
+syllabes bicolores ; les choix sont des images sans légende. Une erreur montre la bonne
+image : « Presque ! C'est « chat ». On réessaie. » Les questions de compréhension des
+phrases sont dans `SENTENCE_QUESTIONS` (`generate.mjs`).
 
 Les leçons miroir se terminent par le tracé de **d** et de **q**.
 
@@ -84,7 +98,10 @@ miroir), cheval (son /e/). Les 2ᵉ mots par son sont choisis à la main (`SECON
   les déplacer au niveau 5 ? (changer `niveau_id` dans `lecons.csv`.)
 - Le **tracé** ne vérifie pas encore le sens et l'ordre des traits (ex. « b » qui commence
   par la barre). À décider avec l'orthophoniste si c'est utile.
-- La colonne `image_suggeree` n'est pas encore utilisée : il faudra des illustrations.
+- Les images sont des emojis (Fluent Emoji, licence MIT), choisis dans `images.csv` ;
+  « domino » et « jupe » n'en ont pas. De vraies illustrations (colonne `image_suggeree`)
+  pourront les remplacer.
+- Les questions de compréhension des 5 phrases sont à faire relire.
 - La voix de synthèse lit les consonnes isolées par leur nom (« èm », « pé ») ; c'est
   pourquoi chaque son est d'abord dit avec un mot-repère. Des enregistrements audio
   d'orthophoniste seraient plus justes.

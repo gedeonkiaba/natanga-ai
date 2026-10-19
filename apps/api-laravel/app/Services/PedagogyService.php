@@ -152,6 +152,7 @@ class PedagogyService
             'type' => $item->type,
             'phoneme' => $item->phoneme,
             'syllables' => $item->syllables,
+            'image' => $item->metadata['image'] ?? null,
             'audioUrl' => $item->audio_url,
         ];
     }

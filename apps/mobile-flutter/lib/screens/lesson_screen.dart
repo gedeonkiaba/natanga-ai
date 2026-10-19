@@ -12,6 +12,7 @@ import '../router.dart';
 import '../state/progress_controller.dart';
 import '../state/tts_provider.dart';
 import 'exercises/assembly_exercise.dart';
+import 'exercises/picture_match_exercise.dart';
 import 'exercises/tracing_exercise.dart';
 
 /// Durée d'affichage du retour avant l'exercice suivant.
@@ -116,6 +117,8 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
     final (instruction, replay) = switch ((ex.type, kind)) {
       (ExerciseType.syllableAssembly, _) => ('Écoute, puis remets les syllabes dans l’ordre :', 'Réécouter le mot'),
       (ExerciseType.tracing, _) => ('Avec ton doigt, repasse sur la lettre grise :', 'Réécouter la consigne'),
+      (ExerciseType.pictureMatch, _) when ex.question != null => ('Lis la phrase, puis réponds en touchant une image :', 'Réécouter la consigne'),
+      (ExerciseType.pictureMatch, _) => ('Lis le mot, puis touche la bonne image :', 'Réécouter la consigne'),
       (_, ItemType.grapheme) => ('Écoute, puis touche la lettre entendue :', 'Réécouter le son'),
       (_, ItemType.syllable) => ('Écoute, puis touche la syllabe entendue :', 'Réécouter la syllabe'),
       (_, ItemType.word) => ('Écoute, puis touche le mot entendu :', 'Réécouter le mot'),
@@ -154,6 +157,13 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
               switch (ex.type) {
                 ExerciseType.syllableAssembly => AssemblyExercise(key: ValueKey(ex.id), exercise: ex, feedback: _feedback, onSubmit: _submit),
                 ExerciseType.tracing => TracingExercise(key: ValueKey(ex.id), exercise: ex, feedback: _feedback, onSubmit: _submit),
+                ExerciseType.pictureMatch => PictureMatchExercise(
+                  key: ValueKey(ex.id),
+                  exercise: ex,
+                  feedback: _feedback,
+                  chosenId: _chosenId,
+                  onChoose: (id) => _submit(checkPictureMatch(ex, id), id),
+                ),
                 _ => _choices(choices, kind),
               },
               if (_feedback != null) ...[

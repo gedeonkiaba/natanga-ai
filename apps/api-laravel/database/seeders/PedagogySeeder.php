@@ -31,7 +31,7 @@ class PedagogySeeder extends Seeder
         // 1. Nœuds de l'arbre (parcours + textes), et retrait des anciens nœuds.
         $this->call(TreeSeeder::class);
 
-        // 2. Items : graphèmes, syllabes, mots (découpage syllabique), phrases.
+        // 2. Items : graphèmes, syllabes, mots (découpage syllabique, image), phrases.
         foreach ($curriculum['items'] as $item) {
             DB::table('items')->updateOrInsert(
                 ['id' => $item['id']],
@@ -40,6 +40,7 @@ class PedagogySeeder extends Seeder
                     'label' => $item['label'],
                     'phoneme' => $item['phoneme'],
                     'syllables' => json_encode($item['syllables'], JSON_UNESCAPED_UNICODE),
+                    'metadata' => isset($item['image']) ? json_encode(['image' => $item['image']]) : null,
                 ],
             );
         }

@@ -84,326 +84,368 @@ export const CURRICULUM_NODES: SkillNode[] = [
     "unlockedWhen": 5
   },
   {
+    "id": "n-bilan-1",
+    "level": "sounds",
+    "title": "Bilan : Sons et écoute",
+    "order": 7,
+    "unlockedWhen": 6
+  },
+  {
     "id": "n-son-m",
     "level": "letters",
     "title": "Le son /m/",
-    "order": 7,
-    "unlockedWhen": 6
+    "order": 8,
+    "unlockedWhen": 7
   },
   {
     "id": "n-son-p",
     "level": "letters",
     "title": "Le son /p/",
-    "order": 8,
-    "unlockedWhen": 7
+    "order": 9,
+    "unlockedWhen": 8
   },
   {
     "id": "n-son-t",
     "level": "letters",
     "title": "Le son /t/",
-    "order": 9,
-    "unlockedWhen": 8
+    "order": 10,
+    "unlockedWhen": 9
   },
   {
     "id": "n-son-s",
     "level": "letters",
     "title": "Le son /s/",
-    "order": 10,
-    "unlockedWhen": 9
+    "order": 11,
+    "unlockedWhen": 10
   },
   {
     "id": "n-son-l",
     "level": "letters",
     "title": "Le son /l/",
-    "order": 11,
-    "unlockedWhen": 10
+    "order": 12,
+    "unlockedWhen": 11
   },
   {
     "id": "n-son-r",
     "level": "letters",
     "title": "Le son /r/",
-    "order": 12,
-    "unlockedWhen": 11
+    "order": 13,
+    "unlockedWhen": 12
   },
   {
     "id": "n-son-n",
     "level": "letters",
     "title": "Le son /n/",
-    "order": 13,
-    "unlockedWhen": 12
+    "order": 14,
+    "unlockedWhen": 13
   },
   {
     "id": "n-son-d",
     "level": "letters",
     "title": "Le son /d/",
-    "order": 14,
-    "unlockedWhen": 13
+    "order": 15,
+    "unlockedWhen": 14
   },
   {
     "id": "n-son-f",
     "level": "letters",
     "title": "Le son /f/",
-    "order": 15,
-    "unlockedWhen": 14
+    "order": 16,
+    "unlockedWhen": 15
   },
   {
     "id": "n-son-v",
     "level": "letters",
     "title": "Le son /v/",
-    "order": 16,
-    "unlockedWhen": 15
+    "order": 17,
+    "unlockedWhen": 16
   },
   {
     "id": "n-son-b",
     "level": "letters",
     "title": "Le son /b/",
-    "order": 17,
-    "unlockedWhen": 16
+    "order": 18,
+    "unlockedWhen": 17
   },
   {
     "id": "n-son-j",
     "level": "letters",
     "title": "Le son /j/",
-    "order": 18,
-    "unlockedWhen": 17
+    "order": 19,
+    "unlockedWhen": 18
   },
   {
     "id": "n-letters-bd",
     "level": "letters",
     "title": "b ou d ?",
-    "order": 19,
-    "unlockedWhen": 18
+    "order": 20,
+    "unlockedWhen": 19
   },
   {
     "id": "n-letters-pq",
     "level": "letters",
     "title": "p ou q ?",
-    "order": 20,
-    "unlockedWhen": 19
+    "order": 21,
+    "unlockedWhen": 20
+  },
+  {
+    "id": "n-bilan-2",
+    "level": "letters",
+    "title": "Bilan : Lettres et sons",
+    "order": 22,
+    "unlockedWhen": 21
   },
   {
     "id": "n-son-ch",
     "level": "syllables",
     "title": "Le son /ch/",
-    "order": 21,
-    "unlockedWhen": 20
+    "order": 23,
+    "unlockedWhen": 22
   },
   {
     "id": "n-son-ou",
     "level": "syllables",
     "title": "Le son /ou/",
-    "order": 22,
-    "unlockedWhen": 21
+    "order": 24,
+    "unlockedWhen": 23
   },
   {
     "id": "n-syl-ma",
     "level": "syllables",
     "title": "La syllabe « ma »",
-    "order": 23,
-    "unlockedWhen": 22
+    "order": 25,
+    "unlockedWhen": 24
   },
   {
     "id": "n-syl-pa",
     "level": "syllables",
     "title": "La syllabe « pa »",
-    "order": 24,
-    "unlockedWhen": 23
+    "order": 26,
+    "unlockedWhen": 25
   },
   {
     "id": "n-syl-ta",
     "level": "syllables",
     "title": "La syllabe « ta »",
-    "order": 25,
-    "unlockedWhen": 24
+    "order": 27,
+    "unlockedWhen": 26
   },
   {
     "id": "n-syl-la",
     "level": "syllables",
     "title": "La syllabe « la »",
-    "order": 26,
-    "unlockedWhen": 25
+    "order": 28,
+    "unlockedWhen": 27
   },
   {
     "id": "n-syl-mi",
     "level": "syllables",
     "title": "La syllabe « mi »",
-    "order": 27,
-    "unlockedWhen": 26
+    "order": 29,
+    "unlockedWhen": 28
   },
   {
     "id": "n-syl-pi",
     "level": "syllables",
     "title": "La syllabe « pi »",
-    "order": 28,
-    "unlockedWhen": 27
+    "order": 30,
+    "unlockedWhen": 29
   },
   {
     "id": "n-syl-ti",
     "level": "syllables",
     "title": "La syllabe « ti »",
-    "order": 29,
-    "unlockedWhen": 28
+    "order": 31,
+    "unlockedWhen": 30
   },
   {
     "id": "n-syl-li",
     "level": "syllables",
     "title": "La syllabe « li »",
-    "order": 30,
-    "unlockedWhen": 29
+    "order": 32,
+    "unlockedWhen": 31
   },
   {
     "id": "n-syl-mo",
     "level": "syllables",
     "title": "La syllabe « mo »",
-    "order": 31,
-    "unlockedWhen": 30
+    "order": 33,
+    "unlockedWhen": 32
   },
   {
     "id": "n-syl-to",
     "level": "syllables",
     "title": "La syllabe « to »",
-    "order": 32,
-    "unlockedWhen": 31
+    "order": 34,
+    "unlockedWhen": 33
+  },
+  {
+    "id": "n-bilan-3",
+    "level": "syllables",
+    "title": "Bilan : Syllabes",
+    "order": 35,
+    "unlockedWhen": 34
   },
   {
     "id": "n-mot-maman",
     "level": "words",
     "title": "Le mot « maman »",
-    "order": 33,
-    "unlockedWhen": 32
+    "order": 36,
+    "unlockedWhen": 35
   },
   {
     "id": "n-mot-papa",
     "level": "words",
     "title": "Le mot « papa »",
-    "order": 34,
-    "unlockedWhen": 33
+    "order": 37,
+    "unlockedWhen": 36
   },
   {
     "id": "n-mot-livre",
     "level": "words",
     "title": "Le mot « livre »",
-    "order": 35,
-    "unlockedWhen": 34
+    "order": 38,
+    "unlockedWhen": 37
   },
   {
     "id": "n-mot-ecole",
     "level": "words",
     "title": "Le mot « école »",
-    "order": 36,
-    "unlockedWhen": 35
+    "order": 39,
+    "unlockedWhen": 38
   },
   {
     "id": "n-mot-maison",
     "level": "words",
     "title": "Le mot « maison »",
-    "order": 37,
-    "unlockedWhen": 36
+    "order": 40,
+    "unlockedWhen": 39
   },
   {
     "id": "n-mot-ami",
     "level": "words",
     "title": "Le mot « ami »",
-    "order": 38,
-    "unlockedWhen": 37
+    "order": 41,
+    "unlockedWhen": 40
   },
   {
     "id": "n-mot-chat",
     "level": "words",
     "title": "Le mot « chat »",
-    "order": 39,
-    "unlockedWhen": 38
+    "order": 42,
+    "unlockedWhen": 41
   },
   {
     "id": "n-mot-lune",
     "level": "words",
     "title": "Le mot « lune »",
-    "order": 40,
-    "unlockedWhen": 39
+    "order": 43,
+    "unlockedWhen": 42
   },
   {
     "id": "n-mot-fleur",
     "level": "words",
     "title": "Le mot « fleur »",
-    "order": 41,
-    "unlockedWhen": 40
+    "order": 44,
+    "unlockedWhen": 43
   },
   {
     "id": "n-mot-velo",
     "level": "words",
     "title": "Le mot « vélo »",
-    "order": 42,
-    "unlockedWhen": 41
+    "order": 45,
+    "unlockedWhen": 44
+  },
+  {
+    "id": "n-bilan-4",
+    "level": "words",
+    "title": "Bilan : Mots simples",
+    "order": 46,
+    "unlockedWhen": 45
   },
   {
     "id": "n-son-oi",
     "level": "complex-sounds",
     "title": "Le son /oi/",
-    "order": 43,
-    "unlockedWhen": 42
+    "order": 47,
+    "unlockedWhen": 46
   },
   {
     "id": "n-son-an",
     "level": "complex-sounds",
     "title": "Le son /an/",
-    "order": 44,
-    "unlockedWhen": 43
+    "order": 48,
+    "unlockedWhen": 47
   },
   {
     "id": "n-son-on",
     "level": "complex-sounds",
     "title": "Le son /on/",
-    "order": 45,
-    "unlockedWhen": 44
+    "order": 49,
+    "unlockedWhen": 48
   },
   {
     "id": "n-son-in",
     "level": "complex-sounds",
     "title": "Le son /in/",
-    "order": 46,
-    "unlockedWhen": 45
+    "order": 50,
+    "unlockedWhen": 49
   },
   {
     "id": "n-son-eau",
     "level": "complex-sounds",
     "title": "Le son /eau/",
-    "order": 47,
-    "unlockedWhen": 46
+    "order": 51,
+    "unlockedWhen": 50
+  },
+  {
+    "id": "n-bilan-5",
+    "level": "complex-sounds",
+    "title": "Bilan : Sons complexes",
+    "order": 52,
+    "unlockedWhen": 51
   },
   {
     "id": "n-phrase-1",
     "level": "sentences",
     "title": "Phrase : « Le chat dort. »",
-    "order": 48,
-    "unlockedWhen": 47
+    "order": 53,
+    "unlockedWhen": 52
   },
   {
     "id": "n-phrase-2",
     "level": "sentences",
     "title": "Phrase : « Papa lit un livre. »",
-    "order": 49,
-    "unlockedWhen": 48
+    "order": 54,
+    "unlockedWhen": 53
   },
   {
     "id": "n-phrase-3",
     "level": "sentences",
     "title": "Phrase : « La lune est belle. »",
-    "order": 50,
-    "unlockedWhen": 49
+    "order": 55,
+    "unlockedWhen": 54
   },
   {
     "id": "n-phrase-4",
     "level": "sentences",
     "title": "Phrase : « Maman aime les fleurs. »",
-    "order": 51,
-    "unlockedWhen": 50
+    "order": 56,
+    "unlockedWhen": 55
   },
   {
     "id": "n-phrase-5",
     "level": "sentences",
     "title": "Phrase : « Je vais à l’école. »",
-    "order": 52,
-    "unlockedWhen": 51
+    "order": 57,
+    "unlockedWhen": 56
+  },
+  {
+    "id": "n-bilan-6",
+    "level": "sentences",
+    "title": "Bilan : Phrases et compréhension",
+    "order": 58,
+    "unlockedWhen": 57
   }
 ];
 
@@ -823,6 +865,54 @@ export const CURRICULUM_LESSONS: Lesson[] = [
     "objective": "Écouter, lire et comprendre la phrase « Je vais à l’école. ».",
     "durationMin": 8,
     "order": 1
+  },
+  {
+    "id": "l-bilan-1",
+    "nodeId": "n-bilan-1",
+    "title": "Bilan : Sons et écoute",
+    "objective": "Je revois tout le niveau 1 : reconnaître les sons de la langue.",
+    "durationMin": 6,
+    "order": 1
+  },
+  {
+    "id": "l-bilan-2",
+    "nodeId": "n-bilan-2",
+    "title": "Bilan : Lettres et sons",
+    "objective": "Je revois tout le niveau 2 : associer chaque lettre à son son.",
+    "durationMin": 6,
+    "order": 1
+  },
+  {
+    "id": "l-bilan-3",
+    "nodeId": "n-bilan-3",
+    "title": "Bilan : Syllabes",
+    "objective": "Je revois tout le niveau 3 : découper et assembler des syllabes.",
+    "durationMin": 6,
+    "order": 1
+  },
+  {
+    "id": "l-bilan-4",
+    "nodeId": "n-bilan-4",
+    "title": "Bilan : Mots simples",
+    "objective": "Je revois tout le niveau 4 : lire des mots courts et fréquents.",
+    "durationMin": 6,
+    "order": 1
+  },
+  {
+    "id": "l-bilan-5",
+    "nodeId": "n-bilan-5",
+    "title": "Bilan : Sons complexes",
+    "objective": "Je revois tout le niveau 5 : reconnaître les sons composés.",
+    "durationMin": 6,
+    "order": 1
+  },
+  {
+    "id": "l-bilan-6",
+    "nodeId": "n-bilan-6",
+    "title": "Bilan : Phrases et compréhension",
+    "objective": "Je revois tout le niveau 6 : lire et comprendre de courtes phrases.",
+    "durationMin": 6,
+    "order": 1
   }
 ];
 
@@ -1018,7 +1108,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
       "a",
       "vi",
       "on"
-    ]
+    ],
+    "image": "emoji:airplane"
   },
   {
     "id": "w-doigt",
@@ -1027,7 +1118,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "phoneme": "doigt",
     "syllables": [
       "doigt"
-    ]
+    ],
+    "image": "emoji:index-pointing-up"
   },
   {
     "id": "w-ecole",
@@ -1038,7 +1130,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
       "é",
       "co",
       "le"
-    ]
+    ],
+    "image": "emoji:school"
   },
   {
     "id": "w-papa",
@@ -1048,7 +1141,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "pa",
       "pa"
-    ]
+    ],
+    "image": "emoji:man"
   },
   {
     "id": "w-pomme",
@@ -1058,7 +1152,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "pom",
       "me"
-    ]
+    ],
+    "image": "emoji:red-apple"
   },
   {
     "id": "w-poule",
@@ -1068,7 +1163,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "pou",
       "le"
-    ]
+    ],
+    "image": "emoji:chicken"
   },
   {
     "id": "w-cheval",
@@ -1078,7 +1174,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "che",
       "val"
-    ]
+    ],
+    "image": "emoji:horse-face"
   },
   {
     "id": "w-chat",
@@ -1087,7 +1184,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "phoneme": "chat",
     "syllables": [
       "chat"
-    ]
+    ],
+    "image": "emoji:cat-face"
   },
   {
     "id": "w-ballon",
@@ -1097,7 +1195,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "bal",
       "lon"
-    ]
+    ],
+    "image": "emoji:soccer-ball"
   },
   {
     "id": "w-iguane",
@@ -1108,7 +1207,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
       "i",
       "gua",
       "ne"
-    ]
+    ],
+    "image": "emoji:lizard"
   },
   {
     "id": "w-banane",
@@ -1119,7 +1219,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
       "ba",
       "na",
       "ne"
-    ]
+    ],
+    "image": "emoji:banana"
   },
   {
     "id": "w-ami",
@@ -1129,7 +1230,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "a",
       "mi"
-    ]
+    ],
+    "image": "emoji:people-hugging"
   },
   {
     "id": "w-nez",
@@ -1138,7 +1240,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "phoneme": "nez",
     "syllables": [
       "nez"
-    ]
+    ],
+    "image": "emoji:nose"
   },
   {
     "id": "w-bebe",
@@ -1148,7 +1251,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "bé",
       "bé"
-    ]
+    ],
+    "image": "emoji:baby"
   },
   {
     "id": "w-orange",
@@ -1159,7 +1263,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
       "o",
       "ran",
       "ge"
-    ]
+    ],
+    "image": "emoji:tangerine"
   },
   {
     "id": "w-bateau",
@@ -1169,7 +1274,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "ba",
       "teau"
-    ]
+    ],
+    "image": "emoji:sailboat"
   },
   {
     "id": "w-robot",
@@ -1179,7 +1285,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "ro",
       "bot"
-    ]
+    ],
+    "image": "emoji:robot"
   },
   {
     "id": "w-fleur",
@@ -1188,7 +1295,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "phoneme": "fleur",
     "syllables": [
       "fleur"
-    ]
+    ],
+    "image": "emoji:blossom"
   },
   {
     "id": "w-lapin",
@@ -1198,7 +1306,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "la",
       "pin"
-    ]
+    ],
+    "image": "emoji:rabbit-face"
   },
   {
     "id": "w-lune",
@@ -1208,7 +1317,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "lu",
       "ne"
-    ]
+    ],
+    "image": "emoji:crescent-moon"
   },
   {
     "id": "w-lion",
@@ -1218,7 +1328,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "li",
       "on"
-    ]
+    ],
+    "image": "emoji:lion"
   },
   {
     "id": "w-jupe",
@@ -1238,7 +1349,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "vé",
       "lo"
-    ]
+    ],
+    "image": "emoji:bicycle"
   },
   {
     "id": "w-dodo",
@@ -1258,7 +1370,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "mai",
       "son"
-    ]
+    ],
+    "image": "emoji:house"
   },
   {
     "id": "w-maman",
@@ -1268,7 +1381,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "ma",
       "man"
-    ]
+    ],
+    "image": "emoji:woman"
   },
   {
     "id": "w-tortue",
@@ -1278,7 +1392,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "tor",
       "tue"
-    ]
+    ],
+    "image": "emoji:turtle"
   },
   {
     "id": "w-soleil",
@@ -1288,7 +1403,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "so",
       "leil"
-    ]
+    ],
+    "image": "emoji:sun"
   },
   {
     "id": "w-poisson",
@@ -1298,7 +1414,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "pois",
       "son"
-    ]
+    ],
+    "image": "emoji:fish"
   },
   {
     "id": "w-domino",
@@ -1319,7 +1436,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "bon",
       "bon"
-    ]
+    ],
+    "image": "emoji:candy"
   },
   {
     "id": "w-bon",
@@ -1356,7 +1474,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "phoneme": "coq",
     "syllables": [
       "coq"
-    ]
+    ],
+    "image": "emoji:rooster"
   },
   {
     "id": "w-loupe",
@@ -1366,7 +1485,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "lou",
       "pe"
-    ]
+    ],
+    "image": "emoji:magnifying-glass-tilted-left"
   },
   {
     "id": "w-livre",
@@ -1376,7 +1496,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "li",
       "vre"
-    ]
+    ],
+    "image": "emoji:open-book"
   },
   {
     "id": "s-ma",
@@ -1639,7 +1760,8 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
       "é",
       "lé",
       "phant"
-    ]
+    ],
+    "image": "emoji:elephant"
   },
   {
     "id": "x-ecole",
@@ -1945,6 +2067,16 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     ]
   },
   {
+    "id": "w-fleurs",
+    "type": "word",
+    "label": "fleurs",
+    "phoneme": "fleurs",
+    "syllables": [
+      "fleurs"
+    ],
+    "image": "emoji:bouquet"
+  },
+  {
     "id": "w-aime",
     "type": "word",
     "label": "aime",
@@ -1961,15 +2093,6 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "phoneme": "les",
     "syllables": [
       "les"
-    ]
-  },
-  {
-    "id": "w-fleurs",
-    "type": "word",
-    "label": "fleurs",
-    "phoneme": "fleurs",
-    "syllables": [
-      "fleurs"
     ]
   },
   {
@@ -3416,10 +3539,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-ch-image",
+    "lessonId": "l-son-ch",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-chat",
+      "textItemId": "w-chat",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-chat",
+        "w-cheval",
+        "w-bebe"
+      ]
+    }
+  },
+  {
     "id": "e-son-ch-3",
     "lessonId": "l-son-ch",
     "type": "sound-grapheme",
-    "order": 3,
+    "order": 4,
     "params": {
       "phoneme": "ch",
       "cue": "che",
@@ -3434,7 +3573,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-son-ch-4",
     "lessonId": "l-son-ch",
     "type": "word-recognition",
-    "order": 4,
+    "order": 5,
     "params": {
       "correctItemId": "w-cheval",
       "itemIds": [
@@ -3448,7 +3587,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-son-ch-trace",
     "lessonId": "l-son-ch",
     "type": "tracing",
-    "order": 5,
+    "order": 6,
     "params": {
       "correctItemId": "g-ch",
       "cue": "Avec ton doigt, trace che",
@@ -3486,10 +3625,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-ou-image",
+    "lessonId": "l-son-ou",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-loupe",
+      "textItemId": "w-loupe",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-lapin",
+        "w-livre",
+        "w-loupe"
+      ]
+    }
+  },
+  {
     "id": "e-son-ou-3",
     "lessonId": "l-son-ou",
     "type": "sound-grapheme",
-    "order": 3,
+    "order": 4,
     "params": {
       "phoneme": "ou",
       "cue": "ou",
@@ -3504,7 +3659,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-son-ou-4",
     "lessonId": "l-son-ou",
     "type": "word-recognition",
-    "order": 4,
+    "order": 5,
     "params": {
       "correctItemId": "w-poule",
       "itemIds": [
@@ -3518,7 +3673,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-son-ou-trace",
     "lessonId": "l-son-ou",
     "type": "tracing",
-    "order": 5,
+    "order": 6,
     "params": {
       "correctItemId": "g-ou",
       "cue": "Avec ton doigt, trace ou",
@@ -3585,10 +3740,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-syl-ma-image",
+    "lessonId": "l-syl-ma",
+    "type": "picture-match",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-maman",
+      "textItemId": "w-maman",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-maman",
+        "w-maison",
+        "w-avion"
+      ]
+    }
+  },
+  {
     "id": "e-syl-ma-assemble",
     "lessonId": "l-syl-ma",
     "type": "syllable-assembly",
-    "order": 5,
+    "order": 6,
     "params": {
       "correctItemId": "w-maman",
       "itemIds": [
@@ -3656,10 +3827,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-syl-pa-image",
+    "lessonId": "l-syl-pa",
+    "type": "picture-match",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-papa",
+      "textItemId": "w-papa",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-pomme",
+        "w-poule",
+        "w-papa"
+      ]
+    }
+  },
+  {
     "id": "e-syl-pa-assemble",
     "lessonId": "l-syl-pa",
     "type": "syllable-assembly",
-    "order": 5,
+    "order": 6,
     "params": {
       "correctItemId": "w-papa",
       "itemIds": [
@@ -3770,10 +3957,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-syl-la-image",
+    "lessonId": "l-syl-la",
+    "type": "picture-match",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-lapin",
+      "textItemId": "w-lapin",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-lapin",
+        "w-livre",
+        "w-loupe"
+      ]
+    }
+  },
+  {
     "id": "e-syl-la-assemble",
     "lessonId": "l-syl-la",
     "type": "syllable-assembly",
-    "order": 5,
+    "order": 6,
     "params": {
       "correctItemId": "w-lapin",
       "itemIds": [
@@ -3841,10 +4044,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-syl-mi-image",
+    "lessonId": "l-syl-mi",
+    "type": "picture-match",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-ami",
+      "textItemId": "w-ami",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-avion",
+        "w-nez",
+        "w-ami"
+      ]
+    }
+  },
+  {
     "id": "e-syl-mi-assemble",
     "lessonId": "l-syl-mi",
     "type": "syllable-assembly",
-    "order": 5,
+    "order": 6,
     "params": {
       "correctItemId": "w-ami",
       "itemIds": [
@@ -3998,10 +4217,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-syl-li-image",
+    "lessonId": "l-syl-li",
+    "type": "picture-match",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-livre",
+      "textItemId": "w-livre",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-lion",
+        "w-lapin",
+        "w-livre"
+      ]
+    }
+  },
+  {
     "id": "e-syl-li-assemble",
     "lessonId": "l-syl-li",
     "type": "syllable-assembly",
-    "order": 5,
+    "order": 6,
     "params": {
       "correctItemId": "w-livre",
       "itemIds": [
@@ -4098,10 +4333,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-mot-maman-image",
+    "lessonId": "l-mot-maman",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-maman",
+      "textItemId": "w-maman",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-maman",
+        "w-maison",
+        "w-avion"
+      ]
+    }
+  },
+  {
     "id": "e-mot-maman-1",
     "lessonId": "l-mot-maman",
     "type": "word-recognition",
-    "order": 1,
+    "order": 2,
     "params": {
       "correctItemId": "w-maman",
       "itemIds": [
@@ -4115,7 +4366,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-maman-2",
     "lessonId": "l-mot-maman",
     "type": "word-recognition",
-    "order": 2,
+    "order": 3,
     "params": {
       "correctItemId": "w-maman",
       "itemIds": [
@@ -4129,7 +4380,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-maman-3",
     "lessonId": "l-mot-maman",
     "type": "word-recognition",
-    "order": 3,
+    "order": 4,
     "params": {
       "correctItemId": "w-maman",
       "itemIds": [
@@ -4142,7 +4393,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-maman-assemble",
     "lessonId": "l-mot-maman",
     "type": "syllable-assembly",
-    "order": 4,
+    "order": 5,
     "params": {
       "correctItemId": "w-maman",
       "itemIds": [
@@ -4153,10 +4404,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-mot-papa-image",
+    "lessonId": "l-mot-papa",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-papa",
+      "textItemId": "w-papa",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-pomme",
+        "w-poule",
+        "w-papa"
+      ]
+    }
+  },
+  {
     "id": "e-mot-papa-1",
     "lessonId": "l-mot-papa",
     "type": "word-recognition",
-    "order": 1,
+    "order": 2,
     "params": {
       "correctItemId": "w-papa",
       "itemIds": [
@@ -4170,7 +4437,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-papa-2",
     "lessonId": "l-mot-papa",
     "type": "word-recognition",
-    "order": 2,
+    "order": 3,
     "params": {
       "correctItemId": "w-papa",
       "itemIds": [
@@ -4184,7 +4451,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-papa-3",
     "lessonId": "l-mot-papa",
     "type": "word-recognition",
-    "order": 3,
+    "order": 4,
     "params": {
       "correctItemId": "w-papa",
       "itemIds": [
@@ -4197,7 +4464,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-papa-assemble",
     "lessonId": "l-mot-papa",
     "type": "syllable-assembly",
-    "order": 4,
+    "order": 5,
     "params": {
       "correctItemId": "w-papa",
       "itemIds": [
@@ -4208,10 +4475,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-mot-livre-image",
+    "lessonId": "l-mot-livre",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-livre",
+      "textItemId": "w-livre",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-lapin",
+        "w-livre",
+        "w-lion"
+      ]
+    }
+  },
+  {
     "id": "e-mot-livre-1",
     "lessonId": "l-mot-livre",
     "type": "word-recognition",
-    "order": 1,
+    "order": 2,
     "params": {
       "correctItemId": "w-livre",
       "itemIds": [
@@ -4225,7 +4508,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-livre-2",
     "lessonId": "l-mot-livre",
     "type": "word-recognition",
-    "order": 2,
+    "order": 3,
     "params": {
       "correctItemId": "w-livre",
       "itemIds": [
@@ -4239,7 +4522,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-livre-3",
     "lessonId": "l-mot-livre",
     "type": "word-recognition",
-    "order": 3,
+    "order": 4,
     "params": {
       "correctItemId": "w-livre",
       "itemIds": [
@@ -4252,7 +4535,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-livre-assemble",
     "lessonId": "l-mot-livre",
     "type": "syllable-assembly",
-    "order": 4,
+    "order": 5,
     "params": {
       "correctItemId": "w-livre",
       "itemIds": [
@@ -4263,10 +4546,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-mot-ecole-image",
+    "lessonId": "l-mot-ecole",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-ecole",
+      "textItemId": "w-ecole",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-ecole",
+        "w-avion",
+        "w-doigt"
+      ]
+    }
+  },
+  {
     "id": "e-mot-ecole-1",
     "lessonId": "l-mot-ecole",
     "type": "word-recognition",
-    "order": 1,
+    "order": 2,
     "params": {
       "correctItemId": "w-ecole",
       "itemIds": [
@@ -4280,7 +4579,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-ecole-2",
     "lessonId": "l-mot-ecole",
     "type": "word-recognition",
-    "order": 2,
+    "order": 3,
     "params": {
       "correctItemId": "w-ecole",
       "itemIds": [
@@ -4294,7 +4593,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-ecole-3",
     "lessonId": "l-mot-ecole",
     "type": "word-recognition",
-    "order": 3,
+    "order": 4,
     "params": {
       "correctItemId": "w-ecole",
       "itemIds": [
@@ -4307,7 +4606,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-ecole-assemble",
     "lessonId": "l-mot-ecole",
     "type": "syllable-assembly",
-    "order": 4,
+    "order": 5,
     "params": {
       "correctItemId": "w-ecole",
       "itemIds": [
@@ -4319,10 +4618,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-mot-maison-image",
+    "lessonId": "l-mot-maison",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-maison",
+      "textItemId": "w-maison",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-maman",
+        "w-ballon",
+        "w-maison"
+      ]
+    }
+  },
+  {
     "id": "e-mot-maison-1",
     "lessonId": "l-mot-maison",
     "type": "word-recognition",
-    "order": 1,
+    "order": 2,
     "params": {
       "correctItemId": "w-maison",
       "itemIds": [
@@ -4336,7 +4651,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-maison-2",
     "lessonId": "l-mot-maison",
     "type": "word-recognition",
-    "order": 2,
+    "order": 3,
     "params": {
       "correctItemId": "w-maison",
       "itemIds": [
@@ -4350,7 +4665,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-maison-3",
     "lessonId": "l-mot-maison",
     "type": "word-recognition",
-    "order": 3,
+    "order": 4,
     "params": {
       "correctItemId": "w-maison",
       "itemIds": [
@@ -4363,7 +4678,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-maison-assemble",
     "lessonId": "l-mot-maison",
     "type": "syllable-assembly",
-    "order": 4,
+    "order": 5,
     "params": {
       "correctItemId": "w-maison",
       "itemIds": [
@@ -4374,10 +4689,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-mot-ami-image",
+    "lessonId": "l-mot-ami",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-ami",
+      "textItemId": "w-ami",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-nez",
+        "w-ami",
+        "w-avion"
+      ]
+    }
+  },
+  {
     "id": "e-mot-ami-1",
     "lessonId": "l-mot-ami",
     "type": "word-recognition",
-    "order": 1,
+    "order": 2,
     "params": {
       "correctItemId": "w-ami",
       "itemIds": [
@@ -4391,7 +4722,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-ami-2",
     "lessonId": "l-mot-ami",
     "type": "word-recognition",
-    "order": 2,
+    "order": 3,
     "params": {
       "correctItemId": "w-ami",
       "itemIds": [
@@ -4405,7 +4736,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-ami-3",
     "lessonId": "l-mot-ami",
     "type": "word-recognition",
-    "order": 3,
+    "order": 4,
     "params": {
       "correctItemId": "w-ami",
       "itemIds": [
@@ -4418,7 +4749,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-ami-assemble",
     "lessonId": "l-mot-ami",
     "type": "syllable-assembly",
-    "order": 4,
+    "order": 5,
     "params": {
       "correctItemId": "w-ami",
       "itemIds": [
@@ -4429,10 +4760,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-mot-chat-image",
+    "lessonId": "l-mot-chat",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-chat",
+      "textItemId": "w-chat",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-chat",
+        "w-cheval",
+        "w-bebe"
+      ]
+    }
+  },
+  {
     "id": "e-mot-chat-1",
     "lessonId": "l-mot-chat",
     "type": "word-recognition",
-    "order": 1,
+    "order": 2,
     "params": {
       "correctItemId": "w-chat",
       "itemIds": [
@@ -4446,7 +4793,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-chat-2",
     "lessonId": "l-mot-chat",
     "type": "word-recognition",
-    "order": 2,
+    "order": 3,
     "params": {
       "correctItemId": "w-chat",
       "itemIds": [
@@ -4460,7 +4807,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-chat-3",
     "lessonId": "l-mot-chat",
     "type": "word-recognition",
-    "order": 3,
+    "order": 4,
     "params": {
       "correctItemId": "w-chat",
       "itemIds": [
@@ -4470,10 +4817,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-mot-lune-image",
+    "lessonId": "l-mot-lune",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-lune",
+      "textItemId": "w-lune",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-lion",
+        "w-lapin",
+        "w-lune"
+      ]
+    }
+  },
+  {
     "id": "e-mot-lune-1",
     "lessonId": "l-mot-lune",
     "type": "word-recognition",
-    "order": 1,
+    "order": 2,
     "params": {
       "correctItemId": "w-lune",
       "itemIds": [
@@ -4487,7 +4850,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-lune-2",
     "lessonId": "l-mot-lune",
     "type": "word-recognition",
-    "order": 2,
+    "order": 3,
     "params": {
       "correctItemId": "w-lune",
       "itemIds": [
@@ -4501,7 +4864,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-lune-3",
     "lessonId": "l-mot-lune",
     "type": "word-recognition",
-    "order": 3,
+    "order": 4,
     "params": {
       "correctItemId": "w-lune",
       "itemIds": [
@@ -4514,7 +4877,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-lune-assemble",
     "lessonId": "l-mot-lune",
     "type": "syllable-assembly",
-    "order": 4,
+    "order": 5,
     "params": {
       "correctItemId": "w-lune",
       "itemIds": [
@@ -4525,10 +4888,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-mot-fleur-image",
+    "lessonId": "l-mot-fleur",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-fleur",
+      "textItemId": "w-fleur",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-doigt",
+        "w-fleur",
+        "w-avion"
+      ]
+    }
+  },
+  {
     "id": "e-mot-fleur-1",
     "lessonId": "l-mot-fleur",
     "type": "word-recognition",
-    "order": 1,
+    "order": 2,
     "params": {
       "correctItemId": "w-fleur",
       "itemIds": [
@@ -4542,7 +4921,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-fleur-2",
     "lessonId": "l-mot-fleur",
     "type": "word-recognition",
-    "order": 2,
+    "order": 3,
     "params": {
       "correctItemId": "w-fleur",
       "itemIds": [
@@ -4556,7 +4935,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-fleur-3",
     "lessonId": "l-mot-fleur",
     "type": "word-recognition",
-    "order": 3,
+    "order": 4,
     "params": {
       "correctItemId": "w-fleur",
       "itemIds": [
@@ -4566,10 +4945,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-mot-velo-image",
+    "lessonId": "l-mot-velo",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-velo",
+      "textItemId": "w-velo",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-velo",
+        "w-bebe",
+        "w-chat"
+      ]
+    }
+  },
+  {
     "id": "e-mot-velo-1",
     "lessonId": "l-mot-velo",
     "type": "word-recognition",
-    "order": 1,
+    "order": 2,
     "params": {
       "correctItemId": "w-velo",
       "itemIds": [
@@ -4583,7 +4978,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-velo-2",
     "lessonId": "l-mot-velo",
     "type": "word-recognition",
-    "order": 2,
+    "order": 3,
     "params": {
       "correctItemId": "w-velo",
       "itemIds": [
@@ -4597,7 +4992,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-velo-3",
     "lessonId": "l-mot-velo",
     "type": "word-recognition",
-    "order": 3,
+    "order": 4,
     "params": {
       "correctItemId": "w-velo",
       "itemIds": [
@@ -4610,7 +5005,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-mot-velo-assemble",
     "lessonId": "l-mot-velo",
     "type": "syllable-assembly",
-    "order": 4,
+    "order": 5,
     "params": {
       "correctItemId": "w-velo",
       "itemIds": [
@@ -4649,10 +5044,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-oi-image",
+    "lessonId": "l-son-oi",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-poisson",
+      "textItemId": "w-poisson",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-pomme",
+        "w-poule",
+        "w-poisson"
+      ]
+    }
+  },
+  {
     "id": "e-son-oi-3",
     "lessonId": "l-son-oi",
     "type": "sound-grapheme",
-    "order": 3,
+    "order": 4,
     "params": {
       "phoneme": "oi",
       "cue": "oi",
@@ -4667,7 +5078,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-son-oi-4",
     "lessonId": "l-son-oi",
     "type": "word-recognition",
-    "order": 4,
+    "order": 5,
     "params": {
       "correctItemId": "w-doigt",
       "itemIds": [
@@ -4681,7 +5092,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-son-oi-trace",
     "lessonId": "l-son-oi",
     "type": "tracing",
-    "order": 5,
+    "order": 6,
     "params": {
       "correctItemId": "g-oi",
       "cue": "Avec ton doigt, trace oi",
@@ -4719,10 +5130,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-an-image",
+    "lessonId": "l-son-an",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-maman",
+      "textItemId": "w-maman",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-avion",
+        "w-maman",
+        "w-maison"
+      ]
+    }
+  },
+  {
     "id": "e-son-an-3",
     "lessonId": "l-son-an",
     "type": "sound-grapheme",
-    "order": 3,
+    "order": 4,
     "params": {
       "phoneme": "an",
       "cue": "an",
@@ -4737,7 +5164,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-son-an-4",
     "lessonId": "l-son-an",
     "type": "word-recognition",
-    "order": 4,
+    "order": 5,
     "params": {
       "correctItemId": "w-elephant",
       "itemIds": [
@@ -4751,7 +5178,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-son-an-trace",
     "lessonId": "l-son-an",
     "type": "tracing",
-    "order": 5,
+    "order": 6,
     "params": {
       "correctItemId": "g-an",
       "cue": "Avec ton doigt, trace an",
@@ -4789,10 +5216,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-on-image",
+    "lessonId": "l-son-on",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-bonbon",
+      "textItemId": "w-bonbon",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-bonbon",
+        "w-ballon",
+        "w-banane"
+      ]
+    }
+  },
+  {
     "id": "e-son-on-3",
     "lessonId": "l-son-on",
     "type": "sound-grapheme",
-    "order": 3,
+    "order": 4,
     "params": {
       "phoneme": "on",
       "cue": "on",
@@ -4807,7 +5250,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-son-on-4",
     "lessonId": "l-son-on",
     "type": "word-recognition",
-    "order": 4,
+    "order": 5,
     "params": {
       "correctItemId": "w-lion",
       "itemIds": [
@@ -4821,7 +5264,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-son-on-trace",
     "lessonId": "l-son-on",
     "type": "tracing",
-    "order": 5,
+    "order": 6,
     "params": {
       "correctItemId": "g-on",
       "cue": "Avec ton doigt, trace on",
@@ -4859,10 +5302,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-in-image",
+    "lessonId": "l-son-in",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-lapin",
+      "textItemId": "w-lapin",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-livre",
+        "w-loupe",
+        "w-lapin"
+      ]
+    }
+  },
+  {
     "id": "e-son-in-3",
     "lessonId": "l-son-in",
     "type": "sound-grapheme",
-    "order": 3,
+    "order": 4,
     "params": {
       "phoneme": "in",
       "cue": "in",
@@ -4877,7 +5336,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-son-in-trace",
     "lessonId": "l-son-in",
     "type": "tracing",
-    "order": 4,
+    "order": 5,
     "params": {
       "correctItemId": "g-in",
       "cue": "Avec ton doigt, trace in",
@@ -4915,10 +5374,26 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-eau-image",
+    "lessonId": "l-son-eau",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-bateau",
+      "textItemId": "w-bateau",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-banane",
+        "w-bateau",
+        "w-ballon"
+      ]
+    }
+  },
+  {
     "id": "e-son-eau-3",
     "lessonId": "l-son-eau",
     "type": "sound-grapheme",
-    "order": 3,
+    "order": 4,
     "params": {
       "phoneme": "eau",
       "cue": "eau",
@@ -4933,7 +5408,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-son-eau-trace",
     "lessonId": "l-son-eau",
     "type": "tracing",
-    "order": 4,
+    "order": 5,
     "params": {
       "correctItemId": "g-eau",
       "cue": "Avec ton doigt, trace eau",
@@ -4957,10 +5432,27 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-phrase-1-sens",
+    "lessonId": "l-phrase-1",
+    "type": "picture-match",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-chat",
+      "textItemId": "p-1",
+      "cue": "Lis la phrase. Qui dort ?",
+      "itemIds": [
+        "w-chat",
+        "w-papa",
+        "w-lapin"
+      ],
+      "question": "Qui dort ?"
+    }
+  },
+  {
     "id": "e-phrase-1-2",
     "lessonId": "l-phrase-1",
     "type": "word-recognition",
-    "order": 2,
+    "order": 3,
     "params": {
       "correctItemId": "w-chat",
       "itemIds": [
@@ -4974,7 +5466,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-phrase-1-3",
     "lessonId": "l-phrase-1",
     "type": "word-recognition",
-    "order": 3,
+    "order": 4,
     "params": {
       "correctItemId": "w-dort",
       "itemIds": [
@@ -4999,10 +5491,27 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-phrase-2-sens",
+    "lessonId": "l-phrase-2",
+    "type": "picture-match",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-livre",
+      "textItemId": "p-2",
+      "cue": "Lis la phrase. Que lit papa ?",
+      "itemIds": [
+        "w-pomme",
+        "w-ballon",
+        "w-livre"
+      ],
+      "question": "Que lit papa ?"
+    }
+  },
+  {
     "id": "e-phrase-2-2",
     "lessonId": "l-phrase-2",
     "type": "word-recognition",
-    "order": 2,
+    "order": 3,
     "params": {
       "correctItemId": "w-livre",
       "itemIds": [
@@ -5017,7 +5526,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-phrase-2-3",
     "lessonId": "l-phrase-2",
     "type": "word-recognition",
-    "order": 3,
+    "order": 4,
     "params": {
       "correctItemId": "w-lit",
       "itemIds": [
@@ -5043,10 +5552,27 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-phrase-3-sens",
+    "lessonId": "l-phrase-3",
+    "type": "picture-match",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-lune",
+      "textItemId": "p-3",
+      "cue": "Lis la phrase. De quoi parle la phrase ?",
+      "itemIds": [
+        "w-maison",
+        "w-lune",
+        "w-soleil"
+      ],
+      "question": "De quoi parle la phrase ?"
+    }
+  },
+  {
     "id": "e-phrase-3-2",
     "lessonId": "l-phrase-3",
     "type": "word-recognition",
-    "order": 2,
+    "order": 3,
     "params": {
       "correctItemId": "w-lune",
       "itemIds": [
@@ -5061,7 +5587,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-phrase-3-3",
     "lessonId": "l-phrase-3",
     "type": "word-recognition",
-    "order": 3,
+    "order": 4,
     "params": {
       "correctItemId": "w-belle",
       "itemIds": [
@@ -5087,10 +5613,27 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-phrase-4-sens",
+    "lessonId": "l-phrase-4",
+    "type": "picture-match",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-fleurs",
+      "textItemId": "p-4",
+      "cue": "Lis la phrase. Qu’est-ce que maman aime ?",
+      "itemIds": [
+        "w-fleurs",
+        "w-banane",
+        "w-bateau"
+      ],
+      "question": "Qu’est-ce que maman aime ?"
+    }
+  },
+  {
     "id": "e-phrase-4-2",
     "lessonId": "l-phrase-4",
     "type": "word-recognition",
-    "order": 2,
+    "order": 3,
     "params": {
       "correctItemId": "w-fleurs",
       "itemIds": [
@@ -5105,7 +5648,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-phrase-4-3",
     "lessonId": "l-phrase-4",
     "type": "word-recognition",
-    "order": 3,
+    "order": 4,
     "params": {
       "correctItemId": "w-aime",
       "itemIds": [
@@ -5131,10 +5674,27 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-phrase-5-sens",
+    "lessonId": "l-phrase-5",
+    "type": "picture-match",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-ecole",
+      "textItemId": "p-5",
+      "cue": "Lis la phrase. Où est-ce que je vais ?",
+      "itemIds": [
+        "w-maison",
+        "w-bateau",
+        "w-ecole"
+      ],
+      "question": "Où est-ce que je vais ?"
+    }
+  },
+  {
     "id": "e-phrase-5-2",
     "lessonId": "l-phrase-5",
     "type": "word-recognition",
-    "order": 2,
+    "order": 3,
     "params": {
       "correctItemId": "w-ecole",
       "itemIds": [
@@ -5149,7 +5709,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "id": "e-phrase-5-3",
     "lessonId": "l-phrase-5",
     "type": "word-recognition",
-    "order": 3,
+    "order": 4,
     "params": {
       "correctItemId": "w-vais",
       "itemIds": [
@@ -5157,6 +5717,566 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
         "w-vais",
         "w-a",
         "w-ecole"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-1-1",
+    "lessonId": "l-bilan-1",
+    "type": "sound-grapheme",
+    "order": 1,
+    "params": {
+      "phoneme": "a",
+      "cue": "a",
+      "itemIds": [
+        "g-o",
+        "g-a",
+        "g-e"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-1-2",
+    "lessonId": "l-bilan-1",
+    "type": "sound-grapheme",
+    "order": 2,
+    "params": {
+      "phoneme": "e",
+      "cue": "e",
+      "itemIds": [
+        "g-e",
+        "g-u",
+        "g-e-aigu"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-1-3",
+    "lessonId": "l-bilan-1",
+    "type": "sound-grapheme",
+    "order": 3,
+    "params": {
+      "phoneme": "i",
+      "cue": "i",
+      "itemIds": [
+        "g-a",
+        "g-e-aigu",
+        "g-i"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-1-4",
+    "lessonId": "l-bilan-1",
+    "type": "sound-grapheme",
+    "order": 4,
+    "params": {
+      "phoneme": "o",
+      "cue": "o",
+      "itemIds": [
+        "g-a",
+        "g-o",
+        "g-u"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-1-5",
+    "lessonId": "l-bilan-1",
+    "type": "sound-grapheme",
+    "order": 5,
+    "params": {
+      "phoneme": "u",
+      "cue": "u",
+      "itemIds": [
+        "g-u",
+        "g-o",
+        "g-i"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-1-6",
+    "lessonId": "l-bilan-1",
+    "type": "sound-grapheme",
+    "order": 6,
+    "params": {
+      "phoneme": "é",
+      "cue": "é",
+      "itemIds": [
+        "g-i",
+        "g-e",
+        "g-e-aigu"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-2-1",
+    "lessonId": "l-bilan-2",
+    "type": "sound-grapheme",
+    "order": 1,
+    "params": {
+      "phoneme": "m",
+      "cue": "m",
+      "itemIds": [
+        "g-n",
+        "g-m",
+        "g-p"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-2-2",
+    "lessonId": "l-bilan-2",
+    "type": "sound-grapheme",
+    "order": 2,
+    "params": {
+      "phoneme": "t",
+      "cue": "t",
+      "itemIds": [
+        "g-l",
+        "g-d",
+        "g-t"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-2-3",
+    "lessonId": "l-bilan-2",
+    "type": "sound-grapheme",
+    "order": 3,
+    "params": {
+      "phoneme": "l",
+      "cue": "l",
+      "itemIds": [
+        "g-l",
+        "g-r",
+        "g-t"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-2-4",
+    "lessonId": "l-bilan-2",
+    "type": "sound-grapheme",
+    "order": 4,
+    "params": {
+      "phoneme": "d",
+      "cue": "d",
+      "itemIds": [
+        "g-d",
+        "g-t",
+        "g-b"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-2-5",
+    "lessonId": "l-bilan-2",
+    "type": "sound-grapheme",
+    "order": 5,
+    "params": {
+      "phoneme": "v",
+      "cue": "v",
+      "itemIds": [
+        "g-f",
+        "g-v",
+        "g-b"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-2-6",
+    "lessonId": "l-bilan-2",
+    "type": "sound-grapheme",
+    "order": 6,
+    "params": {
+      "phoneme": "j",
+      "cue": "j",
+      "itemIds": [
+        "g-v",
+        "g-s",
+        "g-j"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-3-1",
+    "lessonId": "l-bilan-3",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-chat",
+      "textItemId": "w-chat",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-chat",
+        "w-cheval",
+        "w-bebe"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-3-2",
+    "lessonId": "l-bilan-3",
+    "type": "picture-match",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-maman",
+      "textItemId": "w-maman",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-maman",
+        "w-maison",
+        "w-avion"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-3-3",
+    "lessonId": "l-bilan-3",
+    "type": "sound-grapheme",
+    "order": 3,
+    "params": {
+      "phoneme": "ta",
+      "cue": "ta",
+      "itemIds": [
+        "s-ta",
+        "s-la"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-3-4",
+    "lessonId": "l-bilan-3",
+    "type": "picture-match",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-ami",
+      "textItemId": "w-ami",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-avion",
+        "w-nez",
+        "w-ami"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-3-5",
+    "lessonId": "l-bilan-3",
+    "type": "sound-grapheme",
+    "order": 5,
+    "params": {
+      "phoneme": "ti",
+      "cue": "ti",
+      "itemIds": [
+        "s-ti",
+        "s-li"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-3-6",
+    "lessonId": "l-bilan-3",
+    "type": "sound-grapheme",
+    "order": 6,
+    "params": {
+      "phoneme": "mo",
+      "cue": "mo",
+      "itemIds": [
+        "s-mo",
+        "s-to"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-4-1",
+    "lessonId": "l-bilan-4",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-maman",
+      "textItemId": "w-maman",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-maman",
+        "w-maison",
+        "w-avion"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-4-2",
+    "lessonId": "l-bilan-4",
+    "type": "picture-match",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-papa",
+      "textItemId": "w-papa",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-pomme",
+        "w-poule",
+        "w-papa"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-4-3",
+    "lessonId": "l-bilan-4",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-ecole",
+      "textItemId": "w-ecole",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-ecole",
+        "w-avion",
+        "w-doigt"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-4-4",
+    "lessonId": "l-bilan-4",
+    "type": "picture-match",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-ami",
+      "textItemId": "w-ami",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-nez",
+        "w-ami",
+        "w-avion"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-4-5",
+    "lessonId": "l-bilan-4",
+    "type": "picture-match",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-chat",
+      "textItemId": "w-chat",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-chat",
+        "w-cheval",
+        "w-bebe"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-4-6",
+    "lessonId": "l-bilan-4",
+    "type": "picture-match",
+    "order": 6,
+    "params": {
+      "correctItemId": "w-fleur",
+      "textItemId": "w-fleur",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-doigt",
+        "w-fleur",
+        "w-avion"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-5-1",
+    "lessonId": "l-bilan-5",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-poisson",
+      "textItemId": "w-poisson",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-pomme",
+        "w-poule",
+        "w-poisson"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-5-2",
+    "lessonId": "l-bilan-5",
+    "type": "picture-match",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-maman",
+      "textItemId": "w-maman",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-avion",
+        "w-maman",
+        "w-maison"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-5-3",
+    "lessonId": "l-bilan-5",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-bonbon",
+      "textItemId": "w-bonbon",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-bonbon",
+        "w-ballon",
+        "w-banane"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-5-4",
+    "lessonId": "l-bilan-5",
+    "type": "picture-match",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-lapin",
+      "textItemId": "w-lapin",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-livre",
+        "w-loupe",
+        "w-lapin"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-5-5",
+    "lessonId": "l-bilan-5",
+    "type": "picture-match",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-bateau",
+      "textItemId": "w-bateau",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-banane",
+        "w-bateau",
+        "w-ballon"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-5-6",
+    "lessonId": "l-bilan-5",
+    "type": "sound-grapheme",
+    "order": 6,
+    "params": {
+      "phoneme": "oi",
+      "cue": "oi",
+      "itemIds": [
+        "g-oi",
+        "g-o",
+        "g-ou"
+      ]
+    }
+  },
+  {
+    "id": "e-bilan-6-1",
+    "lessonId": "l-bilan-6",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-chat",
+      "textItemId": "p-1",
+      "cue": "Lis la phrase. Qui dort ?",
+      "itemIds": [
+        "w-chat",
+        "w-papa",
+        "w-lapin"
+      ],
+      "question": "Qui dort ?"
+    }
+  },
+  {
+    "id": "e-bilan-6-2",
+    "lessonId": "l-bilan-6",
+    "type": "picture-match",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-livre",
+      "textItemId": "p-2",
+      "cue": "Lis la phrase. Que lit papa ?",
+      "itemIds": [
+        "w-pomme",
+        "w-ballon",
+        "w-livre"
+      ],
+      "question": "Que lit papa ?"
+    }
+  },
+  {
+    "id": "e-bilan-6-3",
+    "lessonId": "l-bilan-6",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-lune",
+      "textItemId": "p-3",
+      "cue": "Lis la phrase. De quoi parle la phrase ?",
+      "itemIds": [
+        "w-maison",
+        "w-lune",
+        "w-soleil"
+      ],
+      "question": "De quoi parle la phrase ?"
+    }
+  },
+  {
+    "id": "e-bilan-6-4",
+    "lessonId": "l-bilan-6",
+    "type": "picture-match",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-fleurs",
+      "textItemId": "p-4",
+      "cue": "Lis la phrase. Qu’est-ce que maman aime ?",
+      "itemIds": [
+        "w-fleurs",
+        "w-banane",
+        "w-bateau"
+      ],
+      "question": "Qu’est-ce que maman aime ?"
+    }
+  },
+  {
+    "id": "e-bilan-6-5",
+    "lessonId": "l-bilan-6",
+    "type": "picture-match",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-ecole",
+      "textItemId": "p-5",
+      "cue": "Lis la phrase. Où est-ce que je vais ?",
+      "itemIds": [
+        "w-maison",
+        "w-bateau",
+        "w-ecole"
+      ],
+      "question": "Où est-ce que je vais ?"
+    }
+  },
+  {
+    "id": "e-bilan-6-6",
+    "lessonId": "l-bilan-6",
+    "type": "word-recognition",
+    "order": 6,
+    "params": {
+      "correctItemId": "p-1",
+      "itemIds": [
+        "p-1",
+        "p-2",
+        "p-3"
       ]
     }
   }

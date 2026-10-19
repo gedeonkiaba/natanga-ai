@@ -25,7 +25,7 @@ it("retourne l'arbre avec les statuts de déblocage séquentiel", function () {
     $res = $this->getJson("/api/children/{$child->id}/skill-tree");
     $res->assertOk();
 
-    expect($res->json('nodes'))->toHaveCount(54); // 52 leçons du parcours + 2 nœuds de textes
+    expect($res->json('nodes'))->toHaveCount(60); // 52 leçons + 6 bilans du parcours + 2 nœuds de textes
     expect(array_slice(array_column($res->json('nodes'), 'status'), 0, 4))
         ->toBe(['available', 'locked', 'locked', 'locked']);
     expect($res->json('nodes.0.id'))->toBe('n-son-a');
@@ -112,7 +112,7 @@ it('sert le parcours de la base de connaissances : 6 niveaux, 52 leçons jouable
     $nodes = $this->getJson("/api/children/{$child->id}/skill-tree")->json('nodes');
     expect(array_slice(array_column($nodes, 'id'), 0, 4))->toBe(['n-son-a', 'n-son-e', 'n-son-i', 'n-son-o']);
     expect(array_slice(array_column($nodes, 'id'), -2))->toBe(['n-textes-courts', 'n-textes-fluide']);
-    expect(array_unique(array_column(array_slice($nodes, 0, 52), 'level')))
+    expect(array_unique(array_column(array_slice($nodes, 0, 58), 'level')))
         ->toEqualCanonicalizing(['sounds', 'letters', 'syllables', 'words', 'complex-sounds', 'sentences']);
 
     $a = $this->getJson('/api/lessons/l-son-a')->json();
@@ -135,7 +135,14 @@ it('sert le parcours de la base de connaissances : 6 niveaux, 52 leçons jouable
     expect($trace['params']['cue'])->toBe('Avec ton doigt, trace la lettre a');
 
     $phrase = $this->getJson('/api/lessons/l-phrase-1')->json('exercises');
-    expect($phrase)->toHaveCount(3);
+    expect($phrase)->toHaveCount(4);
+    // Compréhension : la phrase à lire, la question, des réponses en images.
+    expect($phrase[1]['type'])->toBe('picture-match');
+    expect($phrase[1]['params']['question'])->toBe('Qui dort ?');
+    expect(collect($phrase[1]['items'])->firstWhere('id', 'w-chat')['image'])->toBe('emoji:cat-face');
+
+    expect(collect($nodes)->firstWhere('id', 'n-bilan-1')['order'])->toBe(7);
+    expect($this->getJson('/api/lessons/l-bilan-1')->json('exercises'))->toHaveCount(6);
     expect(array_column($phrase[0]['items'], 'type'))->toBe(['sentence', 'sentence', 'sentence']);
 });
 

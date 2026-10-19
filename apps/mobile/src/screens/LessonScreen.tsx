@@ -13,6 +13,7 @@ import { useLessonSession } from '../hooks/useLessonSession';
 import { SoundGrapheme } from '../components/SoundGrapheme';
 import { WordRecognition } from '../components/WordRecognition';
 import { SyllableAssembly } from '../components/SyllableAssembly';
+import { PictureMatch } from '../components/PictureMatch';
 
 /** Durée d'affichage du retour avant l'exercice suivant (ms). */
 const FEEDBACK_MS = 1200;
@@ -111,6 +112,13 @@ export function LessonScreen({ lesson, onFinish, onQuit }: LessonScreenProps) {
 
       {exercise.type === 'sound-grapheme' ? (
         <SoundGrapheme
+          key={exercise.id}
+          exercise={exercise}
+          items={CURRICULUM_ITEMS}
+          onAnswer={onAnswer}
+        />
+      ) : exercise.type === 'picture-match' ? (
+        <PictureMatch
           key={exercise.id}
           exercise={exercise}
           items={CURRICULUM_ITEMS}

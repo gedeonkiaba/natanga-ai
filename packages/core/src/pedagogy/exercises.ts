@@ -71,7 +71,11 @@ export function choicesOf(exercise: Exercise, items: PedagogyItem[]): PedagogyIt
 
 /** Ce que la voix dit : le son (ou son mot-repère), ou le mot à trouver. */
 export function spokenPrompt(exercise: Exercise, items: PedagogyItem[]): string {
-  if (exercise.type === 'sound-grapheme' || exercise.type === 'tracing') {
+  if (
+    exercise.type === 'sound-grapheme' ||
+    exercise.type === 'tracing' ||
+    exercise.type === 'picture-match'
+  ) {
     return exercise.params.cue ?? exercise.params.phoneme ?? '';
   }
   return items.find((i) => i.id === exercise.params.correctItemId)?.phoneme ?? '';
@@ -99,9 +103,22 @@ export function checkSyllableAssembly(
   };
 }
 
+/** Lis et trouve l'image : la bonne image est celle du mot attendu. */
+export function checkPictureMatch(
+  exercise: Exercise,
+  items: PedagogyItem[],
+  chosenId: string,
+): AnswerCheck {
+  const id = exercise.params.correctItemId;
+  if (chosenId === id) return { correct: true, feedback: 'Bravo, tu as bien lu !', correctId: id };
+  const answer = items.find((i) => i.id === id)?.label ?? '';
+  return { correct: false, feedback: `Presque ! C’est « ${answer} ». On réessaie.`, correctId: id };
+}
+
 /** Types d'exercices jouables dans l'app Expo (le tracé au doigt est propre à l'app Flutter). */
 export const EXPO_EXERCISE_TYPES: ReadonlySet<Exercise['type']> = new Set([
   'sound-grapheme',
   'word-recognition',
   'syllable-assembly',
+  'picture-match',
 ]);

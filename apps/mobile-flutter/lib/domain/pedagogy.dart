@@ -15,6 +15,9 @@ enum ExerciseType {
 
   /// L'enfant repasse au doigt sur une lettre (voir `tracing.dart`).
   tracing,
+
+  /// L'enfant lit un mot ou une phrase (sans l'entendre) et touche l'image qui correspond.
+  pictureMatch,
 }
 
 enum NodeStatus { locked, available, inProgress, mastered }
@@ -60,6 +63,8 @@ class Exercise {
     this.cue,
     this.correctItemId,
     this.itemIds = const [],
+    this.textItemId,
+    this.question,
   });
   final String id;
   final String lessonId;
@@ -77,12 +82,18 @@ class Exercise {
 
   /// Choix proposés. Vide pour son ⇄ graphème = toutes les lettres.
   final List<String> itemIds;
+
+  /// Lis et trouve l'image : le mot ou la phrase à lire.
+  final String? textItemId;
+
+  /// Lis et trouve l'image : question de compréhension sur la phrase (« Qui dort ? »).
+  final String? question;
 }
 
 enum ItemType { grapheme, syllable, word, sentence }
 
 class PedagogyItem {
-  const PedagogyItem({required this.id, required this.type, required this.label, required this.phoneme, this.syllables = const []});
+  const PedagogyItem({required this.id, required this.type, required this.label, required this.phoneme, this.syllables = const [], this.image});
   final String id;
   final ItemType type;
   final String label;
@@ -90,6 +101,9 @@ class PedagogyItem {
 
   /// Découpage syllabique (mots : « ma », « man ») pour l'affichage bicolore.
   final List<String> syllables;
+
+  /// Image du mot (icône `emoji:…`, voir content/curriculum/images.csv).
+  final String? image;
 }
 
 // --- Contenu : généré depuis content/curriculum/*.csv (voir curriculum.g.dart) ---
@@ -121,7 +135,7 @@ List<PedagogyItem> choicesOf(Exercise exercise) {
 
 /// Ce que la voix dit pour poser la question : le son (ou son mot-repère), ou le mot à trouver.
 String spokenPrompt(Exercise exercise) => switch (exercise.type) {
-  ExerciseType.soundGrapheme || ExerciseType.tracing => exercise.cue ?? exercise.phoneme ?? '',
+  ExerciseType.soundGrapheme || ExerciseType.tracing || ExerciseType.pictureMatch => exercise.cue ?? exercise.phoneme ?? '',
   ExerciseType.wordRecognition || ExerciseType.syllableAssembly => itemById(exercise.correctItemId ?? '')?.phoneme ?? '',
 };
 
@@ -152,6 +166,13 @@ AnswerCheck checkWordRecognition(Exercise exercise, String chosenId) {
     feedback: 'Pas tout à fait. Regarde bien les lettres, on réessaie.',
     correctId: exercise.correctItemId,
   );
+}
+
+/// Lis et trouve l'image : la bonne image est celle du mot attendu.
+AnswerCheck checkPictureMatch(Exercise exercise, String chosenId) {
+  if (chosenId == exercise.correctItemId) return AnswerCheck(correct: true, feedback: 'Bravo, tu as bien lu !', correctId: chosenId);
+  final answer = itemById(exercise.correctItemId ?? '')?.label ?? '';
+  return AnswerCheck(correct: false, feedback: 'Presque ! C’est « $answer ». On réessaie.', correctId: exercise.correctItemId);
 }
 
 /// Assemblage : les syllabes choisies, dans l'ordre, doivent redonner le mot.

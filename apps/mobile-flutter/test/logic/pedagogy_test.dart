@@ -3,7 +3,7 @@ import 'package:natanga_mobile/domain/pedagogy.dart';
 
 void main() {
   group('contenu généré depuis la base de connaissances', () {
-    test('6 niveaux, 52 leçons : chaque nœud a une leçon jouable', () {
+    test('6 niveaux, 58 leçons (dont 6 bilans) : chaque nœud a une leçon jouable', () {
       expect(curriculumLevels.map((l) => l.name), [
         'Sons et écoute',
         'Lettres et sons',
@@ -12,7 +12,7 @@ void main() {
         'Sons complexes',
         'Phrases et compréhension',
       ]);
-      expect(curriculumNodes, hasLength(52));
+      expect(curriculumNodes, hasLength(58));
       expect(curriculumNodes.first.title, 'Le son /a/');
       for (final node in curriculumNodes) {
         final lesson = firstLessonOf(node.id);
@@ -21,7 +21,7 @@ void main() {
         expect(exercisesOf(lesson!.id).length, greaterThanOrEqualTo(3), reason: lesson.id);
       }
       // Déblocage strictement séquentiel.
-      expect([for (final n in curriculumNodes) n.unlockedWhen], [for (var i = 0; i < 52; i++) i]);
+      expect([for (final n in curriculumNodes) n.unlockedWhen], [for (var i = 0; i < 58; i++) i]);
     });
 
     test('chaque exercice propose une seule bonne réponse, un seul type de choix, une consigne orale', () {
@@ -63,6 +63,36 @@ void main() {
       final wrong = checkSyllableAssembly(maman, ['s-man', 's-ma']);
       expect(wrong.correct, isFalse);
       expect(wrong.feedback, 'Presque ! C’est « ma · man ». On réessaie.');
+    });
+
+    test('lis et trouve l’image : texte à lire, images seulement, une bonne réponse', () {
+      final matches = curriculumExercises.where((e) => e.type == ExerciseType.pictureMatch).toList();
+      expect(matches.length, greaterThanOrEqualTo(20));
+      for (final e in matches) {
+        expect(itemById(e.textItemId!), isNotNull, reason: e.id);
+        expect(choicesOf(e).every((c) => c.image != null), isTrue, reason: e.id);
+        expect(e.itemIds.where((id) => id == e.correctItemId), hasLength(1), reason: e.id);
+        // La voix ne lit jamais le texte à lire : seulement la consigne.
+        expect(spokenPrompt(e), isNot(contains(itemById(e.textItemId!)!.label)), reason: e.id);
+      }
+      final maman = exercisesOf('l-mot-maman').first;
+      expect(maman.type, ExerciseType.pictureMatch, reason: 'lire avant d’entendre');
+      expect(checkPictureMatch(maman, 'w-maman').feedback, 'Bravo, tu as bien lu !');
+      expect(checkPictureMatch(maman, maman.itemIds.firstWhere((i) => i != 'w-maman')).feedback, 'Presque ! C’est « maman ». On réessaie.');
+      final chat = exercisesOf('l-phrase-1')[1];
+      expect((chat.question, itemById(chat.textItemId!)!.label, chat.correctItemId), ('Qui dort ?', 'Le chat dort.', 'w-chat'));
+    });
+
+    test('bilan à la fin de chaque niveau : 6 exercices revus, sans tracé, sans mot-repère', () {
+      for (final level in curriculumLevels) {
+        final nodes = nodesOfLevel(level.key);
+        expect(nodes.last.id, 'n-bilan-${level.rank}');
+        expect(nodes.last.title, 'Bilan : ${level.name}');
+        final review = exercisesOf('l-bilan-${level.rank}');
+        expect(review, hasLength(6));
+        expect(review.any((e) => e.type == ExerciseType.tracing), isFalse);
+        expect(review.where((e) => e.cue?.contains('comme') ?? false), isEmpty);
+      }
     });
 
     test('tracé : une lettre par leçon de son, et b/d, p/q', () {

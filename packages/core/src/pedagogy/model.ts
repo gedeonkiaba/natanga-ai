@@ -22,7 +22,8 @@ export type ExerciseType =
   | 'sound-grapheme' // association son ⇄ graphème
   | 'word-recognition' // reconnaissance de mots (QCM)
   | 'syllable-assembly' // remettre les syllabes d'un mot dans l'ordre
-  | 'tracing'; // repasser au doigt sur une lettre (app Flutter)
+  | 'tracing' // repasser au doigt sur une lettre (app Flutter)
+  | 'picture-match'; // lire un mot ou une phrase, toucher l'image qui correspond
 
 /** Type d'item pédagogique. */
 export type ItemType = 'grapheme' | 'phoneme' | 'syllable' | 'word' | 'sentence';
@@ -65,6 +66,10 @@ export interface ExerciseParams {
   correctItemId?: string;
   /** Choix proposés. Absent pour son⇄graphème = toutes les lettres. */
   itemIds?: string[];
+  /** Lis et trouve l'image : le mot ou la phrase à lire (jamais dit par la voix). */
+  textItemId?: string;
+  /** Lis et trouve l'image : question de compréhension (« Qui dort ? »). */
+  question?: string;
 }
 
 /** Item pédagogique élémentaire (grapheme = lettre, phoneme = son, word = mot). */
@@ -77,6 +82,8 @@ export interface PedagogyItem {
   phoneme?: string;
   /** Découpage syllabique (mots : « ma », « man ») pour l'affichage bicolore. */
   syllables?: string[];
+  /** Image du mot : icône `emoji:…` (content/curriculum/images.csv). */
+  image?: string;
   /** URL audio (optionnel — le TTS sert de fallback). */
   audioUrl?: string;
   metadata?: Record<string, unknown>;

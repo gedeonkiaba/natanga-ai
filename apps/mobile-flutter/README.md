@@ -57,14 +57,15 @@ L'espace parent appelle l'API (`http://localhost:8000` par défaut). Sur télép
 
 ```bash
 flutter analyze
-flutter test        # 70 tests : API, session, logique, parcours complet (leçon, hors connexion, redémarrage)
+flutter test        # 72 tests : API, session, logique, parcours complet (leçon, hors connexion, redémarrage)
 flutter build web --release --no-web-resources-cdn   # aperçu navigateur, sans CDN
 ```
 
-Parcours : **6 niveaux, 52 leçons** générés depuis la base de connaissances
+Parcours : **6 niveaux, 58 leçons** (dont un bilan par niveau) générés depuis la base de connaissances
 `content/curriculum/*.csv` (`lib/domain/curriculum.g.dart`, identique à l'app Expo et à
 l'API — voir [docs/28](../../docs/28-parcours-pedagogique.md)). « Mon parcours » regroupe les
 leçons par niveau ; la voix pose chaque question (« a, comme dans avion », le mot ou la
 phrase à trouver) ; les mots s'affichent en syllabes bicolores. Exercices : son ⇄ lettre,
-reconnaissance, **assemblage de syllabes**, **tracé de lettres au doigt** (`lib/screens/exercises/`).
+reconnaissance, **lis et trouve l'image** (lecture seule, compréhension de phrases),
+**assemblage de syllabes**, **tracé de lettres au doigt** (`lib/screens/exercises/`).
 ⚠️ Contenu à faire valider par l'orthophoniste avant la bêta.
