@@ -25,7 +25,7 @@ it("retourne l'arbre avec les statuts de déblocage séquentiel", function () {
     $res = $this->getJson("/api/children/{$child->id}/skill-tree");
     $res->assertOk();
 
-    expect($res->json('nodes'))->toHaveCount(60); // 52 leçons + 6 bilans du parcours + 2 nœuds de textes
+    expect($res->json('nodes'))->toHaveCount(79); // 77 leçons du parcours (dont 7 bilans) + 2 nœuds de l'atelier de lecture
     expect(array_slice(array_column($res->json('nodes'), 'status'), 0, 4))
         ->toBe(['available', 'locked', 'locked', 'locked']);
     expect($res->json('nodes.0.id'))->toBe('n-son-a');
@@ -112,8 +112,8 @@ it('sert le parcours de la base de connaissances : 6 niveaux, 52 leçons jouable
     $nodes = $this->getJson("/api/children/{$child->id}/skill-tree")->json('nodes');
     expect(array_slice(array_column($nodes, 'id'), 0, 4))->toBe(['n-son-a', 'n-son-e', 'n-son-i', 'n-son-o']);
     expect(array_slice(array_column($nodes, 'id'), -2))->toBe(['n-textes-courts', 'n-textes-fluide']);
-    expect(array_unique(array_column(array_slice($nodes, 0, 58), 'level')))
-        ->toEqualCanonicalizing(['sounds', 'letters', 'syllables', 'words', 'complex-sounds', 'sentences']);
+    expect(array_unique(array_column(array_slice($nodes, 0, 77), 'level')))
+        ->toEqualCanonicalizing(['sounds', 'letters', 'syllables', 'words', 'complex-sounds', 'sentences', 'short-texts']);
 
     $a = $this->getJson('/api/lessons/l-son-a')->json();
     expect($a['objective'])->toBe('Reconnaître, entendre, associer et tracer le son /a/.');

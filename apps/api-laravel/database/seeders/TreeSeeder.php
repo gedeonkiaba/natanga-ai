@@ -39,8 +39,8 @@ class TreeSeeder extends Seeder
         ], PedagogySeeder::curriculum()['nodes']);
 
         $count = count($nodes);
-        $nodes[] = ['id' => 'n-textes-courts', 'level' => 'textes-courts', 'title' => 'Textes courts', 'order' => $count + 1, 'unlocked_when' => $count];
-        $nodes[] = ['id' => 'n-textes-fluide', 'level' => 'textes-fluide', 'title' => 'Lecture fluide', 'order' => $count + 2, 'unlocked_when' => $count + 1];
+        $nodes[] = ['id' => 'n-textes-courts', 'level' => 'textes-courts', 'title' => 'Atelier de lecture : textes courts', 'order' => $count + 1, 'unlocked_when' => $count];
+        $nodes[] = ['id' => 'n-textes-fluide', 'level' => 'textes-fluide', 'title' => 'Atelier de lecture : lecture fluide', 'order' => $count + 2, 'unlocked_when' => $count + 1];
 
         foreach ($nodes as $node) {
             DB::table('skill_nodes')->updateOrInsert(['id' => $node['id']], $node);

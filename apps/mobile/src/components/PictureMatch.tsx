@@ -41,7 +41,7 @@ export function PictureMatch({ exercise, items, onAnswer }: PictureMatchProps) {
     <View style={styles.container}>
       <Text variant="body">
         {question
-          ? 'Lis la phrase, puis réponds en touchant une image :'
+          ? `Lis ${exercise.params.cue?.startsWith('Lis le texte') ? 'le texte' : 'la phrase'}, puis réponds en touchant une image :`
           : 'Lis le mot, puis touche la bonne image :'}
       </Text>
       <TTSButton

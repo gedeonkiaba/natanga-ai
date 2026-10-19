@@ -63,6 +63,11 @@ function parseCsv(file) {
 const niveaux = parseCsv('niveaux.csv');
 /** Image (Fluent Emoji) de chaque mot illustrable : remplace `image_suggeree` de mots.csv. */
 const IMAGES = Object.fromEntries(parseCsv('images.csv').map((r) => [r.mot, `emoji:${r.emoji}`]));
+/** Questions de compréhension (phrases, textes) : réponse et pièges sont des mots illustrés. */
+const QUESTIONS = {};
+for (const r of parseCsv('questions.csv')) {
+  (QUESTIONS[r.lecon_id] ??= []).push({ question: r.question, answer: r.reponse, traps: r.pieges.split('|') });
+}
 const lecons = parseCsv('lecons.csv');
 const mots = parseCsv('mots.csv');
 
@@ -79,6 +84,8 @@ const SECOND_WORD = {
   a: 'papa', i: 'ami', o: 'robot', u: 'jupe', é: 'vélo',
   m: 'maman', p: 'pomme', t: 'bateau', s: 'poisson', l: 'lune', r: 'fleur', n: 'banane',
   d: 'dodo', v: 'cheval', b: 'bonbon', ch: 'cheval', ou: 'poule', oi: 'doigt', an: 'éléphant', on: 'lion',
+  c: 'cadeau', g: 'gorille', ai: 'maison', ei: 'baleine', au: 'chaussure', eu: 'fleur', en: 'enfant',
+  gn: 'araignée', ill: 'chenille', ph: 'éléphant', qu: 'requin', gu: 'bague',
 };
 
 /** Lettres ou sons proches (miroir, son voisin) proposés comme distracteurs. */
@@ -87,11 +94,18 @@ const CONFUSABLE = {
   m: ['n', 'p'], p: ['q', 'b'], t: ['d', 'l'], s: ['f', 'r'], l: ['t', 'r'], r: ['l', 'n'],
   n: ['m', 'r'], d: ['b', 't'], f: ['v', 's'], v: ['f', 'b'], b: ['d', 'p'], j: ['s', 'v'],
   ch: ['s', 'j'], ou: ['u', 'o'], oi: ['ou', 'o'], an: ['on', 'in'], on: ['an', 'ou'],
-  in: ['an', 'on'], eau: ['o', 'ou'],
+  in: ['an', 'on'], eau: ['ou', 'an'],
+  // Jamais d'homophone (ai/ei, en/an, au/o, ph/f, qu/c, gu/g) : l'oreille ne peut pas choisir.
+  c: ['g', 't'], g: ['c', 'j'], z: ['s', 'j'],
+  ai: ['oi', 'au'], ei: ['eu', 'oi'], au: ['ou', 'an'], eu: ['ou', 'au'], en: ['on', 'in'],
+  gn: ['n', 'ill'], ill: ['gn', 'l'], ph: ['p', 'v'], qu: ['gu', 'p'], gu: ['qu', 'j'],
 };
 
 /** Ce que dit la voix pour un graphème isolé (le TTS épellerait « ch » ou « q »). */
-const SAY = { ch: 'che', q: 'ku' };
+const SAY = {
+  ch: 'che', q: 'ku', c: 'ka', g: 'gue', ph: 'fe', gn: 'gne', ill: 'ille', qu: 'ke', gu: 'gue',
+  ai: 'è', ei: 'è', au: 'o', en: 'an',
+};
 
 /** Syllabes voisines : même voyelle / même consonne, et l'inversion (ma → am). */
 const SYLLABLE_NEAR = {
@@ -104,6 +118,9 @@ const SYLLABLE_WORD = { ma: 'maman', pa: 'papa', la: 'lapin', mi: 'ami', li: 'li
 const EXTRA_WORDS = {
   bon: 'bon', don: 'don', bébé: 'bé-bé', dodo: 'do-do', pomme: 'pom-me', poule: 'pou-le',
   quatre: 'qua-tre', coq: 'coq', doigt: 'doigt', cheval: 'che-val',
+  // Seconds mots des sons ajoutés (c, g, ai, ei, au, en, gn, ill, qu, gu)
+  cadeau: 'ca-deau', gorille: 'go-ril-le', baleine: 'ba-lei-ne', chaussure: 'chaus-su-re',
+  enfant: 'en-fant', araignée: 'a-rai-gnée', chenille: 'che-nil-le', requin: 're-quin', bague: 'ba-gue',
 };
 
 /** Mots des phrases du niveau 6 : jamais distracteurs ailleurs (« fleurs » sonne comme « fleur »). */
@@ -115,15 +132,6 @@ const SENTENCE_WORDS = {
 /** Mots à faire retrouver dans chaque phrase (niveau 6), dans l'ordre des leçons. */
 const SENTENCE_TARGETS = [
   ['chat', 'dort'], ['livre', 'lit'], ['lune', 'belle'], ['fleurs', 'aime'], ['école', 'vais'],
-];
-
-/** Question de compréhension de chaque phrase (niveau 6) : réponse en image + 2 images pièges. */
-const SENTENCE_QUESTIONS = [
-  ['Qui dort ?', 'chat', ['papa', 'lapin']],
-  ['Que lit papa ?', 'livre', ['pomme', 'ballon']],
-  ['De quoi parle la phrase ?', 'lune', ['soleil', 'maison']],
-  ['Qu’est-ce que maman aime ?', 'fleurs', ['banane', 'bateau']],
-  ['Où est-ce que je vais ?', 'école', ['maison', 'bateau']],
 ];
 
 /** Pseudo-mot à une lettre près (attention visuelle) : première lettre trouvée remplacée. */
@@ -157,7 +165,9 @@ const MIRROR_LESSONS = [
   },
 ];
 
-const LEVEL_KEYS = { 1: 'sounds', 2: 'letters', 3: 'syllables', 4: 'words', 5: 'complex-sounds', 6: 'sentences' };
+const LEVEL_KEYS = {
+  1: 'sounds', 2: 'letters', 3: 'syllables', 4: 'words', 5: 'complex-sounds', 6: 'sentences', 7: 'short-texts',
+};
 
 // --- Items ---
 
@@ -263,8 +273,10 @@ const wr = (lessonId, id, target, choiceIds) =>
 /** Tracé au doigt : une seule lettre (ou un son écrit en plusieurs lettres : ou, ch, eau). */
 const tr = (lessonId, id, g) => {
   const label = items.get(g).label;
-  const say = SAY[label] ?? label;
-  const cue = [...label].length > 1 ? `Avec ton doigt, trace ${say}` : `Avec ton doigt, trace la lettre ${say}`;
+  // On trace des lettres : la voix les nomme (« cé », « les lettres a, i »), pas le son.
+  const letters = [...label];
+  const cue =
+    letters.length > 1 ? `Avec ton doigt, trace les lettres ${letters.join(', ')}` : `Avec ton doigt, trace la lettre ${label}`;
   addExercise(lessonId, id, 'tracing', { correctItemId: g, cue, itemIds: [g] });
 };
 
@@ -272,12 +284,12 @@ const tr = (lessonId, id, g) => {
  * « Lis et trouve l'image » : l'enfant lit (sans l'entendre) un mot ou une phrase, puis touche
  * l'image qui correspond. Vraie lecture : de l'écrit vers le sens.
  */
-const pictureMatch = (lessonId, id, answer, distractors, seed, { textItemId, question } = {}) => {
+const pictureMatch = (lessonId, id, answer, distractors, seed, { textItemId, question, unit = 'la phrase' } = {}) => {
   const answerId = word(answer);
   const params = {
     correctItemId: answerId,
     textItemId: textItemId ?? answerId,
-    cue: question ? `Lis la phrase. ${question}` : 'Lis le mot, puis touche la bonne image.',
+    cue: question ? `Lis ${unit}. ${question}` : 'Lis le mot, puis touche la bonne image.',
     itemIds: rotate([answer, ...distractors].map(word), seed),
   };
   if (question) params.question = question;
@@ -317,6 +329,7 @@ const assemble = (lessonId, id, w, seed) => {
 
 const byLevel = [...lecons].sort((a, b) => a.niveau_id - b.niveau_id || a.ordre - b.ordre);
 let sentenceIndex = 0;
+let textIndex = 0;
 for (const [index, l] of byLevel.entries()) {
   const level = LEVEL_KEYS[l.niveau_id];
   const mot = motByLesson.get(l.id);
@@ -335,7 +348,7 @@ for (const [index, l] of byLevel.entries()) {
     const notTarget = (w) => w.includes(target);
     wr(lessonId, `e-son-${key}-2`, word(cueWord), rotate([cueWord, ...similarWords(cueWord, 2, notTarget)].map(word), k));
     // Sons complexes (et ch/ou) : l'enfant sait lire des mots ; il lit le mot-repère.
-    if (level === 'complex-sounds' || level === 'syllables') {
+    if ((level === 'complex-sounds' || level === 'syllables') && IMAGES[cueWord]) {
       pictureMatch(lessonId, `e-son-${key}-image`, cueWord, imagedLike(cueWord, 2), k);
     }
     sg(lessonId, `e-son-${key}-3`, g, say, rotate([c1, g, c2], k));
@@ -373,6 +386,9 @@ for (const [index, l] of byLevel.entries()) {
     wr(lessonId, `e-mot-${key}-2`, w, rotate([d3, w, d4], k));
     wr(lessonId, `e-mot-${key}-3`, w, rotate([lookalike(target), w], k));
     if (items.get(w).syllables.length > 1) assemble(lessonId, `e-mot-${key}-assemble`, target, k);
+  } else if (l.titre.startsWith('Texte')) {
+    textIndex++;
+    addNode(level, `n-texte-${textIndex}`, `l-texte-${textIndex}`, l.titre, l.objectif, Number(l.duree_minutes));
   } else if (l.titre.startsWith('Phrase')) {
     sentenceIndex++;
     const lessonId = `l-phrase-${sentenceIndex}`;
@@ -409,11 +425,32 @@ sentences.forEach((m, i) => {
   const lessonId = `l-phrase-${i + 1}`;
   const others = [sentenceIds[(i + 1) % sentenceIds.length], sentenceIds[(i + 2) % sentenceIds.length]];
   wr(lessonId, `e-phrase-${i + 1}-1`, sentenceIds[i], rotate([sentenceIds[i], ...others], i));
-  const [question, answer, traps] = SENTENCE_QUESTIONS[i];
+  const [{ question, answer, traps }] = QUESTIONS[m.lecon_id];
   pictureMatch(lessonId, `e-phrase-${i + 1}-sens`, answer, traps, i, { textItemId: sentenceIds[i], question });
   const words = tokens(m.mot).map(word);
   SENTENCE_TARGETS[i].forEach((t, j) => wr(lessonId, `e-phrase-${i + 1}-${j + 2}`, word(t), words));
 });
+
+// Textes courts : le texte entier se lit seul, deux questions de compréhension, une phrase
+// et un mot à retrouver à l'oreille.
+const splitSentences = (t) => t.split(/(?<=[.!?])\s+/);
+byLevel
+  .filter((l) => l.titre.startsWith('Texte'))
+  .forEach((l, i) => {
+    const m = motByLesson.get(l.id);
+    const n = i + 1;
+    const lessonId = `l-texte-${n}`;
+    const textId = add({ id: `t-${n}`, type: 'sentence', label: m.mot, phoneme: m.audio_text, syllables: m.syllabes.split(' ') });
+    const syl = splitSentences(m.syllabes);
+    const sentenceIds = splitSentences(m.mot).map((label, j) =>
+      add({ id: `p-t${n}-${j + 1}`, type: 'sentence', label, phoneme: label, syllables: syl[j].split(' ') }),
+    );
+    const [q1, q2] = QUESTIONS[l.id];
+    pictureMatch(lessonId, `e-texte-${n}-1`, q1.answer, q1.traps, i, { textItemId: textId, question: q1.question, unit: 'le texte' });
+    wr(lessonId, `e-texte-${n}-2`, sentenceIds[1], rotate(sentenceIds, i));
+    pictureMatch(lessonId, `e-texte-${n}-3`, q2.answer, q2.traps, i + 1, { textItemId: textId, question: q2.question, unit: 'le texte' });
+    wr(lessonId, `e-texte-${n}-4`, word(q2.answer), rotate([q2.answer, q1.answer, q2.traps[0]].map(word), i));
+  });
 
 // --- Bilans : une leçon de révision à la fin de chaque niveau ---
 

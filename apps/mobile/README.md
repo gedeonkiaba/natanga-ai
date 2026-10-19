@@ -19,7 +19,7 @@ Aperçu web d'un écran précis : `#home`, `#profile`, `#reading`, `#achievement
   « Quitter » et le retour Android ramènent aussi au parcours.
 - Après chaque réponse, le retour (« Bravo ! », « Presque ! C'est « a » ») reste 1,2 s sur
   l'exercice en cours ; les touches en trop sont ignorées (une réponse comptée).
-- Parcours de 6 niveaux et 58 leçons (dont un bilan par niveau), généré depuis `content/curriculum/*.csv`
+- Parcours de 7 niveaux et 77 leçons (dont un bilan par niveau), généré depuis `content/curriculum/*.csv`
   (`packages/core/src/pedagogy/curriculum.generated.ts`, voir `docs/28-parcours-pedagogique.md`).
   La voix dit la consigne (« a, comme dans avion », ou le mot à trouver). L'assemblage de
   syllabes et « lis et trouve l'image » sont jouables ; le tracé au doigt n'existe que dans l'app Flutter (sauté ici).

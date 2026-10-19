@@ -37,6 +37,12 @@ export const CURRICULUM_LEVELS: CurriculumLevel[] = [
     "key": "sentences",
     "name": "Phrases et compréhension",
     "objective": "Lire et comprendre de courtes phrases"
+  },
+  {
+    "rank": 7,
+    "key": "short-texts",
+    "name": "Textes courts",
+    "objective": "Lire et comprendre un petit texte de quelques phrases"
   }
 ];
 
@@ -175,277 +181,410 @@ export const CURRICULUM_NODES: SkillNode[] = [
     "unlockedWhen": 18
   },
   {
+    "id": "n-son-c",
+    "level": "letters",
+    "title": "Le son /k/ écrit c",
+    "order": 20,
+    "unlockedWhen": 19
+  },
+  {
+    "id": "n-son-g",
+    "level": "letters",
+    "title": "Le son /g/ écrit g",
+    "order": 21,
+    "unlockedWhen": 20
+  },
+  {
+    "id": "n-son-z",
+    "level": "letters",
+    "title": "Le son /z/",
+    "order": 22,
+    "unlockedWhen": 21
+  },
+  {
     "id": "n-letters-bd",
     "level": "letters",
     "title": "b ou d ?",
-    "order": 20,
-    "unlockedWhen": 19
+    "order": 23,
+    "unlockedWhen": 22
   },
   {
     "id": "n-letters-pq",
     "level": "letters",
     "title": "p ou q ?",
-    "order": 21,
-    "unlockedWhen": 20
+    "order": 24,
+    "unlockedWhen": 23
   },
   {
     "id": "n-bilan-2",
     "level": "letters",
     "title": "Bilan : Lettres et sons",
-    "order": 22,
-    "unlockedWhen": 21
+    "order": 25,
+    "unlockedWhen": 24
   },
   {
     "id": "n-son-ch",
     "level": "syllables",
     "title": "Le son /ch/",
-    "order": 23,
-    "unlockedWhen": 22
+    "order": 26,
+    "unlockedWhen": 25
   },
   {
     "id": "n-son-ou",
     "level": "syllables",
     "title": "Le son /ou/",
-    "order": 24,
-    "unlockedWhen": 23
+    "order": 27,
+    "unlockedWhen": 26
   },
   {
     "id": "n-syl-ma",
     "level": "syllables",
     "title": "La syllabe « ma »",
-    "order": 25,
-    "unlockedWhen": 24
+    "order": 28,
+    "unlockedWhen": 27
   },
   {
     "id": "n-syl-pa",
     "level": "syllables",
     "title": "La syllabe « pa »",
-    "order": 26,
-    "unlockedWhen": 25
+    "order": 29,
+    "unlockedWhen": 28
   },
   {
     "id": "n-syl-ta",
     "level": "syllables",
     "title": "La syllabe « ta »",
-    "order": 27,
-    "unlockedWhen": 26
+    "order": 30,
+    "unlockedWhen": 29
   },
   {
     "id": "n-syl-la",
     "level": "syllables",
     "title": "La syllabe « la »",
-    "order": 28,
-    "unlockedWhen": 27
+    "order": 31,
+    "unlockedWhen": 30
   },
   {
     "id": "n-syl-mi",
     "level": "syllables",
     "title": "La syllabe « mi »",
-    "order": 29,
-    "unlockedWhen": 28
+    "order": 32,
+    "unlockedWhen": 31
   },
   {
     "id": "n-syl-pi",
     "level": "syllables",
     "title": "La syllabe « pi »",
-    "order": 30,
-    "unlockedWhen": 29
+    "order": 33,
+    "unlockedWhen": 32
   },
   {
     "id": "n-syl-ti",
     "level": "syllables",
     "title": "La syllabe « ti »",
-    "order": 31,
-    "unlockedWhen": 30
+    "order": 34,
+    "unlockedWhen": 33
   },
   {
     "id": "n-syl-li",
     "level": "syllables",
     "title": "La syllabe « li »",
-    "order": 32,
-    "unlockedWhen": 31
+    "order": 35,
+    "unlockedWhen": 34
   },
   {
     "id": "n-syl-mo",
     "level": "syllables",
     "title": "La syllabe « mo »",
-    "order": 33,
-    "unlockedWhen": 32
+    "order": 36,
+    "unlockedWhen": 35
   },
   {
     "id": "n-syl-to",
     "level": "syllables",
     "title": "La syllabe « to »",
-    "order": 34,
-    "unlockedWhen": 33
+    "order": 37,
+    "unlockedWhen": 36
   },
   {
     "id": "n-bilan-3",
     "level": "syllables",
     "title": "Bilan : Syllabes",
-    "order": 35,
-    "unlockedWhen": 34
+    "order": 38,
+    "unlockedWhen": 37
   },
   {
     "id": "n-mot-maman",
     "level": "words",
     "title": "Le mot « maman »",
-    "order": 36,
-    "unlockedWhen": 35
+    "order": 39,
+    "unlockedWhen": 38
   },
   {
     "id": "n-mot-papa",
     "level": "words",
     "title": "Le mot « papa »",
-    "order": 37,
-    "unlockedWhen": 36
+    "order": 40,
+    "unlockedWhen": 39
   },
   {
     "id": "n-mot-livre",
     "level": "words",
     "title": "Le mot « livre »",
-    "order": 38,
-    "unlockedWhen": 37
+    "order": 41,
+    "unlockedWhen": 40
   },
   {
     "id": "n-mot-ecole",
     "level": "words",
     "title": "Le mot « école »",
-    "order": 39,
-    "unlockedWhen": 38
+    "order": 42,
+    "unlockedWhen": 41
   },
   {
     "id": "n-mot-maison",
     "level": "words",
     "title": "Le mot « maison »",
-    "order": 40,
-    "unlockedWhen": 39
+    "order": 43,
+    "unlockedWhen": 42
   },
   {
     "id": "n-mot-ami",
     "level": "words",
     "title": "Le mot « ami »",
-    "order": 41,
-    "unlockedWhen": 40
+    "order": 44,
+    "unlockedWhen": 43
   },
   {
     "id": "n-mot-chat",
     "level": "words",
     "title": "Le mot « chat »",
-    "order": 42,
-    "unlockedWhen": 41
+    "order": 45,
+    "unlockedWhen": 44
   },
   {
     "id": "n-mot-lune",
     "level": "words",
     "title": "Le mot « lune »",
-    "order": 43,
-    "unlockedWhen": 42
+    "order": 46,
+    "unlockedWhen": 45
   },
   {
     "id": "n-mot-fleur",
     "level": "words",
     "title": "Le mot « fleur »",
-    "order": 44,
-    "unlockedWhen": 43
+    "order": 47,
+    "unlockedWhen": 46
   },
   {
     "id": "n-mot-velo",
     "level": "words",
     "title": "Le mot « vélo »",
-    "order": 45,
-    "unlockedWhen": 44
+    "order": 48,
+    "unlockedWhen": 47
   },
   {
     "id": "n-bilan-4",
     "level": "words",
     "title": "Bilan : Mots simples",
-    "order": 46,
-    "unlockedWhen": 45
+    "order": 49,
+    "unlockedWhen": 48
   },
   {
     "id": "n-son-oi",
     "level": "complex-sounds",
     "title": "Le son /oi/",
-    "order": 47,
-    "unlockedWhen": 46
+    "order": 50,
+    "unlockedWhen": 49
   },
   {
     "id": "n-son-an",
     "level": "complex-sounds",
     "title": "Le son /an/",
-    "order": 48,
-    "unlockedWhen": 47
+    "order": 51,
+    "unlockedWhen": 50
   },
   {
     "id": "n-son-on",
     "level": "complex-sounds",
     "title": "Le son /on/",
-    "order": 49,
-    "unlockedWhen": 48
+    "order": 52,
+    "unlockedWhen": 51
   },
   {
     "id": "n-son-in",
     "level": "complex-sounds",
     "title": "Le son /in/",
-    "order": 50,
-    "unlockedWhen": 49
+    "order": 53,
+    "unlockedWhen": 52
   },
   {
     "id": "n-son-eau",
     "level": "complex-sounds",
     "title": "Le son /eau/",
-    "order": 51,
-    "unlockedWhen": 50
+    "order": 54,
+    "unlockedWhen": 53
+  },
+  {
+    "id": "n-son-ai",
+    "level": "complex-sounds",
+    "title": "Le son /è/ écrit ai",
+    "order": 55,
+    "unlockedWhen": 54
+  },
+  {
+    "id": "n-son-ei",
+    "level": "complex-sounds",
+    "title": "Le son /è/ écrit ei",
+    "order": 56,
+    "unlockedWhen": 55
+  },
+  {
+    "id": "n-son-au",
+    "level": "complex-sounds",
+    "title": "Le son /o/ écrit au",
+    "order": 57,
+    "unlockedWhen": 56
+  },
+  {
+    "id": "n-son-eu",
+    "level": "complex-sounds",
+    "title": "Le son /eu/",
+    "order": 58,
+    "unlockedWhen": 57
+  },
+  {
+    "id": "n-son-en",
+    "level": "complex-sounds",
+    "title": "Le son /an/ écrit en",
+    "order": 59,
+    "unlockedWhen": 58
+  },
+  {
+    "id": "n-son-gn",
+    "level": "complex-sounds",
+    "title": "Le son /gn/",
+    "order": 60,
+    "unlockedWhen": 59
+  },
+  {
+    "id": "n-son-ill",
+    "level": "complex-sounds",
+    "title": "Le son /ill/",
+    "order": 61,
+    "unlockedWhen": 60
+  },
+  {
+    "id": "n-son-ph",
+    "level": "complex-sounds",
+    "title": "Le son /f/ écrit ph",
+    "order": 62,
+    "unlockedWhen": 61
+  },
+  {
+    "id": "n-son-qu",
+    "level": "complex-sounds",
+    "title": "Le son /k/ écrit qu",
+    "order": 63,
+    "unlockedWhen": 62
+  },
+  {
+    "id": "n-son-gu",
+    "level": "complex-sounds",
+    "title": "Le son /g/ écrit gu",
+    "order": 64,
+    "unlockedWhen": 63
   },
   {
     "id": "n-bilan-5",
     "level": "complex-sounds",
     "title": "Bilan : Sons complexes",
-    "order": 52,
-    "unlockedWhen": 51
+    "order": 65,
+    "unlockedWhen": 64
   },
   {
     "id": "n-phrase-1",
     "level": "sentences",
     "title": "Phrase : « Le chat dort. »",
-    "order": 53,
-    "unlockedWhen": 52
+    "order": 66,
+    "unlockedWhen": 65
   },
   {
     "id": "n-phrase-2",
     "level": "sentences",
     "title": "Phrase : « Papa lit un livre. »",
-    "order": 54,
-    "unlockedWhen": 53
+    "order": 67,
+    "unlockedWhen": 66
   },
   {
     "id": "n-phrase-3",
     "level": "sentences",
     "title": "Phrase : « La lune est belle. »",
-    "order": 55,
-    "unlockedWhen": 54
+    "order": 68,
+    "unlockedWhen": 67
   },
   {
     "id": "n-phrase-4",
     "level": "sentences",
     "title": "Phrase : « Maman aime les fleurs. »",
-    "order": 56,
-    "unlockedWhen": 55
+    "order": 69,
+    "unlockedWhen": 68
   },
   {
     "id": "n-phrase-5",
     "level": "sentences",
     "title": "Phrase : « Je vais à l’école. »",
-    "order": 57,
-    "unlockedWhen": 56
+    "order": 70,
+    "unlockedWhen": 69
   },
   {
     "id": "n-bilan-6",
     "level": "sentences",
     "title": "Bilan : Phrases et compréhension",
-    "order": 58,
-    "unlockedWhen": 57
+    "order": 71,
+    "unlockedWhen": 70
+  },
+  {
+    "id": "n-texte-1",
+    "level": "short-texts",
+    "title": "Texte : « Le petit chat »",
+    "order": 72,
+    "unlockedWhen": 71
+  },
+  {
+    "id": "n-texte-2",
+    "level": "short-texts",
+    "title": "Texte : « À la mer »",
+    "order": 73,
+    "unlockedWhen": 72
+  },
+  {
+    "id": "n-texte-3",
+    "level": "short-texts",
+    "title": "Texte : « La fête de bébé »",
+    "order": 74,
+    "unlockedWhen": 73
+  },
+  {
+    "id": "n-texte-4",
+    "level": "short-texts",
+    "title": "Texte : « La neige »",
+    "order": 75,
+    "unlockedWhen": 74
+  },
+  {
+    "id": "n-texte-5",
+    "level": "short-texts",
+    "title": "Texte : « Au zoo »",
+    "order": 76,
+    "unlockedWhen": 75
+  },
+  {
+    "id": "n-bilan-7",
+    "level": "short-texts",
+    "title": "Bilan : Textes courts",
+    "order": 77,
+    "unlockedWhen": 76
   }
 ];
 
@@ -591,6 +730,30 @@ export const CURRICULUM_LESSONS: Lesson[] = [
     "nodeId": "n-son-j",
     "title": "Le son /j/",
     "objective": "Reconnaître, entendre, associer et tracer le son /j/.",
+    "durationMin": 7,
+    "order": 1
+  },
+  {
+    "id": "l-son-c",
+    "nodeId": "n-son-c",
+    "title": "Le son /k/ écrit c",
+    "objective": "Reconnaître, entendre, associer et tracer le son /k/ écrit c.",
+    "durationMin": 7,
+    "order": 1
+  },
+  {
+    "id": "l-son-g",
+    "nodeId": "n-son-g",
+    "title": "Le son /g/ écrit g",
+    "objective": "Reconnaître, entendre, associer et tracer le son /g/ écrit g.",
+    "durationMin": 7,
+    "order": 1
+  },
+  {
+    "id": "l-son-z",
+    "nodeId": "n-son-z",
+    "title": "Le son /z/",
+    "objective": "Reconnaître, entendre, associer et tracer le son /z/.",
     "durationMin": 7,
     "order": 1
   },
@@ -827,6 +990,86 @@ export const CURRICULUM_LESSONS: Lesson[] = [
     "order": 1
   },
   {
+    "id": "l-son-ai",
+    "nodeId": "n-son-ai",
+    "title": "Le son /è/ écrit ai",
+    "objective": "Reconnaître, entendre, associer et tracer le son /è/ écrit ai.",
+    "durationMin": 7,
+    "order": 1
+  },
+  {
+    "id": "l-son-ei",
+    "nodeId": "n-son-ei",
+    "title": "Le son /è/ écrit ei",
+    "objective": "Reconnaître, entendre, associer et tracer le son /è/ écrit ei.",
+    "durationMin": 7,
+    "order": 1
+  },
+  {
+    "id": "l-son-au",
+    "nodeId": "n-son-au",
+    "title": "Le son /o/ écrit au",
+    "objective": "Reconnaître, entendre, associer et tracer le son /o/ écrit au.",
+    "durationMin": 7,
+    "order": 1
+  },
+  {
+    "id": "l-son-eu",
+    "nodeId": "n-son-eu",
+    "title": "Le son /eu/",
+    "objective": "Reconnaître, entendre, associer et tracer le son /eu/.",
+    "durationMin": 7,
+    "order": 1
+  },
+  {
+    "id": "l-son-en",
+    "nodeId": "n-son-en",
+    "title": "Le son /an/ écrit en",
+    "objective": "Reconnaître, entendre, associer et tracer le son /an/ écrit en.",
+    "durationMin": 7,
+    "order": 1
+  },
+  {
+    "id": "l-son-gn",
+    "nodeId": "n-son-gn",
+    "title": "Le son /gn/",
+    "objective": "Reconnaître, entendre, associer et tracer le son /gn/.",
+    "durationMin": 7,
+    "order": 1
+  },
+  {
+    "id": "l-son-ill",
+    "nodeId": "n-son-ill",
+    "title": "Le son /ill/",
+    "objective": "Reconnaître, entendre, associer et tracer le son /ill/.",
+    "durationMin": 7,
+    "order": 1
+  },
+  {
+    "id": "l-son-ph",
+    "nodeId": "n-son-ph",
+    "title": "Le son /f/ écrit ph",
+    "objective": "Reconnaître, entendre, associer et tracer le son /f/ écrit ph.",
+    "durationMin": 7,
+    "order": 1
+  },
+  {
+    "id": "l-son-qu",
+    "nodeId": "n-son-qu",
+    "title": "Le son /k/ écrit qu",
+    "objective": "Reconnaître, entendre, associer et tracer le son /k/ écrit qu.",
+    "durationMin": 7,
+    "order": 1
+  },
+  {
+    "id": "l-son-gu",
+    "nodeId": "n-son-gu",
+    "title": "Le son /g/ écrit gu",
+    "objective": "Reconnaître, entendre, associer et tracer le son /g/ écrit gu.",
+    "durationMin": 7,
+    "order": 1
+  },
+  {
     "id": "l-phrase-1",
     "nodeId": "n-phrase-1",
     "title": "Phrase : « Le chat dort. »",
@@ -864,6 +1107,46 @@ export const CURRICULUM_LESSONS: Lesson[] = [
     "title": "Phrase : « Je vais à l’école. »",
     "objective": "Écouter, lire et comprendre la phrase « Je vais à l’école. ».",
     "durationMin": 8,
+    "order": 1
+  },
+  {
+    "id": "l-texte-1",
+    "nodeId": "n-texte-1",
+    "title": "Texte : « Le petit chat »",
+    "objective": "Lire seul un petit texte et répondre aux questions.",
+    "durationMin": 10,
+    "order": 1
+  },
+  {
+    "id": "l-texte-2",
+    "nodeId": "n-texte-2",
+    "title": "Texte : « À la mer »",
+    "objective": "Lire seul un petit texte et répondre aux questions.",
+    "durationMin": 10,
+    "order": 1
+  },
+  {
+    "id": "l-texte-3",
+    "nodeId": "n-texte-3",
+    "title": "Texte : « La fête de bébé »",
+    "objective": "Lire seul un petit texte et répondre aux questions.",
+    "durationMin": 10,
+    "order": 1
+  },
+  {
+    "id": "l-texte-4",
+    "nodeId": "n-texte-4",
+    "title": "Texte : « La neige »",
+    "objective": "Lire seul un petit texte et répondre aux questions.",
+    "durationMin": 10,
+    "order": 1
+  },
+  {
+    "id": "l-texte-5",
+    "nodeId": "n-texte-5",
+    "title": "Texte : « Au zoo »",
+    "objective": "Lire seul un petit texte et répondre aux questions.",
+    "durationMin": 10,
     "order": 1
   },
   {
@@ -911,6 +1194,14 @@ export const CURRICULUM_LESSONS: Lesson[] = [
     "nodeId": "n-bilan-6",
     "title": "Bilan : Phrases et compréhension",
     "objective": "Je revois tout le niveau 6 : lire et comprendre de courtes phrases.",
+    "durationMin": 6,
+    "order": 1
+  },
+  {
+    "id": "l-bilan-7",
+    "nodeId": "n-bilan-7",
+    "title": "Bilan : Textes courts",
+    "objective": "Je revois tout le niveau 7 : lire et comprendre un petit texte de quelques phrases.",
     "durationMin": 6,
     "order": 1
   }
@@ -1044,6 +1335,27 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": []
   },
   {
+    "id": "g-c",
+    "type": "grapheme",
+    "label": "c",
+    "phoneme": "c",
+    "syllables": []
+  },
+  {
+    "id": "g-g",
+    "type": "grapheme",
+    "label": "g",
+    "phoneme": "g",
+    "syllables": []
+  },
+  {
+    "id": "g-z",
+    "type": "grapheme",
+    "label": "z",
+    "phoneme": "z",
+    "syllables": []
+  },
+  {
     "id": "g-ch",
     "type": "grapheme",
     "label": "ch",
@@ -1090,6 +1402,76 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "type": "grapheme",
     "label": "eau",
     "phoneme": "eau",
+    "syllables": []
+  },
+  {
+    "id": "g-ai",
+    "type": "grapheme",
+    "label": "ai",
+    "phoneme": "ai",
+    "syllables": []
+  },
+  {
+    "id": "g-ei",
+    "type": "grapheme",
+    "label": "ei",
+    "phoneme": "ei",
+    "syllables": []
+  },
+  {
+    "id": "g-au",
+    "type": "grapheme",
+    "label": "au",
+    "phoneme": "au",
+    "syllables": []
+  },
+  {
+    "id": "g-eu",
+    "type": "grapheme",
+    "label": "eu",
+    "phoneme": "eu",
+    "syllables": []
+  },
+  {
+    "id": "g-en",
+    "type": "grapheme",
+    "label": "en",
+    "phoneme": "en",
+    "syllables": []
+  },
+  {
+    "id": "g-gn",
+    "type": "grapheme",
+    "label": "gn",
+    "phoneme": "gn",
+    "syllables": []
+  },
+  {
+    "id": "g-ill",
+    "type": "grapheme",
+    "label": "ill",
+    "phoneme": "ill",
+    "syllables": []
+  },
+  {
+    "id": "g-ph",
+    "type": "grapheme",
+    "label": "ph",
+    "phoneme": "ph",
+    "syllables": []
+  },
+  {
+    "id": "g-qu",
+    "type": "grapheme",
+    "label": "qu",
+    "phoneme": "qu",
+    "syllables": []
+  },
+  {
+    "id": "g-gu",
+    "type": "grapheme",
+    "label": "gu",
+    "phoneme": "gu",
     "syllables": []
   },
   {
@@ -1234,25 +1616,25 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "image": "emoji:people-hugging"
   },
   {
-    "id": "w-nez",
+    "id": "w-auto",
     "type": "word",
-    "label": "nez",
-    "phoneme": "nez",
+    "label": "auto",
+    "phoneme": "auto",
     "syllables": [
-      "nez"
+      "au",
+      "to"
     ],
-    "image": "emoji:nose"
+    "image": "emoji:automobile"
   },
   {
-    "id": "w-bebe",
+    "id": "w-feu",
     "type": "word",
-    "label": "bébé",
-    "phoneme": "bébé",
+    "label": "feu",
+    "phoneme": "feu",
     "syllables": [
-      "bé",
-      "bé"
+      "feu"
     ],
-    "image": "emoji:baby"
+    "image": "emoji:fire"
   },
   {
     "id": "w-orange",
@@ -1289,25 +1671,26 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "image": "emoji:robot"
   },
   {
-    "id": "w-fleur",
+    "id": "w-requin",
     "type": "word",
-    "label": "fleur",
-    "phoneme": "fleur",
+    "label": "requin",
+    "phoneme": "requin",
     "syllables": [
-      "fleur"
+      "re",
+      "quin"
     ],
-    "image": "emoji:blossom"
+    "image": "emoji:shark"
   },
   {
-    "id": "w-lapin",
+    "id": "w-bague",
     "type": "word",
-    "label": "lapin",
-    "phoneme": "lapin",
+    "label": "bague",
+    "phoneme": "bague",
     "syllables": [
-      "la",
-      "pin"
+      "ba",
+      "gue"
     ],
-    "image": "emoji:rabbit-face"
+    "image": "emoji:ring"
   },
   {
     "id": "w-lune",
@@ -1319,6 +1702,16 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
       "ne"
     ],
     "image": "emoji:crescent-moon"
+  },
+  {
+    "id": "w-lait",
+    "type": "word",
+    "label": "lait",
+    "phoneme": "lait",
+    "syllables": [
+      "lait"
+    ],
+    "image": "emoji:glass-of-milk"
   },
   {
     "id": "w-lion",
@@ -1342,6 +1735,17 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     ]
   },
   {
+    "id": "w-bebe",
+    "type": "word",
+    "label": "bébé",
+    "phoneme": "bébé",
+    "syllables": [
+      "bé",
+      "bé"
+    ],
+    "image": "emoji:baby"
+  },
+  {
     "id": "w-velo",
     "type": "word",
     "label": "vélo",
@@ -1351,16 +1755,6 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
       "lo"
     ],
     "image": "emoji:bicycle"
-  },
-  {
-    "id": "w-dodo",
-    "type": "word",
-    "label": "dodo",
-    "phoneme": "dodo",
-    "syllables": [
-      "do",
-      "do"
-    ]
   },
   {
     "id": "w-maison",
@@ -1418,6 +1812,37 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "image": "emoji:fish"
   },
   {
+    "id": "w-fleur",
+    "type": "word",
+    "label": "fleur",
+    "phoneme": "fleur",
+    "syllables": [
+      "fleur"
+    ],
+    "image": "emoji:blossom"
+  },
+  {
+    "id": "w-fille",
+    "type": "word",
+    "label": "fille",
+    "phoneme": "fille",
+    "syllables": [
+      "fil",
+      "le"
+    ],
+    "image": "emoji:girl"
+  },
+  {
+    "id": "w-nez",
+    "type": "word",
+    "label": "nez",
+    "phoneme": "nez",
+    "syllables": [
+      "nez"
+    ],
+    "image": "emoji:nose"
+  },
+  {
     "id": "w-domino",
     "type": "word",
     "label": "domino",
@@ -1429,6 +1854,39 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     ]
   },
   {
+    "id": "w-dodo",
+    "type": "word",
+    "label": "dodo",
+    "phoneme": "dodo",
+    "syllables": [
+      "do",
+      "do"
+    ]
+  },
+  {
+    "id": "w-chenille",
+    "type": "word",
+    "label": "chenille",
+    "phoneme": "chenille",
+    "syllables": [
+      "che",
+      "nil",
+      "le"
+    ],
+    "image": "emoji:bug"
+  },
+  {
+    "id": "w-cadeau",
+    "type": "word",
+    "label": "cadeau",
+    "phoneme": "cadeau",
+    "syllables": [
+      "ca",
+      "deau"
+    ],
+    "image": "emoji:wrapped-gift"
+  },
+  {
     "id": "w-bonbon",
     "type": "word",
     "label": "bonbon",
@@ -1438,6 +1896,64 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
       "bon"
     ],
     "image": "emoji:candy"
+  },
+  {
+    "id": "w-carotte",
+    "type": "word",
+    "label": "carotte",
+    "phoneme": "carotte",
+    "syllables": [
+      "ca",
+      "rot",
+      "te"
+    ],
+    "image": "emoji:carrot"
+  },
+  {
+    "id": "w-baleine",
+    "type": "word",
+    "label": "baleine",
+    "phoneme": "baleine",
+    "syllables": [
+      "ba",
+      "lei",
+      "ne"
+    ],
+    "image": "emoji:spouting-whale"
+  },
+  {
+    "id": "w-gorille",
+    "type": "word",
+    "label": "gorille",
+    "phoneme": "gorille",
+    "syllables": [
+      "go",
+      "ril",
+      "le"
+    ],
+    "image": "emoji:gorilla"
+  },
+  {
+    "id": "w-gateau",
+    "type": "word",
+    "label": "gâteau",
+    "phoneme": "gâteau",
+    "syllables": [
+      "gâ",
+      "teau"
+    ],
+    "image": "emoji:shortcake"
+  },
+  {
+    "id": "w-zebre",
+    "type": "word",
+    "label": "zèbre",
+    "phoneme": "zèbre",
+    "syllables": [
+      "zè",
+      "bre"
+    ],
+    "image": "emoji:zebra"
   },
   {
     "id": "w-bon",
@@ -1478,6 +1994,18 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "image": "emoji:rooster"
   },
   {
+    "id": "w-chaussure",
+    "type": "word",
+    "label": "chaussure",
+    "phoneme": "chaussure",
+    "syllables": [
+      "chaus",
+      "su",
+      "re"
+    ],
+    "image": "emoji:running-shoe"
+  },
+  {
     "id": "w-loupe",
     "type": "word",
     "label": "loupe",
@@ -1487,6 +2015,17 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
       "pe"
     ],
     "image": "emoji:magnifying-glass-tilted-left"
+  },
+  {
+    "id": "w-lapin",
+    "type": "word",
+    "label": "lapin",
+    "phoneme": "lapin",
+    "syllables": [
+      "la",
+      "pin"
+    ],
+    "image": "emoji:rabbit-face"
   },
   {
     "id": "w-livre",
@@ -1734,6 +2273,17 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     ]
   },
   {
+    "id": "w-phoque",
+    "type": "word",
+    "label": "phoque",
+    "phoneme": "phoque",
+    "syllables": [
+      "pho",
+      "que"
+    ],
+    "image": "emoji:seal"
+  },
+  {
     "id": "x-qapa",
     "type": "word",
     "label": "qapa",
@@ -1807,6 +2357,18 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "è"
     ]
+  },
+  {
+    "id": "w-montagne",
+    "type": "word",
+    "label": "montagne",
+    "phoneme": "montagne",
+    "syllables": [
+      "mon",
+      "ta",
+      "gne"
+    ],
+    "image": "emoji:snow-capped-mountain"
   },
   {
     "id": "x-naison",
@@ -1908,6 +2470,16 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     ]
   },
   {
+    "id": "w-dent",
+    "type": "word",
+    "label": "dent",
+    "phoneme": "dent",
+    "syllables": [
+      "dent"
+    ],
+    "image": "emoji:tooth"
+  },
+  {
     "id": "x-uelo",
     "type": "word",
     "label": "uélo",
@@ -1942,6 +2514,52 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "syllables": [
       "év"
     ]
+  },
+  {
+    "id": "w-araignee",
+    "type": "word",
+    "label": "araignée",
+    "phoneme": "araignée",
+    "syllables": [
+      "a",
+      "rai",
+      "gnée"
+    ],
+    "image": "emoji:spider"
+  },
+  {
+    "id": "w-neige",
+    "type": "word",
+    "label": "neige",
+    "phoneme": "neige",
+    "syllables": [
+      "nei",
+      "ge"
+    ],
+    "image": "emoji:snowflake"
+  },
+  {
+    "id": "w-enfant",
+    "type": "word",
+    "label": "enfant",
+    "phoneme": "enfant",
+    "syllables": [
+      "en",
+      "fant"
+    ],
+    "image": "emoji:child"
+  },
+  {
+    "id": "w-guitare",
+    "type": "word",
+    "label": "guitare",
+    "phoneme": "guitare",
+    "syllables": [
+      "gui",
+      "ta",
+      "re"
+    ],
+    "image": "emoji:guitar"
   },
   {
     "id": "p-1",
@@ -2120,6 +2738,342 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "phoneme": "à",
     "syllables": [
       "à"
+    ]
+  },
+  {
+    "id": "t-1",
+    "type": "sentence",
+    "label": "Papa a un petit chat. Le chat aime le lait. Il dort sur le lit.",
+    "phoneme": "Papa a un petit chat. Le chat aime le lait. Il dort sur le lit.",
+    "syllables": [
+      "Pa-pa",
+      "a",
+      "un",
+      "pe-tit",
+      "chat.",
+      "Le",
+      "chat",
+      "ai-me",
+      "le",
+      "lait.",
+      "Il",
+      "dort",
+      "sur",
+      "le",
+      "lit."
+    ]
+  },
+  {
+    "id": "p-t1-1",
+    "type": "sentence",
+    "label": "Papa a un petit chat.",
+    "phoneme": "Papa a un petit chat.",
+    "syllables": [
+      "Pa-pa",
+      "a",
+      "un",
+      "pe-tit",
+      "chat."
+    ]
+  },
+  {
+    "id": "p-t1-2",
+    "type": "sentence",
+    "label": "Le chat aime le lait.",
+    "phoneme": "Le chat aime le lait.",
+    "syllables": [
+      "Le",
+      "chat",
+      "ai-me",
+      "le",
+      "lait."
+    ]
+  },
+  {
+    "id": "p-t1-3",
+    "type": "sentence",
+    "label": "Il dort sur le lit.",
+    "phoneme": "Il dort sur le lit.",
+    "syllables": [
+      "Il",
+      "dort",
+      "sur",
+      "le",
+      "lit."
+    ]
+  },
+  {
+    "id": "t-2",
+    "type": "sentence",
+    "label": "Maman et moi allons à la mer. Sur l’eau, il y a un bateau. Je vois un gros poisson.",
+    "phoneme": "Maman et moi allons à la mer. Sur l’eau, il y a un bateau. Je vois un gros poisson.",
+    "syllables": [
+      "Ma-man",
+      "et",
+      "moi",
+      "al-lons",
+      "à",
+      "la",
+      "mer.",
+      "Sur",
+      "l’eau,",
+      "il",
+      "y",
+      "a",
+      "un",
+      "ba-teau.",
+      "Je",
+      "vois",
+      "un",
+      "gros",
+      "pois-son."
+    ]
+  },
+  {
+    "id": "p-t2-1",
+    "type": "sentence",
+    "label": "Maman et moi allons à la mer.",
+    "phoneme": "Maman et moi allons à la mer.",
+    "syllables": [
+      "Ma-man",
+      "et",
+      "moi",
+      "al-lons",
+      "à",
+      "la",
+      "mer."
+    ]
+  },
+  {
+    "id": "p-t2-2",
+    "type": "sentence",
+    "label": "Sur l’eau, il y a un bateau.",
+    "phoneme": "Sur l’eau, il y a un bateau.",
+    "syllables": [
+      "Sur",
+      "l’eau,",
+      "il",
+      "y",
+      "a",
+      "un",
+      "ba-teau."
+    ]
+  },
+  {
+    "id": "p-t2-3",
+    "type": "sentence",
+    "label": "Je vois un gros poisson.",
+    "phoneme": "Je vois un gros poisson.",
+    "syllables": [
+      "Je",
+      "vois",
+      "un",
+      "gros",
+      "pois-son."
+    ]
+  },
+  {
+    "id": "t-3",
+    "type": "sentence",
+    "label": "C’est la fête de bébé. Papa fait un gâteau. Bébé a un cadeau et un ballon.",
+    "phoneme": "C’est la fête de bébé. Papa fait un gâteau. Bébé a un cadeau et un ballon.",
+    "syllables": [
+      "C’est",
+      "la",
+      "fê-te",
+      "de",
+      "bé-bé.",
+      "Pa-pa",
+      "fait",
+      "un",
+      "gâ-teau.",
+      "Bé-bé",
+      "a",
+      "un",
+      "ca-deau",
+      "et",
+      "un",
+      "bal-lon."
+    ]
+  },
+  {
+    "id": "p-t3-1",
+    "type": "sentence",
+    "label": "C’est la fête de bébé.",
+    "phoneme": "C’est la fête de bébé.",
+    "syllables": [
+      "C’est",
+      "la",
+      "fê-te",
+      "de",
+      "bé-bé."
+    ]
+  },
+  {
+    "id": "p-t3-2",
+    "type": "sentence",
+    "label": "Papa fait un gâteau.",
+    "phoneme": "Papa fait un gâteau.",
+    "syllables": [
+      "Pa-pa",
+      "fait",
+      "un",
+      "gâ-teau."
+    ]
+  },
+  {
+    "id": "p-t3-3",
+    "type": "sentence",
+    "label": "Bébé a un cadeau et un ballon.",
+    "phoneme": "Bébé a un cadeau et un ballon.",
+    "syllables": [
+      "Bé-bé",
+      "a",
+      "un",
+      "ca-deau",
+      "et",
+      "un",
+      "bal-lon."
+    ]
+  },
+  {
+    "id": "t-4",
+    "type": "sentence",
+    "label": "Il neige sur la montagne. Une fille fait un bonhomme de neige. Il a un nez en carotte.",
+    "phoneme": "Il neige sur la montagne. Une fille fait un bonhomme de neige. Il a un nez en carotte.",
+    "syllables": [
+      "Il",
+      "nei-ge",
+      "sur",
+      "la",
+      "mon-ta-gne.",
+      "U-ne",
+      "fil-le",
+      "fait",
+      "un",
+      "bon-hom-me",
+      "de",
+      "nei-ge.",
+      "Il",
+      "a",
+      "un",
+      "nez",
+      "en",
+      "ca-rot-te."
+    ]
+  },
+  {
+    "id": "p-t4-1",
+    "type": "sentence",
+    "label": "Il neige sur la montagne.",
+    "phoneme": "Il neige sur la montagne.",
+    "syllables": [
+      "Il",
+      "nei-ge",
+      "sur",
+      "la",
+      "mon-ta-gne."
+    ]
+  },
+  {
+    "id": "p-t4-2",
+    "type": "sentence",
+    "label": "Une fille fait un bonhomme de neige.",
+    "phoneme": "Une fille fait un bonhomme de neige.",
+    "syllables": [
+      "U-ne",
+      "fil-le",
+      "fait",
+      "un",
+      "bon-hom-me",
+      "de",
+      "nei-ge."
+    ]
+  },
+  {
+    "id": "p-t4-3",
+    "type": "sentence",
+    "label": "Il a un nez en carotte.",
+    "phoneme": "Il a un nez en carotte.",
+    "syllables": [
+      "Il",
+      "a",
+      "un",
+      "nez",
+      "en",
+      "ca-rot-te."
+    ]
+  },
+  {
+    "id": "t-5",
+    "type": "sentence",
+    "label": "Au zoo, il y a un lion et un zèbre. Le lion dort au soleil. Le zèbre mange de l’herbe.",
+    "phoneme": "Au zoo, il y a un lion et un zèbre. Le lion dort au soleil. Le zèbre mange de l’herbe.",
+    "syllables": [
+      "Au",
+      "zoo,",
+      "il",
+      "y",
+      "a",
+      "un",
+      "li-on",
+      "et",
+      "un",
+      "zè-bre.",
+      "Le",
+      "li-on",
+      "dort",
+      "au",
+      "so-leil.",
+      "Le",
+      "zè-bre",
+      "man-ge",
+      "de",
+      "l’her-be."
+    ]
+  },
+  {
+    "id": "p-t5-1",
+    "type": "sentence",
+    "label": "Au zoo, il y a un lion et un zèbre.",
+    "phoneme": "Au zoo, il y a un lion et un zèbre.",
+    "syllables": [
+      "Au",
+      "zoo,",
+      "il",
+      "y",
+      "a",
+      "un",
+      "li-on",
+      "et",
+      "un",
+      "zè-bre."
+    ]
+  },
+  {
+    "id": "p-t5-2",
+    "type": "sentence",
+    "label": "Le lion dort au soleil.",
+    "phoneme": "Le lion dort au soleil.",
+    "syllables": [
+      "Le",
+      "li-on",
+      "dort",
+      "au",
+      "so-leil."
+    ]
+  },
+  {
+    "id": "p-t5-3",
+    "type": "sentence",
+    "label": "Le zèbre mange de l’herbe.",
+    "phoneme": "Le zèbre mange de l’herbe.",
+    "syllables": [
+      "Le",
+      "zè-bre",
+      "man-ge",
+      "de",
+      "l’her-be."
     ]
   }
 ];
@@ -2303,8 +3257,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "correctItemId": "w-ami",
       "itemIds": [
         "w-ami",
-        "w-nez",
-        "w-bebe"
+        "w-auto",
+        "w-feu"
       ]
     }
   },
@@ -2372,8 +3326,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-robot",
       "itemIds": [
-        "w-fleur",
-        "w-lapin",
+        "w-requin",
+        "w-bague",
         "w-robot"
       ]
     }
@@ -2413,8 +3367,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-lune",
       "itemIds": [
+        "w-lait",
         "w-lion",
-        "w-lapin",
         "w-lune"
       ]
     }
@@ -2483,7 +3437,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-ecole",
       "itemIds": [
-        "w-doigt",
+        "w-bague",
         "w-ecole",
         "w-avion"
       ]
@@ -2513,8 +3467,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "correctItemId": "w-velo",
       "itemIds": [
         "w-velo",
-        "w-chat",
-        "w-dodo"
+        "w-auto",
+        "w-chat"
       ]
     }
   },
@@ -2583,7 +3537,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "correctItemId": "w-maman",
       "itemIds": [
         "w-avion",
-        "w-doigt",
+        "w-bague",
         "w-maman"
       ]
     }
@@ -2623,8 +3577,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-papa",
       "itemIds": [
+        "w-auto",
         "w-bebe",
-        "w-chat",
         "w-papa"
       ]
     }
@@ -2652,7 +3606,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-pomme",
       "itemIds": [
-        "w-doigt",
+        "w-bague",
         "w-pomme",
         "w-avion"
       ]
@@ -2833,8 +3787,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-lion",
       "itemIds": [
+        "w-auto",
         "w-bebe",
-        "w-chat",
         "w-lion"
       ]
     }
@@ -2862,9 +3816,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-lune",
       "itemIds": [
-        "w-chat",
+        "w-bebe",
         "w-lune",
-        "w-bebe"
+        "w-auto"
       ]
     }
   },
@@ -2903,7 +3857,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-robot",
       "itemIds": [
-        "w-doigt",
+        "w-bague",
         "w-robot",
         "w-avion"
       ]
@@ -2933,8 +3887,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "correctItemId": "w-fleur",
       "itemIds": [
         "w-fleur",
-        "w-avion",
-        "w-doigt"
+        "w-fille",
+        "w-feu"
       ]
     }
   },
@@ -2975,7 +3929,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "itemIds": [
         "w-nez",
         "w-ami",
-        "w-bebe"
+        "w-feu"
       ]
     }
   },
@@ -3003,7 +3957,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "correctItemId": "w-banane",
       "itemIds": [
         "w-bateau",
-        "w-bebe",
+        "w-bague",
         "w-banane"
       ]
     }
@@ -3072,9 +4026,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-dodo",
       "itemIds": [
-        "w-chat",
+        "w-bebe",
         "w-dodo",
-        "w-bebe"
+        "w-auto"
       ]
     }
   },
@@ -3113,7 +4067,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-fleur",
       "itemIds": [
-        "w-doigt",
+        "w-bague",
         "w-fleur",
         "w-avion"
       ]
@@ -3170,8 +4124,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "correctItemId": "w-velo",
       "itemIds": [
         "w-velo",
-        "w-bebe",
-        "w-chat"
+        "w-auto",
+        "w-bebe"
       ]
     }
   },
@@ -3198,8 +4152,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-cheval",
       "itemIds": [
+        "w-chenille",
         "w-chat",
-        "w-ballon",
         "w-cheval"
       ]
     }
@@ -3239,8 +4193,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-ballon",
       "itemIds": [
+        "w-cadeau",
         "w-cheval",
-        "w-domino",
         "w-ballon"
       ]
     }
@@ -3268,9 +4222,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-bonbon",
       "itemIds": [
-        "w-domino",
+        "w-cheval",
         "w-bonbon",
-        "w-cheval"
+        "w-cadeau"
       ]
     }
   },
@@ -3309,9 +4263,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-jupe",
       "itemIds": [
-        "w-chat",
+        "w-bebe",
         "w-jupe",
-        "w-bebe"
+        "w-auto"
       ]
     }
   },
@@ -3340,6 +4294,202 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "cue": "Avec ton doigt, trace la lettre j",
       "itemIds": [
         "g-j"
+      ]
+    }
+  },
+  {
+    "id": "e-son-c-1",
+    "lessonId": "l-son-c",
+    "type": "sound-grapheme",
+    "order": 1,
+    "params": {
+      "phoneme": "c",
+      "cue": "ka, comme dans carotte",
+      "itemIds": [
+        "g-c",
+        "g-g"
+      ]
+    }
+  },
+  {
+    "id": "e-son-c-2",
+    "lessonId": "l-son-c",
+    "type": "word-recognition",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-carotte",
+      "itemIds": [
+        "w-carotte",
+        "w-baleine",
+        "w-gorille"
+      ]
+    }
+  },
+  {
+    "id": "e-son-c-3",
+    "lessonId": "l-son-c",
+    "type": "sound-grapheme",
+    "order": 3,
+    "params": {
+      "phoneme": "c",
+      "cue": "ka",
+      "itemIds": [
+        "g-g",
+        "g-c",
+        "g-t"
+      ]
+    }
+  },
+  {
+    "id": "e-son-c-4",
+    "lessonId": "l-son-c",
+    "type": "word-recognition",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-cadeau",
+      "itemIds": [
+        "w-ballon",
+        "w-banane",
+        "w-cadeau"
+      ]
+    }
+  },
+  {
+    "id": "e-son-c-trace",
+    "lessonId": "l-son-c",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-c",
+      "cue": "Avec ton doigt, trace la lettre c",
+      "itemIds": [
+        "g-c"
+      ]
+    }
+  },
+  {
+    "id": "e-son-g-1",
+    "lessonId": "l-son-g",
+    "type": "sound-grapheme",
+    "order": 1,
+    "params": {
+      "phoneme": "g",
+      "cue": "gue, comme dans gâteau",
+      "itemIds": [
+        "g-c",
+        "g-g"
+      ]
+    }
+  },
+  {
+    "id": "e-son-g-2",
+    "lessonId": "l-son-g",
+    "type": "word-recognition",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-gateau",
+      "itemIds": [
+        "w-ballon",
+        "w-banane",
+        "w-gateau"
+      ]
+    }
+  },
+  {
+    "id": "e-son-g-3",
+    "lessonId": "l-son-g",
+    "type": "sound-grapheme",
+    "order": 3,
+    "params": {
+      "phoneme": "g",
+      "cue": "gue",
+      "itemIds": [
+        "g-g",
+        "g-j",
+        "g-c"
+      ]
+    }
+  },
+  {
+    "id": "e-son-g-4",
+    "lessonId": "l-son-g",
+    "type": "word-recognition",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-gorille",
+      "itemIds": [
+        "w-carotte",
+        "w-gorille",
+        "w-baleine"
+      ]
+    }
+  },
+  {
+    "id": "e-son-g-trace",
+    "lessonId": "l-son-g",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-g",
+      "cue": "Avec ton doigt, trace la lettre g",
+      "itemIds": [
+        "g-g"
+      ]
+    }
+  },
+  {
+    "id": "e-son-z-1",
+    "lessonId": "l-son-z",
+    "type": "sound-grapheme",
+    "order": 1,
+    "params": {
+      "phoneme": "z",
+      "cue": "z, comme dans zèbre",
+      "itemIds": [
+        "g-z",
+        "g-s"
+      ]
+    }
+  },
+  {
+    "id": "e-son-z-2",
+    "lessonId": "l-son-z",
+    "type": "word-recognition",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-zebre",
+      "itemIds": [
+        "w-bague",
+        "w-zebre",
+        "w-avion"
+      ]
+    }
+  },
+  {
+    "id": "e-son-z-3",
+    "lessonId": "l-son-z",
+    "type": "sound-grapheme",
+    "order": 3,
+    "params": {
+      "phoneme": "z",
+      "cue": "z",
+      "itemIds": [
+        "g-j",
+        "g-s",
+        "g-z"
+      ]
+    }
+  },
+  {
+    "id": "e-son-z-trace",
+    "lessonId": "l-son-z",
+    "type": "tracing",
+    "order": 4,
+    "params": {
+      "correctItemId": "g-z",
+      "cue": "Avec ton doigt, trace la lettre z",
+      "itemIds": [
+        "g-z"
       ]
     }
   },
@@ -3504,7 +4654,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "order": 6,
     "params": {
       "correctItemId": "g-q",
-      "cue": "Avec ton doigt, trace la lettre ku",
+      "cue": "Avec ton doigt, trace la lettre q",
       "itemIds": [
         "g-q"
       ]
@@ -3519,8 +4669,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "ch",
       "cue": "che, comme dans chat",
       "itemIds": [
-        "g-ch",
-        "g-s"
+        "g-s",
+        "g-ch"
       ]
     }
   },
@@ -3533,8 +4683,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "correctItemId": "w-chat",
       "itemIds": [
         "w-chat",
-        "w-bebe",
-        "w-dodo"
+        "w-cadeau",
+        "w-auto"
       ]
     }
   },
@@ -3549,8 +4699,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "cue": "Lis le mot, puis touche la bonne image.",
       "itemIds": [
         "w-chat",
-        "w-cheval",
-        "w-bebe"
+        "w-chaussure",
+        "w-cheval"
       ]
     }
   },
@@ -3577,8 +4727,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-cheval",
       "itemIds": [
-        "w-ballon",
-        "w-banane",
+        "w-cadeau",
+        "w-carotte",
         "w-cheval"
       ]
     }
@@ -3590,7 +4740,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "order": 6,
     "params": {
       "correctItemId": "g-ch",
-      "cue": "Avec ton doigt, trace che",
+      "cue": "Avec ton doigt, trace les lettres c, h",
       "itemIds": [
         "g-ch"
       ]
@@ -3605,8 +4755,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "ou",
       "cue": "ou, comme dans loupe",
       "itemIds": [
-        "g-u",
-        "g-ou"
+        "g-ou",
+        "g-u"
       ]
     }
   },
@@ -3676,7 +4826,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "order": 6,
     "params": {
       "correctItemId": "g-ou",
-      "cue": "Avec ton doigt, trace ou",
+      "cue": "Avec ton doigt, trace les lettres o, u",
       "itemIds": [
         "g-ou"
       ]
@@ -3691,8 +4841,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "ma",
       "cue": "ma, comme dans maman",
       "itemIds": [
-        "s-ma",
-        "s-pa"
+        "s-pa",
+        "s-ma"
       ]
     }
   },
@@ -3705,8 +4855,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "ma",
       "cue": "ma",
       "itemIds": [
-        "s-am",
-        "s-ma"
+        "s-ma",
+        "s-am"
       ]
     }
   },
@@ -3778,8 +4928,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "pa",
       "cue": "pa, comme dans papa",
       "itemIds": [
-        "s-ta",
-        "s-pa"
+        "s-pa",
+        "s-ta"
       ]
     }
   },
@@ -3792,8 +4942,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "pa",
       "cue": "pa",
       "itemIds": [
-        "s-pa",
-        "s-ap"
+        "s-ap",
+        "s-pa"
       ]
     }
   },
@@ -3865,8 +5015,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "ta",
       "cue": "ta",
       "itemIds": [
-        "s-ta",
-        "s-la"
+        "s-la",
+        "s-ta"
       ]
     }
   },
@@ -3879,8 +5029,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "ta",
       "cue": "ta",
       "itemIds": [
-        "s-at",
-        "s-ta"
+        "s-ta",
+        "s-at"
       ]
     }
   },
@@ -3908,8 +5058,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "la",
       "cue": "la, comme dans lapin",
       "itemIds": [
-        "s-ta",
-        "s-la"
+        "s-la",
+        "s-ta"
       ]
     }
   },
@@ -3922,8 +5072,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "la",
       "cue": "la",
       "itemIds": [
-        "s-la",
-        "s-al"
+        "s-al",
+        "s-la"
       ]
     }
   },
@@ -3950,9 +5100,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-lapin",
       "itemIds": [
-        "w-loupe",
+        "w-livre",
         "w-lapin",
-        "w-livre"
+        "w-lait"
       ]
     }
   },
@@ -3967,8 +5117,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "cue": "Lis le mot, puis touche la bonne image.",
       "itemIds": [
         "w-lapin",
-        "w-livre",
-        "w-loupe"
+        "w-lait",
+        "w-livre"
       ]
     }
   },
@@ -3995,8 +5145,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "mi",
       "cue": "mi, comme dans ami",
       "itemIds": [
-        "s-mi",
-        "s-pi"
+        "s-pi",
+        "s-mi"
       ]
     }
   },
@@ -4009,8 +5159,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "mi",
       "cue": "mi",
       "itemIds": [
-        "s-im",
-        "s-mi"
+        "s-mi",
+        "s-im"
       ]
     }
   },
@@ -4038,8 +5188,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "correctItemId": "w-ami",
       "itemIds": [
         "w-ami",
-        "w-avion",
-        "w-nez"
+        "w-auto",
+        "w-avion"
       ]
     }
   },
@@ -4053,8 +5203,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "textItemId": "w-ami",
       "cue": "Lis le mot, puis touche la bonne image.",
       "itemIds": [
+        "w-auto",
         "w-avion",
-        "w-nez",
         "w-ami"
       ]
     }
@@ -4067,9 +5217,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-ami",
       "itemIds": [
-        "s-mi",
         "s-a",
-        "s-o"
+        "s-o",
+        "s-mi"
       ]
     }
   },
@@ -4082,8 +5232,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "pi",
       "cue": "pi",
       "itemIds": [
-        "s-ti",
-        "s-pi"
+        "s-pi",
+        "s-ti"
       ]
     }
   },
@@ -4096,8 +5246,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "pi",
       "cue": "pi",
       "itemIds": [
-        "s-pi",
-        "s-ip"
+        "s-ip",
+        "s-pi"
       ]
     }
   },
@@ -4125,8 +5275,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "ti",
       "cue": "ti",
       "itemIds": [
-        "s-ti",
-        "s-li"
+        "s-li",
+        "s-ti"
       ]
     }
   },
@@ -4139,8 +5289,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "ti",
       "cue": "ti",
       "itemIds": [
-        "s-it",
-        "s-ti"
+        "s-ti",
+        "s-it"
       ]
     }
   },
@@ -4168,8 +5318,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "li",
       "cue": "li, comme dans livre",
       "itemIds": [
-        "s-mi",
-        "s-li"
+        "s-li",
+        "s-mi"
       ]
     }
   },
@@ -4182,8 +5332,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "li",
       "cue": "li",
       "itemIds": [
-        "s-li",
-        "s-il"
+        "s-il",
+        "s-li"
       ]
     }
   },
@@ -4240,9 +5390,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-livre",
       "itemIds": [
+        "s-vre",
         "s-il",
-        "s-li",
-        "s-vre"
+        "s-li"
       ]
     }
   },
@@ -4255,8 +5405,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "mo",
       "cue": "mo",
       "itemIds": [
-        "s-mo",
-        "s-to"
+        "s-to",
+        "s-mo"
       ]
     }
   },
@@ -4269,8 +5419,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "mo",
       "cue": "mo",
       "itemIds": [
-        "s-om",
-        "s-mo"
+        "s-mo",
+        "s-om"
       ]
     }
   },
@@ -4298,8 +5448,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "to",
       "cue": "to",
       "itemIds": [
-        "s-mo",
-        "s-to"
+        "s-to",
+        "s-mo"
       ]
     }
   },
@@ -4312,8 +5462,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "to",
       "cue": "to",
       "itemIds": [
-        "s-to",
-        "s-ot"
+        "s-ot",
+        "s-to"
       ]
     }
   },
@@ -4370,9 +5520,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-maman",
       "itemIds": [
-        "w-doigt",
+        "w-bague",
         "w-maman",
-        "w-ecole"
+        "w-doigt"
       ]
     }
   },
@@ -4384,8 +5534,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-maman",
       "itemIds": [
-        "x-naman",
-        "w-maman"
+        "w-maman",
+        "x-naman"
       ]
     }
   },
@@ -4397,9 +5547,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-maman",
       "itemIds": [
-        "s-man",
         "s-am",
-        "s-ma"
+        "s-ma",
+        "s-man"
       ]
     }
   },
@@ -4442,8 +5592,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "correctItemId": "w-papa",
       "itemIds": [
         "w-papa",
-        "w-chat",
-        "w-bebe"
+        "w-auto",
+        "w-phoque"
       ]
     }
   },
@@ -4455,8 +5605,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-papa",
       "itemIds": [
-        "w-papa",
-        "x-qapa"
+        "x-qapa",
+        "w-papa"
       ]
     }
   },
@@ -4512,7 +5662,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-livre",
       "itemIds": [
-        "w-lune",
+        "w-lait",
         "w-loupe",
         "w-livre"
       ]
@@ -4526,8 +5676,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-livre",
       "itemIds": [
-        "x-tivre",
-        "w-livre"
+        "w-livre",
+        "x-tivre"
       ]
     }
   },
@@ -4539,9 +5689,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-livre",
       "itemIds": [
+        "s-vre",
         "s-il",
-        "s-li",
-        "s-vre"
+        "s-li"
       ]
     }
   },
@@ -4557,7 +5707,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "itemIds": [
         "w-ecole",
         "w-avion",
-        "w-doigt"
+        "w-bague"
       ]
     }
   },
@@ -4571,7 +5721,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "itemIds": [
         "w-ecole",
         "w-avion",
-        "w-doigt"
+        "w-bague"
       ]
     }
   },
@@ -4583,9 +5733,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-ecole",
       "itemIds": [
-        "w-elephant",
+        "w-doigt",
         "w-ecole",
-        "w-fleur"
+        "w-elephant"
       ]
     }
   },
@@ -4597,8 +5747,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-ecole",
       "itemIds": [
-        "w-ecole",
-        "x-ecole"
+        "x-ecole",
+        "w-ecole"
       ]
     }
   },
@@ -4628,7 +5778,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "cue": "Lis le mot, puis touche la bonne image.",
       "itemIds": [
         "w-maman",
-        "w-ballon",
+        "w-montagne",
         "w-maison"
       ]
     }
@@ -4642,7 +5792,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "correctItemId": "w-maison",
       "itemIds": [
         "w-maman",
-        "w-ballon",
+        "w-montagne",
         "w-maison"
       ]
     }
@@ -4656,8 +5806,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "correctItemId": "w-maison",
       "itemIds": [
         "w-maison",
-        "w-bateau",
-        "w-banane"
+        "w-banane",
+        "w-ballon"
       ]
     }
   },
@@ -4669,8 +5819,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-maison",
       "itemIds": [
-        "x-naison",
-        "w-maison"
+        "w-maison",
+        "x-naison"
       ]
     }
   },
@@ -4698,9 +5848,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "textItemId": "w-ami",
       "cue": "Lis le mot, puis touche la bonne image.",
       "itemIds": [
-        "w-nez",
+        "w-avion",
         "w-ami",
-        "w-avion"
+        "w-auto"
       ]
     }
   },
@@ -4712,9 +5862,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-ami",
       "itemIds": [
-        "w-nez",
+        "w-avion",
         "w-ami",
-        "w-avion"
+        "w-auto"
       ]
     }
   },
@@ -4726,8 +5876,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-ami",
       "itemIds": [
-        "w-chat",
-        "w-bebe",
+        "w-nez",
+        "w-feu",
         "w-ami"
       ]
     }
@@ -4740,8 +5890,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-ami",
       "itemIds": [
-        "w-ami",
-        "x-omi"
+        "x-omi",
+        "w-ami"
       ]
     }
   },
@@ -4753,9 +5903,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-ami",
       "itemIds": [
+        "s-mi",
         "s-a",
-        "s-o",
-        "s-mi"
+        "s-o"
       ]
     }
   },
@@ -4770,8 +5920,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "cue": "Lis le mot, puis touche la bonne image.",
       "itemIds": [
         "w-chat",
-        "w-cheval",
-        "w-bebe"
+        "w-chaussure",
+        "w-cheval"
       ]
     }
   },
@@ -4784,8 +5934,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "correctItemId": "w-chat",
       "itemIds": [
         "w-chat",
-        "w-cheval",
-        "w-bebe"
+        "w-chaussure",
+        "w-cheval"
       ]
     }
   },
@@ -4797,9 +5947,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-chat",
       "itemIds": [
-        "w-dodo",
+        "w-chenille",
         "w-chat",
-        "w-jupe"
+        "w-cadeau"
       ]
     }
   },
@@ -4811,8 +5961,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-chat",
       "itemIds": [
-        "x-chot",
-        "w-chat"
+        "w-chat",
+        "x-chot"
       ]
     }
   },
@@ -4826,8 +5976,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "textItemId": "w-lune",
       "cue": "Lis le mot, puis touche la bonne image.",
       "itemIds": [
+        "w-lait",
         "w-lion",
-        "w-lapin",
         "w-lune"
       ]
     }
@@ -4840,8 +5990,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-lune",
       "itemIds": [
+        "w-lait",
         "w-lion",
-        "w-lapin",
         "w-lune"
       ]
     }
@@ -4855,8 +6005,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "correctItemId": "w-lune",
       "itemIds": [
         "w-lune",
-        "w-loupe",
-        "w-livre"
+        "w-livre",
+        "w-lapin"
       ]
     }
   },
@@ -4868,8 +6018,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-lune",
       "itemIds": [
-        "w-lune",
-        "x-tune"
+        "x-tune",
+        "w-lune"
       ]
     }
   },
@@ -4897,9 +6047,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "textItemId": "w-fleur",
       "cue": "Lis le mot, puis touche la bonne image.",
       "itemIds": [
-        "w-doigt",
+        "w-feu",
         "w-fleur",
-        "w-avion"
+        "w-fille"
       ]
     }
   },
@@ -4911,9 +6061,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-fleur",
       "itemIds": [
-        "w-doigt",
+        "w-feu",
         "w-fleur",
-        "w-avion"
+        "w-fille"
       ]
     }
   },
@@ -4925,8 +6075,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-fleur",
       "itemIds": [
-        "w-lapin",
-        "w-ecole",
+        "w-bague",
+        "w-avion",
         "w-fleur"
       ]
     }
@@ -4939,8 +6089,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-fleur",
       "itemIds": [
-        "x-tleur",
-        "w-fleur"
+        "w-fleur",
+        "x-tleur"
       ]
     }
   },
@@ -4955,8 +6105,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "cue": "Lis le mot, puis touche la bonne image.",
       "itemIds": [
         "w-velo",
-        "w-bebe",
-        "w-chat"
+        "w-auto",
+        "w-bebe"
       ]
     }
   },
@@ -4969,8 +6119,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "correctItemId": "w-velo",
       "itemIds": [
         "w-velo",
-        "w-bebe",
-        "w-chat"
+        "w-auto",
+        "w-bebe"
       ]
     }
   },
@@ -4982,9 +6132,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-velo",
       "itemIds": [
-        "w-dodo",
+        "w-chat",
         "w-velo",
-        "w-jupe"
+        "w-dent"
       ]
     }
   },
@@ -4996,8 +6146,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-velo",
       "itemIds": [
-        "w-velo",
-        "x-uelo"
+        "x-uelo",
+        "w-velo"
       ]
     }
   },
@@ -5009,9 +6159,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-velo",
       "itemIds": [
-        "s-lo",
+        "s-veacute",
         "s-eacutev",
-        "s-veacute"
+        "s-lo"
       ]
     }
   },
@@ -5024,8 +6174,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "oi",
       "cue": "oi, comme dans poisson",
       "itemIds": [
-        "g-oi",
-        "g-ou"
+        "g-ou",
+        "g-oi"
       ]
     }
   },
@@ -5095,7 +6245,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "order": 6,
     "params": {
       "correctItemId": "g-oi",
-      "cue": "Avec ton doigt, trace oi",
+      "cue": "Avec ton doigt, trace les lettres o, i",
       "itemIds": [
         "g-oi"
       ]
@@ -5110,8 +6260,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "an",
       "cue": "an, comme dans maman",
       "itemIds": [
-        "g-on",
-        "g-an"
+        "g-an",
+        "g-on"
       ]
     }
   },
@@ -5169,8 +6319,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "correctItemId": "w-elephant",
       "itemIds": [
         "w-elephant",
-        "w-ecole",
-        "w-poisson"
+        "w-araignee",
+        "w-chenille"
       ]
     }
   },
@@ -5181,7 +6331,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "order": 6,
     "params": {
       "correctItemId": "g-an",
-      "cue": "Avec ton doigt, trace an",
+      "cue": "Avec ton doigt, trace les lettres a, n",
       "itemIds": [
         "g-an"
       ]
@@ -5196,8 +6346,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "on",
       "cue": "on, comme dans bonbon",
       "itemIds": [
-        "g-on",
-        "g-an"
+        "g-an",
+        "g-on"
       ]
     }
   },
@@ -5255,7 +6405,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "correctItemId": "w-lion",
       "itemIds": [
         "w-livre",
-        "w-lune",
+        "w-lait",
         "w-lion"
       ]
     }
@@ -5267,7 +6417,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "order": 6,
     "params": {
       "correctItemId": "g-on",
-      "cue": "Avec ton doigt, trace on",
+      "cue": "Avec ton doigt, trace les lettres o, n",
       "itemIds": [
         "g-on"
       ]
@@ -5282,8 +6432,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "in",
       "cue": "in, comme dans lapin",
       "itemIds": [
-        "g-an",
-        "g-in"
+        "g-in",
+        "g-an"
       ]
     }
   },
@@ -5295,8 +6445,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "params": {
       "correctItemId": "w-lapin",
       "itemIds": [
+        "w-lait",
         "w-livre",
-        "w-loupe",
         "w-lapin"
       ]
     }
@@ -5311,8 +6461,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "textItemId": "w-lapin",
       "cue": "Lis le mot, puis touche la bonne image.",
       "itemIds": [
+        "w-lait",
         "w-livre",
-        "w-loupe",
         "w-lapin"
       ]
     }
@@ -5339,7 +6489,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "order": 5,
     "params": {
       "correctItemId": "g-in",
-      "cue": "Avec ton doigt, trace in",
+      "cue": "Avec ton doigt, trace les lettres i, n",
       "itemIds": [
         "g-in"
       ]
@@ -5354,8 +6504,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "eau",
       "cue": "eau, comme dans bateau",
       "itemIds": [
-        "g-eau",
-        "g-o"
+        "g-ou",
+        "g-eau"
       ]
     }
   },
@@ -5398,8 +6548,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "eau",
       "cue": "eau",
       "itemIds": [
+        "g-an",
         "g-ou",
-        "g-o",
         "g-eau"
       ]
     }
@@ -5411,9 +6561,853 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "order": 5,
     "params": {
       "correctItemId": "g-eau",
-      "cue": "Avec ton doigt, trace eau",
+      "cue": "Avec ton doigt, trace les lettres e, a, u",
       "itemIds": [
         "g-eau"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ai-1",
+    "lessonId": "l-son-ai",
+    "type": "sound-grapheme",
+    "order": 1,
+    "params": {
+      "phoneme": "ai",
+      "cue": "è, comme dans lait",
+      "itemIds": [
+        "g-ai",
+        "g-oi"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ai-2",
+    "lessonId": "l-son-ai",
+    "type": "word-recognition",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-lait",
+      "itemIds": [
+        "w-lait",
+        "w-lapin",
+        "w-lion"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ai-image",
+    "lessonId": "l-son-ai",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-lait",
+      "textItemId": "w-lait",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-lait",
+        "w-lapin",
+        "w-lion"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ai-3",
+    "lessonId": "l-son-ai",
+    "type": "sound-grapheme",
+    "order": 4,
+    "params": {
+      "phoneme": "ai",
+      "cue": "è",
+      "itemIds": [
+        "g-oi",
+        "g-ai",
+        "g-au"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ai-4",
+    "lessonId": "l-son-ai",
+    "type": "word-recognition",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-maison",
+      "itemIds": [
+        "w-maman",
+        "w-montagne",
+        "w-maison"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ai-trace",
+    "lessonId": "l-son-ai",
+    "type": "tracing",
+    "order": 6,
+    "params": {
+      "correctItemId": "g-ai",
+      "cue": "Avec ton doigt, trace les lettres a, i",
+      "itemIds": [
+        "g-ai"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ei-1",
+    "lessonId": "l-son-ei",
+    "type": "sound-grapheme",
+    "order": 1,
+    "params": {
+      "phoneme": "ei",
+      "cue": "è, comme dans neige",
+      "itemIds": [
+        "g-eu",
+        "g-ei"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ei-2",
+    "lessonId": "l-son-ei",
+    "type": "word-recognition",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-neige",
+      "itemIds": [
+        "w-nez",
+        "w-avion",
+        "w-neige"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ei-image",
+    "lessonId": "l-son-ei",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-neige",
+      "textItemId": "w-neige",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-nez",
+        "w-avion",
+        "w-neige"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ei-3",
+    "lessonId": "l-son-ei",
+    "type": "sound-grapheme",
+    "order": 4,
+    "params": {
+      "phoneme": "ei",
+      "cue": "è",
+      "itemIds": [
+        "g-ei",
+        "g-oi",
+        "g-eu"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ei-4",
+    "lessonId": "l-son-ei",
+    "type": "word-recognition",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-baleine",
+      "itemIds": [
+        "w-banane",
+        "w-baleine",
+        "w-ballon"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ei-trace",
+    "lessonId": "l-son-ei",
+    "type": "tracing",
+    "order": 6,
+    "params": {
+      "correctItemId": "g-ei",
+      "cue": "Avec ton doigt, trace les lettres e, i",
+      "itemIds": [
+        "g-ei"
+      ]
+    }
+  },
+  {
+    "id": "e-son-au-1",
+    "lessonId": "l-son-au",
+    "type": "sound-grapheme",
+    "order": 1,
+    "params": {
+      "phoneme": "au",
+      "cue": "o, comme dans auto",
+      "itemIds": [
+        "g-au",
+        "g-ou"
+      ]
+    }
+  },
+  {
+    "id": "e-son-au-2",
+    "lessonId": "l-son-au",
+    "type": "word-recognition",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-auto",
+      "itemIds": [
+        "w-avion",
+        "w-auto",
+        "w-ami"
+      ]
+    }
+  },
+  {
+    "id": "e-son-au-image",
+    "lessonId": "l-son-au",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-auto",
+      "textItemId": "w-auto",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-avion",
+        "w-auto",
+        "w-ami"
+      ]
+    }
+  },
+  {
+    "id": "e-son-au-3",
+    "lessonId": "l-son-au",
+    "type": "sound-grapheme",
+    "order": 4,
+    "params": {
+      "phoneme": "au",
+      "cue": "o",
+      "itemIds": [
+        "g-an",
+        "g-ou",
+        "g-au"
+      ]
+    }
+  },
+  {
+    "id": "e-son-au-4",
+    "lessonId": "l-son-au",
+    "type": "word-recognition",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-chaussure",
+      "itemIds": [
+        "w-chaussure",
+        "w-chenille",
+        "w-chat"
+      ]
+    }
+  },
+  {
+    "id": "e-son-au-trace",
+    "lessonId": "l-son-au",
+    "type": "tracing",
+    "order": 6,
+    "params": {
+      "correctItemId": "g-au",
+      "cue": "Avec ton doigt, trace les lettres a, u",
+      "itemIds": [
+        "g-au"
+      ]
+    }
+  },
+  {
+    "id": "e-son-eu-1",
+    "lessonId": "l-son-eu",
+    "type": "sound-grapheme",
+    "order": 1,
+    "params": {
+      "phoneme": "eu",
+      "cue": "eu, comme dans feu",
+      "itemIds": [
+        "g-ou",
+        "g-eu"
+      ]
+    }
+  },
+  {
+    "id": "e-son-eu-2",
+    "lessonId": "l-son-eu",
+    "type": "word-recognition",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-feu",
+      "itemIds": [
+        "w-feu",
+        "w-fille",
+        "w-ami"
+      ]
+    }
+  },
+  {
+    "id": "e-son-eu-image",
+    "lessonId": "l-son-eu",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-feu",
+      "textItemId": "w-feu",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-feu",
+        "w-fille",
+        "w-fleur"
+      ]
+    }
+  },
+  {
+    "id": "e-son-eu-3",
+    "lessonId": "l-son-eu",
+    "type": "sound-grapheme",
+    "order": 4,
+    "params": {
+      "phoneme": "eu",
+      "cue": "eu",
+      "itemIds": [
+        "g-ou",
+        "g-eu",
+        "g-au"
+      ]
+    }
+  },
+  {
+    "id": "e-son-eu-4",
+    "lessonId": "l-son-eu",
+    "type": "word-recognition",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-fleur",
+      "itemIds": [
+        "w-fille",
+        "w-avion",
+        "w-fleur"
+      ]
+    }
+  },
+  {
+    "id": "e-son-eu-trace",
+    "lessonId": "l-son-eu",
+    "type": "tracing",
+    "order": 6,
+    "params": {
+      "correctItemId": "g-eu",
+      "cue": "Avec ton doigt, trace les lettres e, u",
+      "itemIds": [
+        "g-eu"
+      ]
+    }
+  },
+  {
+    "id": "e-son-en-1",
+    "lessonId": "l-son-en",
+    "type": "sound-grapheme",
+    "order": 1,
+    "params": {
+      "phoneme": "en",
+      "cue": "an, comme dans dent",
+      "itemIds": [
+        "g-en",
+        "g-on"
+      ]
+    }
+  },
+  {
+    "id": "e-son-en-2",
+    "lessonId": "l-son-en",
+    "type": "word-recognition",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-dent",
+      "itemIds": [
+        "w-dodo",
+        "w-doigt",
+        "w-dent"
+      ]
+    }
+  },
+  {
+    "id": "e-son-en-image",
+    "lessonId": "l-son-en",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-dent",
+      "textItemId": "w-dent",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-doigt",
+        "w-auto",
+        "w-dent"
+      ]
+    }
+  },
+  {
+    "id": "e-son-en-3",
+    "lessonId": "l-son-en",
+    "type": "sound-grapheme",
+    "order": 4,
+    "params": {
+      "phoneme": "en",
+      "cue": "an",
+      "itemIds": [
+        "g-en",
+        "g-in",
+        "g-on"
+      ]
+    }
+  },
+  {
+    "id": "e-son-en-4",
+    "lessonId": "l-son-en",
+    "type": "word-recognition",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-enfant",
+      "itemIds": [
+        "w-banane",
+        "w-enfant",
+        "w-ballon"
+      ]
+    }
+  },
+  {
+    "id": "e-son-en-trace",
+    "lessonId": "l-son-en",
+    "type": "tracing",
+    "order": 6,
+    "params": {
+      "correctItemId": "g-en",
+      "cue": "Avec ton doigt, trace les lettres e, n",
+      "itemIds": [
+        "g-en"
+      ]
+    }
+  },
+  {
+    "id": "e-son-gn-1",
+    "lessonId": "l-son-gn",
+    "type": "sound-grapheme",
+    "order": 1,
+    "params": {
+      "phoneme": "gn",
+      "cue": "gne, comme dans montagne",
+      "itemIds": [
+        "g-n",
+        "g-gn"
+      ]
+    }
+  },
+  {
+    "id": "e-son-gn-2",
+    "lessonId": "l-son-gn",
+    "type": "word-recognition",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-montagne",
+      "itemIds": [
+        "w-chenille",
+        "w-montagne",
+        "w-maison"
+      ]
+    }
+  },
+  {
+    "id": "e-son-gn-image",
+    "lessonId": "l-son-gn",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-montagne",
+      "textItemId": "w-montagne",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-araignee",
+        "w-montagne",
+        "w-maison"
+      ]
+    }
+  },
+  {
+    "id": "e-son-gn-3",
+    "lessonId": "l-son-gn",
+    "type": "sound-grapheme",
+    "order": 4,
+    "params": {
+      "phoneme": "gn",
+      "cue": "gne",
+      "itemIds": [
+        "g-ill",
+        "g-n",
+        "g-gn"
+      ]
+    }
+  },
+  {
+    "id": "e-son-gn-4",
+    "lessonId": "l-son-gn",
+    "type": "word-recognition",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-araignee",
+      "itemIds": [
+        "w-araignee",
+        "w-avion",
+        "w-chenille"
+      ]
+    }
+  },
+  {
+    "id": "e-son-gn-trace",
+    "lessonId": "l-son-gn",
+    "type": "tracing",
+    "order": 6,
+    "params": {
+      "correctItemId": "g-gn",
+      "cue": "Avec ton doigt, trace les lettres g, n",
+      "itemIds": [
+        "g-gn"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ill-1",
+    "lessonId": "l-son-ill",
+    "type": "sound-grapheme",
+    "order": 1,
+    "params": {
+      "phoneme": "ill",
+      "cue": "ille, comme dans fille",
+      "itemIds": [
+        "g-ill",
+        "g-gn"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ill-2",
+    "lessonId": "l-son-ill",
+    "type": "word-recognition",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-fille",
+      "itemIds": [
+        "w-fille",
+        "w-fleur",
+        "w-feu"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ill-image",
+    "lessonId": "l-son-ill",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-fille",
+      "textItemId": "w-fille",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-fille",
+        "w-fleur",
+        "w-feu"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ill-3",
+    "lessonId": "l-son-ill",
+    "type": "sound-grapheme",
+    "order": 4,
+    "params": {
+      "phoneme": "ill",
+      "cue": "ille",
+      "itemIds": [
+        "g-gn",
+        "g-ill",
+        "g-l"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ill-4",
+    "lessonId": "l-son-ill",
+    "type": "word-recognition",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-chenille",
+      "itemIds": [
+        "w-cheval",
+        "w-chaussure",
+        "w-chenille"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ill-trace",
+    "lessonId": "l-son-ill",
+    "type": "tracing",
+    "order": 6,
+    "params": {
+      "correctItemId": "g-ill",
+      "cue": "Avec ton doigt, trace les lettres i, l, l",
+      "itemIds": [
+        "g-ill"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ph-1",
+    "lessonId": "l-son-ph",
+    "type": "sound-grapheme",
+    "order": 1,
+    "params": {
+      "phoneme": "ph",
+      "cue": "fe, comme dans phoque",
+      "itemIds": [
+        "g-p",
+        "g-ph"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ph-2",
+    "lessonId": "l-son-ph",
+    "type": "word-recognition",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-phoque",
+      "itemIds": [
+        "w-poisson",
+        "w-pomme",
+        "w-phoque"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ph-image",
+    "lessonId": "l-son-ph",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-phoque",
+      "textItemId": "w-phoque",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-poisson",
+        "w-pomme",
+        "w-phoque"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ph-3",
+    "lessonId": "l-son-ph",
+    "type": "sound-grapheme",
+    "order": 4,
+    "params": {
+      "phoneme": "ph",
+      "cue": "fe",
+      "itemIds": [
+        "g-ph",
+        "g-v",
+        "g-p"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ph-4",
+    "lessonId": "l-son-ph",
+    "type": "word-recognition",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-elephant",
+      "itemIds": [
+        "w-chenille",
+        "w-elephant",
+        "w-araignee"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ph-trace",
+    "lessonId": "l-son-ph",
+    "type": "tracing",
+    "order": 6,
+    "params": {
+      "correctItemId": "g-ph",
+      "cue": "Avec ton doigt, trace les lettres p, h",
+      "itemIds": [
+        "g-ph"
+      ]
+    }
+  },
+  {
+    "id": "e-son-qu-1",
+    "lessonId": "l-son-qu",
+    "type": "sound-grapheme",
+    "order": 1,
+    "params": {
+      "phoneme": "qu",
+      "cue": "ke, comme dans quatre",
+      "itemIds": [
+        "g-qu",
+        "g-gu"
+      ]
+    }
+  },
+  {
+    "id": "e-son-qu-2",
+    "lessonId": "l-son-qu",
+    "type": "word-recognition",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-quatre",
+      "itemIds": [
+        "w-banane",
+        "w-quatre",
+        "w-ballon"
+      ]
+    }
+  },
+  {
+    "id": "e-son-qu-3",
+    "lessonId": "l-son-qu",
+    "type": "sound-grapheme",
+    "order": 3,
+    "params": {
+      "phoneme": "qu",
+      "cue": "ke",
+      "itemIds": [
+        "g-p",
+        "g-gu",
+        "g-qu"
+      ]
+    }
+  },
+  {
+    "id": "e-son-qu-4",
+    "lessonId": "l-son-qu",
+    "type": "word-recognition",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-requin",
+      "itemIds": [
+        "w-requin",
+        "w-robot",
+        "w-ballon"
+      ]
+    }
+  },
+  {
+    "id": "e-son-qu-trace",
+    "lessonId": "l-son-qu",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-qu",
+      "cue": "Avec ton doigt, trace les lettres q, u",
+      "itemIds": [
+        "g-qu"
+      ]
+    }
+  },
+  {
+    "id": "e-son-gu-1",
+    "lessonId": "l-son-gu",
+    "type": "sound-grapheme",
+    "order": 1,
+    "params": {
+      "phoneme": "gu",
+      "cue": "gue, comme dans guitare",
+      "itemIds": [
+        "g-qu",
+        "g-gu"
+      ]
+    }
+  },
+  {
+    "id": "e-son-gu-2",
+    "lessonId": "l-son-gu",
+    "type": "word-recognition",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-guitare",
+      "itemIds": [
+        "w-guitare",
+        "w-gorille",
+        "w-gateau"
+      ]
+    }
+  },
+  {
+    "id": "e-son-gu-image",
+    "lessonId": "l-son-gu",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-guitare",
+      "textItemId": "w-guitare",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-guitare",
+        "w-gorille",
+        "w-gateau"
+      ]
+    }
+  },
+  {
+    "id": "e-son-gu-3",
+    "lessonId": "l-son-gu",
+    "type": "sound-grapheme",
+    "order": 4,
+    "params": {
+      "phoneme": "gu",
+      "cue": "gue",
+      "itemIds": [
+        "g-qu",
+        "g-gu",
+        "g-j"
+      ]
+    }
+  },
+  {
+    "id": "e-son-gu-4",
+    "lessonId": "l-son-gu",
+    "type": "word-recognition",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-bague",
+      "itemIds": [
+        "w-ballon",
+        "w-banane",
+        "w-bague"
+      ]
+    }
+  },
+  {
+    "id": "e-son-gu-trace",
+    "lessonId": "l-son-gu",
+    "type": "tracing",
+    "order": 6,
+    "params": {
+      "correctItemId": "g-gu",
+      "cue": "Avec ton doigt, trace les lettres g, u",
+      "itemIds": [
+        "g-gu"
       ]
     }
   },
@@ -5721,6 +7715,316 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-texte-1-1",
+    "lessonId": "l-texte-1",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-papa",
+      "textItemId": "t-1",
+      "cue": "Lis le texte. Qui a un petit chat ?",
+      "itemIds": [
+        "w-papa",
+        "w-maman",
+        "w-bebe"
+      ],
+      "question": "Qui a un petit chat ?"
+    }
+  },
+  {
+    "id": "e-texte-1-2",
+    "lessonId": "l-texte-1",
+    "type": "word-recognition",
+    "order": 2,
+    "params": {
+      "correctItemId": "p-t1-2",
+      "itemIds": [
+        "p-t1-1",
+        "p-t1-2",
+        "p-t1-3"
+      ]
+    }
+  },
+  {
+    "id": "e-texte-1-3",
+    "lessonId": "l-texte-1",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-lait",
+      "textItemId": "t-1",
+      "cue": "Lis le texte. Qu’est-ce que le chat aime ?",
+      "itemIds": [
+        "w-pomme",
+        "w-banane",
+        "w-lait"
+      ],
+      "question": "Qu’est-ce que le chat aime ?"
+    }
+  },
+  {
+    "id": "e-texte-1-4",
+    "lessonId": "l-texte-1",
+    "type": "word-recognition",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-lait",
+      "itemIds": [
+        "w-lait",
+        "w-papa",
+        "w-pomme"
+      ]
+    }
+  },
+  {
+    "id": "e-texte-2-1",
+    "lessonId": "l-texte-2",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-bateau",
+      "textItemId": "t-2",
+      "cue": "Lis le texte. Qu’est-ce qu’il y a sur l’eau ?",
+      "itemIds": [
+        "w-avion",
+        "w-velo",
+        "w-bateau"
+      ],
+      "question": "Qu’est-ce qu’il y a sur l’eau ?"
+    }
+  },
+  {
+    "id": "e-texte-2-2",
+    "lessonId": "l-texte-2",
+    "type": "word-recognition",
+    "order": 2,
+    "params": {
+      "correctItemId": "p-t2-2",
+      "itemIds": [
+        "p-t2-2",
+        "p-t2-3",
+        "p-t2-1"
+      ]
+    }
+  },
+  {
+    "id": "e-texte-2-3",
+    "lessonId": "l-texte-2",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-poisson",
+      "textItemId": "t-2",
+      "cue": "Lis le texte. Quel animal je vois ?",
+      "itemIds": [
+        "w-cheval",
+        "w-poisson",
+        "w-lion"
+      ],
+      "question": "Quel animal je vois ?"
+    }
+  },
+  {
+    "id": "e-texte-2-4",
+    "lessonId": "l-texte-2",
+    "type": "word-recognition",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-poisson",
+      "itemIds": [
+        "w-bateau",
+        "w-lion",
+        "w-poisson"
+      ]
+    }
+  },
+  {
+    "id": "e-texte-3-1",
+    "lessonId": "l-texte-3",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-gateau",
+      "textItemId": "t-3",
+      "cue": "Lis le texte. Qu’est-ce que papa fait ?",
+      "itemIds": [
+        "w-bateau",
+        "w-gateau",
+        "w-robot"
+      ],
+      "question": "Qu’est-ce que papa fait ?"
+    }
+  },
+  {
+    "id": "e-texte-3-2",
+    "lessonId": "l-texte-3",
+    "type": "word-recognition",
+    "order": 2,
+    "params": {
+      "correctItemId": "p-t3-2",
+      "itemIds": [
+        "p-t3-3",
+        "p-t3-1",
+        "p-t3-2"
+      ]
+    }
+  },
+  {
+    "id": "e-texte-3-3",
+    "lessonId": "l-texte-3",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-bebe",
+      "textItemId": "t-3",
+      "cue": "Lis le texte. C’est la fête de qui ?",
+      "itemIds": [
+        "w-bebe",
+        "w-papa",
+        "w-chat"
+      ],
+      "question": "C’est la fête de qui ?"
+    }
+  },
+  {
+    "id": "e-texte-3-4",
+    "lessonId": "l-texte-3",
+    "type": "word-recognition",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-bebe",
+      "itemIds": [
+        "w-papa",
+        "w-bebe",
+        "w-gateau"
+      ]
+    }
+  },
+  {
+    "id": "e-texte-4-1",
+    "lessonId": "l-texte-4",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-montagne",
+      "textItemId": "t-4",
+      "cue": "Lis le texte. Où est-ce qu’il neige ?",
+      "itemIds": [
+        "w-montagne",
+        "w-ecole",
+        "w-maison"
+      ],
+      "question": "Où est-ce qu’il neige ?"
+    }
+  },
+  {
+    "id": "e-texte-4-2",
+    "lessonId": "l-texte-4",
+    "type": "word-recognition",
+    "order": 2,
+    "params": {
+      "correctItemId": "p-t4-2",
+      "itemIds": [
+        "p-t4-1",
+        "p-t4-2",
+        "p-t4-3"
+      ]
+    }
+  },
+  {
+    "id": "e-texte-4-3",
+    "lessonId": "l-texte-4",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-carotte",
+      "textItemId": "t-4",
+      "cue": "Lis le texte. Le nez est en quoi ?",
+      "itemIds": [
+        "w-banane",
+        "w-pomme",
+        "w-carotte"
+      ],
+      "question": "Le nez est en quoi ?"
+    }
+  },
+  {
+    "id": "e-texte-4-4",
+    "lessonId": "l-texte-4",
+    "type": "word-recognition",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-carotte",
+      "itemIds": [
+        "w-carotte",
+        "w-montagne",
+        "w-banane"
+      ]
+    }
+  },
+  {
+    "id": "e-texte-5-1",
+    "lessonId": "l-texte-5",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-lion",
+      "textItemId": "t-5",
+      "cue": "Lis le texte. Qui dort au soleil ?",
+      "itemIds": [
+        "w-zebre",
+        "w-chat",
+        "w-lion"
+      ],
+      "question": "Qui dort au soleil ?"
+    }
+  },
+  {
+    "id": "e-texte-5-2",
+    "lessonId": "l-texte-5",
+    "type": "word-recognition",
+    "order": 2,
+    "params": {
+      "correctItemId": "p-t5-2",
+      "itemIds": [
+        "p-t5-2",
+        "p-t5-3",
+        "p-t5-1"
+      ]
+    }
+  },
+  {
+    "id": "e-texte-5-3",
+    "lessonId": "l-texte-5",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-soleil",
+      "textItemId": "t-5",
+      "cue": "Lis le texte. Où dort le lion ?",
+      "itemIds": [
+        "w-maison",
+        "w-soleil",
+        "w-lune"
+      ],
+      "question": "Où dort le lion ?"
+    }
+  },
+  {
+    "id": "e-texte-5-4",
+    "lessonId": "l-texte-5",
+    "type": "word-recognition",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-soleil",
+      "itemIds": [
+        "w-lion",
+        "w-lune",
+        "w-soleil"
+      ]
+    }
+  },
+  {
     "id": "e-bilan-1-1",
     "lessonId": "l-bilan-1",
     "type": "sound-grapheme",
@@ -5846,12 +8150,12 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "type": "sound-grapheme",
     "order": 3,
     "params": {
-      "phoneme": "l",
-      "cue": "l",
+      "phoneme": "r",
+      "cue": "r",
       "itemIds": [
+        "g-n",
         "g-l",
-        "g-r",
-        "g-t"
+        "g-r"
       ]
     }
   },
@@ -5861,12 +8165,12 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "type": "sound-grapheme",
     "order": 4,
     "params": {
-      "phoneme": "d",
-      "cue": "d",
+      "phoneme": "f",
+      "cue": "f",
       "itemIds": [
-        "g-d",
-        "g-t",
-        "g-b"
+        "g-s",
+        "g-v",
+        "g-f"
       ]
     }
   },
@@ -5876,12 +8180,12 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "type": "sound-grapheme",
     "order": 5,
     "params": {
-      "phoneme": "v",
-      "cue": "v",
+      "phoneme": "j",
+      "cue": "j",
       "itemIds": [
-        "g-f",
         "g-v",
-        "g-b"
+        "g-s",
+        "g-j"
       ]
     }
   },
@@ -5891,12 +8195,12 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "type": "sound-grapheme",
     "order": 6,
     "params": {
-      "phoneme": "j",
-      "cue": "j",
+      "phoneme": "z",
+      "cue": "z",
       "itemIds": [
-        "g-v",
+        "g-j",
         "g-s",
-        "g-j"
+        "g-z"
       ]
     }
   },
@@ -5911,8 +8215,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "cue": "Lis le mot, puis touche la bonne image.",
       "itemIds": [
         "w-chat",
-        "w-cheval",
-        "w-bebe"
+        "w-chaussure",
+        "w-cheval"
       ]
     }
   },
@@ -5941,8 +8245,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "ta",
       "cue": "ta",
       "itemIds": [
-        "s-ta",
-        "s-la"
+        "s-la",
+        "s-ta"
       ]
     }
   },
@@ -5956,8 +8260,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "textItemId": "w-ami",
       "cue": "Lis le mot, puis touche la bonne image.",
       "itemIds": [
+        "w-auto",
         "w-avion",
-        "w-nez",
         "w-ami"
       ]
     }
@@ -5971,8 +8275,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "ti",
       "cue": "ti",
       "itemIds": [
-        "s-ti",
-        "s-li"
+        "s-li",
+        "s-ti"
       ]
     }
   },
@@ -5985,8 +8289,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "phoneme": "mo",
       "cue": "mo",
       "itemIds": [
-        "s-mo",
-        "s-to"
+        "s-to",
+        "s-mo"
       ]
     }
   },
@@ -6034,7 +8338,7 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "itemIds": [
         "w-ecole",
         "w-avion",
-        "w-doigt"
+        "w-bague"
       ]
     }
   },
@@ -6048,9 +8352,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "textItemId": "w-ami",
       "cue": "Lis le mot, puis touche la bonne image.",
       "itemIds": [
-        "w-nez",
+        "w-avion",
         "w-ami",
-        "w-avion"
+        "w-auto"
       ]
     }
   },
@@ -6065,8 +8369,8 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "cue": "Lis le mot, puis touche la bonne image.",
       "itemIds": [
         "w-chat",
-        "w-cheval",
-        "w-bebe"
+        "w-chaussure",
+        "w-cheval"
       ]
     }
   },
@@ -6080,9 +8384,9 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "textItemId": "w-fleur",
       "cue": "Lis le mot, puis touche la bonne image.",
       "itemIds": [
-        "w-doigt",
+        "w-feu",
         "w-fleur",
-        "w-avion"
+        "w-fille"
       ]
     }
   },
@@ -6108,22 +8412,6 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "type": "picture-match",
     "order": 2,
     "params": {
-      "correctItemId": "w-maman",
-      "textItemId": "w-maman",
-      "cue": "Lis le mot, puis touche la bonne image.",
-      "itemIds": [
-        "w-avion",
-        "w-maman",
-        "w-maison"
-      ]
-    }
-  },
-  {
-    "id": "e-bilan-5-3",
-    "lessonId": "l-bilan-5",
-    "type": "picture-match",
-    "order": 3,
-    "params": {
       "correctItemId": "w-bonbon",
       "textItemId": "w-bonbon",
       "cue": "Lis le mot, puis touche la bonne image.",
@@ -6135,18 +8423,34 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-bilan-5-3",
+    "lessonId": "l-bilan-5",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-lait",
+      "textItemId": "w-lait",
+      "cue": "Lis le mot, puis touche la bonne image.",
+      "itemIds": [
+        "w-lait",
+        "w-lapin",
+        "w-lion"
+      ]
+    }
+  },
+  {
     "id": "e-bilan-5-4",
     "lessonId": "l-bilan-5",
     "type": "picture-match",
     "order": 4,
     "params": {
-      "correctItemId": "w-lapin",
-      "textItemId": "w-lapin",
+      "correctItemId": "w-auto",
+      "textItemId": "w-auto",
       "cue": "Lis le mot, puis touche la bonne image.",
       "itemIds": [
-        "w-livre",
-        "w-loupe",
-        "w-lapin"
+        "w-avion",
+        "w-auto",
+        "w-ami"
       ]
     }
   },
@@ -6156,28 +8460,29 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     "type": "picture-match",
     "order": 5,
     "params": {
-      "correctItemId": "w-bateau",
-      "textItemId": "w-bateau",
+      "correctItemId": "w-montagne",
+      "textItemId": "w-montagne",
       "cue": "Lis le mot, puis touche la bonne image.",
       "itemIds": [
-        "w-banane",
-        "w-bateau",
-        "w-ballon"
+        "w-araignee",
+        "w-montagne",
+        "w-maison"
       ]
     }
   },
   {
     "id": "e-bilan-5-6",
     "lessonId": "l-bilan-5",
-    "type": "sound-grapheme",
+    "type": "picture-match",
     "order": 6,
     "params": {
-      "phoneme": "oi",
-      "cue": "oi",
+      "correctItemId": "w-phoque",
+      "textItemId": "w-phoque",
+      "cue": "Lis le mot, puis touche la bonne image.",
       "itemIds": [
-        "g-oi",
-        "g-o",
-        "g-ou"
+        "w-poisson",
+        "w-pomme",
+        "w-phoque"
       ]
     }
   },
@@ -6278,6 +8583,108 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
         "p-2",
         "p-3"
       ]
+    }
+  },
+  {
+    "id": "e-bilan-7-1",
+    "lessonId": "l-bilan-7",
+    "type": "picture-match",
+    "order": 1,
+    "params": {
+      "correctItemId": "w-papa",
+      "textItemId": "t-1",
+      "cue": "Lis le texte. Qui a un petit chat ?",
+      "itemIds": [
+        "w-papa",
+        "w-maman",
+        "w-bebe"
+      ],
+      "question": "Qui a un petit chat ?"
+    }
+  },
+  {
+    "id": "e-bilan-7-2",
+    "lessonId": "l-bilan-7",
+    "type": "picture-match",
+    "order": 2,
+    "params": {
+      "correctItemId": "w-bateau",
+      "textItemId": "t-2",
+      "cue": "Lis le texte. Qu’est-ce qu’il y a sur l’eau ?",
+      "itemIds": [
+        "w-avion",
+        "w-velo",
+        "w-bateau"
+      ],
+      "question": "Qu’est-ce qu’il y a sur l’eau ?"
+    }
+  },
+  {
+    "id": "e-bilan-7-3",
+    "lessonId": "l-bilan-7",
+    "type": "picture-match",
+    "order": 3,
+    "params": {
+      "correctItemId": "w-gateau",
+      "textItemId": "t-3",
+      "cue": "Lis le texte. Qu’est-ce que papa fait ?",
+      "itemIds": [
+        "w-bateau",
+        "w-gateau",
+        "w-robot"
+      ],
+      "question": "Qu’est-ce que papa fait ?"
+    }
+  },
+  {
+    "id": "e-bilan-7-4",
+    "lessonId": "l-bilan-7",
+    "type": "picture-match",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-montagne",
+      "textItemId": "t-4",
+      "cue": "Lis le texte. Où est-ce qu’il neige ?",
+      "itemIds": [
+        "w-montagne",
+        "w-ecole",
+        "w-maison"
+      ],
+      "question": "Où est-ce qu’il neige ?"
+    }
+  },
+  {
+    "id": "e-bilan-7-5",
+    "lessonId": "l-bilan-7",
+    "type": "picture-match",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-lion",
+      "textItemId": "t-5",
+      "cue": "Lis le texte. Qui dort au soleil ?",
+      "itemIds": [
+        "w-zebre",
+        "w-chat",
+        "w-lion"
+      ],
+      "question": "Qui dort au soleil ?"
+    }
+  },
+  {
+    "id": "e-bilan-7-6",
+    "lessonId": "l-bilan-7",
+    "type": "picture-match",
+    "order": 6,
+    "params": {
+      "correctItemId": "w-lait",
+      "textItemId": "t-1",
+      "cue": "Lis le texte. Qu’est-ce que le chat aime ?",
+      "itemIds": [
+        "w-pomme",
+        "w-banane",
+        "w-lait"
+      ],
+      "question": "Qu’est-ce que le chat aime ?"
     }
   }
 ];

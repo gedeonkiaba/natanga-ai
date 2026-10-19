@@ -117,6 +117,8 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
     final (instruction, replay) = switch ((ex.type, kind)) {
       (ExerciseType.syllableAssembly, _) => ('Écoute, puis remets les syllabes dans l’ordre :', 'Réécouter le mot'),
       (ExerciseType.tracing, _) => ('Avec ton doigt, repasse sur la lettre grise :', 'Réécouter la consigne'),
+      (ExerciseType.pictureMatch, _) when ex.question != null && (ex.cue?.startsWith('Lis le texte') ?? false) =>
+        ('Lis le texte, puis réponds en touchant une image :', 'Réécouter la consigne'),
       (ExerciseType.pictureMatch, _) when ex.question != null => ('Lis la phrase, puis réponds en touchant une image :', 'Réécouter la consigne'),
       (ExerciseType.pictureMatch, _) => ('Lis le mot, puis touche la bonne image :', 'Réécouter la consigne'),
       (_, ItemType.grapheme) => ('Écoute, puis touche la lettre entendue :', 'Réécouter le son'),

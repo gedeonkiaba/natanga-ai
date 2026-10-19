@@ -3,7 +3,7 @@ import 'package:natanga_mobile/domain/pedagogy.dart';
 
 void main() {
   group('contenu généré depuis la base de connaissances', () {
-    test('6 niveaux, 58 leçons (dont 6 bilans) : chaque nœud a une leçon jouable', () {
+    test('7 niveaux, 77 leçons (dont 7 bilans) : chaque nœud a une leçon jouable', () {
       expect(curriculumLevels.map((l) => l.name), [
         'Sons et écoute',
         'Lettres et sons',
@@ -11,8 +11,9 @@ void main() {
         'Mots simples',
         'Sons complexes',
         'Phrases et compréhension',
+        'Textes courts',
       ]);
-      expect(curriculumNodes, hasLength(58));
+      expect(curriculumNodes, hasLength(77));
       expect(curriculumNodes.first.title, 'Le son /a/');
       for (final node in curriculumNodes) {
         final lesson = firstLessonOf(node.id);
@@ -21,7 +22,7 @@ void main() {
         expect(exercisesOf(lesson!.id).length, greaterThanOrEqualTo(3), reason: lesson.id);
       }
       // Déblocage strictement séquentiel.
-      expect([for (final n in curriculumNodes) n.unlockedWhen], [for (var i = 0; i < 58; i++) i]);
+      expect([for (final n in curriculumNodes) n.unlockedWhen], [for (var i = 0; i < 77; i++) i]);
     });
 
     test('chaque exercice propose une seule bonne réponse, un seul type de choix, une consigne orale', () {
@@ -95,11 +96,41 @@ void main() {
       }
     });
 
+    test('sons ajoutés : jamais d’homophone parmi les choix ; textes courts lus seuls', () {
+      // ai/ei, en/an, au/o, ph/f, qu/c, gu/g se prononcent pareil : l'oreille ne peut pas choisir.
+      const homophones = [
+        {'ai', 'ei', 'è'},
+        {'en', 'an'},
+        {'au', 'o', 'eau'},
+        {'ph', 'f'},
+        {'qu', 'c', 'k', 'q'},
+        {'gu', 'g'},
+      ];
+      for (final e in curriculumExercises.where((e) => e.type == ExerciseType.soundGrapheme)) {
+        final labels = choicesOf(e).map((c) => c.label).toSet();
+        for (final group in homophones) {
+          expect(labels.intersection(group).length, lessThanOrEqualTo(1), reason: '${e.id} : $labels');
+        }
+      }
+      expect(spokenPrompt(exercisesOf('l-son-c').first), 'ka, comme dans carotte');
+      expect(spokenPrompt(exercisesOf('l-son-gn').last), 'Avec ton doigt, trace les lettres g, n');
+      final texte = exercisesOf('l-texte-1');
+      expect(texte.map((e) => e.type), [
+        ExerciseType.pictureMatch,
+        ExerciseType.wordRecognition,
+        ExerciseType.pictureMatch,
+        ExerciseType.wordRecognition,
+      ]);
+      expect(itemById(texte.first.textItemId!)!.label, 'Papa a un petit chat. Le chat aime le lait. Il dort sur le lit.');
+      expect(texte.first.question, 'Qui a un petit chat ?');
+      expect(spokenPrompt(texte.first), 'Lis le texte. Qui a un petit chat ?');
+    });
+
     test('tracé : une lettre par leçon de son, et b/d, p/q', () {
       final traces = curriculumExercises.where((e) => e.type == ExerciseType.tracing).toList();
-      expect(traces, hasLength(27));
+      expect(traces, hasLength(40));
       expect(spokenPrompt(exercisesOf('l-son-a').last), 'Avec ton doigt, trace la lettre a');
-      expect(spokenPrompt(exercisesOf('l-son-ou').last), 'Avec ton doigt, trace ou');
+      expect(spokenPrompt(exercisesOf('l-son-ou').last), 'Avec ton doigt, trace les lettres o, u');
       expect(exercisesOf('l-bd-1').last.correctItemId, 'g-d');
     });
 

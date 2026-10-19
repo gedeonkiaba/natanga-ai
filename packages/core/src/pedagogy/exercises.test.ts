@@ -73,7 +73,7 @@ describe('contenu : chaque leçon est jouable', () => {
     }
   });
 
-  it('6 niveaux, 58 leçons, déblocage séquentiel', () => {
+  it('7 niveaux, 77 leçons, déblocage séquentiel', () => {
     expect(CURRICULUM_LEVELS.map((l) => l.key)).toEqual([
       'sounds',
       'letters',
@@ -81,8 +81,9 @@ describe('contenu : chaque leçon est jouable', () => {
       'words',
       'complex-sounds',
       'sentences',
+      'short-texts',
     ]);
-    expect(CURRICULUM_NODES).toHaveLength(58); // 52 leçons de la base + 6 bilans
+    expect(CURRICULUM_NODES).toHaveLength(77); // 68 leçons de la base + 2 miroirs + 7 bilans
     expect(CURRICULUM_NODES.map((n) => n.unlockedWhen)).toEqual(CURRICULUM_NODES.map((_, i) => i));
   });
 

@@ -7,7 +7,7 @@
 
 /** Niveau dans l'arbre de compétences (du plus simple au plus complexe). */
 export type SkillLevel =
-  'sounds' | 'letters' | 'syllables' | 'words' | 'complex-sounds' | 'sentences' | 'texts';
+  'sounds' | 'letters' | 'syllables' | 'words' | 'complex-sounds' | 'sentences' | 'short-texts' | 'texts';
 
 /** Niveau du parcours (base de connaissances `content/curriculum/niveaux.csv`). */
 export interface CurriculumLevel {
