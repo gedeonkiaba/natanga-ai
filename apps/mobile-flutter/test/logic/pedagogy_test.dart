@@ -25,7 +25,7 @@ void main() {
     });
 
     test('chaque exercice propose une seule bonne réponse, un seul type de choix, une consigne orale', () {
-      for (final e in curriculumExercises) {
+      for (final e in curriculumExercises.where((e) => e.type == ExerciseType.soundGrapheme || e.type == ExerciseType.wordRecognition)) {
         final choices = choicesOf(e);
         expect(choices.length, e.itemIds.length, reason: e.id);
         expect(choices.length, greaterThanOrEqualTo(2), reason: e.id);
@@ -41,6 +41,36 @@ void main() {
           expect(choices.map((c) => c.id), contains(checkSoundGrapheme(e, curriculumItems, wrong.id).correctId), reason: e.id);
         }
       }
+    });
+
+    test('assemblage : les tuiles contiennent les syllabes du mot et une seule syllabe piège', () {
+      final assemblies = curriculumExercises.where((e) => e.type == ExerciseType.syllableAssembly).toList();
+      expect(assemblies, hasLength(13));
+      for (final e in assemblies) {
+        final answer = itemById(e.correctItemId!)!.syllables;
+        final pool = [for (final t in choicesOf(e)) t.label];
+        for (final syl in answer) {
+          expect(pool.remove(syl), isTrue, reason: '${e.id} : $syl');
+        }
+        expect(pool, hasLength(1), reason: e.id);
+        expect(answer, isNot(contains(pool.single)), reason: e.id);
+        // Jamais déjà dans l'ordre de la réponse.
+        expect(choicesOf(e).take(answer.length).map((t) => t.label), isNot(answer), reason: e.id);
+      }
+      final maman = exercisesOf('l-mot-maman').last;
+      expect(spokenPrompt(maman), 'maman');
+      expect(checkSyllableAssembly(maman, ['s-ma', 's-man']).feedback, 'Bravo !');
+      final wrong = checkSyllableAssembly(maman, ['s-man', 's-ma']);
+      expect(wrong.correct, isFalse);
+      expect(wrong.feedback, 'Presque ! C’est « ma · man ». On réessaie.');
+    });
+
+    test('tracé : une lettre par leçon de son, et b/d, p/q', () {
+      final traces = curriculumExercises.where((e) => e.type == ExerciseType.tracing).toList();
+      expect(traces, hasLength(27));
+      expect(spokenPrompt(exercisesOf('l-son-a').last), 'Avec ton doigt, trace la lettre a');
+      expect(spokenPrompt(exercisesOf('l-son-ou').last), 'Avec ton doigt, trace ou');
+      expect(exercisesOf('l-bd-1').last.correctItemId, 'g-d');
     });
 
     test('corrections de la base : mot-repère qui contient vraiment le son', () {
@@ -72,7 +102,7 @@ void main() {
 
   group('correction (jamais punitive)', () {
     final a = exercisesOf('l-son-a').first;
-    final papa = exercisesOf('l-son-a').last;
+    final papa = exercisesOf('l-son-a')[3];
 
     test('son ⇄ graphème', () {
       expect(checkSoundGrapheme(a, curriculumItems, 'g-a').feedback, 'Bravo !');
@@ -90,7 +120,7 @@ void main() {
 
   group('leçon', () {
     test('une réponse par exercice ; l’effort rapporte aussi des gemmes', () {
-      final run = LessonRun(exercisesOf('l-son-a'));
+      final run = LessonRun(exercisesOf('l-son-a').take(4).toList());
       expect(run.answer(false), isFalse);
       expect(run.answer(true), isFalse);
       expect(run.answer(true), isFalse);

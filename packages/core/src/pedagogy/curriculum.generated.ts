@@ -1415,6 +1415,15 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     ]
   },
   {
+    "id": "s-man",
+    "type": "syllable",
+    "label": "man",
+    "phoneme": "man",
+    "syllables": [
+      "man"
+    ]
+  },
+  {
     "id": "s-ta",
     "type": "syllable",
     "label": "ta",
@@ -1487,6 +1496,15 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     ]
   },
   {
+    "id": "s-pin",
+    "type": "syllable",
+    "label": "pin",
+    "phoneme": "pin",
+    "syllables": [
+      "pin"
+    ]
+  },
+  {
     "id": "s-mo",
     "type": "syllable",
     "label": "mo",
@@ -1502,6 +1520,24 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "phoneme": "im",
     "syllables": [
       "im"
+    ]
+  },
+  {
+    "id": "s-a",
+    "type": "syllable",
+    "label": "a",
+    "phoneme": "a",
+    "syllables": [
+      "a"
+    ]
+  },
+  {
+    "id": "s-o",
+    "type": "syllable",
+    "label": "o",
+    "phoneme": "o",
+    "syllables": [
+      "o"
     ]
   },
   {
@@ -1538,6 +1574,15 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "phoneme": "il",
     "syllables": [
       "il"
+    ]
+  },
+  {
+    "id": "s-vre",
+    "type": "syllable",
+    "label": "vre",
+    "phoneme": "vre",
+    "syllables": [
+      "vre"
     ]
   },
   {
@@ -1606,12 +1651,75 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     ]
   },
   {
+    "id": "s-eacute",
+    "type": "syllable",
+    "label": "é",
+    "phoneme": "é",
+    "syllables": [
+      "é"
+    ]
+  },
+  {
+    "id": "s-co",
+    "type": "syllable",
+    "label": "co",
+    "phoneme": "co",
+    "syllables": [
+      "co"
+    ]
+  },
+  {
+    "id": "s-le",
+    "type": "syllable",
+    "label": "le",
+    "phoneme": "le",
+    "syllables": [
+      "le"
+    ]
+  },
+  {
+    "id": "s-egrave",
+    "type": "syllable",
+    "label": "è",
+    "phoneme": "è",
+    "syllables": [
+      "è"
+    ]
+  },
+  {
     "id": "x-naison",
     "type": "word",
     "label": "naison",
     "phoneme": "naison",
     "syllables": [
       "naison"
+    ]
+  },
+  {
+    "id": "s-mai",
+    "type": "syllable",
+    "label": "mai",
+    "phoneme": "mai",
+    "syllables": [
+      "mai"
+    ]
+  },
+  {
+    "id": "s-son",
+    "type": "syllable",
+    "label": "son",
+    "phoneme": "son",
+    "syllables": [
+      "son"
+    ]
+  },
+  {
+    "id": "s-nai",
+    "type": "syllable",
+    "label": "nai",
+    "phoneme": "nai",
+    "syllables": [
+      "nai"
     ]
   },
   {
@@ -1642,6 +1750,33 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     ]
   },
   {
+    "id": "s-lu",
+    "type": "syllable",
+    "label": "lu",
+    "phoneme": "lu",
+    "syllables": [
+      "lu"
+    ]
+  },
+  {
+    "id": "s-ne",
+    "type": "syllable",
+    "label": "ne",
+    "phoneme": "ne",
+    "syllables": [
+      "ne"
+    ]
+  },
+  {
+    "id": "s-ul",
+    "type": "syllable",
+    "label": "ul",
+    "phoneme": "ul",
+    "syllables": [
+      "ul"
+    ]
+  },
+  {
     "id": "x-tleur",
     "type": "word",
     "label": "tleur",
@@ -1657,6 +1792,33 @@ export const CURRICULUM_ITEMS: PedagogyItem[] = [
     "phoneme": "uélo",
     "syllables": [
       "uélo"
+    ]
+  },
+  {
+    "id": "s-veacute",
+    "type": "syllable",
+    "label": "vé",
+    "phoneme": "vé",
+    "syllables": [
+      "vé"
+    ]
+  },
+  {
+    "id": "s-lo",
+    "type": "syllable",
+    "label": "lo",
+    "phoneme": "lo",
+    "syllables": [
+      "lo"
+    ]
+  },
+  {
+    "id": "s-eacutev",
+    "type": "syllable",
+    "label": "év",
+    "phoneme": "év",
+    "syllables": [
+      "év"
     ]
   },
   {
@@ -1898,6 +2060,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-a-trace",
+    "lessonId": "l-son-a",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-a",
+      "cue": "Avec ton doigt, trace la lettre a",
+      "itemIds": [
+        "g-a"
+      ]
+    }
+  },
+  {
     "id": "e-son-e-1",
     "lessonId": "l-son-e",
     "type": "sound-grapheme",
@@ -1937,6 +2112,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
         "g-e",
         "g-u",
         "g-e-aigu"
+      ]
+    }
+  },
+  {
+    "id": "e-son-e-trace",
+    "lessonId": "l-son-e",
+    "type": "tracing",
+    "order": 4,
+    "params": {
+      "correctItemId": "g-e",
+      "cue": "Avec ton doigt, trace la lettre e",
+      "itemIds": [
+        "g-e"
       ]
     }
   },
@@ -1998,6 +2186,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-i-trace",
+    "lessonId": "l-son-i",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-i",
+      "cue": "Avec ton doigt, trace la lettre i",
+      "itemIds": [
+        "g-i"
+      ]
+    }
+  },
+  {
     "id": "e-son-o-1",
     "lessonId": "l-son-o",
     "type": "sound-grapheme",
@@ -2051,6 +2252,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
         "w-fleur",
         "w-lapin",
         "w-robot"
+      ]
+    }
+  },
+  {
+    "id": "e-son-o-trace",
+    "lessonId": "l-son-o",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-o",
+      "cue": "Avec ton doigt, trace la lettre o",
+      "itemIds": [
+        "g-o"
       ]
     }
   },
@@ -2112,6 +2326,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-u-trace",
+    "lessonId": "l-son-u",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-u",
+      "cue": "Avec ton doigt, trace la lettre u",
+      "itemIds": [
+        "g-u"
+      ]
+    }
+  },
+  {
     "id": "e-son-e-aigu-1",
     "lessonId": "l-son-e-aigu",
     "type": "sound-grapheme",
@@ -2165,6 +2392,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
         "w-velo",
         "w-chat",
         "w-dodo"
+      ]
+    }
+  },
+  {
+    "id": "e-son-e-aigu-trace",
+    "lessonId": "l-son-e-aigu",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-e-aigu",
+      "cue": "Avec ton doigt, trace la lettre é",
+      "itemIds": [
+        "g-e-aigu"
       ]
     }
   },
@@ -2226,6 +2466,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-m-trace",
+    "lessonId": "l-son-m",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-m",
+      "cue": "Avec ton doigt, trace la lettre m",
+      "itemIds": [
+        "g-m"
+      ]
+    }
+  },
+  {
     "id": "e-son-p-1",
     "lessonId": "l-son-p",
     "type": "sound-grapheme",
@@ -2279,6 +2532,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
         "w-doigt",
         "w-pomme",
         "w-avion"
+      ]
+    }
+  },
+  {
+    "id": "e-son-p-trace",
+    "lessonId": "l-son-p",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-p",
+      "cue": "Avec ton doigt, trace la lettre p",
+      "itemIds": [
+        "g-p"
       ]
     }
   },
@@ -2340,6 +2606,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-t-trace",
+    "lessonId": "l-son-t",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-t",
+      "cue": "Avec ton doigt, trace la lettre t",
+      "itemIds": [
+        "g-t"
+      ]
+    }
+  },
+  {
     "id": "e-son-s-1",
     "lessonId": "l-son-s",
     "type": "sound-grapheme",
@@ -2393,6 +2672,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
         "w-pomme",
         "w-poule",
         "w-poisson"
+      ]
+    }
+  },
+  {
+    "id": "e-son-s-trace",
+    "lessonId": "l-son-s",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-s",
+      "cue": "Avec ton doigt, trace la lettre s",
+      "itemIds": [
+        "g-s"
       ]
     }
   },
@@ -2454,6 +2746,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-l-trace",
+    "lessonId": "l-son-l",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-l",
+      "cue": "Avec ton doigt, trace la lettre l",
+      "itemIds": [
+        "g-l"
+      ]
+    }
+  },
+  {
     "id": "e-son-r-1",
     "lessonId": "l-son-r",
     "type": "sound-grapheme",
@@ -2507,6 +2812,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
         "w-fleur",
         "w-avion",
         "w-doigt"
+      ]
+    }
+  },
+  {
+    "id": "e-son-r-trace",
+    "lessonId": "l-son-r",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-r",
+      "cue": "Avec ton doigt, trace la lettre r",
+      "itemIds": [
+        "g-r"
       ]
     }
   },
@@ -2568,6 +2886,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-n-trace",
+    "lessonId": "l-son-n",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-n",
+      "cue": "Avec ton doigt, trace la lettre n",
+      "itemIds": [
+        "g-n"
+      ]
+    }
+  },
+  {
     "id": "e-son-d-1",
     "lessonId": "l-son-d",
     "type": "sound-grapheme",
@@ -2625,6 +2956,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-d-trace",
+    "lessonId": "l-son-d",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-d",
+      "cue": "Avec ton doigt, trace la lettre d",
+      "itemIds": [
+        "g-d"
+      ]
+    }
+  },
+  {
     "id": "e-son-f-1",
     "lessonId": "l-son-f",
     "type": "sound-grapheme",
@@ -2663,6 +3007,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "itemIds": [
         "g-s",
         "g-v",
+        "g-f"
+      ]
+    }
+  },
+  {
+    "id": "e-son-f-trace",
+    "lessonId": "l-son-f",
+    "type": "tracing",
+    "order": 4,
+    "params": {
+      "correctItemId": "g-f",
+      "cue": "Avec ton doigt, trace la lettre f",
+      "itemIds": [
         "g-f"
       ]
     }
@@ -2725,6 +3082,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-v-trace",
+    "lessonId": "l-son-v",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-v",
+      "cue": "Avec ton doigt, trace la lettre v",
+      "itemIds": [
+        "g-v"
+      ]
+    }
+  },
+  {
     "id": "e-son-b-1",
     "lessonId": "l-son-b",
     "type": "sound-grapheme",
@@ -2782,6 +3152,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-b-trace",
+    "lessonId": "l-son-b",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-b",
+      "cue": "Avec ton doigt, trace la lettre b",
+      "itemIds": [
+        "g-b"
+      ]
+    }
+  },
+  {
     "id": "e-son-j-1",
     "lessonId": "l-son-j",
     "type": "sound-grapheme",
@@ -2820,6 +3203,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "itemIds": [
         "g-v",
         "g-s",
+        "g-j"
+      ]
+    }
+  },
+  {
+    "id": "e-son-j-trace",
+    "lessonId": "l-son-j",
+    "type": "tracing",
+    "order": 4,
+    "params": {
+      "correctItemId": "g-j",
+      "cue": "Avec ton doigt, trace la lettre j",
+      "itemIds": [
         "g-j"
       ]
     }
@@ -2895,6 +3291,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-bd-trace-d",
+    "lessonId": "l-bd-1",
+    "type": "tracing",
+    "order": 6,
+    "params": {
+      "correctItemId": "g-d",
+      "cue": "Avec ton doigt, trace la lettre d",
+      "itemIds": [
+        "g-d"
+      ]
+    }
+  },
+  {
     "id": "e-pq-p1",
     "lessonId": "l-pq-1",
     "type": "sound-grapheme",
@@ -2966,6 +3375,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-pq-trace-q",
+    "lessonId": "l-pq-1",
+    "type": "tracing",
+    "order": 6,
+    "params": {
+      "correctItemId": "g-q",
+      "cue": "Avec ton doigt, trace la lettre ku",
+      "itemIds": [
+        "g-q"
+      ]
+    }
+  },
+  {
     "id": "e-son-ch-1",
     "lessonId": "l-son-ch",
     "type": "sound-grapheme",
@@ -3019,6 +3441,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
         "w-ballon",
         "w-banane",
         "w-cheval"
+      ]
+    }
+  },
+  {
+    "id": "e-son-ch-trace",
+    "lessonId": "l-son-ch",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-ch",
+      "cue": "Avec ton doigt, trace che",
+      "itemIds": [
+        "g-ch"
       ]
     }
   },
@@ -3080,6 +3515,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-ou-trace",
+    "lessonId": "l-son-ou",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-ou",
+      "cue": "Avec ton doigt, trace ou",
+      "itemIds": [
+        "g-ou"
+      ]
+    }
+  },
+  {
     "id": "e-syl-ma-1",
     "lessonId": "l-syl-ma",
     "type": "sound-grapheme",
@@ -3137,6 +3585,20 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-syl-ma-assemble",
+    "lessonId": "l-syl-ma",
+    "type": "syllable-assembly",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-maman",
+      "itemIds": [
+        "s-man",
+        "s-am",
+        "s-ma"
+      ]
+    }
+  },
+  {
     "id": "e-syl-pa-1",
     "lessonId": "l-syl-pa",
     "type": "sound-grapheme",
@@ -3190,6 +3652,20 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
         "w-papa",
         "w-pomme",
         "w-poule"
+      ]
+    }
+  },
+  {
+    "id": "e-syl-pa-assemble",
+    "lessonId": "l-syl-pa",
+    "type": "syllable-assembly",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-papa",
+      "itemIds": [
+        "s-ap",
+        "s-pa",
+        "s-pa"
       ]
     }
   },
@@ -3294,6 +3770,20 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-syl-la-assemble",
+    "lessonId": "l-syl-la",
+    "type": "syllable-assembly",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-lapin",
+      "itemIds": [
+        "s-pin",
+        "s-al",
+        "s-la"
+      ]
+    }
+  },
+  {
     "id": "e-syl-mi-1",
     "lessonId": "l-syl-mi",
     "type": "sound-grapheme",
@@ -3347,6 +3837,20 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
         "w-ami",
         "w-avion",
         "w-nez"
+      ]
+    }
+  },
+  {
+    "id": "e-syl-mi-assemble",
+    "lessonId": "l-syl-mi",
+    "type": "syllable-assembly",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-ami",
+      "itemIds": [
+        "s-mi",
+        "s-a",
+        "s-o"
       ]
     }
   },
@@ -3494,6 +3998,20 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-syl-li-assemble",
+    "lessonId": "l-syl-li",
+    "type": "syllable-assembly",
+    "order": 5,
+    "params": {
+      "correctItemId": "w-livre",
+      "itemIds": [
+        "s-il",
+        "s-li",
+        "s-vre"
+      ]
+    }
+  },
+  {
     "id": "e-syl-mo-1",
     "lessonId": "l-syl-mo",
     "type": "sound-grapheme",
@@ -3621,6 +4139,20 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-mot-maman-assemble",
+    "lessonId": "l-mot-maman",
+    "type": "syllable-assembly",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-maman",
+      "itemIds": [
+        "s-man",
+        "s-am",
+        "s-ma"
+      ]
+    }
+  },
+  {
     "id": "e-mot-papa-1",
     "lessonId": "l-mot-papa",
     "type": "word-recognition",
@@ -3658,6 +4190,20 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "itemIds": [
         "w-papa",
         "x-qapa"
+      ]
+    }
+  },
+  {
+    "id": "e-mot-papa-assemble",
+    "lessonId": "l-mot-papa",
+    "type": "syllable-assembly",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-papa",
+      "itemIds": [
+        "s-ap",
+        "s-pa",
+        "s-pa"
       ]
     }
   },
@@ -3703,6 +4249,20 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-mot-livre-assemble",
+    "lessonId": "l-mot-livre",
+    "type": "syllable-assembly",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-livre",
+      "itemIds": [
+        "s-il",
+        "s-li",
+        "s-vre"
+      ]
+    }
+  },
+  {
     "id": "e-mot-ecole-1",
     "lessonId": "l-mot-ecole",
     "type": "word-recognition",
@@ -3740,6 +4300,21 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "itemIds": [
         "w-ecole",
         "x-ecole"
+      ]
+    }
+  },
+  {
+    "id": "e-mot-ecole-assemble",
+    "lessonId": "l-mot-ecole",
+    "type": "syllable-assembly",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-ecole",
+      "itemIds": [
+        "s-co",
+        "s-le",
+        "s-egrave",
+        "s-eacute"
       ]
     }
   },
@@ -3785,6 +4360,20 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-mot-maison-assemble",
+    "lessonId": "l-mot-maison",
+    "type": "syllable-assembly",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-maison",
+      "itemIds": [
+        "s-mai",
+        "s-nai",
+        "s-son"
+      ]
+    }
+  },
+  {
     "id": "e-mot-ami-1",
     "lessonId": "l-mot-ami",
     "type": "word-recognition",
@@ -3822,6 +4411,20 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "itemIds": [
         "w-ami",
         "x-omi"
+      ]
+    }
+  },
+  {
+    "id": "e-mot-ami-assemble",
+    "lessonId": "l-mot-ami",
+    "type": "syllable-assembly",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-ami",
+      "itemIds": [
+        "s-a",
+        "s-o",
+        "s-mi"
       ]
     }
   },
@@ -3908,6 +4511,20 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-mot-lune-assemble",
+    "lessonId": "l-mot-lune",
+    "type": "syllable-assembly",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-lune",
+      "itemIds": [
+        "s-ne",
+        "s-ul",
+        "s-lu"
+      ]
+    }
+  },
+  {
     "id": "e-mot-fleur-1",
     "lessonId": "l-mot-fleur",
     "type": "word-recognition",
@@ -3990,6 +4607,20 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-mot-velo-assemble",
+    "lessonId": "l-mot-velo",
+    "type": "syllable-assembly",
+    "order": 4,
+    "params": {
+      "correctItemId": "w-velo",
+      "itemIds": [
+        "s-lo",
+        "s-eacutev",
+        "s-veacute"
+      ]
+    }
+  },
+  {
     "id": "e-son-oi-1",
     "lessonId": "l-son-oi",
     "type": "sound-grapheme",
@@ -4043,6 +4674,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
         "w-domino",
         "w-doigt",
         "w-dodo"
+      ]
+    }
+  },
+  {
+    "id": "e-son-oi-trace",
+    "lessonId": "l-son-oi",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-oi",
+      "cue": "Avec ton doigt, trace oi",
+      "itemIds": [
+        "g-oi"
       ]
     }
   },
@@ -4104,6 +4748,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-an-trace",
+    "lessonId": "l-son-an",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-an",
+      "cue": "Avec ton doigt, trace an",
+      "itemIds": [
+        "g-an"
+      ]
+    }
+  },
+  {
     "id": "e-son-on-1",
     "lessonId": "l-son-on",
     "type": "sound-grapheme",
@@ -4161,6 +4818,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-on-trace",
+    "lessonId": "l-son-on",
+    "type": "tracing",
+    "order": 5,
+    "params": {
+      "correctItemId": "g-on",
+      "cue": "Avec ton doigt, trace on",
+      "itemIds": [
+        "g-on"
+      ]
+    }
+  },
+  {
     "id": "e-son-in-1",
     "lessonId": "l-son-in",
     "type": "sound-grapheme",
@@ -4204,6 +4874,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
     }
   },
   {
+    "id": "e-son-in-trace",
+    "lessonId": "l-son-in",
+    "type": "tracing",
+    "order": 4,
+    "params": {
+      "correctItemId": "g-in",
+      "cue": "Avec ton doigt, trace in",
+      "itemIds": [
+        "g-in"
+      ]
+    }
+  },
+  {
     "id": "e-son-eau-1",
     "lessonId": "l-son-eau",
     "type": "sound-grapheme",
@@ -4242,6 +4925,19 @@ export const CURRICULUM_EXERCISES: Exercise[] = [
       "itemIds": [
         "g-ou",
         "g-o",
+        "g-eau"
+      ]
+    }
+  },
+  {
+    "id": "e-son-eau-trace",
+    "lessonId": "l-son-eau",
+    "type": "tracing",
+    "order": 4,
+    "params": {
+      "correctItemId": "g-eau",
+      "cue": "Avec ton doigt, trace eau",
+      "itemIds": [
         "g-eau"
       ]
     }

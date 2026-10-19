@@ -6,7 +6,16 @@ library;
 
 part 'curriculum.g.dart';
 
-enum ExerciseType { soundGrapheme, wordRecognition }
+enum ExerciseType {
+  soundGrapheme,
+  wordRecognition,
+
+  /// La voix dit un mot ; l'enfant remet ses syllabes dans l'ordre (une syllabe piège en plus).
+  syllableAssembly,
+
+  /// L'enfant repasse au doigt sur une lettre (voir `tracing.dart`).
+  tracing,
+}
 
 enum NodeStatus { locked, available, inProgress, mastered }
 
@@ -112,8 +121,8 @@ List<PedagogyItem> choicesOf(Exercise exercise) {
 
 /// Ce que la voix dit pour poser la question : le son (ou son mot-repère), ou le mot à trouver.
 String spokenPrompt(Exercise exercise) => switch (exercise.type) {
-  ExerciseType.soundGrapheme => exercise.cue ?? exercise.phoneme ?? '',
-  ExerciseType.wordRecognition => itemById(exercise.correctItemId ?? '')?.phoneme ?? '',
+  ExerciseType.soundGrapheme || ExerciseType.tracing => exercise.cue ?? exercise.phoneme ?? '',
+  ExerciseType.wordRecognition || ExerciseType.syllableAssembly => itemById(exercise.correctItemId ?? '')?.phoneme ?? '',
 };
 
 // --- Correction (jamais punitive) ---
@@ -143,6 +152,16 @@ AnswerCheck checkWordRecognition(Exercise exercise, String chosenId) {
     feedback: 'Pas tout à fait. Regarde bien les lettres, on réessaie.',
     correctId: exercise.correctItemId,
   );
+}
+
+/// Assemblage : les syllabes choisies, dans l'ordre, doivent redonner le mot.
+AnswerCheck checkSyllableAssembly(Exercise exercise, List<String> chosenIds) {
+  final target = itemById(exercise.correctItemId ?? '');
+  final expected = target?.syllables ?? const <String>[];
+  final chosen = [for (final id in chosenIds) itemById(id)?.label ?? ''];
+  final correct = expected.isNotEmpty && chosen.join('|') == expected.join('|');
+  if (correct) return AnswerCheck(correct: true, feedback: 'Bravo !', correctId: target!.id);
+  return AnswerCheck(correct: false, feedback: 'Presque ! C’est « ${expected.join(' · ')} ». On réessaie.', correctId: target?.id);
 }
 
 // --- Récompenses : l'effort est récompensé aussi ---

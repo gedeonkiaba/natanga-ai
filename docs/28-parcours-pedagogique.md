@@ -29,17 +29,38 @@ Après une modification des CSV : relancer le script, puis `php artisan db:seed`
   atteints restent repliés (en-tête seul).
 - Les mots sont affichés en **syllabes bicolores**, comme dans l'écran de lecture.
 
-## Exercices générés (3 à 5 par leçon, 185 au total)
+## Exercices générés (3 à 6 par leçon, 225 au total)
 
 La voix pose chaque question à l'arrivée de l'exercice ; le bouton 🔊 la répète. Une erreur
 n'est jamais punie : « Presque ! C'est « b ». On réessaie. »
 
 | Type de leçon | Exercices |
 |---|---|
-| **Son** (niveaux 1, 2, 5, et ch/ou) | 1. « a, comme dans avion » → choisir parmi 2 lettres proches · 2. écouter le mot-repère, le retrouver parmi 3 mots · 3. le son seul, parmi 3 lettres · 4. un 2ᵉ mot contenant le son, quand la banque en a un |
-| **Syllabe** (niveau 3) | 1. syllabe voisine (ma / pa) · 2. **inversion** (ma / am) · 3. parmi 3 syllabes · 4. un mot qui la contient (ma → maman), quand il existe |
-| **Mot** (niveau 4) | 1–2. retrouver le mot parmi des mots qui lui ressemblent (même début) · 3. le mot ou son **sosie à une lettre près** (maman / naman) |
+| **Son** (niveaux 1, 2, 5, et ch/ou) | 1. « a, comme dans avion » → choisir parmi 2 lettres proches · 2. écouter le mot-repère, le retrouver parmi 3 mots · 3. le son seul, parmi 3 lettres · 4. un 2ᵉ mot contenant le son, quand la banque en a un · 5. **tracer la lettre au doigt** |
+| **Syllabe** (niveau 3) | 1. syllabe voisine (ma / pa) · 2. **inversion** (ma / am) · 3. parmi 3 syllabes · 4. un mot qui la contient (ma → maman), quand il existe · 5. **assembler ce mot** à partir de ses syllabes |
+| **Mot** (niveau 4) | 1–2. retrouver le mot parmi des mots qui lui ressemblent (même début) · 3. le mot ou son **sosie à une lettre près** (maman / naman) · 4. **assembler le mot** (mots de 2 syllabes ou plus) |
 | **Phrase** (niveau 6) | 1. retrouver la phrase entendue parmi 3 · 2–3. retrouver 2 mots de la phrase (« chat », « dort ») |
+
+Les leçons miroir se terminent par le tracé de **d** et de **q**.
+
+### Assembler les syllabes
+
+La voix dit le mot ; l'enfant touche ses syllabes dans l'ordre. Une **syllabe piège** est
+ajoutée : l'inversion de la première syllabe (ma → am) ou, à défaut, son sosie (é → è).
+Toucher une case remplie la vide, pour corriger avant de valider. En cas d'erreur, l'ordre
+attendu est montré : « Presque ! C'est « ma · man ». On réessaie. »
+
+### Tracer les lettres (app Flutter)
+
+L'enfant repasse au doigt sur la lettre grise, puis touche « J'ai fini ». La lettre est
+dessinée hors écran sur une grille de 48 × 48 cases pour noter le tracé
+(`lib/domain/tracing.dart`) :
+- **couverture** ≥ 50 % : part de la lettre que le doigt a parcourue ;
+- **précision** ≥ 60 % : part du tracé restée près de la lettre (un gribouillage échoue).
+
+La tolérance est de 3 cases autour du trait : un tracé tremblé réussit. « Effacer »
+recommence et **« Passer »** est toujours proposé (motricité fine, lecteur d'écran). Le sens
+d'écriture des traits n'est pas encore vérifié. L'app Expo saute les tracés.
 
 Les lettres proposées comme distracteurs sont des **lettres proches** : en miroir (b/d, p/q),
 de son voisin (f/v, m/n, an/on…). La table est `CONFUSABLE` dans `generate.mjs`.
@@ -61,8 +82,8 @@ miroir), cheval (son /e/). Les 2ᵉ mots par son sont choisis à la main (`SECON
 
 - **ch** et **ou** sont au niveau 3 (Syllabes) dans la base. Ce sont des sons complexes :
   les déplacer au niveau 5 ? (changer `niveau_id` dans `lecons.csv`.)
-- Les objectifs parlent de **tracer** les lettres et d'**assembler** les syllabes : ces
-  exercices n'existent pas encore dans l'app (seulement écouter / reconnaître).
+- Le **tracé** ne vérifie pas encore le sens et l'ordre des traits (ex. « b » qui commence
+  par la barre). À décider avec l'orthophoniste si c'est utile.
 - La colonne `image_suggeree` n'est pas encore utilisée : il faudra des illustrations.
 - La voix de synthèse lit les consonnes isolées par leur nom (« èm », « pé ») ; c'est
   pourquoi chaque son est d'abord dit avec un mot-repère. Des enregistrements audio

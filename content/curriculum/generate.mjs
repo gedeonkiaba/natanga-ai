@@ -129,6 +129,7 @@ const MIRROR_LESSONS = [
       ['e-bd-b2', 'sg', 'b', 'b, comme bébé', ['d', 'p', 'b']],
       ['e-bd-bon', 'wr', 'bon', ['don', 'bon']],
       ['e-bd-dodo', 'wr', 'dodo', ['bébé', 'dodo', 'ballon']],
+      ['e-bd-trace-d', 'tr', 'd'],
     ],
   },
   {
@@ -140,6 +141,7 @@ const MIRROR_LESSONS = [
       ['e-pq-p2', 'sg', 'p', 'p, comme pomme', ['q', 'b', 'p']],
       ['e-pq-quatre', 'wr', 'quatre', ['pomme', 'quatre', 'poule']],
       ['e-pq-coq', 'wr', 'coq', ['coq', 'poule', 'papa']],
+      ['e-pq-trace-q', 'tr', 'q'],
     ],
   },
 ];
@@ -165,7 +167,9 @@ const add = (item) => {
 };
 const gid = (g) => (g === 'é' ? 'g-e-aigu' : `g-${slug(g)}`);
 const grapheme = (g) => add({ id: gid(g), type: 'grapheme', label: g, phoneme: g === 'q' ? 'k' : g, syllables: [] });
-const syllable = (s) => add({ id: `s-${slug(s)}`, type: 'syllable', label: s, phoneme: s, syllables: [s] });
+/** Les accents comptent pour une syllabe : « vé » ≠ « ve », « é » ≠ « è ». */
+const accentSlug = (s) => slug(s.replace(/é/g, 'eacute').replace(/è/g, 'egrave').replace(/ê/g, 'ecirc'));
+const syllable = (s) => add({ id: `s-${accentSlug(s)}`, type: 'syllable', label: s, phoneme: s, syllables: [s] });
 
 const wordSyllables = new Map();
 for (const m of mots) if (!m.mot.includes(' ')) wordSyllables.set(m.mot, m.syllabes);
@@ -243,6 +247,44 @@ const sg = (lessonId, id, target, cue, choiceIds) =>
 const wr = (lessonId, id, target, choiceIds) =>
   addExercise(lessonId, id, 'word-recognition', { correctItemId: target, itemIds: choiceIds });
 
+/** Tracé au doigt : une seule lettre (ou un son écrit en plusieurs lettres : ou, ch, eau). */
+const tr = (lessonId, id, g) => {
+  const label = items.get(g).label;
+  const say = SAY[label] ?? label;
+  const cue = [...label].length > 1 ? `Avec ton doigt, trace ${say}` : `Avec ton doigt, trace la lettre ${say}`;
+  addExercise(lessonId, id, 'tracing', { correctItemId: g, cue, itemIds: [g] });
+};
+
+/** Mélange déterministe (même résultat à chaque génération). */
+const shuffle = (arr, seed) => {
+  const h = (s) => [...s].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, seed + 7);
+  const out = arr.map((x, i) => ({ x, key: h(`${x}#${i}`) })).sort((a, b) => a.key - b.key).map((o) => o.x);
+  // Jamais dans l'ordre de la réponse : l'enfant doit vraiment assembler.
+  return out.join() === arr.join() ? [...out.slice(1), out[0]] : out;
+};
+
+/** Syllabe piège pour l'assemblage : inversion (ma → am) ou lettre sosie (é → è). */
+function trapSyllable(syllables) {
+  const first = syllables[0];
+  const chars = [...first];
+  let trap = chars.length === 2 ? chars.reverse().join('') : '';
+  if (!trap || syllables.includes(trap)) {
+    const i = [...first].findIndex((c) => LOOKALIKE[c]);
+    const c = [...first];
+    c[i] = LOOKALIKE[c[i]];
+    trap = c.join('');
+  }
+  return trap;
+}
+
+/** Assemblage : la voix dit le mot, l'enfant remet ses syllabes dans l'ordre (+ 1 piège). */
+const assemble = (lessonId, id, w, seed) => {
+  const wordId = word(w);
+  const syl = items.get(wordId).syllables;
+  const tiles = [...syl, trapSyllable(syl)].map(syllable);
+  addExercise(lessonId, id, 'syllable-assembly', { correctItemId: wordId, itemIds: shuffle(tiles, seed) });
+};
+
 const byLevel = [...lecons].sort((a, b) => a.niveau_id - b.niveau_id || a.ordre - b.ordre);
 let sentenceIndex = 0;
 for (const [index, l] of byLevel.entries()) {
@@ -268,6 +310,7 @@ for (const [index, l] of byLevel.entries()) {
       const distract = similarWords(second, 2, (w) => notTarget(w) || w === cueWord);
       wr(lessonId, `e-son-${key}-4`, word(second), rotate([second, ...distract].map(word), k + 1));
     }
+    tr(lessonId, `e-son-${key}-trace`, g);
   } else if (l.titre.startsWith('La syllabe')) {
     const key = slug(target);
     const lessonId = `l-syl-${key}`;
@@ -279,7 +322,10 @@ for (const [index, l] of byLevel.entries()) {
     sg(lessonId, `e-syl-${key}-1`, s, helper ? `${target}, comme dans ${helper}` : target, rotate([s, near1], k));
     sg(lessonId, `e-syl-${key}-2`, s, target, rotate([inverted, s], k));
     sg(lessonId, `e-syl-${key}-3`, s, target, rotate([near2, s, near1], k));
-    if (helper) wr(lessonId, `e-syl-${key}-4`, word(helper), rotate([helper, ...similarWords(helper, 2)].map(word), k));
+    if (helper) {
+      wr(lessonId, `e-syl-${key}-4`, word(helper), rotate([helper, ...similarWords(helper, 2)].map(word), k));
+      assemble(lessonId, `e-syl-${key}-assemble`, helper, k);
+    }
   } else if (l.titre.startsWith('Le mot')) {
     const key = slug(target);
     const lessonId = `l-mot-${key}`;
@@ -289,6 +335,7 @@ for (const [index, l] of byLevel.entries()) {
     wr(lessonId, `e-mot-${key}-1`, w, rotate([w, d1, d2], k));
     wr(lessonId, `e-mot-${key}-2`, w, rotate([d3, w, d4], k));
     wr(lessonId, `e-mot-${key}-3`, w, rotate([lookalike(target), w], k));
+    if (items.get(w).syllables.length > 1) assemble(lessonId, `e-mot-${key}-assemble`, target, k);
   } else if (l.titre.startsWith('Phrase')) {
     sentenceIndex++;
     const lessonId = `l-phrase-${sentenceIndex}`;
@@ -304,6 +351,7 @@ for (const [index, l] of byLevel.entries()) {
       addNode('letters', m.nodeId, m.lessonId, m.title, m.objective, 6);
       for (const [id, type, t, ...rest] of m.exercises) {
         if (type === 'sg') sg(m.lessonId, id, grapheme(t), rest[0], rest[1].map(grapheme));
+        else if (type === 'tr') tr(m.lessonId, id, grapheme(t));
         else wr(m.lessonId, id, word(t), rest[0].map(word));
       }
     }
@@ -334,6 +382,21 @@ const itemList = [...items.values()];
 for (const e of exercises) {
   const ids = e.params.itemIds;
   for (const id of ids) if (!items.has(id)) throw new Error(`${e.id} : item inconnu ${id}`);
+  if (e.type === 'tracing') {
+    if (ids.length !== 1 || ids[0] !== e.params.correctItemId) throw new Error(`${e.id} : tracé invalide`);
+    continue;
+  }
+  if (e.type === 'syllable-assembly') {
+    const answer = items.get(e.params.correctItemId).syllables;
+    const pool = ids.map((id) => items.get(id).label);
+    for (const syl of answer) {
+      const at = pool.indexOf(syl);
+      if (at < 0) throw new Error(`${e.id} : syllabe manquante ${syl}`);
+      pool.splice(at, 1);
+    }
+    if (answer.length < 2 || pool.length !== 1 || answer.includes(pool[0])) throw new Error(`${e.id} : piège invalide`);
+    continue;
+  }
   if (new Set(ids).size !== ids.length || ids.length < 2) throw new Error(`${e.id} : choix invalides`);
   const right =
     e.type === 'sound-grapheme'
@@ -366,7 +429,12 @@ export const CURRICULUM_EXERCISES: Exercise[] = ${JSON.stringify(exercises, null
 `;
 
 const dartType = { grapheme: 'ItemType.grapheme', syllable: 'ItemType.syllable', word: 'ItemType.word', sentence: 'ItemType.sentence' };
-const dartExType = { 'sound-grapheme': 'ExerciseType.soundGrapheme', 'word-recognition': 'ExerciseType.wordRecognition' };
+const dartExType = {
+  'sound-grapheme': 'ExerciseType.soundGrapheme',
+  'word-recognition': 'ExerciseType.wordRecognition',
+  'syllable-assembly': 'ExerciseType.syllableAssembly',
+  tracing: 'ExerciseType.tracing',
+};
 const dartList = (xs) => `[${xs.map(q).join(', ')}]`;
 const dart = `// ${banner}
 // ignore_for_file: lines_longer_than_80_chars

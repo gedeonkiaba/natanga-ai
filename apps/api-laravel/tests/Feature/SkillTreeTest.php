@@ -76,7 +76,7 @@ it('retourne une leçon avec ses exercices et items résolus', function () {
 
     expect($res->json('kind'))->toBe('exercise');
     expect($res->json('nodeId'))->toBe('n-son-a');
-    expect($res->json('exercises'))->toHaveCount(4);
+    expect($res->json('exercises'))->toHaveCount(5);
 
     $sound = collect($res->json('exercises'))->firstWhere('type', 'sound-grapheme');
     expect($sound['params']['phoneme'])->toBe('a');
@@ -122,9 +122,17 @@ it('sert le parcours de la base de connaissances : 6 niveaux, 52 leçons jouable
 
     $bd = $this->getJson('/api/lessons/l-bd-1');
     $bd->assertOk();
-    expect($bd->json('exercises'))->toHaveCount(5);
+    expect($bd->json('exercises'))->toHaveCount(6);
     expect($bd->json('exercises.0.params'))
         ->toBe(['phoneme' => 'b', 'cue' => 'b, comme ballon', 'itemIds' => ['g-b', 'g-d']]);
+
+    // Nouveaux types : assemblage (tuiles = syllabes, dont une piège) et tracé d'une lettre.
+    $maman = collect($this->getJson('/api/lessons/l-mot-maman')->json('exercises'))->firstWhere('type', 'syllable-assembly');
+    expect($maman['params']['correctItemId'])->toBe('w-maman');
+    expect(array_column($maman['items'], 'label'))->toEqualCanonicalizing(['ma', 'man', 'am']);
+    $trace = collect($a['exercises'])->last();
+    expect($trace['type'])->toBe('tracing');
+    expect($trace['params']['cue'])->toBe('Avec ton doigt, trace la lettre a');
 
     $phrase = $this->getJson('/api/lessons/l-phrase-1')->json('exercises');
     expect($phrase)->toHaveCount(3);

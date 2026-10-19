@@ -11,11 +11,13 @@ import '../features/progress.dart';
 import '../router.dart';
 import '../state/progress_controller.dart';
 import '../state/tts_provider.dart';
+import 'exercises/assembly_exercise.dart';
+import 'exercises/tracing_exercise.dart';
 
 /// Durée d'affichage du retour avant l'exercice suivant.
 const feedbackDuration = Duration(milliseconds: 1200);
 
-/// Leçon (US-06) : exercices son ⇄ graphème (US-07) et reconnaissance de mots (US-08).
+/// Leçon (US-06) : son ⇄ graphème (US-07), reconnaissance (US-08), assemblage de syllabes, tracé.
 class LessonScreen extends ConsumerStatefulWidget {
   const LessonScreen({super.key, required this.nodeId});
   final String nodeId;
@@ -51,11 +53,15 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
     });
   }
 
-  /// Le retour reste affiché sur l'exercice en cours ; les touches en trop sont ignorées.
   void _choose(String itemId) {
     final ex = _run.current;
-    if (ex == null || _pending != null) return;
-    final check = ex.type == ExerciseType.soundGrapheme ? checkSoundGrapheme(ex, curriculumItems, itemId) : checkWordRecognition(ex, itemId);
+    if (ex == null) return;
+    _submit(ex.type == ExerciseType.soundGrapheme ? checkSoundGrapheme(ex, curriculumItems, itemId) : checkWordRecognition(ex, itemId), itemId);
+  }
+
+  /// Le retour reste affiché sur l'exercice en cours ; les réponses en trop sont ignorées.
+  void _submit(AnswerCheck check, [String? itemId]) {
+    if (_run.current == null || _pending != null) return;
     setState(() {
       _feedback = check;
       _chosenId = itemId;
@@ -107,11 +113,13 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
     final ex = _run.current!;
     final choices = choicesOf(ex);
     final kind = choices.first.type;
-    final (instruction, replay) = switch (kind) {
-      ItemType.grapheme => ('Écoute, puis touche la lettre entendue :', 'Réécouter le son'),
-      ItemType.syllable => ('Écoute, puis touche la syllabe entendue :', 'Réécouter la syllabe'),
-      ItemType.word => ('Écoute, puis touche le mot entendu :', 'Réécouter le mot'),
-      ItemType.sentence => ('Écoute, puis touche la phrase entendue :', 'Réécouter la phrase'),
+    final (instruction, replay) = switch ((ex.type, kind)) {
+      (ExerciseType.syllableAssembly, _) => ('Écoute, puis remets les syllabes dans l’ordre :', 'Réécouter le mot'),
+      (ExerciseType.tracing, _) => ('Avec ton doigt, repasse sur la lettre grise :', 'Réécouter la consigne'),
+      (_, ItemType.grapheme) => ('Écoute, puis touche la lettre entendue :', 'Réécouter le son'),
+      (_, ItemType.syllable) => ('Écoute, puis touche la syllabe entendue :', 'Réécouter la syllabe'),
+      (_, ItemType.word) => ('Écoute, puis touche le mot entendu :', 'Réécouter le mot'),
+      (_, ItemType.sentence) => ('Écoute, puis touche la phrase entendue :', 'Réécouter la phrase'),
     };
     final tts = ref.read(ttsServiceProvider);
     _speakOnce(ex);
@@ -143,35 +151,11 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
                 ),
               ),
               const SizedBox(height: Space.lg),
-              // Phrases : une par ligne, pleine largeur. Lettres, syllabes, mots : grille compacte.
-              Wrap(
-                direction: kind == ItemType.sentence ? Axis.vertical : Axis.horizontal,
-                spacing: Space.sm,
-                runSpacing: Space.sm,
-                alignment: WrapAlignment.center,
-                crossAxisAlignment: WrapCrossAlignment.center,
-                children: [
-                  for (final item in choices)
-                    _Choice(
-                      item: item,
-                      semantic: switch (kind) {
-                        ItemType.grapheme => 'Choisir la lettre ${item.label}',
-                        ItemType.syllable => 'Choisir la syllabe ${item.label}',
-                        ItemType.word => 'Choisir le mot ${item.label}',
-                        ItemType.sentence => 'Choisir la phrase ${item.label}',
-                      },
-                      state:
-                          _feedback == null
-                              ? _ChoiceState.idle
-                              : item.id == _feedback!.correctId
-                              ? _ChoiceState.right
-                              : item.id == _chosenId
-                              ? _ChoiceState.wrong
-                              : _ChoiceState.idle,
-                      onTap: () => _choose(item.id),
-                    ),
-                ],
-              ),
+              switch (ex.type) {
+                ExerciseType.syllableAssembly => AssemblyExercise(key: ValueKey(ex.id), exercise: ex, feedback: _feedback, onSubmit: _submit),
+                ExerciseType.tracing => TracingExercise(key: ValueKey(ex.id), exercise: ex, feedback: _feedback, onSubmit: _submit),
+                _ => _choices(choices, kind),
+              },
               if (_feedback != null) ...[
                 const SizedBox(height: Space.lg),
                 Semantics(
@@ -189,6 +173,38 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
       ],
     );
   }
+}
+
+extension on _LessonScreenState {
+  /// Choix à toucher. Phrases : une par ligne, pleine largeur. Lettres, syllabes, mots : grille compacte.
+  Widget _choices(List<PedagogyItem> choices, ItemType kind) => Wrap(
+    direction: kind == ItemType.sentence ? Axis.vertical : Axis.horizontal,
+    spacing: Space.sm,
+    runSpacing: Space.sm,
+    alignment: WrapAlignment.center,
+    crossAxisAlignment: WrapCrossAlignment.center,
+    children: [
+      for (final item in choices)
+        _Choice(
+          item: item,
+          semantic: switch (kind) {
+            ItemType.grapheme => 'Choisir la lettre ${item.label}',
+            ItemType.syllable => 'Choisir la syllabe ${item.label}',
+            ItemType.word => 'Choisir le mot ${item.label}',
+            ItemType.sentence => 'Choisir la phrase ${item.label}',
+          },
+          state:
+              _feedback == null
+                  ? _ChoiceState.idle
+                  : item.id == _feedback!.correctId
+                  ? _ChoiceState.right
+                  : item.id == _chosenId
+                  ? _ChoiceState.wrong
+                  : _ChoiceState.idle,
+          onTap: () => _choose(item.id),
+        ),
+    ],
+  );
 }
 
 enum _ChoiceState { idle, right, wrong }

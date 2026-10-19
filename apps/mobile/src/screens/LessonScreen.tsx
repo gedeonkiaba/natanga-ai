@@ -4,6 +4,7 @@ import {
   CURRICULUM_EXERCISES,
   CURRICULUM_ITEMS,
   CURRICULUM_LESSONS,
+  EXPO_EXERCISE_TYPES,
   type Lesson,
 } from '@natanga/core';
 import { Badge, Button, ProgressBar, Text } from '@natanga/ui';
@@ -11,6 +12,7 @@ import { spacing } from '@natanga/ui'; // racine : Metro ne résout pas les sous
 import { useLessonSession } from '../hooks/useLessonSession';
 import { SoundGrapheme } from '../components/SoundGrapheme';
 import { WordRecognition } from '../components/WordRecognition';
+import { SyllableAssembly } from '../components/SyllableAssembly';
 
 /** Durée d'affichage du retour avant l'exercice suivant (ms). */
 const FEEDBACK_MS = 1200;
@@ -26,7 +28,10 @@ export interface LessonScreenProps {
  * Consomme le moteur `@natanga/core` et les composants accessibles `@natanga/ui`.
  */
 export function LessonScreen({ lesson, onFinish, onQuit }: LessonScreenProps) {
-  const exercises = CURRICULUM_EXERCISES.filter((e) => e.lessonId === lesson.id);
+  // Le tracé au doigt n'existe que dans l'app Flutter : ici, la leçon se joue sans lui.
+  const exercises = CURRICULUM_EXERCISES.filter(
+    (e) => e.lessonId === lesson.id && EXPO_EXERCISE_TYPES.has(e.type),
+  );
   const { exercise, gems, correct, finished, score, answer } = useLessonSession(lesson, exercises);
 
   // Le moteur passe à l'exercice suivant dès la réponse : on laisse d'abord l'enfant
@@ -106,6 +111,13 @@ export function LessonScreen({ lesson, onFinish, onQuit }: LessonScreenProps) {
 
       {exercise.type === 'sound-grapheme' ? (
         <SoundGrapheme
+          key={exercise.id}
+          exercise={exercise}
+          items={CURRICULUM_ITEMS}
+          onAnswer={onAnswer}
+        />
+      ) : exercise.type === 'syllable-assembly' ? (
+        <SyllableAssembly
           key={exercise.id}
           exercise={exercise}
           items={CURRICULUM_ITEMS}

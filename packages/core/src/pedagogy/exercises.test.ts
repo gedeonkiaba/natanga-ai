@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { checkSoundGrapheme, checkWordRecognition, choicesOf, spokenPrompt } from './exercises';
+import {
+  checkSoundGrapheme,
+  checkSyllableAssembly,
+  checkWordRecognition,
+  choicesOf,
+  spokenPrompt,
+} from './exercises';
 import {
   CURRICULUM_EXERCISES,
   CURRICULUM_ITEMS,
@@ -51,7 +57,9 @@ describe('contenu : chaque leçon est jouable', () => {
   });
 
   it('chaque exercice propose exactement une bonne réponse et une consigne orale', () => {
-    for (const e of CURRICULUM_EXERCISES) {
+    for (const e of CURRICULUM_EXERCISES.filter(
+      (x) => x.type === 'sound-grapheme' || x.type === 'word-recognition',
+    )) {
       const choices = choicesOf(e, CURRICULUM_ITEMS);
       expect(choices.length, e.id).toBe(e.params.itemIds!.length);
       const right = choices.filter((c) =>
@@ -89,5 +97,29 @@ describe('contenu : chaque leçon est jouable', () => {
     expect(spokenPrompt(b1, CURRICULUM_ITEMS)).toBe('b, comme ballon');
     const bon = CURRICULUM_EXERCISES.find((e) => e.id === 'e-bd-bon')!;
     expect(spokenPrompt(bon, CURRICULUM_ITEMS)).toBe('bon');
+  });
+});
+
+describe('assemblage de syllabes et tracé', () => {
+  const byId = (id: string) => CURRICULUM_EXERCISES.find((e) => e.id === id)!;
+
+  it('remet « ma · man » dans l’ordre, la syllabe piège en plus', () => {
+    const ex = byId('e-mot-maman-assemble');
+    expect(spokenPrompt(ex, CURRICULUM_ITEMS)).toBe('maman');
+    expect(
+      choicesOf(ex, CURRICULUM_ITEMS)
+        .map((t) => t.label)
+        .sort(),
+    ).toEqual(['am', 'ma', 'man']);
+    expect(checkSyllableAssembly(ex, CURRICULUM_ITEMS, ['s-ma', 's-man']).correct).toBe(true);
+    expect(checkSyllableAssembly(ex, CURRICULUM_ITEMS, ['s-man', 's-ma']).feedback).toBe(
+      'Presque ! C’est « ma · man ». On réessaie.',
+    );
+  });
+
+  it('chaque leçon de son se termine par le tracé de sa lettre', () => {
+    const trace = CURRICULUM_EXERCISES.filter((e) => e.lessonId === 'l-son-a').at(-1)!;
+    expect(trace.type).toBe('tracing');
+    expect(spokenPrompt(trace, CURRICULUM_ITEMS)).toBe('Avec ton doigt, trace la lettre a');
   });
 });

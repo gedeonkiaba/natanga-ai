@@ -20,7 +20,9 @@ export interface CurriculumLevel {
 /** Type d'exercice (spec §2). */
 export type ExerciseType =
   | 'sound-grapheme' // association son ⇄ graphème
-  | 'word-recognition'; // reconnaissance de mots (QCM)
+  | 'word-recognition' // reconnaissance de mots (QCM)
+  | 'syllable-assembly' // remettre les syllabes d'un mot dans l'ordre
+  | 'tracing'; // repasser au doigt sur une lettre (app Flutter)
 
 /** Type d'item pédagogique. */
 export type ItemType = 'grapheme' | 'phoneme' | 'syllable' | 'word' | 'sentence';

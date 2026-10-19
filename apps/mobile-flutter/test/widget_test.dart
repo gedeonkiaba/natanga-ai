@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:natanga_mobile/auth/token_storage.dart';
 import 'package:natanga_mobile/domain/pedagogy.dart';
+import 'package:natanga_mobile/domain/tracing.dart';
 import 'package:natanga_mobile/features/progress.dart';
 import 'package:natanga_mobile/main.dart';
 import 'package:natanga_mobile/services/tts_service.dart';
+import 'package:natanga_mobile/state/glyph_mask_provider.dart';
 import 'package:natanga_mobile/state/progress_controller.dart';
 import 'package:natanga_mobile/state/tts_provider.dart';
 import 'package:natanga_mobile/theme/natanga_theme.dart';
@@ -33,6 +36,8 @@ Future<(Widget, FakeTts, SharedPreferences)> testApp({SharedPreferences? prefs})
         tokenStorageProvider.overrideWithValue(InMemoryTokenStorage()),
         sharedPreferencesProvider.overrideWithValue(p),
         ttsServiceProvider.overrideWithValue(tts),
+        // Lettre modèle simplifiée (barre verticale) : notation du tracé déterministe en test.
+        glyphMaskProvider.overrideWithValue((_) async => verticalBar),
       ],
       child: const NatangaApp(),
     ),
@@ -45,6 +50,21 @@ Future<void> phone(WidgetTester tester) async {
   tester.view.physicalSize = const Size(430 * 3, 932 * 3);
   tester.view.devicePixelRatio = 3;
   addTearDown(tester.view.reset);
+}
+
+final verticalBar = GlyphMask(48, [for (var y = 0; y < 48; y++) for (var x = 0; x < 48; x++) x >= 22 && x <= 25 && y >= 6 && y <= 42]);
+
+/// Repasse au doigt sur la barre verticale de la zone de tracé.
+Future<void> traceBar(WidgetTester tester) async {
+  final canvas = find.byKey(const ValueKey('tracing-canvas'));
+  await tester.ensureVisible(canvas);
+  final box = tester.getRect(canvas);
+  final gesture = await tester.startGesture(Offset(box.center.dx, box.top + box.height * 0.14));
+  for (var i = 1; i <= 20; i++) {
+    await gesture.moveTo(Offset(box.center.dx, box.top + box.height * (0.14 + 0.72 * i / 20)));
+  }
+  await gesture.up();
+  await tester.pump();
 }
 
 Finder sem(String label) => find.bySemanticsLabel(label);
@@ -143,14 +163,24 @@ void main() {
     expect(tts.spoken.last, 'papa');
     await answer(tester, 'Choisir le mot papa');
 
+    // Tracé : « J'ai fini » attend un premier trait ; repasser sur la lettre réussit.
+    expect(find.text('Avec ton doigt, repasse sur la lettre grise :'), findsOneWidget);
+    expect(tts.spoken.last, 'Avec ton doigt, trace la lettre a');
+    expect(tester.getSemantics(sem('J’ai fini')), isSemantics(isButton: true, hasEnabledState: true, isEnabled: false));
+    await traceBar(tester);
+    await tapSem(tester, 'J’ai fini');
+    expect(find.text('Bravo, belle lettre !'), findsOneWidget);
+    await tester.pump(feedbackDurationForTests);
+    await tester.pumpAndSettle();
+
     expect(find.text('Leçon terminée !'), findsOneWidget);
-    expect(find.text('3 bonnes réponses sur 4.'), findsOneWidget);
+    expect(find.text('4 bonnes réponses sur 5.'), findsOneWidget);
     await tapSem(tester, 'Continuer');
     expect(await nodeLabel(tester, 'Le son /a/'), 'Le son /a/ — Terminé');
     expect(await nodeLabel(tester, 'Le son /e/'), 'Le son /e/ — Disponible');
 
     final saved = ProgressState.parse(prefs.getString(progressStorageKey));
-    expect(saved.gems, 35);
+    expect(saved.gems, 45);
     expect(saved.outbox.map((e) => e.type), ['lesson_completed']);
 
     // « Redémarrage » : nouvelle app, même stockage → le parcours est intact.
@@ -190,8 +220,11 @@ void main() {
     expect(tts.spoken.last, 'bon');
     await answer(tester, 'Choisir le mot bon');
     await answer(tester, 'Choisir le mot dodo');
+    expect(tts.spoken.last, 'Avec ton doigt, trace la lettre d');
+    await traceBar(tester);
+    await answer(tester, 'J’ai fini');
 
-    expect(find.text('4 bonnes réponses sur 5.'), findsOneWidget);
+    expect(find.text('5 bonnes réponses sur 6.'), findsOneWidget);
     await tapSem(tester, 'Continuer');
     expect(await nodeLabel(tester, 'b ou d ?'), 'b ou d ? — Terminé');
     expect(await nodeLabel(tester, 'p ou q ?'), 'p ou q ? — Disponible');
@@ -232,6 +265,90 @@ void main() {
     await answer(tester, 'Choisir la phrase Le chat dort.');
     expect(tts.spoken.last, 'chat');
     expect(sem('Choisir le mot dort'), findsOneWidget);
+  });
+
+  testWidgets('assemblage « ma-man » : on retire une syllabe, piège « am », bonne réponse', (tester) async {
+    await phone(tester);
+    final maman = curriculumNodes.indexWhere((n) => n.id == 'n-mot-maman');
+    SharedPreferences.setMockInitialValues({progressStorageKey: masteredFirst(maman)});
+    final prefs = await SharedPreferences.getInstance();
+    final (app, tts, _) = await testApp(prefs: prefs);
+    await tester.pumpWidget(app);
+    await tester.pumpAndSettle();
+    await tapSem(tester, 'Bibliothèque');
+    await tapSem(tester, 'Commencer');
+    for (var i = 0; i < 3; i++) {
+      await answer(tester, 'Choisir le mot maman');
+    }
+
+    expect(find.text('Écoute, puis remets les syllabes dans l’ordre :'), findsOneWidget);
+    expect(tts.spoken.last, 'maman');
+    expect(sem('Ajouter la syllabe am'), findsOneWidget); // syllabe piège (inversion)
+    await tapSem(tester, 'Ajouter la syllabe man');
+    expect(sem('Case 1 : man, toucher pour retirer'), findsOneWidget);
+    await tapSem(tester, 'Case 1 : man, toucher pour retirer');
+    expect(sem('Case 1 vide'), findsOneWidget);
+    await tapSem(tester, 'Ajouter la syllabe ma');
+    await tapSem(tester, 'Ajouter la syllabe man');
+    expect(find.text('Bravo !'), findsOneWidget);
+    await tester.pump(feedbackDurationForTests);
+    await tester.pumpAndSettle();
+    expect(find.text('4 bonnes réponses sur 4.'), findsOneWidget);
+  });
+
+  testWidgets('assemblage dans le désordre : la bonne réponse est montrée ; tracé : « Passer » toujours possible', (tester) async {
+    await phone(tester);
+    final ma = curriculumNodes.indexWhere((n) => n.id == 'n-syl-ma');
+    SharedPreferences.setMockInitialValues({progressStorageKey: masteredFirst(ma)});
+    var prefs = await SharedPreferences.getInstance();
+    var (app, _, _) = await testApp(prefs: prefs);
+    await tester.pumpWidget(app);
+    await tester.pumpAndSettle();
+    await tapSem(tester, 'Bibliothèque');
+    await tapSem(tester, 'Commencer');
+    for (final l in ['ma', 'ma', 'ma']) {
+      await answer(tester, 'Choisir la syllabe $l');
+    }
+    await answer(tester, 'Choisir le mot maman');
+    await tapSem(tester, 'Ajouter la syllabe man');
+    await tapSem(tester, 'Ajouter la syllabe ma');
+    expect(find.text('Presque ! C’est « ma · man ». On réessaie.'), findsOneWidget);
+    expect(tester.getSemantics(sem('Case 1 : man')), isSemantics(label: 'Case 1 : man')); // figé pendant le retour
+    await tester.pump(feedbackDurationForTests);
+    await tester.pumpAndSettle();
+    expect(find.text('4 bonnes réponses sur 5.'), findsOneWidget);
+
+    SharedPreferences.setMockInitialValues({progressStorageKey: masteredFirst(0)});
+    prefs = await SharedPreferences.getInstance();
+    (app, _, _) = await testApp(prefs: prefs);
+    await tester.pumpWidget(const SizedBox());
+    await tester.pumpWidget(app);
+    await tester.pumpAndSettle();
+    await tapSem(tester, 'Bibliothèque');
+    await tapSem(tester, 'Commencer');
+    for (final label in ['Choisir la lettre a', 'Choisir le mot avion', 'Choisir la lettre a', 'Choisir le mot papa']) {
+      await answer(tester, label);
+    }
+    await tapSem(tester, 'Passer');
+    expect(find.text('Pas de souci, on continue !'), findsOneWidget);
+    await tester.pump(feedbackDurationForTests);
+    await tester.pumpAndSettle();
+    expect(find.text('4 bonnes réponses sur 5.'), findsOneWidget);
+  });
+
+  testWidgets('la vraie lettre est dessinée hors écran pour noter le tracé', (tester) async {
+    final font = FontLoader('Lexend')..addFont(rootBundle.load('assets/fonts/Lexend_500Medium.ttf'));
+    await tester.runAsync(() async {
+      await font.load();
+      final o = await rasterizeGlyph('o');
+      final l = await rasterizeGlyph('l');
+      expect(o.at(24, 26), isFalse, reason: 'le centre du « o » est vide');
+      expect(o.cells.where((c) => c).length, inInclusiveRange(150, 700));
+      // Un trait vertical au milieu suit le « l » ; il ne suit pas le « o ».
+      final down = [for (var i = 0; i <= 20; i++) (0.5, 0.1 + 0.8 * i / 20)];
+      expect(scoreTrace(l, [down]).passed, isTrue);
+      expect(scoreTrace(o, [down]).passed, isFalse);
+    });
   });
 
   testWidgets('profil puis lecture : choix enregistrés, mot touché lu à voix haute, succès', (tester) async {
