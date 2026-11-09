@@ -82,7 +82,8 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (_, state) {
           // `nodeId` optionnel (ex. /lesson?node=n-letters-a).
           final nodeId = state.uri.queryParameters['node'] ?? '';
-          return LessonScreen(nodeId: nodeId);
+          // Clé = adresse complète : « Leçon suivante » et « Recommencer » repartent d'une leçon neuve.
+          return LessonScreen(key: ValueKey(state.uri.toString()), nodeId: nodeId);
         },
       ),
     ],

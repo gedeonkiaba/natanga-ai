@@ -10,6 +10,7 @@ import 'package:natanga_mobile/domain/tracing.dart';
 import 'package:natanga_mobile/features/progress.dart';
 import 'package:natanga_mobile/main.dart';
 import 'package:natanga_mobile/services/tts_service.dart';
+import 'package:natanga_mobile/state/clock_provider.dart';
 import 'package:natanga_mobile/state/glyph_mask_provider.dart';
 import 'package:natanga_mobile/state/progress_controller.dart';
 import 'package:natanga_mobile/state/tts_provider.dart';
@@ -38,6 +39,8 @@ Future<(Widget, FakeTts, SharedPreferences)> testApp({SharedPreferences? prefs})
         ttsServiceProvider.overrideWithValue(tts),
         // Lettre modèle simplifiée (barre verticale) : notation du tracé déterministe en test.
         glyphMaskProvider.overrideWithValue((_) async => verticalBar),
+        // Lundi 9 novembre 2026, 10 h : semaine et série déterministes.
+        clockProvider.overrideWithValue(() => testNow),
       ],
       child: const NatangaApp(),
     ),
@@ -51,6 +54,8 @@ Future<void> phone(WidgetTester tester) async {
   tester.view.devicePixelRatio = 3;
   addTearDown(tester.view.reset);
 }
+
+final testNow = DateTime(2026, 11, 9, 10);
 
 final verticalBar = GlyphMask(48, [for (var y = 0; y < 48; y++) for (var x = 0; x < 48; x++) x >= 22 && x <= 25 && y >= 6 && y <= 42]);
 
@@ -175,7 +180,7 @@ void main() {
 
     expect(find.text('Leçon terminée !'), findsOneWidget);
     expect(find.text('4 bonnes réponses sur 5.'), findsOneWidget);
-    await tapSem(tester, 'Continuer');
+    await tapSem(tester, 'Voir mon parcours');
     expect(await nodeLabel(tester, 'Le son /a/'), 'Le son /a/ — Terminé');
     expect(await nodeLabel(tester, 'Le son /e/'), 'Le son /e/ — Disponible');
 
@@ -225,7 +230,7 @@ void main() {
     await answer(tester, 'J’ai fini');
 
     expect(find.text('5 bonnes réponses sur 6.'), findsOneWidget);
-    await tapSem(tester, 'Continuer');
+    await tapSem(tester, 'Voir mon parcours');
     expect(await nodeLabel(tester, 'b ou d ?'), 'b ou d ? — Terminé');
     expect(await nodeLabel(tester, 'p ou q ?'), 'p ou q ? — Disponible');
   });
@@ -362,6 +367,68 @@ void main() {
       expect(scoreTrace(l, [down]).passed, isTrue);
       expect(scoreTrace(o, [down]).passed, isFalse);
     });
+  });
+
+  testWidgets('boucle du jour : leçon du jour en un geste, série et objectif, leçon suivante', (tester) async {
+    await phone(tester);
+    final (app, _, prefs) = await testApp();
+    await tester.pumpWidget(app);
+    await tester.pumpAndSettle();
+
+    // Accueil : la prochaine leçon en haut, la série et l'objectif juste dessous.
+    expect(sem('Ma leçon du jour : Le son /a/, Niveau 1 · Sons et écoute. Commencer'), findsOneWidget);
+    expect(sem('Pas encore de série'), findsOneWidget);
+    expect(find.text('Objectif du jour : 0 / 2'), findsOneWidget);
+    expect(find.text('Une leçon par jour, et ta série grandit !'), findsOneWidget);
+    expect(sem('lundi : aujourd’hui, à faire'), findsOneWidget);
+
+    // Objectif choisi par l'enfant.
+    await tapSem(tester, 'Changer mon objectif (Régulier)');
+    await tapSem(tester, 'Tranquille : 1 leçon par jour');
+    expect(find.text('Objectif du jour : 0 / 1'), findsOneWidget);
+    expect(find.textContaining('1 leçon / jour', findRichText: true), findsOneWidget);
+
+    await tapSem(tester, 'Ma leçon du jour : Le son /a/, Niveau 1 · Sons et écoute. Commencer');
+    for (final label in ['Choisir la lettre a', 'Choisir le mot avion', 'Choisir la lettre a', 'Choisir le mot papa']) {
+      await answer(tester, label);
+    }
+    await answer(tester, 'Passer');
+
+    // Fin de leçon : enregistrée tout de suite, série lancée, objectif atteint.
+    expect(find.text('Leçon réussie : la suite est débloquée.'), findsOneWidget);
+    expect(sem('Ta série passe à 1 jour'), findsOneWidget);
+    expect(find.text('Ta série commence !'), findsOneWidget);
+    expect(find.text('Objectif du jour atteint !'), findsOneWidget);
+    expect(ProgressState.parse(prefs.getString(progressStorageKey)).habit.doneOn(testNow), 1);
+
+    // « Leçon suivante » enchaîne sans repasser par le parcours.
+    await tapSem(tester, 'Leçon suivante');
+    expect(find.text('Le son /e/'), findsOneWidget);
+    await tapSem(tester, 'Quitter');
+    await tapSem(tester, 'Accueil');
+    expect(sem('Série : 1 jour d’affilée'), findsOneWidget);
+    expect(sem('lundi : fait'), findsOneWidget);
+    expect(find.text('Objectif atteint ! Reviens demain pour faire grandir ta série.'), findsOneWidget);
+    expect(sem('Ma leçon du jour : Le son /e/, Niveau 1 · Sons et écoute. Commencer'), findsOneWidget);
+  });
+
+  testWidgets('leçon pas encore réussie : « Recommencer » relance la même leçon', (tester) async {
+    await phone(tester);
+    final (app, _, _) = await testApp();
+    await tester.pumpWidget(app);
+    await tester.pumpAndSettle();
+    await tapSem(tester, 'Bibliothèque');
+    await tapSem(tester, 'Commencer');
+    for (final label in ['Choisir la lettre o', 'Choisir le mot avion', 'Choisir la lettre o', 'Choisir le mot papa']) {
+      await answer(tester, label);
+    }
+    await answer(tester, 'Passer');
+    expect(find.text('2 bonnes réponses sur 5.'), findsOneWidget);
+    expect(find.textContaining('On la refait ?'), findsOneWidget);
+    expect(sem('Leçon suivante'), findsNothing);
+    await tapSem(tester, 'Recommencer');
+    expect(find.text('Le son /a/'), findsOneWidget);
+    expect(sem('Choisir la lettre a'), findsOneWidget, reason: 'nouvelle leçon, au premier exercice');
   });
 
   testWidgets('profil puis lecture : choix enregistrés, mot touché lu à voix haute, succès', (tester) async {

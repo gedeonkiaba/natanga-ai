@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../content/demo.dart';
 import '../design/tokens.dart';
 import '../design/widgets.dart';
 import '../navigation.dart';
+import '../domain/pedagogy.dart';
+import '../features/habit.dart';
 import '../router.dart';
+import '../state/clock_provider.dart';
+import '../state/progress_controller.dart';
+import 'habit_widgets.dart';
 
-/// Accueil — reproduction de la maquette approuvée (Sleek).
-class HomeScreen extends StatelessWidget {
+/// Accueil — maquette approuvée (Sleek), avec en tête la boucle quotidienne :
+/// la prochaine leçon en un geste, la série et l'objectif du jour (comme Duolingo).
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final progress = ref.watch(progressProvider);
+    final today = ref.watch(clockProvider)();
+    final next = nextLessonNode(computeTreeState(curriculumNodes, progress.treeProgress));
+    final habit = progress.habit;
     return AppScreen(
       nav: BottomNav(items: Tabs.home(context), active: 'accueil', indicator: NavIndicator.dot),
       children: [
@@ -23,7 +34,20 @@ class HomeScreen extends StatelessWidget {
             _ParentSpaceButton(onTap: () => context.go(Routes.parent)),
           ],
         ),
-        _WelcomeCard(onProfile: () => context.go(Routes.profile)),
+        TodayLessonCard(
+          next: next,
+          onStart: () => context.go('${Routes.lesson}?node=${next!.node.id}'),
+          onPath: () => context.go(Routes.tree),
+        ),
+        StreakCard(
+          habit: habit,
+          today: today,
+          onChangeGoal: () async {
+            final goal = await showGoalPicker(context, habit.dailyGoal);
+            if (goal != null) ref.read(progressProvider.notifier).update((s) => s.copyWith(habit: setDailyGoal(s.habit, goal)));
+          },
+        ),
+        _WelcomeCard(onProfile: () => context.go(Routes.profile), streak: habit.streak(today), goal: habit.dailyGoal),
         Text(HomeContent.sectionLabel.toUpperCase(), style: TypeScale.label.copyWith(color: Palette.inkLabel)),
         Column(
           children: [
@@ -76,8 +100,10 @@ class _ParentSpaceButton extends StatelessWidget {
 }
 
 class _WelcomeCard extends StatelessWidget {
-  const _WelcomeCard({required this.onProfile});
+  const _WelcomeCard({required this.onProfile, required this.streak, required this.goal});
   final VoidCallback onProfile;
+  final int streak;
+  final int goal;
 
   @override
   Widget build(BuildContext context) => ClipRRect(
@@ -103,7 +129,11 @@ class _WelcomeCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [Pill(HomeContent.timeChip, icon: 'clock'), _PrivacyChip()]),
+              Wrap(
+                spacing: Space.sm,
+                runSpacing: Space.sm,
+                children: [Pill('$goal leçon${goal > 1 ? 's' : ''} / jour', icon: 'clock'), const _PrivacyChip()],
+              ),
               const SizedBox(height: Space.md),
               Semantics(header: true, child: Text(HomeContent.promise, style: TypeScale.hero)),
               const SizedBox(height: Space.md),
@@ -140,7 +170,7 @@ class _WelcomeCard extends StatelessWidget {
                               const AppIcon('emoji:fire', size: 12),
                               const SizedBox(width: 4),
                               Text(
-                                HomeContent.streak,
+                                daysLabel(streak),
                                 style: TypeScale.caption.copyWith(color: Palette.amber600, fontWeight: FontWeight.w600),
                               ),
                             ],

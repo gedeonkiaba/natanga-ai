@@ -9,11 +9,14 @@ import '../design/widgets.dart';
 import '../domain/pedagogy.dart';
 import '../features/progress.dart';
 import '../router.dart';
+import '../features/habit.dart';
+import '../state/clock_provider.dart';
 import '../state/progress_controller.dart';
 import '../state/tts_provider.dart';
 import 'exercises/assembly_exercise.dart';
 import 'exercises/picture_match_exercise.dart';
 import 'exercises/tracing_exercise.dart';
+import 'habit_widgets.dart';
 
 /// Durée d'affichage du retour avant l'exercice suivant.
 const feedbackDuration = Duration(milliseconds: 1200);
@@ -74,17 +77,35 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
         _run.answer(check.correct);
         _feedback = null;
         _chosenId = null;
+        if (_run.finished) _record();
       });
     });
   }
 
-  void _finish() {
+  /// Ce que la leçon a changé (série, objectif du jour), affiché sur l'écran de fin.
+  HabitChange? _change;
+
+  /// Prochaine leçon débloquée après celle-ci, s'il y en a une.
+  NodeState? _next;
+
+  /// Enregistre la leçon dès sa fin (une seule fois), avant même que l'enfant quitte l'écran.
+  void _record() {
+    if (_change != null) return;
     final r = _run.result;
-    ref
-        .read(progressProvider.notifier)
-        .update((s) => recordLesson(s, nodeId: widget.nodeId, lessonId: _lesson!.id, correct: r.correct, total: r.total, gems: r.gems));
-    _backToTree();
+    final now = ref.read(clockProvider)();
+    final notifier = ref.read(progressProvider.notifier);
+    final before = ref.read(progressProvider).habit;
+    notifier.update(
+      (s) => recordLesson(s, nodeId: widget.nodeId, lessonId: _lesson!.id, correct: r.correct, total: r.total, gems: r.gems, now: now),
+    );
+    final after = ref.read(progressProvider);
+    _change = HabitChange.between(before, after.habit, now);
+    _next = nextLessonNode(computeTreeState(curriculumNodes, after.treeProgress));
   }
+
+  void _goToLesson(String nodeId) =>
+      // Paramètre `t` : une nouvelle leçon à chaque fois, même pour recommencer la même.
+      context.go('${Routes.lesson}?node=$nodeId&t=${DateTime.now().microsecondsSinceEpoch}');
 
   @override
   Widget build(BuildContext context) {
@@ -101,12 +122,31 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
     }
     if (_run.finished) {
       final r = _run.result;
+      final mastered = isMastered(r.correct, r.total);
+      final next = _next;
+      final change = _change;
       return AppScreen(
         children: [
           Semantics(header: true, child: Text('Leçon terminée !', style: TypeScale.title)),
-          Align(alignment: Alignment.centerLeft, child: Pill('${r.gems}', tone: Tone.sky, icon: 'emoji:gem-stone')),
-          Text('${r.correct} bonne${r.correct > 1 ? 's' : ''} réponse${r.correct > 1 ? 's' : ''} sur ${r.total}.', style: TypeScale.body),
-          AppButton('Continuer', onPressed: _finish),
+          Text(
+            mastered
+                ? 'Leçon réussie : la suite est débloquée.'
+                : 'Bel effort ! Avec 70 % de bonnes réponses, la leçon suivante s’ouvre. On la refait ?',
+            style: TypeScale.body.copyWith(color: Palette.inkBody),
+          ),
+          Row(
+            children: [
+              Pill('${r.gems}', tone: Tone.sky, icon: 'emoji:gem-stone'),
+              const SizedBox(width: Space.md),
+              Expanded(child: Text('${r.correct} bonne${r.correct > 1 ? 's' : ''} réponse${r.correct > 1 ? 's' : ''} sur ${r.total}.', style: TypeScale.body)),
+            ],
+          ),
+          if (change != null) HabitCelebration(change: change),
+          if (!mastered)
+            AppButton('Recommencer', leadingIcon: 'rotate-ccw', onPressed: () => _goToLesson(widget.nodeId))
+          else if (next != null && next.node.id != widget.nodeId)
+            AppButton('Leçon suivante', trailingIcon: 'arrow-right', onPressed: () => _goToLesson(next.node.id)),
+          AppButton('Voir mon parcours', variant: mastered && next == null ? ButtonVariant.primary : ButtonVariant.outline, onPressed: _backToTree),
         ],
       );
     }

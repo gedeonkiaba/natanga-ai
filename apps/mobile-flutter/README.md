@@ -57,7 +57,7 @@ L'espace parent appelle l'API (`http://localhost:8000` par défaut). Sur télép
 
 ```bash
 flutter analyze
-flutter test        # 73 tests : API, session, logique, parcours complet (leçon, hors connexion, redémarrage)
+flutter test        # 83 tests : API, session, logique, parcours complet (leçon, hors connexion, redémarrage)
 flutter build web --release --no-web-resources-cdn   # aperçu navigateur, sans CDN
 ```
 
@@ -69,3 +69,6 @@ phrase à trouver) ; les mots s'affichent en syllabes bicolores. Exercices : son
 reconnaissance, **lis et trouve l'image** (lecture seule, compréhension de phrases),
 **assemblage de syllabes**, **tracé de lettres au doigt** (`lib/screens/exercises/`).
 ⚠️ Contenu à faire valider par l'orthophoniste avant la bêta.
+
+Motivation quotidienne (série, objectif du jour, jokers, « Leçon suivante ») : voir
+[docs/29](../../docs/29-motivation-quotidienne.md).

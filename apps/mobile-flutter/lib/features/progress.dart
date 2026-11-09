@@ -8,6 +8,7 @@ library;
 import 'dart:convert';
 
 import '../domain/pedagogy.dart';
+import 'habit.dart';
 import 'profile.dart';
 
 /// Règle de l'API (AttemptService) : ≥ 3 réponses et ≥ 70 % de réussite.
@@ -50,7 +51,15 @@ class SavedProfile {
 }
 
 class ProgressState {
-  const ProgressState({this.profile, this.nodes = const {}, this.gems = 0, this.stars = 0, this.readings = 0, this.outbox = const []});
+  const ProgressState({
+    this.profile,
+    this.nodes = const {},
+    this.gems = 0,
+    this.stars = 0,
+    this.readings = 0,
+    this.outbox = const [],
+    this.habit = Habit.initial,
+  });
 
   final SavedProfile? profile;
   final Map<String, NodeProgress> nodes;
@@ -58,6 +67,9 @@ class ProgressState {
   final int stars;
   final int readings;
   final List<PendingEvent> outbox;
+
+  /// Série, objectif du jour, jokers (voir habit.dart).
+  final Habit habit;
 
   static const initial = ProgressState();
 
@@ -68,6 +80,7 @@ class ProgressState {
     int? stars,
     int? readings,
     List<PendingEvent>? outbox,
+    Habit? habit,
   }) => ProgressState(
     profile: profile ?? this.profile,
     nodes: nodes ?? this.nodes,
@@ -75,6 +88,7 @@ class ProgressState {
     stars: stars ?? this.stars,
     readings: readings ?? this.readings,
     outbox: outbox ?? this.outbox,
+    habit: habit ?? this.habit,
   );
 
   /// Progression au format de l'arbre de compétences.
@@ -92,6 +106,7 @@ class ProgressState {
     'stars': stars,
     'readings': readings,
     'outbox': outbox.map((e) => e.toJson()).toList(),
+    'habit': habit.toJson(),
   });
 
   /// Relit une sauvegarde ; absente, corrompue ou d'un autre schéma → état neuf.
@@ -114,6 +129,8 @@ class ProgressState {
         stars: (j['stars'] as num?)?.toInt() ?? 0,
         readings: (j['readings'] as num?)?.toInt() ?? 0,
         outbox: [for (final e in j['outbox'] as List? ?? []) PendingEvent.fromJson(Map<String, Object?>.from(e as Map))],
+        // Absent des sauvegardes plus anciennes : habitude neuve, le reste est gardé.
+        habit: Habit.fromJson(j['habit']),
       );
     } catch (_) {
       return initial;
@@ -152,6 +169,7 @@ ProgressState recordLesson(
   required int gems,
   DateTime? now,
 }) {
+  final at = now ?? DateTime.now();
   final score = total > 0 ? correct / total : 0.0;
   final prev = s.nodes[nodeId];
   final mastered = (prev?.mastered ?? false) || isMastered(correct, total);
@@ -159,6 +177,7 @@ ProgressState recordLesson(
   return s.copyWith(
     gems: s.gems + (gems < 0 ? 0 : gems),
     nodes: {...s.nodes, nodeId: NodeProgress(mastered, best)},
+    habit: recordActivity(s.habit, at),
     outbox: _enqueue(s.outbox, 'lesson_completed', {
       'nodeId': nodeId,
       'lessonId': lessonId,
@@ -166,7 +185,7 @@ ProgressState recordLesson(
       'total': total,
       'gems': gems,
       'score': score,
-    }, now ?? DateTime.now()),
+    }, at),
   );
 }
 
@@ -179,8 +198,10 @@ ProgressState recordReading(
   required int correctWords,
   DateTime? now,
 }) {
+  final at = now ?? DateTime.now();
   final stars = readingStars(wordsRead, correctWords);
   return s.copyWith(
+    habit: recordActivity(s.habit, at),
     stars: s.stars + stars,
     readings: s.readings + 1,
     outbox: _enqueue(s.outbox, 'reading_completed', {
@@ -190,6 +211,6 @@ ProgressState recordReading(
       'correctWords': correctWords,
       'completed': true,
       'stars': stars,
-    }, now ?? DateTime.now()),
+    }, at),
   );
 }

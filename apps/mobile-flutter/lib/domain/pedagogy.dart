@@ -256,3 +256,15 @@ List<NodeState> computeTreeState(List<SkillNode> nodes, Map<String, (NodeStatus,
         NodeState(n, mastered >= n.unlockedWhen ? NodeStatus.available : NodeStatus.locked, 0),
   ];
 }
+
+/// Prochaine leçon à faire : la première commencée ou disponible, dans l'ordre du parcours.
+/// `null` quand tout est maîtrisé.
+NodeState? nextLessonNode(List<NodeState> states) {
+  for (final s in states) {
+    if (s.status == NodeStatus.inProgress || s.status == NodeStatus.available) return s;
+  }
+  return null;
+}
+
+/// Niveau d'un nœud du parcours.
+CurriculumLevel? levelOf(SkillNode node) => curriculumLevels.where((l) => l.key == node.level).firstOrNull;
